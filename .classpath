@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+    <classpathentry kind="src" path="testsrc"/>
+    <classpathentry kind="src" path="src"/>
+    <classpathentry kind="lib" path="lib/junit.jar"/>
+    <classpathentry kind="lib" path="jui_0.6.jar"/>
+    <classpathentry kind="lib" path="lib/jCharts-0.7.4.jar"/>
+    <classpathentry kind="lib" path="lib/images.jar"/>
+    <classpathentry kind="lib" path="lib/skinlf.jar"/>
+    <classpathentry kind="lib" path="lib/dom4j.jar"/>
+    <classpathentry kind="lib" path="lib/AstroLib.jar"/>
+    <classpathentry kind="lib" path="lib/JUnitDoclet.jar"/>
+    <classpathentry kind="lib" path="lib/werx.jar"/>
+    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+    <classpathentry kind="lib" path="C:/Program Files/JMF2.1.1e/lib/sound.jar"/>
+    <classpathentry kind="lib" path="C:/Program Files/JMF2.1.1e/lib/jmf.jar"/>
+    <classpathentry kind="lib" path="C:/Program Files/JMF2.1.1e/lib/mediaplayer.jar"/>
+    <classpathentry kind="lib" path="C:/Program Files/JMF2.1.1e/lib/multiplayer.jar"/>
+    <classpathentry kind="lib" path="C:/Program Files/JMF2.1.1e/lib/customizer.jar"/>
+    <classpathentry kind="output" path="classes"/>
+</classpath>
