@@ -1,148 +1,188 @@
 package application;
 
-import util.StandardDeviation;
+import java.awt.Image;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
-import javax.media.Format;
 import javax.media.Buffer;
 import javax.media.Codec;
-import javax.media.util.BufferToImage;
+import javax.media.Format;
 import javax.media.format.RGBFormat;
 import javax.media.format.VideoFormat;
+import javax.media.util.BufferToImage;
+import javax.swing.JFrame;
 
 import persistence.XMLPersister;
-import com.mhuss.AstroLib.DateOps;
-import com.mhuss.AstroLib.Lunar;
-import com.mhuss.AstroLib.NoInitException;
-import metrics.*;
 import processors.BufferProcessorImpl;
+import ui.commands.ImageCommand;
 
 public class PostAccessCodec implements Codec {
-    XMLPersister persist;
-    private int[] keepData;
-    private int cntDataAccumulated;
-    private Thread thread = null;
-    private BufferProcessorImpl buffer = null;
+	
+	private RGBFormat format = null;
+	private XMLPersister persist;
+	private int[] keepData;
+	private int cntDataAccumulated;
+	private Thread thread = null;
+	private BufferProcessorImpl buffer = null;
+	private static JFrame imageFrame;
+	private static ImageStacker imageStacker;
+	
+	
 
-    // We'll advertize as supporting RGBFormat.
-    public PostAccessCodec() {
-        supportedIns = new Format[]{
-            new RGBFormat()
-        };
+	// We'll advertize as supporting RGBFormat.
+	public PostAccessCodec() {
+		supportedIns = new Format[] { new RGBFormat()};
+		persist = new XMLPersister();
+	}
 
-        persist = new XMLPersister();
-    }
+	/**
+	 * Callback to access individual video frames.
+	 */
+	void accessFrame(Buffer frame) {
+		processBuffer(frame);
+	}
 
-    /**
-     * Callback to access individual video frames.
-     */
-    void accessFrame(Buffer frame) {
-        short[] data = (short[]) frame.getData();
-        VideoFormat format = new VideoFormat("fsa");
-        BufferToImage bufferto = new BufferToImage(format);
-        bufferto.createImage(frame);
+	private synchronized void processBuffer(Buffer frame) {
+		if (buffer == null) {
+			buffer = BufferProcessorImpl.createInstance();
+		}
+
+		// should we process ?
+		if (!buffer.isProcessing()) {
+//			if (imageFrame == null) {
+//				//imageFrame = new JFrame("Current View");
+//				imagePanel = InstanceFactory.getImagePanel();
+//				//imageFrame.getContentPane().add(imagePanel);
+//				//imageFrame.setVisible(true);
+//			}
+			if (format == null) {
+				format = (RGBFormat) frame.getFormat();
+				imageStacker = new ImageStacker(format);
+			}
+
+			short[] originalData = (short[]) frame.getData();
+			
+			imageStacker.stackData(originalData);
+
+			if (imageStacker.isStacked()) {
+				originalData = imageStacker.getOriginalStackData();
+				CloudFrame.imageContainer.setOriginalImage(originalData);
+				//writeData(data);
+				frame.setData(originalData);
+				BufferToImage bufferto =
+					new BufferToImage((VideoFormat) format);
+				Image img = bufferto.createImage(frame);
+
+				System.out.println(frame.getFormat().toString());
+				ImageCommand command = new ImageCommand(img);
+				command.execute();
+				
+				buffer.setImageData(img, imageStacker.getProcessedStackData());
+				buffer.setWidth(img.getWidth(null));
+				thread = new Thread(buffer, "buffer processor");
+				buffer.setProcessing(true);
+				thread.start();
+			}
+		}
+	}
 
 
-        if (thread == null) {
-            buffer = new BufferProcessorImpl();
-            thread = new Thread(buffer, "buffer");
-        }
+	/**
+	 * The code for a pass through codec.
+	 */
 
-        if (!buffer.isProcessing()) {
-            buffer.setData(data);
-            thread = new Thread(buffer, "buffer");
-            thread.start();
-        }
+	// We'll advertize as supporting all video formats.
+	protected Format supportedIns[] = new Format[] { new VideoFormat(null)};
 
+	// We'll advertize as supporting all video formats.
+	protected Format supportedOuts[] = new Format[] { new VideoFormat(null)};
 
-    }
+	Format input = null, output = null;
 
-    private void resetKeepData(int length) {
-        keepData = new int[length];
-        cntDataAccumulated = 0;
-    }
+	public String getName() {
+		return "Post-Access Codec";
+	}
 
-    /**
-     * The code for a pass through codec.
-     */
+	// No op.
+	public void open() {
+	}
 
-    // We'll advertize as supporting all video formats.
-    protected Format supportedIns[] = new Format[]{
-        new VideoFormat(null)
-    };
+	// No op.
+	public void close() {
+	}
 
-    // We'll advertize as supporting all video formats.
-    protected Format supportedOuts[] = new Format[]{
-        new VideoFormat(null)
-    };
+	// No op.
+	public void reset() {
+	}
 
-    Format input = null, output = null;
+	public Format[] getSupportedInputFormats() {
+		return supportedIns;
+	}
 
-    public String getName() {
-        return "Post-Access Codec";
-    }
+	public Format[] getSupportedOutputFormats(Format in) {
+		if (in == null)
+			return supportedOuts;
+		else {
+			// If an input format is given, we use that input format
+			// as the output since we are not modifying the bit stream
+			// at all.
+			Format outs[] = new Format[1];
+			outs[0] = in;
+			return outs;
+		}
+	}
 
-    // No op.
-    public void open() {
-    }
+	public Format setInputFormat(Format format) {
+		input = format;
+		return input;
+	}
 
-    // No op.
-    public void close() {
-    }
+	public Format setOutputFormat(Format format) {
+		output = format;
+		return output;
+	}
 
-    // No op.
-    public void reset() {
-    }
+	public int process(Buffer in, Buffer out) {
 
-    public Format[] getSupportedInputFormats() {
-        return supportedIns;
-    }
+		// This is the "Callback" to access individual frames.
+		accessFrame(in);
 
-    public Format[] getSupportedOutputFormats(Format in) {
-        if (in == null)
-            return supportedOuts;
-        else {
-            // If an input format is given, we use that input format
-            // as the output since we are not modifying the bit stream
-            // at all.
-            Format outs[] = new Format[1];
-            outs[0] = in;
-            return outs;
-        }
-    }
+		// Swap the data between the input & output.
+		Object data = in.getData();
+		in.setData(out.getData());
+		out.setData(data);
 
-    public Format setInputFormat(Format format) {
-        input = format;
-        return input;
-    }
+		// Copy the input attributes to the output
+		out.setFormat(in.getFormat());
+		out.setLength(in.getLength());
+		out.setOffset(in.getOffset());
 
-    public Format setOutputFormat(Format format) {
-        output = format;
-        return output;
-    }
+		return BUFFER_PROCESSED_OK;
+	}
 
-    public int process(Buffer in, Buffer out) {
+	private void writeData(short[] data) {
+		BufferedWriter writer;
+		try {
+			writer = new BufferedWriter(new FileWriter("data.txt"));
 
-        // This is the "Callback" to access individual frames.
-        accessFrame(in);
+			for (int counter = 0; counter != data.length; counter++) {
+				writer.write(String.valueOf(data[counter]));
+				writer.write('\n');
+			}
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-        // Swap the data between the input & output.
-        Object data = in.getData();
-        in.setData(out.getData());
-        out.setData(data);
+	}
 
-        // Copy the input attributes to the output
-        out.setFormat(in.getFormat());
-        out.setLength(in.getLength());
-        out.setOffset(in.getOffset());
+	public Object[] getControls() {
+		return new Object[0];
+	}
 
-        return BUFFER_PROCESSED_OK;
-    }
-
-    public Object[] getControls() {
-        return new Object[0];
-    }
-
-    public Object getControl(String type) {
-        return null;
-    }
+	public Object getControl(String type) {
+		return null;
+	}
 }

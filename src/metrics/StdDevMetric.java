@@ -10,13 +10,20 @@ package metrics;
 import util.StandardDeviation;
 
 public class StdDevMetric implements Metric {
-    /**
-     * Computes standard deviation on the input data
-     *
-     * @param data
-     * @return
-     */
-    public double compute(short[] data) {
-       return StandardDeviation.sdFast(data);
-    }
+	/**
+	 * Computes standard deviation on the input data
+	 *
+	 * @param data
+	 * @return
+	 */
+	public double compute(short[] data) {
+		return StandardDeviation.sdFast(data);
+	}
+
+	/**
+	 * TODO : IMPLEMENT USING DOUBLES
+	 */
+	public double compute(double[] data) {
+		return -1;
+	}
 }

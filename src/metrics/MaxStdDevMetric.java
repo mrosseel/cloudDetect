@@ -13,21 +13,24 @@ import util.Median;
 import java.util.Arrays;
 
 public class MaxStdDevMetric extends SplitterMetric {
-    protected double calculateValue(short[] data, int from, int to) {
-        return StandardDeviation.sdFast(data, from, to);
-    }
+	protected double calculateValue(short[] data, int from, int to) {
+		return StandardDeviation.sdFast(data, from, to);
+	}
 
-    protected void preDataManipulation(short[] data) {
-    }
+	protected void preDataManipulation(short[] data) {
+	}
 
-    protected void postDataManipulation(short[] data) {
-        int splitterLocation = getBestSplitterLocation();
-        int length = data.length-1;
-        Arrays.sort(data, 0, splitterLocation);
-        Arrays.sort(data, splitterLocation+1, length);
-        int leftMedian = Median.find(data, 0, splitterLocation);
-        int rightMedian = Median.find(data, splitterLocation+1, length);
-        System.out.println("left = " + leftMedian + " right = " + rightMedian);
-        setResult(Math.abs(leftMedian - rightMedian));
-    }
+	protected void postDataManipulation(short[] data) {
+		int splitterLocation = getBestSplitterLocation();
+		
+//		for (int i = 0; i != data.length; i++) {
+//			System.out.println(data[i] + ",");
+//		}
+				
+		int length = data.length - 1;
+		int leftMedian = Median.find(data, 0, splitterLocation);
+		int rightMedian = Median.find(data, splitterLocation + 1, length);
+		System.out.println("left = " + leftMedian + " right = " + rightMedian);
+		setResult(Math.abs(leftMedian - rightMedian));
+	}
 }

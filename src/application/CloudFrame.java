@@ -33,10 +33,45 @@ package application;
 //import jmapps.jmstudio.CaptureDialog;
 //import jmapps.util.JMAppsCfg;
 
-import java.awt.*;
-import javax.media.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Frame;
+import java.io.IOException;
+
+import javax.media.CaptureDeviceInfo;
+import javax.media.CaptureDeviceManager;
+import javax.media.Codec;
+import javax.media.ConfigureCompleteEvent;
+import javax.media.Control;
+import javax.media.ControllerEvent;
+import javax.media.ControllerListener;
+import javax.media.EndOfMediaEvent;
+import javax.media.Format;
+import javax.media.Manager;
+import javax.media.MediaLocator;
+import javax.media.PrefetchCompleteEvent;
+import javax.media.Processor;
+import javax.media.RealizeCompleteEvent;
+import javax.media.ResourceUnavailableEvent;
+import javax.media.UnsupportedPlugInException;
 import javax.media.control.TrackControl;
-import javax.media.format.*;
+import javax.media.format.VideoFormat;
+import javax.media.protocol.CaptureDevice;
+import javax.media.protocol.DataSource;
+import javax.media.protocol.PushBufferDataSource;
+
+import jmapps.jmstudio.CaptureControlsDialog;
+import jmapps.jmstudio.CaptureDialog;
+import jmapps.ui.MessageDialog;
+import jmapps.util.CDSWrapper;
+import jmapps.util.JMAppsCfg;
+
+import org.werx.framework.bus.ReflectionBus;
+
+import ui.CloudWatchFrame;
+import ui.ContrastChart;
+
+import com.sun.media.util.JMFI18N;
 
 /**
  * Sample program to access individual video frames by using a
@@ -45,210 +80,345 @@ import javax.media.format.*;
  * for each frame of video data.
  */
 public class CloudFrame extends Frame implements ControllerListener {
+	public static ContrastChart demo;
+	Processor p;
+	Object waitSync = new Object();
+	boolean stateTransitionOK = true;
+	public static ImageContainer imageContainer;
 
-    Processor p;
-    Object waitSync = new Object();
-    boolean stateTransitionOK = true;
+	private CaptureControlsDialog dlgCaptureControls = null;
+	DataSource dataSource;
 
+	/**
+	 * Given a media locator, create a processor and use that processor
+	 * as a player to playback the media.
+	 *
+	 * During the processor's Configured state, two "pass-thru" codecs,
+	 * PreAccessCodec and application.PostAccessCodec, are set on the video track.
+	 * These codecs are used to get access to individual video frames
+	 * of the media.
+	 *
+	 * Much of the code is just standard code to present media in JMF.
+	 */
+	public boolean open(MediaLocator ml) {
+		try {
+			dataSource = Manager.createDataSource(ml);
+			captureMedia();
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
-    /**
-     * Given a media locator, create a processor and use that processor
-     * as a player to playback the media.
-     *
-     * During the processor's Configured state, two "pass-thru" codecs,
-     * PreAccessCodec and application.PostAccessCodec, are set on the video track.
-     * These codecs are used to get access to individual video frames
-     * of the media.
-     *
-     * Much of the code is just standard code to present media in JMF.
-     */
-    public boolean open(MediaLocator ml) {
+			p = Manager.createProcessor(dataSource);
+		} catch (Exception e) {
+			System.err.println(
+				"Failed to create a processor from the given url: " + e);
+			return false;
+		}
 
-        try {
-            p = Manager.createProcessor(ml);
-        } catch (Exception e) {
-            System.err.println("Failed to create a processor from the given url: " + e);
-            return false;
-        }
+		p.addControllerListener(this);
 
-        p.addControllerListener(this);
-        p.configure();
+		// Put the Processor into configured state.
+		p.configure();
+		if (!waitForState(Processor.Configured)) {
+			System.err.println("Failed to configure the processor.");
+			return false;
+		}
 
-        // Put the Processor into configured state.
-        p.configure();
-        if (!waitForState(p.Configured)) {
-            System.err.println("Failed to configure the processor.");
-            return false;
-        }
+		// So I can use it as a player.
+		p.setContentDescriptor(null);
 
-        // So I can use it as a player.
-        p.setContentDescriptor(null);
+		// Obtain the track controls.
+		TrackControl tc[] = p.getTrackControls();
 
-        // Obtain the track controls.
-        TrackControl tc[] = p.getTrackControls();
+		if (tc == null) {
+			System.err.println(
+				"Failed to obtain track controls from the processor.");
+			return false;
+		}
 
-        if (tc == null) {
-            System.err.println("Failed to obtain track controls from the processor.");
-            return false;
-        }
+		//FrameRateControl control = new FrameRateControl;
 
-        // Search for the track control for the video track.
-        TrackControl videoTrack = null;
+		// Search for the track control for the video track.
+		TrackControl videoTrack = null;
 
-        for (int i = 0; i < tc.length; i++) {
-            if (tc[i].getFormat() instanceof VideoFormat) {
-                videoTrack = tc[i];
-                break;
-            }
-        }
+		for (int i = 0; i < tc.length; i++) {
+			if (tc[i].getFormat() instanceof VideoFormat) {
+				videoTrack = tc[i];
+				/*
+				VideoFormatFrameRate vid =
+					new VideoFormatFrameRate(
+						(VideoFormat) videoTrack.getFormat());
+				vid.setFrameRate(15.00015f);
+				videoTrack.setFormat((VideoFormat) vid);
+				System.err.println("Video format: " + videoTrack.getFormat());
+				System.err.println(
+					"framerate: "
+						+ ((VideoFormat) tc[i].getFormat()).getFrameRate());
+				System.err.println("tc tostring: " + tc[i].toString());
+				*/
 
-        if (videoTrack == null) {
-            System.err.println("The input media does not contain a video track.");
-            return false;
-        }
+			}
+		}
 
-        System.err.println("Video format: " + videoTrack.getFormat());
+		if (videoTrack == null) {
+			System.err.println(
+				"The input media does not contain a video track.");
+			return false;
+		}
 
-        // Instantiate and set the frame access codec to the data flow path.
-        try {
-            Codec codec[] = {null,
-                             new PostAccessCodec()};
-            videoTrack.setCodecChain(codec);
-        } catch (UnsupportedPlugInException e) {
-            System.err.println("The process does not support effects.");
-        }
+		System.err.println("Video format: " + videoTrack.getFormat());
 
-        // Realize the processor.
-        p.prefetch();
-        if (!waitForState(p.Prefetched)) {
-            System.err.println("Failed to realize the processor.");
-            return false;
-        }
+		// Instantiate and set the frame access codec to the data flow path.
+		try {
+			Codec codec[] = { null, new PostAccessCodec()};
+			videoTrack.setCodecChain(codec);
+		} catch (UnsupportedPlugInException e) {
+			System.err.println("The process does not support effects.");
+		}
 
-        // Display the visual & control component if there's one.
+		// Realize the processor.
+		p.prefetch();
+		if (!waitForState(Processor.Prefetched)) {
+			System.err.println("Failed to realize the processor.");
+			return false;
+		}
 
-        setLayout(new BorderLayout());
+		Control[] controls = (Control[]) videoTrack.getControls();
+		for (int j = 0; j < controls.length; j++) {
+			System.out.println(controls[j].getClass());
+		}
 
-        Component cc;
+		// Display the visual & control component if there's one.
 
-        Component vc;
-        if ((vc = p.getVisualComponent()) != null) {
-            add("Center", vc);
-        }
+		setLayout(new BorderLayout());
 
-        if ((cc = p.getControlPanelComponent()) != null) {
-            add("South", cc);
-        }
+		Component cc;
 
-//        captureDialog();
+		Component vc;
+		if ((vc = p.getVisualComponent()) != null) {
+			add("Center", vc);
+		}
 
-        // Start the processor.
-        p.start();
+		if ((cc = p.getControlPanelComponent()) != null) {
+			add("South", cc);
+		}
 
-        setVisible(true);
+		//captureDialog();
 
-        return true;
-    }
+		// Start the processor.
+		//		p.start();
+		//		p.stop();
+		//
+		//		try {
+		//			Thread.sleep(7000);
+		//		} catch (InterruptedException e1) {
+		//			// TODO Auto-generated catch block
+		//			e1.printStackTrace();
+		//		}
 
-    public void addNotify() {
-        super.addNotify();
-        pack();
-    }
+		//		if ( dlgCaptureControls != null ) {
+		//						dlgCaptureControls.setVisible ( true );
+		//						dlgCaptureControls.toFront ();
+		//					}
 
-    /**
-     * Block until the processor has transitioned to the given state.
-     * Return false if the transition failed.
-     */
-    boolean waitForState(int state) {
-        synchronized (waitSync) {
-            try {
-                while (p.getState() != state && stateTransitionOK)
-                    waitSync.wait();
-            } catch (Exception e) {
-            }
-        }
-        return stateTransitionOK;
-    }
+		/*
+		FrameRateControl brc =
+			(FrameRateControl) (p
+				.getControl("javax.media.control.FrameRateControl"));
+		if (brc != null) {
+			brc.setFrameRate(1.0f);
+			System.out.println("framerate = " + brc.getFrameRate());
+			System.out.println(
+				"max framerate = " + brc.getMaxSupportedFrameRate());
+		
+		} else {
+			System.out.println("framerate failed");
+		}
+		*/
+		p.start();
 
+		//setVisible(true);
+		CloudWatchFrame frame = new CloudWatchFrame();
+		CloudFrame.demo = frame.getContrastChart();
+		CloudFrame.demo.setVisible(true);
+		frame.pack();
+		frame.setVisible(true);
 
-    /**
-     * Controller Listener.
-     */
-    public void controllerUpdate(ControllerEvent evt) {
+		return true;
+	}
 
-        if (evt instanceof ConfigureCompleteEvent ||
-                evt instanceof RealizeCompleteEvent ||
-                evt instanceof PrefetchCompleteEvent) {
-            synchronized (waitSync) {
-                stateTransitionOK = true;
-                waitSync.notifyAll();
-            }
-        } else if (evt instanceof ResourceUnavailableEvent) {
-            synchronized (waitSync) {
-                stateTransitionOK = false;
-                waitSync.notifyAll();
-            }
-        } else if (evt instanceof EndOfMediaEvent) {
-            p.close();
-            System.exit(0);
-        }
-    }
+	private void captureMedia() {
+		CaptureDialog dialogCapture;
 
+		CaptureDeviceInfo cdi;
 
-    /**
-     * Main program
-     */
-    public static void main(String[] args) {
+		String nameCaptureDeviceAudio = null;
+		String nameCaptureDeviceVideo = null;
 
-        if (args.length == 0) {
-            prUsage();
-            System.exit(0);
-        }
+		System.out.println("In capture media");
 
-        String url = args[0];
+		JMAppsCfg cfgJMApps = new JMAppsCfg();
+		dialogCapture = new CaptureDialog(this, cfgJMApps);
+		dialogCapture.show();
+		if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
+			return;
 
-        if (url.indexOf(":") < 0) {
-            prUsage();
-            System.exit(0);
-        }
+		cdi = dialogCapture.getAudioDevice();
+		if (cdi != null && dialogCapture.isAudioDeviceUsed())
+			nameCaptureDeviceAudio = cdi.getName();
+		cdi = dialogCapture.getVideoDevice();
+		if (cdi != null && dialogCapture.isVideoDeviceUsed())
+			nameCaptureDeviceVideo = cdi.getName();
+		//		  dataSource = JMFUtils.createCaptureDataSource ( nameCaptureDeviceAudio,
+		//												  dialogCapture.getAudioFormat(),
+		//												  nameCaptureDeviceVideo,
+		//												  dialogCapture.getVideoFormat() );
 
-        MediaLocator ml;
+		//dataSource = p.getDataOutput();
+		if (dataSource != null) {
 
-        if ((ml = new MediaLocator(url)) == null) {
-            System.err.println("Cannot build media locator from: " + url);
-            System.exit(0);
-        }
+			if (dataSource instanceof CaptureDevice
+				&& dataSource instanceof PushBufferDataSource) {
+				DataSource cdswrapper =
+					new CDSWrapper((PushBufferDataSource) dataSource);
+				dataSource = cdswrapper;
+				try {
+					cdswrapper.connect();
+				} catch (IOException ioe) {
+					dataSource = null;
+					nameCaptureDeviceAudio = null;
+					nameCaptureDeviceVideo = null;
+					MessageDialog.createErrorDialog(
+						this,
+						JMFI18N.getResource("jmstudio.error.captureds"));
+				}
+			}
 
-        CaptureDeviceInfo info = CaptureDeviceManager.getDevice("vfw:Microsoft WDM Image Capture (Win32):0");
-        Format[] fmts = info.getFormats();
-        for(int i = 0;i != fmts.length; i++) {
-            System.out.println("Format = " + fmts[i].toString());
-        }
+			//open ( dataSource );
 
+			if (dataSource != null) {
+				dlgCaptureControls =
+					new CaptureControlsDialog(this, dataSource);
+				if (dlgCaptureControls.isEmpty()) {
+					dlgCaptureControls = null;
+				} else {
+					dlgCaptureControls.setVisible(true);
+				}
+			}
 
-        ml = info.getLocator();
+		} else {
+			nameCaptureDeviceAudio = null;
+			nameCaptureDeviceVideo = null;
+			MessageDialog.createErrorDialog(
+				this,
+				JMFI18N.getResource("jmstudio.error.captureds"));
+		}
+	}
 
-        Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
+	public void addNotify() {
+		super.addNotify();
+		pack();
+	}
 
-        CloudFrame fa = new CloudFrame();
+	/**
+	 * Block until the processor has transitioned to the given state.
+	 * Return false if the transition failed.
+	 */
+	boolean waitForState(int state) {
+		synchronized (waitSync) {
+			try {
+				while (p.getState() != state && stateTransitionOK)
+					waitSync.wait();
+			} catch (Exception e) {
+			}
+		}
+		return stateTransitionOK;
+	}
 
-        if (!fa.open(ml))
-            System.exit(0);
-    }
+	/**
+	 * Controller Listener.
+	 */
+	public void controllerUpdate(ControllerEvent evt) {
 
-    static void prUsage() {
-        System.err.println("Usage: java cloudFrame <url>");
-    }
+		if (evt instanceof ConfigureCompleteEvent
+			|| evt instanceof RealizeCompleteEvent
+			|| evt instanceof PrefetchCompleteEvent) {
+			synchronized (waitSync) {
+				stateTransitionOK = true;
+				waitSync.notifyAll();
+			}
+		} else if (evt instanceof ResourceUnavailableEvent) {
+			synchronized (waitSync) {
+				stateTransitionOK = false;
+				waitSync.notifyAll();
+			}
+		} else if (evt instanceof EndOfMediaEvent) {
+			p.close();
+			System.exit(0);
+		}
+	}
 
-//    public void captureDialog() {
-//        CaptureDialog       dialogCapture;
-//        DataSource          dataSource;
-//        CaptureDeviceInfo   cdi;
-//
-//        JMAppsCfg cfgJMApps = new JMAppsCfg ();
-//        dialogCapture = new CaptureDialog ( this, cfgJMApps );
-//        dialogCapture.show ();
-//        if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
-//            return;
-//    }
+	/**
+	 * Main program
+	 */
+	public static void main(String[] args) {
+
+		ReflectionBus.start();
+		if (args.length == 0) {
+			prUsage();
+			System.exit(0);
+		}
+
+		String url = args[0];
+
+		if (url.indexOf(":") < 0) {
+			prUsage();
+			System.exit(0);
+		}
+
+		MediaLocator ml;
+
+		if ((ml = new MediaLocator(url)) == null) {
+			System.err.println("Cannot build media locator from: " + url);
+			System.exit(0);
+		}
+
+		CaptureDeviceInfo info =
+			CaptureDeviceManager.getDevice(
+				"vfw:Microsoft WDM Image Capture (Win32):0");
+		Format[] fmts = info.getFormats();
+		for (int i = 0; i != fmts.length; i++) {
+			System.out.println("Format = " + fmts[i].toString());
+		}
+
+		ml = info.getLocator();
+
+		Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
+
+		CloudFrame fa = new CloudFrame();
+		CloudFrame.imageContainer = new ImageContainer(); 
+
+		if (!fa.open(ml))
+			System.exit(0);
+
+	}
+
+	static void prUsage() {
+		System.err.println("Usage: java cloudFrame <url>");
+	}
+
+	//    public void captureDialog() {
+	//        CaptureDialog       dialogCapture;
+	//        DataSource          dataSource;
+	//        CaptureDeviceInfo   cdi;
+	//
+	//        JMAppsCfg cfgJMApps = new JMAppsCfg ();
+	//        dialogCapture = new CaptureDialog ( this, cfgJMApps );
+	//        dialogCapture.show ();
+	//        if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
+	//            return;
+	//    }
 }

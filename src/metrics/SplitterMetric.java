@@ -9,74 +9,118 @@ package metrics;
 
 import util.TextProgressBar;
 
-import java.util.Arrays;
-
 public abstract class SplitterMetric implements Metric {
-    private int bestSplitterLocation;
-    private double result;
+	private int bestSplitterLocation;
+	private int pctSplitterLocation;
+	private double result;
 
+	/**
+		 * TODO : IMPLEMENT USING DOUBLES
+		 */
+	public double compute(double[] data) {
+		return -1;
+	}
 
-    public double compute(short[] data) {
+	public double compute(short[] data) {
+		preDataManipulation(data);
 
-        preDataManipulation(data);
+		// choose a begin and end-point for the splitter
+		int length = data.length;
+		int splitterBegin = 5 - 1;
+		int splitterEnd = length - 5;
+		int bestSplitterLocation = -1;
+		int splitterLocation;
+		;
+		double biggestValueDifference = Integer.MAX_VALUE;
+		double valueDifference;
+		double valueLeft;
+		double valueRight;
+		TextProgressBar progress =
+			new TextProgressBar(
+				40,
+				(double) splitterBegin,
+				(double) splitterEnd);
 
+		for (splitterLocation = splitterBegin;
+			splitterLocation != splitterEnd;
+			splitterLocation++) {
+			valueLeft = calculateValue(data, 0, splitterLocation);
+			valueRight = calculateValue(data, splitterLocation + 1, length - 1);
+			//			valueDifference = Math.abs(valueRight - valueLeft);
+			valueDifference =
+				valueRight * splitterLocation
+					+ valueLeft * (length - splitterLocation - 1);
 
-        // choose a begin and end-point for the splitter
-        int length = data.length;
-        int splitterBegin = 5-1;
-        int splitterEnd = length - 5;
-        int splitterLocation = splitterBegin;
-        int bestSplitterLocation=-1;
-        double biggestValueDifference = Integer.MIN_VALUE;
-        double valueDifference;
-        double valueLeft;
-        double valueRight;
-        TextProgressBar progress = new TextProgressBar(40, (double)splitterBegin, (double)splitterEnd);
+			//			System.out.println("diff = " + valueDifference + " at " + splitterLocation +
+			//			" left = " + valueLeft + " right = " + valueRight);
 
+			//if (valueDifference > biggestValueDifference) {
+			if (valueDifference < biggestValueDifference) {
+				biggestValueDifference = valueDifference;
+				bestSplitterLocation = splitterLocation;
+			}
+			progress.update(splitterLocation);
+			if (splitterLocation % 1000 == 0) {
+				//System.out.print(getPctSplitterLocation() + " % - ");
+				progress.print();
+			}
+		}
 
-        for(splitterLocation = splitterBegin; splitterLocation != splitterEnd; splitterLocation++) {
-            valueLeft = calculateValue(data, 0, splitterLocation);
-            valueRight = calculateValue(data, splitterLocation+1, length-1);
-            valueDifference = Math.abs(valueRight - valueLeft);
+		setResult(biggestValueDifference);
+		setPctSplitterLocation(
+			(int) Math.round(
+				((double) bestSplitterLocation / (double) length * 100)));
+		postDataManipulation(data);
+		System.out.println(
+			"Best splitter located at pos "
+				+ bestSplitterLocation
+				+ " ("
+				+ 
+				+ ((double) bestSplitterLocation / (double) length * 100)
+				+ " %)");
 
-            if(valueDifference > biggestValueDifference) {
-                biggestValueDifference = valueDifference;
-                bestSplitterLocation = splitterLocation;
-            }
-            progress.update(splitterLocation);
-            if(splitterLocation%1000 == 0) {
-                System.out.print(Math.round(((double)splitterLocation / (double)length * 100)) + " % - ");
-//                progress.print();
-            }
+		return result;
+	}
 
-        }
+	protected double getResult() {
+		return result;
+	}
 
-        setResult(biggestValueDifference);
-        postDataManipulation(data);
-        System.out.println("Best splitter located at " + ((double)bestSplitterLocation / (double)length * 100) + " %");
+	protected void setResult(double result) {
+		this.result = result;
+	}
 
-        return result;
-    }
+	protected abstract void preDataManipulation(short[] data);
+	protected abstract void postDataManipulation(short[] data);
 
-    public int getBestSplitterLocation() {
-        return bestSplitterLocation;
-    }
+	/**
+	 * calculates a value
+	 */
+	protected abstract double calculateValue(short[] data, int from, int to);
 
-    protected double getResult() {
-        return result;
-    }
+	public int getBestSplitterLocation() {
+		return bestSplitterLocation;
+	}
 
-    protected void setResult(double result) {
-        this.result = result;
-    }
+	/**
+	 * @param i
+	 */
+	public void setBestSplitterLocation(int i) {
+		bestSplitterLocation = i;
+	}
 
-    protected abstract void preDataManipulation(short[] data);
-    protected abstract void postDataManipulation(short[] data);
+	/**
+	 * @return
+	 */
+	public int getPctSplitterLocation() {
+		return pctSplitterLocation;
+	}
 
-    /**
-     * calculates a value
-     */
-    protected abstract double calculateValue(short[] data, int from, int to);
-
+	/**
+	 * @param i
+	 */
+	public void setPctSplitterLocation(int i) {
+		pctSplitterLocation = i;
+	}
 
 }

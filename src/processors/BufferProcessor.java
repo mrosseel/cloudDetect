@@ -1,13 +1,9 @@
 /**
- * Created by IntelliJ IDEA.
- * User: Mike
- * Date: Sep 9, 2003
- * Time: 7:00:02 PM
- * To change this template use Options | File Templates.
+ * Takes an image as input and calculates metrics.
+ * 
  */
 package processors;
 
-import javax.media.Buffer;
 
 public interface BufferProcessor extends Runnable {
 
@@ -15,5 +11,5 @@ public interface BufferProcessor extends Runnable {
      *
      * @param data frame data
      */
-    public void process(short[] data);
+    public void process(double[] data);
 }

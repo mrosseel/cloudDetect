@@ -29,4 +29,11 @@ public class KMeansMetric implements Metric {
         int[] clusterSizes = kmeans.getBinSizes();
         return Math.abs(clusterSizes[0] - clusterSizes[1]);
     }
+    
+    /**
+     * TODO : IMPLEMENT USING DOUBLES
+     */
+	public double compute(double[] data) {
+		return -1;
+	}
 }
