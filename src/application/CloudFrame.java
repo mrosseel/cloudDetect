@@ -60,13 +60,14 @@ import javax.media.protocol.CaptureDevice;
 import javax.media.protocol.DataSource;
 import javax.media.protocol.PushBufferDataSource;
 
+import org.werx.framework.bus.ReflectionBus;
+
+
 import jmapps.jmstudio.CaptureControlsDialog;
 import jmapps.jmstudio.CaptureDialog;
 import jmapps.ui.MessageDialog;
 import jmapps.util.CDSWrapper;
 import jmapps.util.JMAppsCfg;
-
-import org.werx.framework.bus.ReflectionBus;
 
 import ui.CloudWatchFrame;
 import ui.ContrastChart;
