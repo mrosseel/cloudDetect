@@ -29,7 +29,9 @@ public class MetricsSuite
     suite = new TestSuite("metrics");
     
     suite.addTestSuite(metrics.StdDevMetricTest.class);
+    suite.addTestSuite(metrics.MaxStdDevMetricTest.class);
     suite.addTestSuite(metrics.MaxMedianMetricTest.class);
+    suite.addTestSuite(metrics.LineMaxStdDevMetricTest.class);
     suite.addTestSuite(metrics.KMeansMetricTest.class);
     
     

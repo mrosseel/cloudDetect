@@ -29,7 +29,7 @@ extends TestCase
     // JUnitDoclet end method MaxMedianMetricTest
   }
   
-  public metrics.SplitterMetric createInstance() throws Exception {
+  public metrics.MaxMedianMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
     return new metrics.MaxMedianMetric();
     // JUnitDoclet end method testcase.createInstance
@@ -49,18 +49,6 @@ extends TestCase
     // JUnitDoclet end method testcase.tearDown
   }
   
-  public void testCompute() throws Exception {
-    // JUnitDoclet begin method compute
-     short[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-     SplitterMetric metric = new MaxMedianMetric();
-     assertEquals(0.0, metric.compute(data), 0.0);
-
-
-
-
-    // JUnitDoclet end method compute
-  }
-  
   
   
   /**
@@ -71,6 +59,15 @@ extends TestCase
   */
   public void testVault() throws Exception {
     // JUnitDoclet begin method testcase.testVault
+// JUnitDoclet begin method compute
+     short[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
+     SplitterMetric metric = new MaxMedianMetric();
+     assertEquals(0.0, metric.compute(data), 0.0);
+
+
+
+
+// JUnitDoclet end method compute
     // JUnitDoclet end method testcase.testVault
   }
   

@@ -28,8 +28,12 @@ public class UtilSuite
     
     suite = new TestSuite("util");
     
+    suite.addTestSuite(util.TextProgressBarTest.class);
+    suite.addTestSuite(util.StringToolkitTest.class);
     suite.addTestSuite(util.StandardDeviationTest.class);
+    suite.addTestSuite(util.ParametersTest.class);
     suite.addTestSuite(util.MedianTest.class);
+    suite.addTestSuite(util.MathMethodsTest.class);
     suite.addTestSuite(util.Kmeans_oldTest.class);
     suite.addTestSuite(util.KMeansTest.class);
     suite.addTestSuite(util.IntVectorTest.class);

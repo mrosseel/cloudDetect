@@ -29,6 +29,8 @@ public class ApplicationSuite
     suite = new TestSuite("application");
     
     suite.addTestSuite(application.PostAccessCodecTest.class);
+    suite.addTestSuite(application.JMStudioTest.class);
+    suite.addTestSuite(application.JMFRegistryTest.class);
     suite.addTestSuite(application.CloudFrameTest.class);
     
     
