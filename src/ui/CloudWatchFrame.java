@@ -32,12 +32,6 @@ public class CloudWatchFrame extends JFrame {
     private javax.swing.JMenu jMenu = null;
 
     /** ? */
-    private javax.swing.JMenu jMenu1 = null;
-
-    /** ? */
-    private javax.swing.JMenu jMenu2 = null;
-
-    /** ? */
     private javax.swing.JMenuBar jJMenuBar1 = null;
 
     /** ? */
@@ -48,9 +42,6 @@ public class CloudWatchFrame extends JFrame {
 
     /** ? */
     private javax.swing.JMenuItem jMenuItem2 = null;
-
-    /** ? */
-    private javax.swing.JMenuItem jMenuItem3 = null;
 
     /** ? */
     private javax.swing.JMenuItem jMenuItem4 = null;
@@ -116,8 +107,6 @@ public class CloudWatchFrame extends JFrame {
         if (jJMenuBar1 == null) {
             jJMenuBar1 = new javax.swing.JMenuBar();
             jJMenuBar1.add(getJMenu());
-            jJMenuBar1.add(getJMenu2());
-            jJMenuBar1.add(getJMenu1());
             jJMenuBar1.setPreferredSize(new java.awt.Dimension(0, 20));
         }
 
@@ -138,43 +127,11 @@ public class CloudWatchFrame extends JFrame {
             jMenu.add(getJSeparator());
             jMenu.add(getJMenuItem1());
             jMenu.setName("File");
-            jMenu.setText("File");
+            jMenu.setText("Settings");
             jMenu.setMnemonic(java.awt.event.KeyEvent.VK_F);
         }
 
         return jMenu;
-    }
-
-    /**
-     * This method initializes jMenu1
-     *
-     * @return javax.swing.JMenu
-     */
-    private javax.swing.JMenu getJMenu1() {
-        if (jMenu1 == null) {
-            jMenu1 = new javax.swing.JMenu();
-            jMenu1.add(getJMenuItem3());
-            jMenu1.setText("Help");
-            jMenu1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            jMenu1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            jMenu1.setComponentOrientation(java.awt.ComponentOrientation.UNKNOWN);
-        }
-
-        return jMenu1;
-    }
-
-    /**
-     * This method initializes jMenu2
-     *
-     * @return javax.swing.JMenu
-     */
-    private javax.swing.JMenu getJMenu2() {
-        if (jMenu2 == null) {
-            jMenu2 = new javax.swing.JMenu();
-            jMenu2.setText("View");
-        }
-
-        return jMenu2;
     }
 
     /**
@@ -185,7 +142,7 @@ public class CloudWatchFrame extends JFrame {
     private javax.swing.JMenuItem getJMenuItem() {
         if (jMenuItem == null) {
             jMenuItem = new javax.swing.JMenuItem();
-            jMenuItem.setText("Open X");
+            jMenuItem.setText("Take Darkframe");
             jMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_X);
             jMenuItem.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
@@ -229,21 +186,6 @@ public class CloudWatchFrame extends JFrame {
     }
 
     /**
-     * This method initializes jMenuItem3
-     *
-     * @return javax.swing.JMenuItem
-     */
-    private javax.swing.JMenuItem getJMenuItem3() {
-        if (jMenuItem3 == null) {
-            jMenuItem3 = new javax.swing.JMenuItem();
-            jMenuItem3.setText("About");
-            jMenuItem3.setMnemonic(java.awt.event.KeyEvent.VK_A);
-        }
-
-        return jMenuItem3;
-    }
-
-    /**
      * This method initializes jMenuItem4
      *
      * @return javax.swing.JMenuItem
@@ -251,7 +193,7 @@ public class CloudWatchFrame extends JFrame {
     private javax.swing.JMenuItem getJMenuItem4() {
         if (jMenuItem4 == null) {
             jMenuItem4 = new javax.swing.JMenuItem();
-            jMenuItem4.setText("Open Y");
+            jMenuItem4.setText("Configure Webcam");
 
             jMenuItem4.setMnemonic(java.awt.event.KeyEvent.VK_Y);
           //  NewXFileSignal signal = new NewXFileSignal(new File("ypy"));
