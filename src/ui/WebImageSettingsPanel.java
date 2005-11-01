@@ -1,4 +1,4 @@
-/*
+*
  * Created on 26-sep-2004
  *
  * TODO To change the template for this generated file go to
@@ -25,8 +25,6 @@ import javax.swing.JButton;
  */
 public class WebImageSettingsPanel extends JPanel {
 
-	private JPanel jPanel = null;
-	private JPanel jPanel1 = null;
 	private JCheckBox jCheckBox = null;
 	private JLabel jLabel = null;
 	private JLabel jLabel1 = null;
@@ -35,11 +33,13 @@ public class WebImageSettingsPanel extends JPanel {
 	private JLabel jLabel2 = null;
 	private JLabel jLabel3 = null;
 	private JTextField jTextField2 = null;
-	private JPanel jPanel4 = null;
 	private JButton jButton = null;
 	private JButton jButton1 = null;
 	private JPanel jPanel2 = null;
 	private JPanel jPanel3 = null;
+	private JPanel jPanel5 = null;
+	private JPanel jPanel = null;
+	private JPanel jPanel1 = null;
 	/**
 	 * This is the default constructor
 	 */
@@ -54,28 +54,27 @@ public class WebImageSettingsPanel extends JPanel {
 	 */
 	private  void initialize() {
 		java.awt.GridBagConstraints gridBagConstraints16 = new GridBagConstraints();
-		java.awt.GridBagConstraints gridBagConstraints2 = new GridBagConstraints();
-		java.awt.GridBagConstraints gridBagConstraints1 = new GridBagConstraints();
+		java.awt.GridBagConstraints gridBagConstraints15 = new GridBagConstraints();
+		java.awt.GridBagConstraints gridBagConstraints14 = new GridBagConstraints();
 		this.setLayout(new GridBagLayout());
 		this.setSize(467, 222);
-		gridBagConstraints1.gridx = 0;
-		gridBagConstraints1.gridy = 0;
-		gridBagConstraints1.insets = new java.awt.Insets(2,2,1,2);
-		gridBagConstraints1.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints1.weightx = 1.0D;
-		gridBagConstraints1.weighty = 1.0D;
-		gridBagConstraints2.gridx = 0;
-		gridBagConstraints2.gridy = 1;
-		gridBagConstraints2.insets = new java.awt.Insets(1,2,2,2);
-		gridBagConstraints2.fill = java.awt.GridBagConstraints.BOTH;
-		gridBagConstraints2.weightx = 1.0D;
-		gridBagConstraints2.weighty = 1.0D;
+		gridBagConstraints14.gridx = 0;
+		gridBagConstraints14.gridy = 0;
+		gridBagConstraints14.fill = java.awt.GridBagConstraints.BOTH;
+		gridBagConstraints14.weightx = 1.0D;
+		gridBagConstraints14.weighty = 1.0D;
+		gridBagConstraints15.gridx = 0;
+		gridBagConstraints15.gridy = 1;
+		gridBagConstraints15.weightx = 1.0D;
+		gridBagConstraints15.weighty = 1.0D;
+		gridBagConstraints15.fill = java.awt.GridBagConstraints.BOTH;
 		gridBagConstraints16.gridx = 0;
 		gridBagConstraints16.gridy = 2;
 		gridBagConstraints16.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		this.add(getJPanel(), gridBagConstraints1);
-		this.add(getJPanel1(), gridBagConstraints2);
-		this.add(getJPanel4(), gridBagConstraints16);
+		gridBagConstraints16.weightx = 1.0D;
+		this.add(getJPanel5(), gridBagConstraints14);
+		this.add(getJPanel6(), gridBagConstraints15);
+		this.add(getJPanel12(), gridBagConstraints16);
 	}
 	/**
 	 * This method initializes jPanel	
@@ -85,23 +84,7 @@ public class WebImageSettingsPanel extends JPanel {
 	private JPanel getJPanel() {
 		if (jPanel == null) {
 			jLabel3 = new JLabel();
-			java.awt.GridBagConstraints gridBagConstraints14 = new GridBagConstraints();
-			java.awt.GridBagConstraints gridBagConstraints15 = new GridBagConstraints();
-			jPanel = new JPanel();
-			jPanel.setLayout(new GridBagLayout());
-			jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Image Settings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null));
 			jLabel3.setText("Web address of image");
-			gridBagConstraints14.gridx = 0;
-			gridBagConstraints14.gridy = 0;
-			gridBagConstraints14.insets = new java.awt.Insets(2,2,2,2);
-			gridBagConstraints14.anchor = java.awt.GridBagConstraints.WEST;
-			gridBagConstraints15.gridx = 1;
-			gridBagConstraints15.gridy = 0;
-			gridBagConstraints15.weightx = 1.0;
-			gridBagConstraints15.fill = java.awt.GridBagConstraints.HORIZONTAL;
-			gridBagConstraints15.insets = new java.awt.Insets(2,2,2,2);
-			jPanel.add(jLabel3, gridBagConstraints14);
-			jPanel.add(getJTextField2(), gridBagConstraints15);
 		}
 		return jPanel;
 	}
@@ -112,26 +95,8 @@ public class WebImageSettingsPanel extends JPanel {
 	 */    
 	private JPanel getJPanel1() {
 		if (jPanel1 == null) {
-			java.awt.GridBagConstraints gridBagConstraints6 = new GridBagConstraints();
-			java.awt.GridBagConstraints gridBagConstraints51 = new GridBagConstraints();
 			jLabel = new JLabel();
-			jPanel1 = new JPanel();
-			jPanel1.setLayout(new GridBagLayout());
-			jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Proxy Settings", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, null));
 			jLabel.setText("Use proxy");
-			gridBagConstraints51.gridx = 0;
-			gridBagConstraints51.gridy = 0;
-			gridBagConstraints51.gridwidth = 3;
-			gridBagConstraints51.anchor = java.awt.GridBagConstraints.WEST;
-			gridBagConstraints51.weightx = 1.0D;
-			gridBagConstraints51.weighty = 1.0D;
-			gridBagConstraints6.gridx = 0;
-			gridBagConstraints6.gridy = 1;
-			gridBagConstraints6.weightx = 1.0D;
-			gridBagConstraints6.weighty = 1.0D;
-			gridBagConstraints6.fill = java.awt.GridBagConstraints.BOTH;
-			jPanel1.add(getJPanel2(), gridBagConstraints51);
-			jPanel1.add(getJPanel32(), gridBagConstraints6);
 		}
 		return jPanel1;
 	}
@@ -199,19 +164,6 @@ public class WebImageSettingsPanel extends JPanel {
 			jTextField2 = new JTextField();
 		}
 		return jTextField2;
-	}
-	/**
-	 * This method initializes jPanel4	
-	 * 	
-	 * @return javax.swing.JPanel	
-	 */    
-	private JPanel getJPanel4() {
-		if (jPanel4 == null) {
-			jPanel4 = new JPanel();
-			jPanel4.add(getJButton(), null);
-			jPanel4.add(getJButton1(), null);
-		}
-		return jPanel4;
 	}
 	/**
 	 * This method initializes jButton	
@@ -288,4 +240,53 @@ public class WebImageSettingsPanel extends JPanel {
 		}
 		return jPanel3;
 	}
-             }  //  @jve:decl-index=0:visual-constraint="10,10"
+	/**
+	 * This method initializes jPanel5	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */    
+	private JPanel getJPanel5() {
+		if (jPanel5 == null) {
+			jPanel5 = new JPanel();
+			jPanel5.add(jLabel3, null);
+			jPanel5.add(getJTextField2(), null);
+		}
+		return jPanel5;
+	}
+	/**
+	 * This method initializes jPanel	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */    
+	private JPanel getJPanel6() {
+		if (jPanel == null) {
+			java.awt.GridBagConstraints gridBagConstraints18 = new GridBagConstraints();
+			java.awt.GridBagConstraints gridBagConstraints17 = new GridBagConstraints();
+			jPanel = new JPanel();
+			jPanel.setLayout(new GridBagLayout());
+			gridBagConstraints17.gridx = 0;
+			gridBagConstraints17.gridy = 0;
+			gridBagConstraints17.insets = new java.awt.Insets(19,74,63,2);
+			gridBagConstraints18.gridx = 0;
+			gridBagConstraints18.gridy = 1;
+			gridBagConstraints18.insets = new java.awt.Insets(5,3,48,74);
+			gridBagConstraints18.fill = java.awt.GridBagConstraints.BOTH;
+			jPanel.add(getJPanel2(), gridBagConstraints17);
+			jPanel.add(getJPanel3(), gridBagConstraints18);
+		}
+		return jPanel;
+	}
+	/**
+	 * This method initializes jPanel1	
+	 * 	
+	 * @return javax.swing.JPanel	
+	 */    
+	private JPanel getJPanel12() {
+		if (jPanel1 == null) {
+			jPanel1 = new JPanel();
+			jPanel1.add(getJButton(), null);
+			jPanel1.add(getJButton1(), null);
+		}
+		return jPanel1;
+	}
+                }  //  @jve:decl-index=0:visual-constraint="10,10"

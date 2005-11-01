@@ -39,7 +39,9 @@ import com.sun.media.ui.TabControl;
 import jmapps.ui.*;
 import jmapps.registry.*;
 
-
+/**
+ * TODO DELETE ME !!!!!!!!!!!!!!!!!!!!!!
+  */
 public class JMFRegistry extends JMFrame {
 
     private TabControl  tabs;

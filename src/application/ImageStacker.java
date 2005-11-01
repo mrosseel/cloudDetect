@@ -1,8 +1,5 @@
 /*
- * Created on 8-jan-2004
- *
- * To change the template for this generated file go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+*
  */
 package application;
 
@@ -15,6 +12,8 @@ import util.Median;
  * Util to stack images.
  *  
  * @author Mike
+ * 
+ * TODO remove text progress bar (add listeners?)
  *
  */
 public class ImageStacker {
@@ -47,6 +46,11 @@ public class ImageStacker {
 		//progress.print();
 	}
 
+	/**
+	 * No processing occured, the original data has only by median-stacked.
+	 * 
+	 * @return
+	 */
 	public short[] getOriginalStackData() {
 		short[] resultData = new short[stackedData.length];
 		double y, cb, cr;
@@ -70,6 +74,12 @@ public class ImageStacker {
 		return resultData;
 	}
 
+	/**
+	 * Data is median stacked, converted to B/W and scaled so that the 
+	 * smallest possible change is 1 unit
+	 * TODO recalculate scaling and document
+	 * @return
+	 */
 	public double[] getProcessedStackData() {
 		double[] resultData = new double[stackedData.length];
 		double y, cb, cr;

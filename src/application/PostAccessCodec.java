@@ -14,7 +14,7 @@ import javax.media.util.BufferToImage;
 import javax.swing.JFrame;
 
 import persistence.XMLPersister;
-import processors.BufferProcessorImpl;
+import media.processors.BufferProcessorImpl;
 import ui.commands.ImageCommand;
 
 public class PostAccessCodec implements Codec {

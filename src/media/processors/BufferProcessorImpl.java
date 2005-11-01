@@ -1,11 +1,7 @@
 /**
- * Created by IntelliJ IDEA.
- * User: Mike
- * Date: Sep 9, 2003
- * Time: 7:01:28 PM
- * To change this template use Options | File Templates.
+ * One implementation of how to process a buffer 
  */
-package processors;
+package media.processors;
 
 import java.awt.Image;
 import java.io.File;

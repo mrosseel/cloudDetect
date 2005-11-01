@@ -193,13 +193,15 @@ public class CloudWatchFrame extends JFrame {
     private javax.swing.JMenuItem getJMenuItem4() {
         if (jMenuItem4 == null) {
             jMenuItem4 = new javax.swing.JMenuItem();
-            jMenuItem4.setText("Configure Webcam");
+            jMenuItem4.setText("Configure Image source");
 
             jMenuItem4.setMnemonic(java.awt.event.KeyEvent.VK_Y);
           //  NewXFileSignal signal = new NewXFileSignal(new File("ypy"));
             jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         File           selFile = chooseFile();
+                        WebImageSettingsPanel webImage = new WebImageSettingsPanel();
+                        //webImage.show();
                        // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));
                         //command.execute();
                     }

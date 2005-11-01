@@ -30,31 +30,97 @@
 
 package application;
 
-import java.util.*;
-import java.net.*;
-import java.lang.reflect.Method;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
+import java.awt.BorderLayout;
+import java.awt.CheckboxMenuItem;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FileDialog;
+import java.awt.Frame;
+import java.awt.Image;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.MenuShortcut;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.Vector;
 
-import javax.media.*;
-import javax.media.util.*;
-import javax.media.format.*;
-import javax.media.control.*;
-import javax.media.protocol.*;
-import javax.media.bean.playerbean.*;
-import javax.media.rtp.*;
-import javax.media.rtp.event.*;
+import javax.media.Buffer;
+import javax.media.CaptureDeviceInfo;
+import javax.media.CaptureDeviceManager;
+import javax.media.Codec;
+import javax.media.Control;
+import javax.media.Controller;
+import javax.media.Format;
+import javax.media.PlugInManager;
+import javax.media.PrefetchCompleteEvent;
+import javax.media.Processor;
+import javax.media.RealizeCompleteEvent;
+import javax.media.bean.playerbean.MediaPlayer;
+import javax.media.control.FormatControl;
+import javax.media.control.FrameGrabbingControl;
+import javax.media.control.TrackControl;
+import javax.media.format.AudioFormat;
+import javax.media.format.FormatChangeEvent;
+import javax.media.format.VideoFormat;
+import javax.media.protocol.CaptureDevice;
+import javax.media.protocol.DataSource;
+import javax.media.protocol.PushBufferDataSource;
+import javax.media.rtp.RTPStream;
+import javax.media.rtp.ReceiveStream;
+import javax.media.rtp.ReceiveStreamListener;
+import javax.media.rtp.SendStream;
+import javax.media.rtp.SessionAddress;
+import javax.media.rtp.event.NewReceiveStreamEvent;
+import javax.media.rtp.event.ReceiveStreamEvent;
+import javax.media.util.BufferToImage;
 
-import com.sun.media.util.JMFI18N;
+import jmapps.jmstudio.AboutDialog;
+import jmapps.jmstudio.CaptureControlsDialog;
+import jmapps.jmstudio.CaptureDialog;
+import jmapps.jmstudio.OpenRtpDialog;
+import jmapps.jmstudio.OpenUrlDialog;
+import jmapps.jmstudio.SaveAsDialog;
+import jmapps.jmstudio.TransmitWizard;
+import jmapps.rtp.SessionControlDialog;
+import jmapps.rtp.TransmissionStatsDialog;
+import jmapps.ui.ImageArea;
+import jmapps.ui.JMDialog;
+import jmapps.ui.JMFrame;
+import jmapps.ui.MessageDialog;
+import jmapps.ui.PlayerFrame;
+import jmapps.ui.SnapFrame;
+import jmapps.ui.VideoPanel;
+import jmapps.util.CDSWrapper;
+import jmapps.util.JMAppsCfg;
+import jmapps.util.JMFUtils;
+
 import com.sun.media.rtp.RTPSessionMgr;
+import com.sun.media.util.JMFI18N;
 
-import jmapps.ui.*;
-import jmapps.util.*;
-import jmapps.rtp.*;
-import jmapps.jmstudio.*;
-
-
+/**
+ * TODO DELET ME !!!!!!!!!!!
+ */
 public class JMStudio extends PlayerFrame implements ItemListener,
                                     ReceiveStreamListener {
 

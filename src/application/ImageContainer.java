@@ -7,10 +7,10 @@
 package application;
 
 /**
+ * Container to hold an original and a processed image, the processed image 
+ * being a double value for each pixel.
+ * 
  * @author Mike
- *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImageContainer {
 	private short[] originalImage;

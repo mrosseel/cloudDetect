@@ -2,7 +2,7 @@ package processors;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import processors.BufferProcessorImpl;
+import media.processors.BufferProcessorImpl;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  processors.BufferProcessorImpl bufferprocessorimpl = null;
+  media.processors.BufferProcessorImpl bufferprocessorimpl = null;
   // JUnitDoclet end class
   
   public BufferProcessorImplTest(String name) {
@@ -29,7 +29,7 @@ extends TestCase
     // JUnitDoclet end method BufferProcessorImplTest
   }
   
-  public processors.BufferProcessorImpl createInstance() throws Exception {
+  public media.processors.BufferProcessorImpl createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
     return BufferProcessorImpl.createInstance();
     // JUnitDoclet end method testcase.createInstance

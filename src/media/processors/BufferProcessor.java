@@ -2,7 +2,7 @@
  * Takes an image as input and calculates metrics.
  * 
  */
-package processors;
+package media.processors;
 
 
 public interface BufferProcessor extends Runnable {
