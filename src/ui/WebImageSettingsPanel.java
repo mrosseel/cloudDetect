@@ -1,22 +1,13 @@
-*
- * Created on 26-sep-2004
- *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
- */
 package ui;
 
-import javax.swing.JPanel;
-
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
 /**
  * @author Mike
  *
