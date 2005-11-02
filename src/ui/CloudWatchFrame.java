@@ -5,6 +5,8 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import util.ImageToolkit;
+
 
 /*
  * Created on 20-jan-2004
@@ -313,9 +315,9 @@ public class CloudWatchFrame extends JFrame {
         this.setContentPane(getJPanel1());
         this.setJMenuBar(getJJMenuBar1());
         this.setSize(353, 249);
-        // TODO this is what they call hard-coded!!!
-        this.setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage("C:/home/programming/cloudDetect/conf/pics/webcam5.png"));
-        this.setTitle("CloudWatcher v0.1");
+        // TODO this is what they call hard-coded!!
+        this.setIconImage(ImageToolkit.loadClasspathImage("/conf/pics/webcam5.png"));
+        this.setTitle("CloudWatcher v0.2");
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
     }
 	/**
