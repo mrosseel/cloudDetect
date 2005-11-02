@@ -315,8 +315,8 @@ public class CloudWatchFrame extends JFrame {
         this.setContentPane(getJPanel1());
         this.setJMenuBar(getJJMenuBar1());
         this.setSize(353, 249);
-        // TODO this is what they call hard-coded!!
         this.setIconImage(ImageToolkit.loadClasspathImage("/conf/pics/webcam5.png"));
+        // TODO read this from config file
         this.setTitle("CloudWatcher v0.2");
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
     }
