@@ -6,7 +6,6 @@ package media.processors;
 import java.awt.Image;
 import java.io.File;
 
-import metrics.CutoffDifferenceMetric;
 import metrics.LineMedianDifferenceMetric;
 import metrics.PixelBrightnessMetric;
 

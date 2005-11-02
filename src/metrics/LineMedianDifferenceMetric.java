@@ -77,7 +77,7 @@ public class LineMedianDifferenceMetric implements Metric {
 		//			imageFrame.setImage(img);
 		//		}
 
-		CloudFrame.demo.addValue(result);
+		CloudFrame.chart.addValue(result);
 		return result;
 	}
 

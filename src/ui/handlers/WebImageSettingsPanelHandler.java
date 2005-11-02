@@ -6,12 +6,6 @@
  */
 package ui.handlers;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.werx.framework.bus.ReflectionBus;
-
-import ui.WebcamSettingsPanel;
-import ui.signal.ImageSignal;
 
 
 /**

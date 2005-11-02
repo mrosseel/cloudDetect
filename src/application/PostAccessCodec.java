@@ -67,7 +67,8 @@ public class PostAccessCodec implements Codec {
 
 			if (imageStacker.isStacked()) {
 				originalData = imageStacker.getOriginalStackData();
-				CloudFrame.imageContainer.setOriginalImage(originalData);
+				// TODO look why this is needed and reinstate it
+				//CloudFrame.imageContainer.setOriginalImage(originalData);
 				//writeData(data);
 				frame.setData(originalData);
 				BufferToImage bufferto =
