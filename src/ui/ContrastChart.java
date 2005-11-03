@@ -121,7 +121,7 @@ public class ContrastChart extends ChartPanel {
 	public void addValue(double value) {
 		Date now = new Date();
 		timeSeries.add(new FixedMillisecond(now.getTime()), new Double(value));
-		writeImage();
+		//writeImage();
 	}
 
 	private void writeImage() {
@@ -129,6 +129,7 @@ public class ContrastChart extends ChartPanel {
 		try {
 //			org.jfree.chart.ChartUtilities.saveChartAsJPEG(new File("V:/current.jpg"),
 //			99, ContrastChart.chart, 640,480);
+
 			org.jfree.chart.ChartUtilities.saveChartAsPNG(new File("V:/current.png"),
 						ContrastChart.chart, 640,480);
 
