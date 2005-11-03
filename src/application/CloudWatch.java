@@ -44,9 +44,12 @@ public class CloudWatch {
 		   usesUI = true;
 		}
 		
+		JMFInit jmf = new JMFInit();
+		jmf.init();
+		
 		if(usesUI) {
-			JMFInit jmf = new JMFInit();
-			jmf.init();
+			CloudFrame frame = new CloudFrame();
+			frame.start();
 		}
 		
 	}

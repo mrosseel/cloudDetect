@@ -27,13 +27,12 @@ import javax.media.Processor;
 import javax.media.RealizeCompleteEvent;
 import javax.media.ResourceUnavailableEvent;
 import javax.media.UnsupportedPlugInException;
+import javax.media.control.FrameRateControl;
 import javax.media.control.TrackControl;
 import javax.media.format.VideoFormat;
 import javax.media.protocol.CaptureDevice;
 import javax.media.protocol.DataSource;
 import javax.media.protocol.PushBufferDataSource;
-
-import org.werx.framework.bus.ReflectionBus;
 
 import jmapps.jmstudio.CaptureControlsDialog;
 import jmapps.jmstudio.CaptureDialog;
@@ -41,20 +40,17 @@ import jmapps.ui.MessageDialog;
 import jmapps.util.CDSWrapper;
 import jmapps.util.JMAppsCfg;
 
-import ui.CloudWatchFrame;
-import ui.ContrastChart;
+import org.werx.framework.bus.ReflectionBus;
 
 import com.sun.media.util.JMFI18N;
 
 /**
  * @author Mike
- * 
+ *  
  */
 public class JMFInit extends Frame implements ControllerListener {
 	// make this external
 	private static final String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
-
-	
 
 	Processor p;
 
@@ -65,9 +61,9 @@ public class JMFInit extends Frame implements ControllerListener {
 	private CaptureControlsDialog dlgCaptureControls = null;
 
 	DataSource dataSource;
+
 	// thread sync object
 	Object waitSync = new Object();
-
 
 	/**
 	 * Given a media locator, create a processor and use that processor as a
@@ -83,13 +79,16 @@ public class JMFInit extends Frame implements ControllerListener {
 	public boolean open(MediaLocator ml) {
 		try {
 			dataSource = Manager.createDataSource(ml);
-			captureMedia();
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			//captureMedia();
+			// TODO is this needed, I guess it makes filling in the pop-up
+			// config screens easier, but those should go.
+
+			//			try {
+			//				Thread.sleep(10000);
+			//			} catch (InterruptedException e1) {
+			//				// TODO Auto-generated catch block
+			//				e1.printStackTrace();
+			//			}
 
 			p = Manager.createProcessor(dataSource);
 		} catch (Exception e) {
@@ -154,30 +153,37 @@ public class JMFInit extends Frame implements ControllerListener {
 			return false;
 		}
 
-		Control[] controls = (Control[]) videoTrack.getControls();
-		for (int j = 0; j < controls.length; j++) {
-			System.out.println(controls[j].getClass());
+		Object control = p.getControl("javax.media.control.FrameRateControl");
+		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
+		if (frc != null) {
+			System.out.println("The frame rate is currently set to "
+					+ frc.getFrameRate() + "fps. Setting to max rate of "
+					+ frc.getMaxSupportedFrameRate() + "fps");
+
+			frc.setFrameRate(frc.getMaxSupportedFrameRate());
 		}
 
-		// Display the visual & control component if there's one.
-
-		setLayout(new BorderLayout());
-
-		Component cc;
-
-		Component vc;
-		if ((vc = p.getVisualComponent()) != null) {
-			add("Center", vc);
-		}
-
-		if ((cc = p.getControlPanelComponent()) != null) {
-			add("South", cc);
-		}
+		//		Control[] controls = (Control[]) videoTrack.getControls();
+		//		for (int j = 0; j < controls.length; j++) {
+		//			System.out.println(controls[j].getClass());
+		//		}
+		//
+		//		// Display the visual & control component if there's one.
+		//
+		//		setLayout(new BorderLayout());
+		//
+		//		Component cc;
+		//
+		//		Component vc;
+		//		if ((vc = p.getVisualComponent()) != null) {
+		//			add("Center", vc);
+		//		}
+		//
+		//		if ((cc = p.getControlPanelComponent()) != null) {
+		//			add("South", cc);
+		//		}
 
 		p.start();
-
-		CloudFrame frame = new CloudFrame();
-		frame.start();
 
 		return true;
 	}
@@ -301,7 +307,8 @@ public class JMFInit extends Frame implements ControllerListener {
 		MediaLocator ml;
 
 		if ((ml = new MediaLocator(JMFInit.webcamURL)) == null) {
-			System.err.println("Cannot build media locator from: " + JMFInit.webcamURL);
+			System.err.println("Cannot build media locator from: "
+					+ JMFInit.webcamURL);
 			System.exit(0);
 		}
 
@@ -316,15 +323,13 @@ public class JMFInit extends Frame implements ControllerListener {
 
 		Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
 
-//		JMFInit fa = new JMFInit();
-//		JMFInit.imageContainer = new ImageContainer();
+		//		JMFInit fa = new JMFInit();
+		//		JMFInit.imageContainer = new ImageContainer();
 
 		if (!open(ml))
 			System.exit(0);
 
 	}
-
-	
 
 	//    public void captureDialog() {
 	//        CaptureDialog dialogCapture;
