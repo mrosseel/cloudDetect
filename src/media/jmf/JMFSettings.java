@@ -19,6 +19,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
+ * 
+ * EXAMPLE FROM INTERNET, look if we can delete it.
+ * 
  * @author Mike
  * 
  * TODO To change the template for this generated type comment go to Window -

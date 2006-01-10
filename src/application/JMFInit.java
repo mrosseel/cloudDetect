@@ -6,16 +6,12 @@
  */
 package application;
 
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Frame;
 import java.io.IOException;
 
 import javax.media.CaptureDeviceInfo;
 import javax.media.CaptureDeviceManager;
 import javax.media.Codec;
 import javax.media.ConfigureCompleteEvent;
-import javax.media.Control;
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
 import javax.media.EndOfMediaEvent;
@@ -48,7 +44,7 @@ import com.sun.media.util.JMFI18N;
  * @author Mike
  *  
  */
-public class JMFInit extends Frame implements ControllerListener {
+public class JMFInit implements ControllerListener {
 	// make this external
 	private static final String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
 
@@ -79,6 +75,7 @@ public class JMFInit extends Frame implements ControllerListener {
 	public boolean open(MediaLocator ml) {
 		try {
 			dataSource = Manager.createDataSource(ml);
+
 			//captureMedia();
 			// TODO is this needed, I guess it makes filling in the pop-up
 			// config screens easier, but those should go.
@@ -153,15 +150,15 @@ public class JMFInit extends Frame implements ControllerListener {
 			return false;
 		}
 
-		Object control = p.getControl("javax.media.control.FrameRateControl");
-		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
-		if (frc != null) {
-			System.out.println("The frame rate is currently set to "
-					+ frc.getFrameRate() + "fps. Setting to max rate of "
-					+ frc.getMaxSupportedFrameRate() + "fps");
-
-			frc.setFrameRate(frc.getMaxSupportedFrameRate());
-		}
+//		Object control = p.getControl("javax.media.control.FrameRateControl");
+//		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
+//		if (frc != null) {
+//			System.out.println("The frame rate is currently set to "
+//					+ frc.getFrameRate() + "fps. Setting to max rate of "
+//					+ frc.getMaxSupportedFrameRate() + "fps");
+//
+//			frc.setFrameRate(frc.getMaxSupportedFrameRate());
+//		}
 
 		//		Control[] controls = (Control[]) videoTrack.getControls();
 		//		for (int j = 0; j < controls.length; j++) {
@@ -170,7 +167,7 @@ public class JMFInit extends Frame implements ControllerListener {
 		//
 		//		// Display the visual & control component if there's one.
 		//
-		//		setLayout(new BorderLayout());
+		//		setLayout(new BorderLayout()0);
 		//
 		//		Component cc;
 		//
@@ -187,7 +184,7 @@ public class JMFInit extends Frame implements ControllerListener {
 
 		return true;
 	}
-
+/*
 	private void captureMedia() {
 		CaptureDialog dialogCapture;
 
@@ -253,12 +250,8 @@ public class JMFInit extends Frame implements ControllerListener {
 					.getResource("jmstudio.error.captureds"));
 		}
 	}
-
-	public void addNotify() {
-		super.addNotify();
-		pack();
-	}
-
+*/
+	
 	/**
 	 * Block until the processor has transitioned to the given state. Return
 	 * false if the transition failed.
