@@ -1,4 +1,4 @@
-package application;
+package media.web;
 
 import junit.framework.TestSuite;
 
@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 */
 
 
-public class ApplicationSuite
+public class WebSuite
 // JUnitDoclet begin extends_implements
 // JUnitDoclet end extends_implements
 {
@@ -26,10 +26,11 @@ public class ApplicationSuite
     
     TestSuite suite;
     
-    suite = new TestSuite("application");
+    suite = new TestSuite("media.web");
     
-    suite.addTestSuite(application.PostAccessCodecTest.class);
-    suite.addTestSuite(application.CloudFrameTest.class);
+    suite.addTestSuite(media.web.WebImageLoaderTest.class);
+    suite.addTestSuite(media.web.ProxyConfiguratorTest.class);
+    suite.addTestSuite(media.web.ImageViewerTest.class);
     
     
     

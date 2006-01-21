@@ -1,4 +1,4 @@
-package processors;
+package ui.signal;
 
 import junit.framework.TestSuite;
 
@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 */
 
 
-public class ProcessorsSuite
+public class SignalSuite
 // JUnitDoclet begin extends_implements
 // JUnitDoclet end extends_implements
 {
@@ -26,9 +26,11 @@ public class ProcessorsSuite
     
     TestSuite suite;
     
-    suite = new TestSuite("processors");
+    suite = new TestSuite("ui.signal");
     
-    suite.addTestSuite(processors.BufferProcessorImplTest.class);
+    suite.addTestSuite(ui.signal.WebImageSettingsSignalTest.class);
+    suite.addTestSuite(ui.signal.StatusSignalTest.class);
+    suite.addTestSuite(ui.signal.ImageSignalTest.class);
     
     
     

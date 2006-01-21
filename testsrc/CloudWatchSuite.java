@@ -1,5 +1,4 @@
-package metrics;
-
+import ui.UiSuite;
 import junit.framework.TestSuite;
 
 
@@ -15,7 +14,7 @@ import junit.framework.TestSuite;
 */
 
 
-public class MetricsSuite
+public class CloudWatchSuite
 // JUnitDoclet begin extends_implements
 // JUnitDoclet end extends_implements
 {
@@ -26,18 +25,13 @@ public class MetricsSuite
     
     TestSuite suite;
     
-    suite = new TestSuite("metrics");
+    suite = new TestSuite("cloudwatch");
     
-    suite.addTestSuite(metrics.StdDevMetricTest.class);
-    suite.addTestSuite(metrics.SlidingWindowSplitterTest.class);
-    suite.addTestSuite(metrics.PixelBrightnessMetricTest.class);
-    suite.addTestSuite(metrics.MaxStdDevMetricTest.class);
-    suite.addTestSuite(metrics.MaxMedianMetricTest.class);
-    suite.addTestSuite(metrics.LineMedianDifferenceMetricTest.class);
-    suite.addTestSuite(metrics.KMeansMetricTest.class);
-    suite.addTestSuite(metrics.CutoffDifferenceMetricTest.class);
-    
-    
+    suite.addTest(application.ApplicationSuite.suite());
+    suite.addTest(metrics.MetricsSuite.suite());
+    suite.addTest(persistence.PersistenceSuite.suite());
+    suite.addTest(ui.UiSuite.suite());
+    suite.addTest(util.UtilSuite.suite());
     
     // JUnitDoclet begin method suite
     // JUnitDoclet end method suite

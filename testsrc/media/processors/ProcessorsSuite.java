@@ -1,4 +1,4 @@
-package metrics;
+package media.processors;
 
 import junit.framework.TestSuite;
 
@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 */
 
 
-public class MetricsSuite
+public class ProcessorsSuite
 // JUnitDoclet begin extends_implements
 // JUnitDoclet end extends_implements
 {
@@ -26,16 +26,9 @@ public class MetricsSuite
     
     TestSuite suite;
     
-    suite = new TestSuite("metrics");
+    suite = new TestSuite("media.processors");
     
-    suite.addTestSuite(metrics.StdDevMetricTest.class);
-    suite.addTestSuite(metrics.SlidingWindowSplitterTest.class);
-    suite.addTestSuite(metrics.PixelBrightnessMetricTest.class);
-    suite.addTestSuite(metrics.MaxStdDevMetricTest.class);
-    suite.addTestSuite(metrics.MaxMedianMetricTest.class);
-    suite.addTestSuite(metrics.LineMedianDifferenceMetricTest.class);
-    suite.addTestSuite(metrics.KMeansMetricTest.class);
-    suite.addTestSuite(metrics.CutoffDifferenceMetricTest.class);
+    suite.addTestSuite(media.processors.BufferProcessorImplTest.class);
     
     
     

@@ -1,4 +1,4 @@
-package processors;
+package media.processors;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import

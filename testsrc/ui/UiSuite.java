@@ -1,6 +1,9 @@
 package ui;
 
 import junit.framework.TestSuite;
+import ui.commands.CommandsSuite;
+import ui.handlers.HandlersSuite;
+import ui.signal.SignalSuite;
 
 
 // JUnitDoclet begin import
@@ -28,8 +31,21 @@ public class UiSuite
     
     suite = new TestSuite("ui");
     
-    suite.addTestSuite(ui.ImageFrameTest.class);
+    suite.addTestSuite(ui.WebImageSettingsPanelTest.class);
+    suite.addTestSuite(ui.WebcamSettingsPanelTest.class);
+    suite.addTestSuite(ui.StatusPanelTest.class);
+    suite.addTestSuite(ui.RightPanelTest.class);
+    suite.addTestSuite(ui.LineChartsTest.class);
+    suite.addTestSuite(ui.ImagePanelTest.class);
+    suite.addTestSuite(ui.ControlPanelTest.class);
+    suite.addTestSuite(ui.ContrastChartTest.class);
+    suite.addTestSuite(ui.CloudWatchFrameTest.class);
+    suite.addTestSuite(ui.ChartFrameTest.class);
+    suite.addTestSuite(ui.AxisChartsTest.class);
     
+    suite.addTest(ui.commands.CommandsSuite.suite());
+    suite.addTest(ui.handlers.HandlersSuite.suite());
+    suite.addTest(ui.signal.SignalSuite.suite());
     
     
     // JUnitDoclet begin method suite
