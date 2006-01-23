@@ -11,6 +11,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.werx.framework.bus.ReflectionBus;
 
 /**
  * Main class of The CloudWatch program (project name change pending).
@@ -27,9 +28,9 @@ public class CloudWatch {
 		System.err.println("Usage: java cloudFrame <url>");
 	}
 	
-	
-	public static void main(String[] args) {
+	public CloudWatchConfig processCommandLine(String[] args) {
 		Options options = new Options();
+		CloudWatchConfig config = new CloudWatchConfig();
 		options.addOption("u", false, "Uses the User Interface");
 		
 		CommandLineParser parser = new PosixParser();
@@ -37,21 +38,36 @@ public class CloudWatch {
 		try {
 			cmd = parser.parse( options, args);
 		} catch (ParseException e) {
-			e.printStackTrace();
+			prUsage();
+			System.exit(1);
 		}
 		
 		if(cmd.hasOption("u")) {
-		   usesUI = true;
+		   config.usesUI = true;
 		}
 		
-		JMFInit jmf = new JMFInit();
-		jmf.init();
-		
-		if(usesUI) {
+		return config;
+	}
+	
+	public void startApplication(CloudWatchConfig config) {
+
+		if(config.usesUI) {
 			CloudFrame frame = new CloudFrame();
+			ReflectionBus.start();
 			frame.start();
+		} else {
+			JMFInit jmf = new JMFInit();
+			jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
 		}
-		
+	}
+	
+	public static void main(String[] args) {
+		CloudWatch app = new CloudWatch();
+		CloudWatchConfig config = app.processCommandLine(args);
+		app.startApplication(config);
 	}
 
 }
+
+
+

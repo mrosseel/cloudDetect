@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.Image;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,31 +7,42 @@ import java.io.IOException;
 import javax.media.Buffer;
 import javax.media.Codec;
 import javax.media.Format;
-import javax.media.format.RGBFormat;
 import javax.media.format.VideoFormat;
-import javax.media.util.BufferToImage;
 import javax.swing.JFrame;
 
-import persistence.XMLPersister;
 import media.processors.BufferProcessorImpl;
-import ui.commands.ImageCommand;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import persistence.XMLPersister;
+import util.RGBImageStacker;
 
 public class PostAccessCodec implements Codec {
 	
-	private RGBFormat format = null;
+	// RGB or YUV or ...
+	private VideoFormat format = null;
 	private XMLPersister persist;
 	private int[] keepData;
 	private int cntDataAccumulated;
 	private Thread thread = null;
 	private BufferProcessorImpl buffer = null;
 	private static JFrame imageFrame;
-	private static ImageStacker imageStacker;
-	
-	
+	private static RGBImageStacker imageStacker;
 
+	// We'll advertize as supporting all video formats.
+	protected Format supportedIns[] = new Format[] { new VideoFormat(null)};
+
+	// We'll advertize as supporting all video formats.
+	protected Format supportedOuts[] = new Format[] { new VideoFormat(null)};
+
+	Format input = null, output = null;
+
+	private static Log log = LogFactory.getLog(PostAccessCodec.class);
+	
 	// We'll advertize as supporting RGBFormat.
 	public PostAccessCodec() {
-		supportedIns = new Format[] { new RGBFormat()};
+		//supportedIns = new Format[] { new YUVFormat()};
 		persist = new XMLPersister();
 	}
 
@@ -50,19 +60,17 @@ public class PostAccessCodec implements Codec {
 
 		// should we process ?
 		if (!buffer.isProcessing()) {
-//			if (imageFrame == null) {
-//				//imageFrame = new JFrame("Current View");
-//				imagePanel = InstanceFactory.getImagePanel();
-//				//imageFrame.getContentPane().add(imagePanel);
-//				//imageFrame.setVisible(true);
-//			}
+
 			if (format == null) {
-				format = (RGBFormat) frame.getFormat();
-				imageStacker = new ImageStacker(format);
+				format = (VideoFormat) frame.getFormat();
+				//imageStacker = new RGBImageStacker(format);
 			}
 
-			short[] originalData = (short[]) frame.getData();
+			byte[] originalData = (byte[]) frame.getData();
 			
+				log.info("getting data of length: " + originalData.length );
+			
+			/*
 			imageStacker.stackData(originalData);
 
 			if (imageStacker.isStacked()) {
@@ -85,6 +93,7 @@ public class PostAccessCodec implements Codec {
 				buffer.setProcessing(true);
 				thread.start();
 			}
+			*/
 		}
 	}
 
@@ -93,13 +102,6 @@ public class PostAccessCodec implements Codec {
 	 * The code for a pass through codec.
 	 */
 
-	// We'll advertize as supporting all video formats.
-	protected Format supportedIns[] = new Format[] { new VideoFormat(null)};
-
-	// We'll advertize as supporting all video formats.
-	protected Format supportedOuts[] = new Format[] { new VideoFormat(null)};
-
-	Format input = null, output = null;
 
 	public String getName() {
 		return "Post-Access Codec";

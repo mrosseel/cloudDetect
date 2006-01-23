@@ -6,8 +6,6 @@
  */
 package application;
 
-import java.io.IOException;
-
 import javax.media.CaptureDeviceInfo;
 import javax.media.CaptureDeviceManager;
 import javax.media.Codec;
@@ -23,31 +21,22 @@ import javax.media.Processor;
 import javax.media.RealizeCompleteEvent;
 import javax.media.ResourceUnavailableEvent;
 import javax.media.UnsupportedPlugInException;
-import javax.media.control.FrameRateControl;
 import javax.media.control.TrackControl;
 import javax.media.format.VideoFormat;
-import javax.media.protocol.CaptureDevice;
 import javax.media.protocol.DataSource;
-import javax.media.protocol.PushBufferDataSource;
 
 import jmapps.jmstudio.CaptureControlsDialog;
-import jmapps.jmstudio.CaptureDialog;
-import jmapps.ui.MessageDialog;
-import jmapps.util.CDSWrapper;
-import jmapps.util.JMAppsCfg;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.werx.framework.bus.ReflectionBus;
-
-import com.sun.media.util.JMFI18N;
 
 /**
  * @author Mike
- *  
+ *  look at it !!! : http://swjscmail1.java.sun.com/cgi-bin/wa?A2=ind0109&L=jmf-interest&P=R2095
  */
 public class JMFInit implements ControllerListener {
-	// make this external
-	private static final String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
-
+	
 	Processor p;
 
 	boolean stateTransitionOK = true;
@@ -61,6 +50,8 @@ public class JMFInit implements ControllerListener {
 	// thread sync object
 	Object waitSync = new Object();
 
+	private static Log log = LogFactory.getLog(JMFInit.class);
+	
 	/**
 	 * Given a media locator, create a processor and use that processor as a
 	 * player to playback the media.
@@ -76,43 +67,30 @@ public class JMFInit implements ControllerListener {
 		try {
 			dataSource = Manager.createDataSource(ml);
 
-			//captureMedia();
-			// TODO is this needed, I guess it makes filling in the pop-up
-			// config screens easier, but those should go.
-
-			//			try {
-			//				Thread.sleep(10000);
-			//			} catch (InterruptedException e1) {
-			//				// TODO Auto-generated catch block
-			//				e1.printStackTrace();
-			//			}
-
 			p = Manager.createProcessor(dataSource);
 		} catch (Exception e) {
-			System.err
-					.println("Failed to create a processor from the given url: "
-							+ e);
+			log.error("Failed to create a processor from the given url: " + e);
 			return false;
 		}
 
+		// all controller events are sent to this, see controllerUpdate method.
 		p.addControllerListener(this);
 
 		// Put the Processor into configured state.
 		p.configure();
 		if (!waitForState(Processor.Configured)) {
-			System.err.println("Failed to configure the processor.");
+			log.error("Failed to configure the processor.");
 			return false;
 		}
 
 		// So I can use it as a player.
 		p.setContentDescriptor(null);
-
+		
 		// Obtain the track controls.
 		TrackControl tc[] = p.getTrackControls();
 
 		if (tc == null) {
-			System.err
-					.println("Failed to obtain track controls from the processor.");
+			log.error("Failed to obtain track controls from the processor.");
 			return false;
 		}
 
@@ -128,19 +106,18 @@ public class JMFInit implements ControllerListener {
 		}
 
 		if (videoTrack == null) {
-			System.err
-					.println("The input media does not contain a video track.");
+			log.error("The input media does not contain a video track.");
 			return false;
 		}
 
-		System.err.println("Video format: " + videoTrack.getFormat());
+		log.info("Video format: " + videoTrack.getFormat());
 
 		// Instantiate and set the frame access codec to the data flow path.
 		try {
 			Codec codec[] = { null, new PostAccessCodec() };
 			videoTrack.setCodecChain(codec);
 		} catch (UnsupportedPlugInException e) {
-			System.err.println("The process does not support effects.");
+			log.error("The process does not support effects.");
 		}
 
 		// Realize the processor.
@@ -291,29 +268,31 @@ public class JMFInit implements ControllerListener {
 	}
 
 	/**
-	 * Main method
+	 * takes a string and makes a medialocator, then calls open.
 	 */
-	public void init() {
-
-		ReflectionBus.start();
+	public void init(String url) {
 
 		MediaLocator ml;
 
-		if ((ml = new MediaLocator(JMFInit.webcamURL)) == null) {
-			System.err.println("Cannot build media locator from: "
-					+ JMFInit.webcamURL);
+		if ((ml = new MediaLocator(url)) == null) {
+			log.error("Cannot build media locator from: " + url);
 			System.exit(0);
 		}
 
 		CaptureDeviceInfo info = CaptureDeviceManager
-				.getDevice(JMFInit.webcamURL);
+				.getDevice(url);
+		
+		// TODO doesn't do anything !
 		Format[] fmts = info.getFormats();
 		for (int i = 0; i != fmts.length; i++) {
-			System.out.println("Format = " + fmts[i].toString());
+			if (log.isDebugEnabled()) {
+				log.debug("Format = " + fmts[i].toString());
+			}
 		}
 
 		ml = info.getLocator();
 
+		// TODO UI, might go ?
 		Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
 
 		//		JMFInit fa = new JMFInit();
@@ -335,4 +314,11 @@ public class JMFInit implements ControllerListener {
 	//        if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
 	//            return;
 	//    }
+	
+	public static void main(String[] args) {
+		String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
+
+		JMFInit init = new JMFInit();
+		init.init(webcamURL);
+	}
 }

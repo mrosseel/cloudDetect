@@ -8,8 +8,6 @@ package ui;
 
 import javax.swing.JPanel;
 
-import application.InstanceFactory;
-
 /**
  * @author Mike
  *

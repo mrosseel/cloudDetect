@@ -1,12 +1,10 @@
 /*
 *
  */
-package application;
+package util;
 
 import javax.media.format.RGBFormat;
 
-import util.TextProgressBar;
-import util.Median;
 
 /**
  * Util to stack images.
@@ -16,7 +14,7 @@ import util.Median;
  * TODO remove text progress bar (add listeners?)
  *
  */
-public class ImageStacker {
+public class RGBImageStacker {
 	public static int FRAMES_TO_STACK = 150;
 	private short[][] stackedData;
 	private int stackCounter = 0;
@@ -26,7 +24,7 @@ public class ImageStacker {
 	/**
 	 * 
 	 */
-	public ImageStacker(RGBFormat format) {
+	public RGBImageStacker(RGBFormat format) {
 		this.format = format;
 	}
 

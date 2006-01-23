@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<project name="jDip" default="run" basedir="." >
+<project name="cloudWatch" default="run" basedir="." >
 <!-- ANT Build.xml file for jDip -->
 <!-- todo:
 	0) FIX javadoc creation; needs to know about batik libraries
