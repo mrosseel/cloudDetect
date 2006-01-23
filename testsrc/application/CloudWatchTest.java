@@ -1,8 +1,6 @@
 package application;
 
 import junit.framework.TestCase;
-// JUnitDoclet begin import
-import application.CloudWatch;
 // JUnitDoclet end import
 
 /**
@@ -51,7 +49,10 @@ extends TestCase
   
   public void testProcessCommandLine() throws Exception {
     // JUnitDoclet begin method processCommandLine
-  	cloudwatch.Configuration config = new cloudwatch.Configuration();
+  	CloudWatchConfig config;
+  	String[] arg = { "bla", "-u", "-x"};
+  	config = cloudwatch.processCommandLine(arg);
+  	assertTrue(config.usesUI);
     // JUnitDoclet end method processCommandLine
   }
   
