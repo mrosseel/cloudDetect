@@ -8,10 +8,6 @@ import java.io.File;
 
 import metrics.LineMedianDifferenceMetric;
 import metrics.PixelBrightnessMetric;
-
-import org.jCharts.chartData.ChartDataException;
-
-import ui.LineCharts;
 import util.SoundUtil;
 
 import com.mhuss.AstroLib.DateOps;
@@ -39,13 +35,13 @@ public class BufferProcessorImpl implements BufferProcessor {
 	}
 
 	public void process(double[] data) {
-		LineCharts lineCharts= new LineCharts();
-		try {
-			lineCharts.run();
-		} catch (ChartDataException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		LineCharts lineCharts= new LineCharts();
+//		try {
+//			lineCharts.run();
+//		} catch (ChartDataException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		System.out.println(
 			"-------------------------------------------------------");
 

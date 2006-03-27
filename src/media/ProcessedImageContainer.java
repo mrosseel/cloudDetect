@@ -4,7 +4,7 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package application;
+package media;
 
 /**
  * Container to hold an original and a processed image, the processed image 
@@ -12,14 +12,14 @@ package application;
  * 
  * @author Mike
  */
-public class ImageContainer {
+public class ProcessedImageContainer {
 	private short[] originalImage;
 	private double[] processedImage;
 		
 	/**
 	 * 
 	 */
-	public ImageContainer() {
+	public ProcessedImageContainer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

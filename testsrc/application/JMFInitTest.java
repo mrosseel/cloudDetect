@@ -1,8 +1,8 @@
 package application;
 
+import media.jmf.JMFInit;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import application.JMFInit;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  application.JMFInit jmfinit = null;
+  media.jmf.JMFInit jmfinit = null;
   // JUnitDoclet end class
   
   public JMFInitTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method JMFInitTest
   }
   
-  public application.JMFInit createInstance() throws Exception {
+  public media.jmf.JMFInit createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new application.JMFInit();
+    return new media.jmf.JMFInit();
     // JUnitDoclet end method testcase.createInstance
   }
   

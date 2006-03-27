@@ -5,6 +5,8 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import media.jmf.JMFInit;
+
 import util.ImageToolkit;
 
 
@@ -202,9 +204,12 @@ public class CloudWatchFrame extends JFrame {
             jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
                         File           selFile = chooseFile();
-                        WebImageSettingsPanel webImage = new WebImageSettingsPanel();
+                        //WebImageSettingsPanel webImage = new WebImageSettingsPanel();
                         //webImage.show();
-                       // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));
+            			JMFInit jmf = new JMFInit();
+            			jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
+
+                        // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));
                         //command.execute();
                     }
                 });
@@ -320,6 +325,7 @@ public class CloudWatchFrame extends JFrame {
         this.setTitle("CloudWatcher v0.2");
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
     }
+    
 	/**
 	 * This method initializes ContrastChart
 	 * 

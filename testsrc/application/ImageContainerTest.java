@@ -1,8 +1,8 @@
 package application;
 
+import media.ProcessedImageContainer;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import application.ImageContainer;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  application.ImageContainer imagecontainer = null;
+  media.ProcessedImageContainer imagecontainer = null;
   // JUnitDoclet end class
   
   public ImageContainerTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method ImageContainerTest
   }
   
-  public application.ImageContainer createInstance() throws Exception {
+  public media.ProcessedImageContainer createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new application.ImageContainer();
+    return new media.ProcessedImageContainer();
     // JUnitDoclet end method testcase.createInstance
   }
   

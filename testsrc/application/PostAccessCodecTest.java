@@ -1,8 +1,8 @@
 package application;
 
+import media.jmf.PostAccessCodec;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import application.PostAccessCodec;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  application.PostAccessCodec postaccesscodec = null;
+  media.jmf.PostAccessCodec postaccesscodec = null;
   // JUnitDoclet end class
   
   public PostAccessCodecTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method PostAccessCodecTest
   }
   
-  public application.PostAccessCodec createInstance() throws Exception {
+  public media.jmf.PostAccessCodec createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new application.PostAccessCodec();
+    return new media.jmf.PostAccessCodec();
     // JUnitDoclet end method testcase.createInstance
   }
   

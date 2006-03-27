@@ -1,4 +1,4 @@
-package application;
+package media.jmf;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -40,9 +40,7 @@ public class PostAccessCodec implements Codec {
 
 	private static Log log = LogFactory.getLog(PostAccessCodec.class);
 	
-	// We'll advertize as supporting RGBFormat.
 	public PostAccessCodec() {
-		//supportedIns = new Format[] { new YUVFormat()};
 		persist = new XMLPersister();
 	}
 

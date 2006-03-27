@@ -1,4 +1,4 @@
-package application;
+package media.jmf;
 
 import javax.media.*;
 import javax.media.protocol.*;

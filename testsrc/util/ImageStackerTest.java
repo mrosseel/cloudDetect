@@ -1,10 +1,11 @@
-package application;
+package util;
 
 import javax.media.format.RGBFormat;
 
+import util.RGBImageStacker;
+
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import application.ImageStacker;
 // JUnitDoclet end import
 
 /**
@@ -22,7 +23,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  application.ImageStacker imagestacker = null;
+  util.RGBImageStacker imagestacker = null;
   // JUnitDoclet end class
   
   public ImageStackerTest(String name) {
@@ -31,9 +32,9 @@ extends TestCase
     // JUnitDoclet end method ImageStackerTest
   }
   
-  public application.ImageStacker createInstance() throws Exception {
+  public util.RGBImageStacker createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new application.ImageStacker(new RGBFormat());
+    return new util.RGBImageStacker(new RGBFormat());
     // JUnitDoclet end method testcase.createInstance
   }
   

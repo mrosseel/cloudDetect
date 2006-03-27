@@ -7,18 +7,23 @@
  */
 package ui;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Paint;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import org.jCharts.chartData.ChartDataException;
 import org.jCharts.chartData.PieChartDataSet;
-import org.jCharts.properties.PropertyException;
-import org.jCharts.properties.PieChart2DProperties;
-import org.jCharts.properties.LegendProperties;
-import org.jCharts.properties.ChartProperties;
 import org.jCharts.nonAxisChart.PieChart2D;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowEvent;
+import org.jCharts.properties.ChartProperties;
+import org.jCharts.properties.LegendProperties;
+import org.jCharts.properties.PieChart2DProperties;
+import org.jCharts.properties.PropertyException;
 
 public class ChartFrame extends JFrame {
 

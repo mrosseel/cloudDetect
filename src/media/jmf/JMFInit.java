@@ -4,7 +4,11 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package application;
+package media.jmf;
+
+import java.awt.Dimension;
+import java.io.IOException;
+import java.util.Vector;
 
 import javax.media.CaptureDeviceInfo;
 import javax.media.CaptureDeviceManager;
@@ -16,32 +20,33 @@ import javax.media.EndOfMediaEvent;
 import javax.media.Format;
 import javax.media.Manager;
 import javax.media.MediaLocator;
+import javax.media.NoDataSourceException;
 import javax.media.PrefetchCompleteEvent;
 import javax.media.Processor;
 import javax.media.RealizeCompleteEvent;
 import javax.media.ResourceUnavailableEvent;
 import javax.media.UnsupportedPlugInException;
+import javax.media.control.FormatControl;
+import javax.media.control.FrameRateControl;
 import javax.media.control.TrackControl;
 import javax.media.format.VideoFormat;
+import javax.media.protocol.CaptureDevice;
 import javax.media.protocol.DataSource;
 
 import jmapps.jmstudio.CaptureControlsDialog;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.werx.framework.bus.ReflectionBus;
 
 /**
- * @author Mike
- *  look at it !!! : http://swjscmail1.java.sun.com/cgi-bin/wa?A2=ind0109&L=jmf-interest&P=R2095
+ * @author Mike look at it !!! :
+ *         http://swjscmail1.java.sun.com/cgi-bin/wa?A2=ind0109&L=jmf-interest&P=R2095
  */
 public class JMFInit implements ControllerListener {
-	
+
 	Processor p;
 
 	boolean stateTransitionOK = true;
-
-	public static ImageContainer imageContainer;
 
 	private CaptureControlsDialog dlgCaptureControls = null;
 
@@ -51,7 +56,12 @@ public class JMFInit implements ControllerListener {
 	Object waitSync = new Object();
 
 	private static Log log = LogFactory.getLog(JMFInit.class);
-	
+
+	public void setDataSource(MediaLocator ml) throws NoDataSourceException,
+			IOException {
+		dataSource = Manager.createDataSource(ml);
+	}
+
 	/**
 	 * Given a media locator, create a processor and use that processor as a
 	 * player to playback the media.
@@ -64,9 +74,8 @@ public class JMFInit implements ControllerListener {
 	 * Much of the code is just standard code to present media in JMF.
 	 */
 	public boolean open(MediaLocator ml) {
-		try {
-			dataSource = Manager.createDataSource(ml);
 
+		try {
 			p = Manager.createProcessor(dataSource);
 		} catch (Exception e) {
 			log.error("Failed to create a processor from the given url: " + e);
@@ -85,7 +94,7 @@ public class JMFInit implements ControllerListener {
 
 		// So I can use it as a player.
 		p.setContentDescriptor(null);
-		
+
 		// Obtain the track controls.
 		TrackControl tc[] = p.getTrackControls();
 
@@ -93,8 +102,6 @@ public class JMFInit implements ControllerListener {
 			log.error("Failed to obtain track controls from the processor.");
 			return false;
 		}
-
-		//FrameRateControl control = new FrameRateControl;
 
 		// Search for the track control for the video track.
 		TrackControl videoTrack = null;
@@ -127,108 +134,62 @@ public class JMFInit implements ControllerListener {
 			return false;
 		}
 
-//		Object control = p.getControl("javax.media.control.FrameRateControl");
-//		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
-//		if (frc != null) {
-//			System.out.println("The frame rate is currently set to "
-//					+ frc.getFrameRate() + "fps. Setting to max rate of "
-//					+ frc.getMaxSupportedFrameRate() + "fps");
-//
-//			frc.setFrameRate(frc.getMaxSupportedFrameRate());
-//		}
-
-		//		Control[] controls = (Control[]) videoTrack.getControls();
-		//		for (int j = 0; j < controls.length; j++) {
-		//			System.out.println(controls[j].getClass());
-		//		}
-		//
-		//		// Display the visual & control component if there's one.
-		//
-		//		setLayout(new BorderLayout()0);
-		//
-		//		Component cc;
-		//
-		//		Component vc;
-		//		if ((vc = p.getVisualComponent()) != null) {
-		//			add("Center", vc);
-		//		}
-		//
-		//		if ((cc = p.getControlPanelComponent()) != null) {
-		//			add("South", cc);
-		//		}
+		setFrameRate(p, 5.0);
 
 		p.start();
 
 		return true;
 	}
-/*
-	private void captureMedia() {
-		CaptureDialog dialogCapture;
 
-		CaptureDeviceInfo cdi;
+	/**
+	 * @param processor
+	 *  
+	 */
+	private void setFrameRate(Processor processor, double frameRate) {
+		Object control = processor
+				.getControl("javax.media.control.FrameRateControl");
+		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
+		if (frc != null) {
+			log.info("The frame rate is currently set to " + frc.getFrameRate()
+					+ "fps. Setting to rate of " + frameRate + ", max rate is "
+					+ frc.getMaxSupportedFrameRate() + "fps");
 
-		String nameCaptureDeviceAudio = null;
-		String nameCaptureDeviceVideo = null;
-
-		System.out.println("In capture media");
-
-		JMAppsCfg cfgJMApps = new JMAppsCfg();
-		dialogCapture = new CaptureDialog(this, cfgJMApps);
-		dialogCapture.show();
-		if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
-			return;
-
-		cdi = dialogCapture.getAudioDevice();
-		if (cdi != null && dialogCapture.isAudioDeviceUsed())
-			nameCaptureDeviceAudio = cdi.getName();
-		cdi = dialogCapture.getVideoDevice();
-		if (cdi != null && dialogCapture.isVideoDeviceUsed())
-			nameCaptureDeviceVideo = cdi.getName();
-		//		  dataSource = JMFUtils.createCaptureDataSource (
-		// nameCaptureDeviceAudio,
-		//												  dialogCapture.getAudioFormat(),
-		//												  nameCaptureDeviceVideo,
-		//												  dialogCapture.getVideoFormat() );
-
-		//dataSource = p.getDataOutput();
-		if (dataSource != null) {
-
-			if (dataSource instanceof CaptureDevice
-					&& dataSource instanceof PushBufferDataSource) {
-				DataSource cdswrapper = new CDSWrapper(
-						(PushBufferDataSource) dataSource);
-				dataSource = cdswrapper;
-				try {
-					cdswrapper.connect();
-				} catch (IOException ioe) {
-					dataSource = null;
-					nameCaptureDeviceAudio = null;
-					nameCaptureDeviceVideo = null;
-					MessageDialog.createErrorDialog(this, JMFI18N
-							.getResource("jmstudio.error.captureds"));
-				}
-			}
-
-			//open ( dataSource );
-
-			if (dataSource != null) {
-				dlgCaptureControls = new CaptureControlsDialog(this, dataSource);
-				if (dlgCaptureControls.isEmpty()) {
-					dlgCaptureControls = null;
-				} else {
-					dlgCaptureControls.setVisible(true);
-				}
-			}
-
-		} else {
-			nameCaptureDeviceAudio = null;
-			nameCaptureDeviceVideo = null;
-			MessageDialog.createErrorDialog(this, JMFI18N
-					.getResource("jmstudio.error.captureds"));
+			frc.setFrameRate((float) Math.min(frameRate, frc
+					.getMaxSupportedFrameRate()));
+			log.info("Frame rate set at : " + frc.getFrameRate() + "fps");
 		}
 	}
-*/
-	
+
+	public VideoFormat getDefaultPreferredFormat() {
+		String prefEncoding = null;
+		float prefFPS = 5.0f;
+		Dimension prefSize = new Dimension(160, 120);
+		VideoFormat prefFormat = new VideoFormat(prefEncoding, prefSize,
+				Format.NOT_SPECIFIED, //length
+				null, // data type
+				prefFPS);
+		return prefFormat;
+	}
+
+	// TODO not used any more, framerate is controlled in another way
+	public void setPreferredFormat(DataSource ds, CaptureDeviceInfo cdi) {
+		// Preferred capture format parameters
+
+		VideoFormat prefFormat = getDefaultPreferredFormat();
+
+		if (ds instanceof CaptureDevice) {
+			FormatControl[] fcs = ((CaptureDevice) ds).getFormatControls();
+			for (int i = 0; i < cdi.getFormats().length; i++) {
+				VideoFormat vf = (VideoFormat) cdi.getFormats()[i];
+				if (vf.matches(prefFormat)) {
+					prefFormat = (VideoFormat) vf.intersects(prefFormat);
+					fcs[0].setFormat(prefFormat);
+					break;
+				}
+			}
+		}
+	}
+
 	/**
 	 * Block until the processor has transitioned to the given state. Return
 	 * false if the transition failed.
@@ -279,9 +240,8 @@ public class JMFInit implements ControllerListener {
 			System.exit(0);
 		}
 
-		CaptureDeviceInfo info = CaptureDeviceManager
-				.getDevice(url);
-		
+		CaptureDeviceInfo info = CaptureDeviceManager.getDevice(url);
+
 		// TODO doesn't do anything !
 		Format[] fmts = info.getFormats();
 		for (int i = 0; i != fmts.length; i++) {
@@ -298,23 +258,27 @@ public class JMFInit implements ControllerListener {
 		//		JMFInit fa = new JMFInit();
 		//		JMFInit.imageContainer = new ImageContainer();
 
+		try {
+			setDataSource(ml);
+		} catch (NoDataSourceException e) {
+			e.printStackTrace();
+			System.exit(0);
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.exit(0);
+		}
+
+		setPreferredFormat(dataSource, info);
+
 		if (!open(ml))
 			System.exit(0);
 
 	}
 
-	//    public void captureDialog() {
-	//        CaptureDialog dialogCapture;
-	//        DataSource dataSource;
-	//        CaptureDeviceInfo cdi;
-	//
-	//        JMAppsCfg cfgJMApps = new JMAppsCfg ();
-	//        dialogCapture = new CaptureDialog ( this, cfgJMApps );
-	//        dialogCapture.show ();
-	//        if (dialogCapture.getAction() == CaptureDialog.ACTION_CANCEL)
-	//            return;
-	//    }
-	
+	public Vector getDevices(VideoFormat prefFormat) {
+		return CaptureDeviceManager.getDeviceList(prefFormat);
+	}
+
 	public static void main(String[] args) {
 		String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
 
