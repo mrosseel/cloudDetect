@@ -1,6 +1,7 @@
 package ui;
 
 import java.io.File;
+import java.util.Vector;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -207,6 +208,7 @@ public class CloudWatchFrame extends JFrame {
                         //WebImageSettingsPanel webImage = new WebImageSettingsPanel();
                         //webImage.show();
             			JMFInit jmf = new JMFInit();
+            			Vector list = jmf.getDevices(null);
             			jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
 
                         // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));

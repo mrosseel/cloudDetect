@@ -59,8 +59,10 @@ public class CloudWatch {
 			frame.start();
 		} else {
 			JMFInit jmf = new JMFInit();
-			jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
-		}
+			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
+			jmf.init("v4l:Philips 740 webcam:0");	
+			
+		}//
 	}
 	
 	public static void main(String[] args) {
