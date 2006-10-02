@@ -10,6 +10,8 @@ import java.awt.event.*;
 import java.util.Vector;
 
 /**
+ * TODO not used, see if we can learn something and kill it
+ * 
  * This class opens a video capture device and reads frames from
  * it, displaying them in a Canvas in a Frame.
  */

@@ -6,7 +6,9 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.ColorModel;
+import java.awt.image.ImageObserver;
 import java.awt.image.MemoryImageSource;
+import java.awt.image.PixelGrabber;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -110,6 +112,34 @@ public class ImageToolkit {
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         return (Image) toolkit.createImage(source);
     }
+    
+    public void handlesinglepixel(int x, int y, int pixel) {
+    	int alpha = (pixel >> 24) & 0xff;
+    	int red   = (pixel >> 16) & 0xff;
+    	int green = (pixel >>  8) & 0xff;
+    	int blue  = (pixel      ) & 0xff;
+    	// Deal with the pixel as necessary...
+     }
+
+     public void handlepixels(Image img, int x, int y, int w, int h) {
+    	int[] pixels = new int[w * h];
+    	PixelGrabber pg = new PixelGrabber(img, x, y, w, h, pixels, 0, w);
+    	try {
+    	    pg.grabPixels();
+    	} catch (InterruptedException e) {
+    	    System.err.println("interrupted waiting for pixels!");
+    	    return;
+    	}
+    	if ((pg.getStatus() & ImageObserver.ABORT) != 0) {
+    	    System.err.println("image fetch aborted or errored");
+    	    return;
+    	}
+    	for (int j = 0; j < h; j++) {
+    	    for (int i = 0; i < w; i++) {
+    		handlesinglepixel(x+i, y+j, pixels[j * w + i]);
+    	    }
+    	}
+     }
     
     /**
      * testing main.

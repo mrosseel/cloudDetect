@@ -4,7 +4,7 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package util;
+package media.audio;
 
 import java.io.File;
 import java.io.IOException;

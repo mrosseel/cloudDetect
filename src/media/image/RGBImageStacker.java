@@ -1,9 +1,12 @@
 /*
 *
  */
-package util;
+package media.image;
 
 import javax.media.format.RGBFormat;
+
+import util.Median;
+import util.TextProgressBar;
 
 
 /**

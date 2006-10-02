@@ -1,5 +1,6 @@
 package media.jmf;
 
+import java.awt.Image;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,17 +9,27 @@ import javax.media.Buffer;
 import javax.media.Codec;
 import javax.media.Format;
 import javax.media.format.VideoFormat;
+import javax.media.util.BufferToImage;
 import javax.swing.JFrame;
 
+import media.image.ImageCollector;
+import media.image.ImageSink;
+import media.image.RGBImageStacker;
+import media.image.SimpleImageCollector;
+import media.image.SimpleImageSink;
 import media.processors.BufferProcessorImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import persistence.XMLPersister;
-import util.RGBImageStacker;
+import ui.commands.ImageCommand;
 
 public class PostAccessCodec implements Codec {
+	
+	// new structure
+	ImageSink sink = new SimpleImageSink();
+	ImageCollector collector = new SimpleImageCollector();
 	
 	// RGB or YUV or ...
 	private VideoFormat format = null;
@@ -42,6 +53,7 @@ public class PostAccessCodec implements Codec {
 	
 	public PostAccessCodec() {
 		persist = new XMLPersister();
+		this.collector.setImageSink(this.sink);
 	}
 
 	/**
@@ -77,14 +89,16 @@ public class PostAccessCodec implements Codec {
 				//CloudFrame.imageContainer.setOriginalImage(originalData);
 				//writeData(data);
 				frame.setData(originalData);
+				*/
 				BufferToImage bufferto =
 					new BufferToImage((VideoFormat) format);
 				Image img = bufferto.createImage(frame);
 
 				System.out.println(frame.getFormat().toString());
+				collector.addImage(img);
+				/*
 				ImageCommand command = new ImageCommand(img);
 				command.execute();
-				
 				buffer.setImageData(img, imageStacker.getProcessedStackData());
 				buffer.setWidth(img.getWidth(null));
 				thread = new Thread(buffer, "buffer processor");
@@ -162,6 +176,7 @@ public class PostAccessCodec implements Codec {
 		return BUFFER_PROCESSED_OK;
 	}
 
+	// TODO delete
 	private void writeData(short[] data) {
 		BufferedWriter writer;
 		try {

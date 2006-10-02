@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  util.SoundUtil soundutil = null;
+  SoundUtil soundutil = null;
   // JUnitDoclet end class
   
   public SoundUtilTest(String name) {
