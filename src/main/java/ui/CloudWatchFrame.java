@@ -209,8 +209,9 @@ public class CloudWatchFrame extends JFrame {
                         //webImage.show();
             			JMFInit jmf = new JMFInit();
             			Vector list = jmf.getDevices(null);
-            			jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
-
+            			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
+            			jmf.init("v4l:Philips 740 webcam:0");	
+            			
                         // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));
                         //command.execute();
                     }
