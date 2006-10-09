@@ -31,7 +31,6 @@ public class UtilSuite
     suite.addTestSuite(util.TextProgressBarTest.class);
     suite.addTestSuite(util.StringToolkitTest.class);
     suite.addTestSuite(util.StandardDeviationTest.class);
-    suite.addTestSuite(util.SoundUtilTest.class);
     suite.addTestSuite(util.ParametersTest.class);
     suite.addTestSuite(util.MedianTest.class);
     suite.addTestSuite(util.MathMethodsTest.class);

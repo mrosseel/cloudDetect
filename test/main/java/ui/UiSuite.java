@@ -39,7 +39,6 @@ public class UiSuite
     suite.addTestSuite(ui.ControlPanelTest.class);
     suite.addTestSuite(ui.ContrastChartTest.class);
     suite.addTestSuite(ui.CloudWatchFrameTest.class);
-    suite.addTestSuite(ui.ChartFrameTest.class);
     suite.addTest(ui.commands.CommandsSuite.suite());
     suite.addTest(ui.handlers.HandlersSuite.suite());
     suite.addTest(ui.signal.SignalSuite.suite());
