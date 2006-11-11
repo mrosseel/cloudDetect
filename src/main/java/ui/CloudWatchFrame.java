@@ -322,7 +322,7 @@ public class CloudWatchFrame extends JFrame {
     private void initialize() {
         this.setContentPane(getJPanel1());
         this.setJMenuBar(getJJMenuBar1());
-        this.setSize(353, 249);
+        this.setSize(515, 378);
         this.setIconImage(ImageToolkit.loadClasspathImage("/conf/pics/webcam5.png"));
         // TODO read this from config file
         this.setTitle("CloudWatcher v0.2");
@@ -340,7 +340,7 @@ public class CloudWatchFrame extends JFrame {
 		}
 		return ContrastChart;
 	}
-}
+}  //  @jve:decl-index=0:visual-constraint="10,10"
 
 
 //  @jve:visual-info  decl-index=0 visual-constraint="36,6"
