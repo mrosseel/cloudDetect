@@ -10,8 +10,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import ui.StartUI;
 import util.Median;
-import application.CloudFrame;
 
 /**
  * @author Mike
@@ -64,8 +64,6 @@ public class LineMedianDifferenceMetric implements Metric {
 		System.out.println("splitter = " + splitterLocation);
 		System.out.println("Contrast = " + result);
 
-		// TODO dat moet hier weg !!
-		CloudFrame.chart.addValue(result);
 		return result;
 	}
 

@@ -32,7 +32,6 @@ public class ApplicationSuite
     suite.addTestSuite(application.JMFInitTest.class);
     suite.addTestSuite(application.ImageContainerTest.class);
     suite.addTestSuite(application.CloudWatchTest.class);
-    suite.addTestSuite(application.CloudFrameTest.class);
     
     
     

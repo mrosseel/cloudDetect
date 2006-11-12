@@ -15,6 +15,8 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.werx.framework.bus.ReflectionBus;
 
+import ui.StartUI;
+
 /**
  * Main class of The CloudWatch program (project name change pending).
  * 
@@ -54,8 +56,7 @@ public class CloudWatch {
 	public void startApplication(CloudWatchConfig config) {
 
 		if(config.usesUI) {
-			CloudFrame frame = new CloudFrame();
-			ReflectionBus.start();
+			StartUI frame = new StartUI();
 			frame.start();
 		} else {
 			JMFInit jmf = new JMFInit();

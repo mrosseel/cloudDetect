@@ -10,7 +10,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import application.CloudFrame;
+import ui.StartUI;
+
 
 /**
  * @author Mike
@@ -72,7 +73,6 @@ public class CutoffDifferenceMetric implements Metric {
 		//			imageFrame.setImage(img);
 		//		}
 
-		CloudFrame.chart.addValue(result);
 		return result;
 	}
 

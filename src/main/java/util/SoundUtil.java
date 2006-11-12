@@ -61,6 +61,7 @@ public class SoundUtil implements LineListener {
 		}
 	}
 	
+	// needed for correct playing of clip, do not touch!
 	public void update(LineEvent event) {
 		if (event.getType().equals(LineEvent.Type.STOP)) {
 			m_clip.close();
