@@ -27,7 +27,7 @@ import javax.sound.sampled.LineUnavailableException;
  *		util.play(new File("c:\\home\\programming\\cloudDetect\\conf\\sounds\\alert.wav"), 2);
  *
  */
-public class SoundUtil {
+public class SoundUtil implements LineListener {
 	
 	private Clip m_clip;
 	
@@ -60,5 +60,17 @@ public class SoundUtil {
 					+ clipFile.getName());
 		}
 	}
-
+	
+	public void update(LineEvent event) {
+		if (event.getType().equals(LineEvent.Type.STOP)) {
+			m_clip.close();
+		} else if (event.getType().equals(LineEvent.Type.CLOSE)) {
+			/*
+			 *      There is a bug in the jdk1.3/1.4.
+			 *      It prevents correct termination of the VM.
+			 *      So we have to exit ourselves.
+			 */
+			//System.exit(0);
+		}
+	}
 }
