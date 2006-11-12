@@ -4,7 +4,7 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package media.audio;
+package util;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,19 +58,6 @@ public class SoundUtil implements LineListener {
 			System.out.println(
 				"ClipPlayer.<init>(): can't get data from file "
 					+ clipFile.getName());
-		}
-	}
-
-	public void update(LineEvent event) {
-		if (event.getType().equals(LineEvent.Type.STOP)) {
-			m_clip.close();
-		} else if (event.getType().equals(LineEvent.Type.CLOSE)) {
-			/*
-			 *      There is a bug in the jdk1.3/1.4.
-			 *      It prevents correct termination of the VM.
-			 *      So we have to exit ourselves.
-			 */
-			//System.exit(0);
 		}
 	}
 
