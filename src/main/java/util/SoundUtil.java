@@ -27,7 +27,7 @@ import javax.sound.sampled.LineUnavailableException;
  *		util.play(new File("c:\\home\\programming\\cloudDetect\\conf\\sounds\\alert.wav"), 2);
  *
  */
-public class SoundUtil implements LineListener {
+public class SoundUtil {
 	
 	private Clip m_clip;
 	
