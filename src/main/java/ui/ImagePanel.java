@@ -14,18 +14,11 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JPanel;
 
-import org.jCharts.properties.ChartProperties;
-import org.jCharts.properties.LegendProperties;
-import org.jCharts.properties.PieChart2DProperties;
-
 import ui.handlers.ImagePanelHandler;
 
 public class ImagePanel extends JPanel {
 
 	private JPanel panel;
-	private PieChart2DProperties pieChart2DProperties;
-	private LegendProperties legendProperties;
-	private ChartProperties chartProperties;
 	private String txtName = "Current View"; // too specific, remove it
 	public Image image;
 	public Image currentImage;

@@ -10,10 +10,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import application.CloudFrame;
-
-import ui.ImagePanel;
 import util.Median;
+import application.CloudFrame;
 
 /**
  * @author Mike
