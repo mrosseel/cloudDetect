@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/AstroLib.jar"/>
-	<classpathentry kind="lib" path="lib/dom4j.jar"/>
-	<classpathentry kind="lib" path="lib/images.jar"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="lib/JUnitDoclet.jar"/>
-	<classpathentry kind="lib" path="lib/skinlf.jar"/>
 	<classpathentry sourcepath="F:/down/jfreechart-0.9.15.zip" kind="lib" path="lib/jfreechart-0.9.15.jar"/>
-	<classpathentry kind="lib" path="lib/gnujaxp.jar"/>
-	<classpathentry kind="lib" path="lib/jcommon-0.9.0.jar"/>
-	<classpathentry kind="lib" path="lib/spring-beans.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
 	<classpathentry kind="lib" path="lib/werx.jar"/>
 	<classpathentry kind="lib" path="lib/reflectionbus.jar"/>
 	<classpathentry kind="lib" path="lib/bus.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
-	<classpathentry kind="lib" path="lib/jCharts-0.7.4.jar"/>
 	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/jmf.jar"/>
 	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/mediaplayer.jar"/>
 	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/multiplayer.jar"/>
+	<classpathentry kind="lib" path="lib/dom4j.jar"/>
+	<classpathentry kind="lib" path="lib/jcommon-0.9.0.jar"/>
+	<classpathentry kind="lib" path="lib/skinlf.jar"/>
+	<classpathentry kind="lib" path="lib/spring-beans.jar"/>
+	<classpathentry kind="lib" path="lib/spring-core.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

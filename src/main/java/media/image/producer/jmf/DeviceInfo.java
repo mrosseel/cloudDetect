@@ -1,4 +1,4 @@
-package media.jmf;
+package media.image.producer.jmf;
 
 import java.awt.Dimension;
 

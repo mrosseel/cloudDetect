@@ -4,7 +4,7 @@
  * TODO To change the template for this generated file go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-package media.jmf;
+package media.image.producer.jmf;
 
 import java.awt.Dimension;
 import java.io.IOException;

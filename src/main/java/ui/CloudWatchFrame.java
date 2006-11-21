@@ -6,7 +6,7 @@ import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import media.jmf.JMFInit;
+import media.image.producer.jmf.JMFInit;
 
 import util.ImageToolkit;
 

@@ -52,7 +52,7 @@ extends TestCase
   	CloudWatchConfig config;
   	String[] arg = { "bla", "-u", "-x"};
   	config = cloudwatch.processCommandLine(arg);
-  	assertTrue(config.usesUI);
+  	assertFalse(config.isCommandLine());
     // JUnitDoclet end method processCommandLine
   }
   

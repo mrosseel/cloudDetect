@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
+		<property name="commandLine"><value>true</value></property>
+	</bean>
+	<bean id="cloudwatchapp" class="application.CloudWatchApp">
+		<property name="config"><ref bean="cloudwatchconfig"/></property>
+	</bean>
+	
+	<bean id="imagepanel" class="ui.ImagePanel"/>
+	<bean id="soundutil" class="util.SoundUtil">
+		<constructor-arg><ref bean="anotherExampleBean"/></constructor-arg>
+		<constructor-arg><ref bean="yetAnotherBean"/></constructor-arg>
+			<property name="clipFile"><value>/conf/sounds/alert.wav</value></property>
+	</bean>
+</beans>

@@ -1,4 +1,4 @@
-package media.jmf;
+package media.image.producer.jmf;
 
 import java.awt.Image;
 import java.io.BufferedWriter;
@@ -33,6 +33,7 @@ public class PostAccessCodec implements Codec {
 	
 	// RGB or YUV or ...
 	private VideoFormat format = null;
+	
 	private XMLPersister persist;
 	private int[] keepData;
 	private int cntDataAccumulated;

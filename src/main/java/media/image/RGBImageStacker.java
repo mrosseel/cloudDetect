@@ -54,13 +54,6 @@ public class RGBImageStacker {
 	 */
 	public short[] getOriginalStackData() {
 		short[] resultData = new short[stackedData.length];
-		double y, cb, cr;
-		int r, g, b;
-		int redmask, greenmask, bluemask;
-		redmask = format.getRedMask();
-		greenmask = format.getGreenMask();
-		bluemask = format.getBlueMask();
-
 		short tmp;
 		for (int counter = 0; counter != stackedData.length; counter++) {
 			tmp =

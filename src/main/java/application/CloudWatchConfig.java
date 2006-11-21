@@ -14,5 +14,15 @@ package application;
  */
 public class CloudWatchConfig {
 
-		public boolean usesUI = false;
+		private boolean commandLine;
+
+		public boolean isCommandLine() {
+			return commandLine;
+		}
+
+		public void setCommandLine(boolean usesUI) {
+			this.commandLine = usesUI;
+		}
+		
+		
 }
