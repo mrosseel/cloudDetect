@@ -48,7 +48,7 @@ public class RGBImageStacker {
 	}
 
 	/**
-	 * No processing occured, the original data has only by median-stacked.
+	 * No processing occured, the original data has only been median-stacked.
 	 * 
 	 * @return
 	 */
@@ -76,7 +76,7 @@ public class RGBImageStacker {
 	 */
 	public double[] getProcessedStackData() {
 		double[] resultData = new double[stackedData.length];
-		double y, cb, cr;
+		double y;
 		int r, g, b;
 		int redmask, greenmask, bluemask;
 		redmask = format.getRedMask();
@@ -96,9 +96,6 @@ public class RGBImageStacker {
 			b = tmp & bluemask;
 
 			y = 0.2989 * r + 0.5866 * g + 0.1145 * b;
-			cb = -0.1687 * r - 0.3312 * g + 0.5000 * b;
-			cr = 0.5000 * r - 0.4183 * g - 0.0816 * b;
-
 			// smallest change = 1
 			y = y * 3.125;//8.7336244541484716157205240174672;
 

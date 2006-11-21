@@ -12,24 +12,16 @@ import javax.media.format.VideoFormat;
 import javax.media.util.BufferToImage;
 import javax.swing.JFrame;
 
-import media.image.ImageCollector;
-import media.image.ImageSink;
 import media.image.RGBImageStacker;
-import media.image.SimpleImageCollector;
-import media.image.SimpleImageSink;
 import media.processors.BufferProcessorImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import persistence.XMLPersister;
-import ui.commands.ImageCommand;
 
 public class PostAccessCodec implements Codec {
 	
-	// new structure
-	ImageSink sink = new SimpleImageSink();
-	ImageCollector collector = new SimpleImageCollector();
 	
 	// RGB or YUV or ...
 	private VideoFormat format = null;
@@ -54,8 +46,10 @@ public class PostAccessCodec implements Codec {
 	
 	public PostAccessCodec() {
 		persist = new XMLPersister();
-		this.collector.setImageSink(this.sink);
-	}
+		//this.collector.setImageSink(this.sink);
+	// TODO here we notified that our image is ready for UI showing, how to do it now?
+		}
+	
 
 	/**
 	 * Callback to access individual video frames.
@@ -96,7 +90,7 @@ public class PostAccessCodec implements Codec {
 				Image img = bufferto.createImage(frame);
 
 				System.out.println(frame.getFormat().toString());
-				collector.addImage(img);
+				//collector.addImage(img);
 				/*
 				ImageCommand command = new ImageCommand(img);
 				command.execute();
