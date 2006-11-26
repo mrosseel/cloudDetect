@@ -5,9 +5,11 @@ package media.image.producer;
  * 
  */
 public interface ImageProducer {
-  // Methods
-  // Constructors
-  // Accessor Methods
-  // Operations
+
+	public void stopProducer();
+	
+	public void setQueue();
+	
+	public void setPolling(double timeBetweenPolls);
 }
 

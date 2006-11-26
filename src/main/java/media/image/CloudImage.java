@@ -20,6 +20,9 @@ import java.awt.image.PixelGrabber;
  */
 public class CloudImage {
 
+	/** where does this image come from? */
+	private String origin;
+	
 	private Image image;
 
 	private double[] data;
@@ -50,8 +53,18 @@ public class CloudImage {
 
 	}
 
+	public String getOrigin() {
+		return origin;
+	}
+
+	public void setOrigin(String origin) {
+		this.origin = origin;
+	}
+	
 	//////////// example code for pixelgrabber and memoryimagesource
 	
+
+
 	private void Transformer(Image start) {
 		int width = start.getWidth(null);
 		int height = start.getHeight(null);

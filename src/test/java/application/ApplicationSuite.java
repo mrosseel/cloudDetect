@@ -28,10 +28,6 @@ public class ApplicationSuite
     
     suite = new TestSuite("application");
     
-    suite.addTestSuite(application.PostAccessCodecTest.class);
-    suite.addTestSuite(application.JMFInitTest.class);
-    suite.addTestSuite(application.ImageContainerTest.class);
-    suite.addTestSuite(application.CloudWatchTest.class);
     
     
     
