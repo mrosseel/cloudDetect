@@ -13,18 +13,23 @@ import java.io.IOException;
 import media.image.CloudImage;
 import metrics.splitters.SlidingWindowSplitter;
 
-import ui.StartUI;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import util.Median;
 
 /**
  * @author Mike
- *
+ * 
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class LineMedianDifferenceMetric implements Metric {
 	private int width;
-	
+
+	private static Log log = LogFactory
+			.getLog(LineMedianDifferenceMetric.class);
+
 	/**
 	 * 
 	 */
@@ -33,11 +38,14 @@ public class LineMedianDifferenceMetric implements Metric {
 		// TODO Auto-generated constructor stub
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see metrics.Metric#compute(short[])
 	 */
 	public double compute(CloudImage image) {
 		double[] data = image.getData();
+		width = image.getWidth();
 		int heigth = data.length / width;
 		double[] lineData = new double[heigth];
 		double median;
@@ -47,18 +55,21 @@ public class LineMedianDifferenceMetric implements Metric {
 			lineData[i] = median;
 		}
 
-		//writeData(lineData);
+		// writeData(lineData);
 
 		double result;
 		SlidingWindowSplitter splitter = new SlidingWindowSplitter();
 		int splitterLocation = splitter.split(lineData, 20);
 		int length = lineData.length - 1;
 		double leftMedian = Median.find(lineData, 0, splitterLocation);
-		double rightMedian = Median.find(lineData, splitterLocation + 1, length);
-		System.out.println("left = " + leftMedian + " right = " + rightMedian);
+		double rightMedian = Median
+				.find(lineData, splitterLocation + 1, length);
 		result = Math.abs(leftMedian - rightMedian);
-		System.out.println("splitter = " + splitterLocation);
-		System.out.println("Contrast = " + result);
+		if (log.isDebugEnabled()) {
+			log.debug("left = " + leftMedian + " right = " + rightMedian);
+			log.debug("splitter = " + splitterLocation);
+			log.debug("Contrast = " + result);
+		}
 
 		return result;
 	}

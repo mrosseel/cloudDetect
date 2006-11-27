@@ -20,7 +20,6 @@ public class FileImageProducer extends ImageProducerImpl {
 	protected CloudImage produceContent() {
 		Image image = ImageToolkit.loadImage("/home/mike/quasar_blue.png");
 		CloudImage result = new CloudImage(image);
-		//result.setImage(image);
 		return result;
 	}
 

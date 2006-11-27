@@ -19,17 +19,10 @@ import org.springframework.core.io.ClassPathResource;
  * @author Mike
  */
 public class CloudWatch {
-	public static BeanFactory factory;
-	
-	
 	
 	public static void main(String[] args) {
-		// load spring stuff
-		ClassPathResource res = new ClassPathResource("cloudwatch-main.xml");
-		XmlBeanFactory factory = new XmlBeanFactory(res);
-		CloudWatch.factory = factory;
 		
-		CloudWatchApp application = (CloudWatchApp) factory.getBean("cloudwatchapp");
+		CloudWatchApp application = InstanceFactory.getCloudWatchApp();
 		
 		application.start(args);
 	}

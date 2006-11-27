@@ -28,7 +28,9 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 
 	public void run() {
 		if(timeBetweenPollsInMilliSeconds == -1 || queue == null) {
-			log.error("Producer '" + producerName + "'not initialized properly");
+			log.error("Producer '" + producerName + "' not initialized properly");
+			System.out.println(timeBetweenPollsInMilliSeconds);
+			System.out.println(queue);
 			//throw new RuntimeException("Producer '" + producerName + "'not initialized properly");
 			return;
 		}

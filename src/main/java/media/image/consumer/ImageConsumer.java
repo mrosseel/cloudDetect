@@ -5,7 +5,7 @@ package media.image.consumer;
  * Interface ImageConsumer
  * 
  */
-public interface ImageConsumer {
+public interface ImageConsumer extends Runnable {
   // Methods
   // Constructors
   // Accessor Methods
@@ -16,7 +16,5 @@ public interface ImageConsumer {
    * @return void  
    */
   public void addSubConsumer ( ImageSubConsumer subConsumer);
-    
-  
 }
 

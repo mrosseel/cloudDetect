@@ -5,8 +5,31 @@
 	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
 		<property name="commandLine"><value>true</value></property>
 	</bean>
+	
 	<bean id="cloudwatchapp" class="application.CloudWatchApp">
 		<property name="config"><ref bean="cloudwatchconfig"/></property>
+	</bean>
+	
+	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
+		<constructor-arg><value>file image producer</value></constructor-arg>
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>5</value></property>
+	</bean>
+	
+	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>5</value></property>
+	</bean>
+
+	<bean id="cloudimagequeue" class="media.image.producer.CloudImageQueue">
+		<property name="maxElements"><value>500</value></property>
+	</bean>
+	
+	
+	
+	<!--  UI parts -->
+	
+	<bean id="contrastchart" class="ui.ContrastChart">
 	</bean>
 	
 	<bean id="imagepanel" class="ui.ImagePanel"/>

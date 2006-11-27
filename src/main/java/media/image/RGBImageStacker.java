@@ -15,7 +15,7 @@ import util.TextProgressBar;
  * @author Mike
  * 
  * TODO remove text progress bar (add listeners?)
- *
+ * TODO uses JMF RGBFormat, try to convert this to standard java if possible
  */
 public class RGBImageStacker {
 	public static int FRAMES_TO_STACK = 150;

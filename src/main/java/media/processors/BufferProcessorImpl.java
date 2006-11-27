@@ -10,6 +10,8 @@ import metrics.PixelBrightnessMetric;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import application.InstanceFactory;
+
 import util.MathMethods;
 
 public class BufferProcessorImpl implements BufferProcessor {
@@ -54,6 +56,7 @@ public class BufferProcessorImpl implements BufferProcessor {
 		double result = metric.compute(image);
 		PixelBrightnessMetric brightness = new PixelBrightnessMetric();
 		log.info("brightness = " + brightness.compute(image));
+		InstanceFactory.getContrastChart().addValue(Math.random()*100);
 
 	}
 

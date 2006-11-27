@@ -8,6 +8,8 @@ package ui.commands;
 
 import java.awt.Image;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.werx.framework.bus.ReflectionBus;
 import org.werx.framework.commands.ICommand;
 
@@ -22,6 +24,7 @@ import ui.signal.ImageSignal;
 public class ImageCommand implements ICommand {
 	private Image image;
 	private ImageSignal signal;
+	private static Log log = LogFactory.getLog(ImageCommand.class);
 
 	/**
 	 * 
@@ -35,7 +38,7 @@ public class ImageCommand implements ICommand {
 	 */
 	public void execute() {
 		this.signal = new ImageSignal(image);
-		System.out.println("sending new image signal");
+		log.info("sending new image signal");
 		ReflectionBus.broadcast(signal);
 	}
 

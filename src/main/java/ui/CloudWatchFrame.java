@@ -7,8 +7,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import media.image.producer.jmf.JMFInit;
-
 import util.ImageToolkit;
+import application.InstanceFactory;
 
 
 /*
@@ -336,7 +336,7 @@ public class CloudWatchFrame extends JFrame {
 	 */
 	public ui.ContrastChart getContrastChart() {
 		if(ContrastChart == null) {
-			ContrastChart = new ui.ContrastChart();
+			ContrastChart = InstanceFactory.getContrastChart();
 		}
 		return ContrastChart;
 	}

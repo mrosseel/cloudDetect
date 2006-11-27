@@ -1,5 +1,10 @@
 package application;
 
+import media.image.consumer.ImageConsumer;
+import media.image.consumer.ImageConsumerImpl;
+import media.image.consumer.ImageScoringSubConsumer;
+import media.image.consumer.UIPublishSubConsumer;
+import media.image.producer.FileImageProducer;
 import media.image.producer.jmf.JMFInit;
 
 import org.apache.commons.cli.CommandLine;
@@ -38,16 +43,24 @@ public class CloudWatchApp {
 	}
 	
 	private void startApplication() {
+		FileImageProducer producer = InstanceFactory.getFileImageProducer();
+		// TODO get rid of this ugly cast !!!
+		ImageConsumerImpl consumer = (ImageConsumerImpl) InstanceFactory.getImageConsumer();
+		consumer.addSubConsumer(new ImageScoringSubConsumer());
 
 		if(!config.isCommandLine()) {
 			StartUI frame = new StartUI();
 			frame.start();
+			consumer.addSubConsumer(new UIPublishSubConsumer());
 		} else {
 			JMFInit jmf = new JMFInit();
 			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
 			jmf.init("v4l:Philips 740 webcam:0");	
 			
 		}//
+		producer.start();
+		consumer.start();
+		
 	}
 	
 	private void prUsage() {

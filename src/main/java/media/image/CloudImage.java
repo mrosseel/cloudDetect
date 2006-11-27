@@ -7,11 +7,7 @@
 package media.image;
 
 import java.awt.Image;
-import java.awt.Toolkit;
-import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
-
-import media.image.producer.CloudImageQueue;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
