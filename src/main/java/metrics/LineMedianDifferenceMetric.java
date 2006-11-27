@@ -10,6 +10,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import media.image.CloudImage;
+import metrics.splitters.SlidingWindowSplitter;
+
 import ui.StartUI;
 import util.Median;
 
@@ -30,21 +33,14 @@ public class LineMedianDifferenceMetric implements Metric {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-		 * TODO : IMPLEMENT USING DOUBLES
-		 */
-	public double compute(short[] data) {
-		return -1;
-	}
-
 	/* (non-Javadoc)
 	 * @see metrics.Metric#compute(short[])
 	 */
-	public double compute(double[] data) {
+	public double compute(CloudImage image) {
+		double[] data = image.getData();
 		int heigth = data.length / width;
 		double[] lineData = new double[heigth];
 		double median;
-		int j;
 		for (int i = 0; i != heigth; i++) {
 			median = Median.find(data, i * width, (i + 1) * width - 1);
 

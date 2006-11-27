@@ -4,13 +4,15 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package metrics;
+package metrics.splitters;
+
+import util.MathMethods;
 
 /**
  * @author Mike
  *
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ *
+
  */
 public class SlidingWindowSplitter extends Splitter {
 	public static final int DEF_WINDOW = 20;
@@ -48,17 +50,8 @@ public class SlidingWindowSplitter extends Splitter {
 	}
 
 	private double difference(double[] data, int begin, int end) {
-		double smallest = Double.MAX_VALUE;
-		double biggest = Double.MIN_VALUE;
-
-		for (int counter = begin; counter != end; counter++) {
-			if (data[counter] > biggest) {
-				biggest = data[counter];
-			}
-			if (data[counter] < smallest) {
-				smallest = data[counter];
-			}
-		}
+		double smallest = MathMethods.min(data, begin, end);
+		double biggest = MathMethods.max(data, begin, end);
 
 		return biggest - smallest;
 	}

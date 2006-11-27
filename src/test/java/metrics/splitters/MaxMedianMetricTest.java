@@ -1,8 +1,9 @@
-package metrics;
+package metrics.splitters;
 
 import junit.framework.TestCase;
-// JUnitDoclet begin import
-import metrics.MaxMedianMetric;
+import media.image.CloudImage;
+import metrics.splitters.MaxMedianMetric;
+import metrics.splitters.SplitterMetric;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +21,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.SplitterMetric maxmedianmetric = null;
+  metrics.splitters.SplitterMetric maxmedianmetric = null;
   // JUnitDoclet end class
   
   public MaxMedianMetricTest(String name) {
@@ -29,9 +30,9 @@ extends TestCase
     // JUnitDoclet end method MaxMedianMetricTest
   }
   
-  public metrics.MaxMedianMetric createInstance() throws Exception {
+  public metrics.splitters.MaxMedianMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.MaxMedianMetric();
+    return new metrics.splitters.MaxMedianMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -40,6 +41,13 @@ extends TestCase
     super.setUp();
     maxmedianmetric = createInstance();
     // JUnitDoclet end method testcase.setUp
+  }
+  
+  public void testMaxMedian() {
+	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
+	     SplitterMetric metric = new MaxMedianMetric();
+	     CloudImage image = new CloudImage(data);
+	     assertEquals(0.0, metric.compute(image), 0.0);
   }
   
   protected void tearDown() throws Exception {
@@ -59,15 +67,7 @@ extends TestCase
   */
   public void testVault() throws Exception {
     // JUnitDoclet begin method testcase.testVault
-// JUnitDoclet begin method compute
-     short[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-     SplitterMetric metric = new MaxMedianMetric();
-     assertEquals(0.0, metric.compute(data), 0.0);
 
-
-
-
-// JUnitDoclet end method compute
     // JUnitDoclet end method testcase.testVault
   }
   

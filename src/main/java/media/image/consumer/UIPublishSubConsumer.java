@@ -1,9 +1,7 @@
 package media.image.consumer;
 
-import ui.commands.ImageCommand;
 import media.image.CloudImage;
-import media.processors.BufferProcessor;
-import media.processors.BufferProcessorImpl;
+import ui.commands.ImageCommand;
 
 
 /**
@@ -13,10 +11,9 @@ import media.processors.BufferProcessorImpl;
 public class UIPublishSubConsumer implements ImageSubConsumer {
 
 	public void consume(CloudImage image) {
-//		BufferProcessor proc = BufferProcessorImpl.createInstance();
-//		//proc.process(image);
-//		ImageCommand command = new ImageCommand(image);
-//		command.execute();
+		// TODO UI reference, maybe remove to the ui package for future separate build?
+		ImageCommand command = new ImageCommand(image.getImage());
+		command.execute();
 	}
 }
 

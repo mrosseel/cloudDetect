@@ -29,10 +29,10 @@ public class MetricsSuite
     suite = new TestSuite("metrics");
     
     suite.addTestSuite(metrics.StdDevMetricTest.class);
-    suite.addTestSuite(metrics.SlidingWindowSplitterTest.class);
+    suite.addTestSuite(metrics.splitters.SlidingWindowSplitterTest.class);
     suite.addTestSuite(metrics.PixelBrightnessMetricTest.class);
-    suite.addTestSuite(metrics.MaxStdDevMetricTest.class);
-    suite.addTestSuite(metrics.MaxMedianMetricTest.class);
+    suite.addTestSuite(metrics.splitters.MaxStdDevMetricTest.class);
+    suite.addTestSuite(metrics.splitters.MaxMedianMetricTest.class);
     suite.addTestSuite(metrics.LineMedianDifferenceMetricTest.class);
     suite.addTestSuite(metrics.KMeansMetricTest.class);
     suite.addTestSuite(metrics.CutoffDifferenceMetricTest.class);

@@ -4,12 +4,14 @@
  */
 package media.processors;
 
+import media.image.CloudImage;
 
-public interface BufferProcessor extends Runnable {
+
+public interface BufferProcessor{
 
     /**
      *
      * @param data frame data
      */
-    public void process(double[] data);
+    public void process(CloudImage data);
 }

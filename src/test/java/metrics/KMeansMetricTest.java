@@ -1,8 +1,7 @@
 package metrics;
 
 import junit.framework.TestCase;
-// JUnitDoclet begin import
-import metrics.KMeansMetric;
+import media.image.CloudImage;
 // JUnitDoclet end import
 
 /**
@@ -51,6 +50,12 @@ extends TestCase
   
   public void testCompute() throws Exception {
     // JUnitDoclet begin method compute
+	  Metric kmeans = new KMeansMetric();
+	  double[] data = {0,0,0,0,0,1,1,1,1,1};
+	  CloudImage image = new CloudImage(data);
+	  double result = kmeans.compute(image);
+	  assertEquals(1.0, result, 0.0);
+	  
     // JUnitDoclet end method compute
   }
   

@@ -81,7 +81,7 @@ extends TestCase
   
   public void testKMeans() throws Exception {
     // JUnitDoclet begin method kMeans
-      short[] data = {1,2,3,4,5,10,11,12};
+      double[] data = {1,2,3,4,5,10,11,12};
       kmeans = new KMeans(data, 2);
 
       assertEquals(5, kmeans.getBinSizes()[0]);

@@ -7,20 +7,15 @@
  */
 package metrics;
 
-import util.StandardDeviation;
-
 import java.util.Arrays;
+
+import media.image.CloudImage;
+import util.StandardDeviation;
 
 public class StdDevClusteringMetric implements Metric {
 
-	/**
-	 * TODO : IMPLEMENT USING DOUBLES
-	 */
-	public double compute(double[] data) {
-		return -1;
-	}
-
-	public double compute(short[] data) {
+	public double compute(CloudImage image) {
+		double[] data = image.getData();
 		double totalStdDev, firstStdDev, secondStdDev;
 		double minStdDev = Double.POSITIVE_INFINITY;
 		double metric = -1;

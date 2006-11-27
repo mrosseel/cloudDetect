@@ -10,7 +10,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import ui.StartUI;
+import media.image.CloudImage;
+import metrics.splitters.SlidingWindowSplitter;
 
 
 /**
@@ -30,18 +31,12 @@ public class CutoffDifferenceMetric implements Metric {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-		 * TODO : IMPLEMENT USING DOUBLES
-		 */
-	public double compute(short[] data) {
-		return -1;
-	}
 
 	/* (non-Javadoc)
 	 * @see metrics.Metric#compute(short[])
 	 */
-	public double compute(double[] data) {
-
+	public double compute(CloudImage image) {
+		double[] data = image.getData();
 		double resultL = 0;
 		double resultR = 0;
 		double result;

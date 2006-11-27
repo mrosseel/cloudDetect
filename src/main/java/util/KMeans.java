@@ -50,7 +50,7 @@ public class KMeans {
    * @param aElements a <code>double[]</code> value
    * @param aBinCount an <code>int</code> value
    */
-  public KMeans(short[] aElements, int aBinCount) {
+  public KMeans(double[] aElements, int aBinCount) {
     int elementCount = aElements.length;
     this.mBinCount = (elementCount < aBinCount) ? elementCount : aBinCount;
     this.mBinSizes = new int[this.mBinCount];
@@ -216,7 +216,7 @@ public class KMeans {
    * @param aBinMinima the bin minima
    * @param aBinMaxima the bin maxima
    */
-  public static final void kMeans(short[] aElements, /*in*/
+  public static final void kMeans(double[] aElements, /*in*/
                                   int aBinCount, /*in*/
                                   int[][] aBins, /*out*/
                                   double[] aBinMinima, /*out*/
@@ -252,7 +252,7 @@ public class KMeans {
    * @param aBins an <code>int[][]</code> value
    * @param aBinMeans a <code>double[]</code> value
    */
-  public static final void kMeans(short[] aElements, /*in*/
+  public static final void kMeans(double[] aElements, /*in*/
                                   int aBinCount, /*out*/
                                   int[][] aBins, /*in*/
                                   double[] aBinMeans) { /*out*/
@@ -266,7 +266,7 @@ public class KMeans {
   }
 
   /** Alternative init method, independent of sorting etc. */
-  private static final void randomInit(short[] aElements,
+  private static final void randomInit(double[] aElements,
                                        int aBinCount,
                                        util.IntVector[] aBins,
                                        double[] aBinMeans) {
@@ -290,7 +290,7 @@ public class KMeans {
    * Initialises the bins, distibuting elements as equally as possible
    * over all the bins.
    */
-  private static final void init(short[] aElements,
+  private static final void init(double[] aElements,
                                  int aBinCount,
                                  IntVector[] aBins,
                                  double[] aBinMeans) {
@@ -321,7 +321,7 @@ public class KMeans {
   }
 
   /** Recalculates the means. */
-  private static final void means(short[] aElements,
+  private static final void means(double[] aElements,
                                   int aBinCount,
                                   IntVector[] aBins,
                                   double[] aBinMeans) {
@@ -346,7 +346,7 @@ public class KMeans {
    * Performs the iterative kMeans binning process. Iteration stops
    * when no elements migrate to other bins anymore.
    */
-  private static final void calc(short[] aElements,
+  private static final void calc(double[] aElements,
                                  int aBinCount,
                                  IntVector[] aBins,
                                  double[] aBinMeans) {

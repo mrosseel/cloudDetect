@@ -5,7 +5,13 @@
  * Time: 2:23:07 AM
  * To change this template use Options | File Templates.
  */
-package metrics;
+package metrics.splitters;
+
+import media.image.CloudImage;
+import metrics.Metric;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import util.TextProgressBar;
 
@@ -13,15 +19,11 @@ public abstract class SplitterMetric implements Metric {
 	private int bestSplitterLocation;
 	private int pctSplitterLocation;
 	private double result;
+	private static Log log = LogFactory.getLog(SplitterMetric.class);
 
-	/**
-		 * TODO : IMPLEMENT USING DOUBLES
-		 */
-	public double compute(double[] data) {
-		return -1;
-	}
-
-	public double compute(short[] data) {
+	
+	public double compute(CloudImage image) {
+		double[] data = image.getData();
 		preDataManipulation(data);
 
 		// choose a begin and end-point for the splitter
@@ -31,7 +33,7 @@ public abstract class SplitterMetric implements Metric {
 		int bestSplitterLocation = -1;
 		int splitterLocation;
 		;
-		double biggestValueDifference = Integer.MAX_VALUE;
+		double biggestValueDifference = Double.MIN_VALUE;
 		double valueDifference;
 		double valueLeft;
 		double valueRight;
@@ -46,16 +48,18 @@ public abstract class SplitterMetric implements Metric {
 			splitterLocation++) {
 			valueLeft = calculateValue(data, 0, splitterLocation);
 			valueRight = calculateValue(data, splitterLocation + 1, length - 1);
-			//			valueDifference = Math.abs(valueRight - valueLeft);
-			valueDifference =
-				valueRight * splitterLocation
-					+ valueLeft * (length - splitterLocation - 1);
+			valueDifference = Math.abs(valueRight - valueLeft);
+//			valueDifference =
+//				valueRight * splitterLocation
+//					+ valueLeft * (length - splitterLocation - 1);
 
-			//			System.out.println("diff = " + valueDifference + " at " + splitterLocation +
-			//			" left = " + valueLeft + " right = " + valueRight);
+			if(log.isDebugEnabled()) {
+			log.debug("diff = " + valueDifference + " at " + splitterLocation +
+						" left = " + valueLeft + " right = " + valueRight + " bestSplitter = " + bestSplitterLocation);
+			}
 
-			//if (valueDifference > biggestValueDifference) {
-			if (valueDifference < biggestValueDifference) {
+			if (valueDifference > biggestValueDifference) {
+			//if (valueDifference < biggestValueDifference) {
 				biggestValueDifference = valueDifference;
 				bestSplitterLocation = splitterLocation;
 			}
@@ -90,13 +94,13 @@ public abstract class SplitterMetric implements Metric {
 		this.result = result;
 	}
 
-	protected abstract void preDataManipulation(short[] data);
-	protected abstract void postDataManipulation(short[] data);
+	protected abstract void preDataManipulation(double[] data);
+	protected abstract void postDataManipulation(double[] data);
 
 	/**
 	 * calculates a value
 	 */
-	protected abstract double calculateValue(short[] data, int from, int to);
+	protected abstract double calculateValue(double[] data, int from, int to);
 
 	public int getBestSplitterLocation() {
 		return bestSplitterLocation;

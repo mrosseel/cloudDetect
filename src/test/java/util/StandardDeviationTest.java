@@ -49,6 +49,11 @@ extends TestCase
   
   public void testSdFast() throws Exception {
     // JUnitDoclet begin method sdFast
+	  double[] data = new double[]{
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	  short[] dataShort = new short[]{
+				0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	  assertEquals(StandardDeviation.sdFast(data), StandardDeviation.sdFast(dataShort), 0.0);
     // JUnitDoclet end method sdFast
   }
   

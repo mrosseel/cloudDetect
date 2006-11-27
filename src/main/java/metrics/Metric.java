@@ -7,16 +7,15 @@
  */
 package metrics;
 
+import media.image.CloudImage;
+
 public interface Metric {
 
     /**
      * Compute a certain metric on the given data.
      *
      * @param data
-     * @deprecated
      * @return
      */
-    public double compute(short[] data);
-    
-	public double compute(double[] data);
+	public double compute(CloudImage data);
 }

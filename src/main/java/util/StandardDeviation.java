@@ -82,6 +82,35 @@ public class StandardDeviation {
 		}
 		return Math.sqrt(sum / (n - 1));
 	}
+	
+	/**
+	 * Copy of the short one.
+	 * 
+	 * @param data
+	 * @param begin beginning, inclusive
+	 * @param end end, exclusive
+	 * @return
+	 */
+	public static double sdFast(double[] data, int begin, int end) {
+		// sd is sqrt of sum of (values-mean) squared divided by n - 1
+		// Calculate the mean
+		double mean = 0;
+		final int n = end - begin;
+		int i;
+		if (n < 2)
+			return Double.NaN;
+		for (i = begin; i != end; i++) {
+			mean += data[i];
+		}
+		mean /= n;
+		// calculate the sum of squares
+		double sum = 0;
+		for (i = 0; i < n; i++) {
+			final double v = data[i] - mean;
+			sum += v * v;
+		}
+		return Math.sqrt(sum / (n - 1));
+	}
 
 	/**
 	 * Calculates the standard deviation of an array

@@ -11,14 +11,22 @@ import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
 
+import media.image.producer.CloudImageQueue;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * @author Mike
  * 
  * This is a wrapper for an Image, with convenience methods to convert it to an
  * array of primitives if that's more convenient for our calculations.
+ * 
+ * TODO check for null conditions!
  */
 public class CloudImage {
+	private static Log log = LogFactory.getLog(CloudImage.class);
 
 	/** where does this image come from? */
 	private String origin;
@@ -35,24 +43,49 @@ public class CloudImage {
 		setData(data);
 	}
 
-	public void setImage(Image image) {
+	private void setImage(Image image) {
 		this.image = image;
-		setData(image);
+	}
+	
+	public Image getImage() {
+		if(image == null) {
+			this.image = createImage(data);
+		}
+		
+		return this.image;
+	}
+	
+	public double[] getData() {
+		if(data == null) {
+			this.data = createData(image);
+		}
+		
+		return this.data;
 	}
 
-	public void setData(double[] data) {
+	private void setData(double[] data) {
 		this.data = data;
-		setImage(data);
 	}
 
-	private void setData(Image image) {
-
+	public int getWidth() {
+		return image.getWidth(null);
+	}
+	
+	public int getHeight() {
+		return image.getHeight(null);
+	}
+	
+	private double[] createData(Image image) {
+		return intToDoubleArray(getIntArrayFromImage(image));
 	}
 
-	private void setImage(double[] data) {
-
+	private Image createImage(double[] data) {
+		log.warn("Not implemented yet!");
+		return null;
 	}
 
+	
+	
 	public String getOrigin() {
 		return origin;
 	}
@@ -61,16 +94,25 @@ public class CloudImage {
 		this.origin = origin;
 	}
 	
+	private double[] intToDoubleArray(int[] data) {
+		double[] result = new double[data.length];
+		for (int dataCounter = 0; dataCounter < data.length; dataCounter++) {
+			result[dataCounter] = data[dataCounter];
+		}
+		return result;
+	}
+	
 	//////////// example code for pixelgrabber and memoryimagesource
 	
 
 
-	private void Transformer(Image start) {
-		int width = start.getWidth(null);
-		int height = start.getHeight(null);
+	private int[] getIntArrayFromImage(Image image) {
+		int width = image.getWidth(null);
+		int height = image.getHeight(null);
 		//start.getGraphics().getColor().getColorSpace().
 		int [] pixstart = new int[width * height];
-		grab(start, pixstart, width, height);
+		grab(image, pixstart, width, height);
+		return pixstart;
 //		System.arraycopy(pixstart, 0, pixbuf, 0, width * height);
 //		memImg = new MemoryImageSource(width, height, pixbuf, 0, width);
 //		memImg.setAnimated(true);

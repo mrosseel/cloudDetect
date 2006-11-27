@@ -1,8 +1,8 @@
-package metrics;
+package metrics.splitters;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import metrics.SlidingWindowSplitter;
+import metrics.splitters.SlidingWindowSplitter;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.SlidingWindowSplitter slidingwindowsplitter = null;
+  metrics.splitters.SlidingWindowSplitter slidingwindowsplitter = null;
   // JUnitDoclet end class
   
   public SlidingWindowSplitterTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method SlidingWindowSplitterTest
   }
   
-  public metrics.SlidingWindowSplitter createInstance() throws Exception {
+  public metrics.splitters.SlidingWindowSplitter createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.SlidingWindowSplitter();
+    return new metrics.splitters.SlidingWindowSplitter();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -51,6 +51,7 @@ extends TestCase
   
   public void testSplit() throws Exception {
     // JUnitDoclet begin method split
+	 //slidingwindowsplitter.split();
     // JUnitDoclet end method split
   }
   

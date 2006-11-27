@@ -64,7 +64,7 @@ public class PostAccessCodec implements Codec {
 		}
 
 		// should we process ?
-		if (!buffer.isProcessing()) {
+//		if (!buffer.isProcessing()) {
 
 			if (format == null) {
 				format = (VideoFormat) frame.getFormat();
@@ -101,7 +101,7 @@ public class PostAccessCodec implements Codec {
 				thread.start();
 			}
 			*/
-		}
+//		}
 	}
 
 

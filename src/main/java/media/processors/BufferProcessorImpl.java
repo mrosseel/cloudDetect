@@ -3,16 +3,25 @@
  */
 package media.processors;
 
-import java.awt.Image;
-
+import media.image.CloudImage;
 import metrics.LineMedianDifferenceMetric;
 import metrics.PixelBrightnessMetric;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import util.MathMethods;
+
 public class BufferProcessorImpl implements BufferProcessor {
 	private boolean isProcessing = false;
+
 	private double[] data;
+
 	private int width;
+
 	private static BufferProcessorImpl instance;
+
+	private static Log log = LogFactory.getLog(BufferProcessorImpl.class);
 
 	private BufferProcessorImpl() {
 	}
@@ -24,40 +33,27 @@ public class BufferProcessorImpl implements BufferProcessor {
 		return instance;
 	}
 
-	public void process(double[] data) {
+	public void process(CloudImage image) {
 
-		System.out.println(
-			"-------------------------------------------------------");
-
-		// calculate extremes
-		double smallest = Double.MAX_VALUE;
-		double biggest = Double.MIN_VALUE;
-		for (int i = 0; i != data.length; i++) {
-			if (data[i] > biggest) {
-				biggest = data[i];
-			}
-			if (data[i] < smallest) {
-				smallest = data[i];
-			}
+		if (log.isDebugEnabled()) {
+			log.debug("Processing data.");
 		}
+		
+		double[] data = image.getData();
 
-		System.out.println("length = " + data.length);
-		System.out.println("biggest = " + biggest + " smallest = " + smallest);
+		double biggest = MathMethods.max(data);
+		double smallest = MathMethods.min(data);
+
+		log.info("length = " + data.length);
+		log.info("biggest = " + biggest + " smallest = " + smallest);
 
 		LineMedianDifferenceMetric metric = new LineMedianDifferenceMetric();
-		//CutoffDifferenceMetric metric = new CutoffDifferenceMetric();
+		// CutoffDifferenceMetric metric = new CutoffDifferenceMetric();
 		metric.setWidth(this.width);
-		//		MaxStdDevMetric stdev = new MaxStdDevMetric();
-		double result = metric.compute(data);
+		// MaxStdDevMetric stdev = new MaxStdDevMetric();
+		double result = metric.compute(image);
 		PixelBrightnessMetric brightness = new PixelBrightnessMetric();
-		System.out.println("brightness = " + brightness.compute(data));
-
-		
-	}
-
-	public synchronized void run() {
-		process(data);
-		setProcessing(false);
+		log.info("brightness = " + brightness.compute(image));
 
 	}
 
@@ -67,21 +63,5 @@ public class BufferProcessorImpl implements BufferProcessor {
 
 	public void setWidth(int width) {
 		this.width = width;
-	}
-
-	public synchronized boolean isProcessing() {
-		return isProcessing;
-	}
-
-	public synchronized void setProcessing(boolean processing) {
-		isProcessing = processing;
-	}
-
-	/**
-	 * @param img
-	 * @param data
-	 */
-	public void setImageData(Image img, double[] data) {
-		this.data = data;
 	}
 }

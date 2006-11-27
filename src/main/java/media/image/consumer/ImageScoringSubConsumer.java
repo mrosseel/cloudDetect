@@ -1,6 +1,8 @@
 package media.image.consumer;
 
 import media.image.CloudImage;
+import media.processors.BufferProcessor;
+import media.processors.BufferProcessorImpl;
 
 
 /**
@@ -10,13 +12,9 @@ import media.image.CloudImage;
 public class ImageScoringSubConsumer implements ImageSubConsumer {
 
 	public void consume(CloudImage image) {
-		// TODO Auto-generated method stub
-		
+		// TODO inject it or something
+		BufferProcessor proc = BufferProcessorImpl.createInstance();
+		proc.process(image);
 	}
-  // Fields
-  // Methods
-  // Constructors
-  // Accessor Methods
-  // Operations
 }
 

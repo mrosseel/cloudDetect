@@ -7,6 +7,7 @@
  */
 package metrics;
 
+import media.image.CloudImage;
 import util.StandardDeviation;
 
 public class StdDevMetric implements Metric {
@@ -16,14 +17,8 @@ public class StdDevMetric implements Metric {
 	 * @param data
 	 * @return
 	 */
-	public double compute(short[] data) {
+	public double compute(CloudImage image) {
+		double[] data = image.getData();
 		return StandardDeviation.sdFast(data);
-	}
-
-	/**
-	 * TODO : IMPLEMENT USING DOUBLES
-	 */
-	public double compute(double[] data) {
-		return -1;
 	}
 }

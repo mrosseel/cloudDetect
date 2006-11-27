@@ -445,6 +445,36 @@ public class MathMethods
       norm += aRray[i]*aRray[i];
     return Math.sqrt(norm);
   }
+  
+  public static final double min(double[] data) {
+	  return min(data, 0, data.length);
+  }
+  
+  public static final double min(double[] data, int begin, int end) {
+	  double smallest = Double.MAX_VALUE;
+	  for (int i = begin; i != end; i++) {
+		  if (data[i] < smallest) {
+				smallest = data[i];
+			}
+		  
+		}
+	  return smallest;
+  }
+  
+  public static final double max(double[] data) {
+	  return max(data, 0, data.length);
+  }
+  
+  public static final double max(double[] data, int begin, int end) {
+	  double biggest = Double.MIN_VALUE;
+	  for (int i = begin; i != end; i++) {
+
+			if (data[i] > biggest) {
+				biggest = data[i];
+			}
+		}
+	  return biggest;
+  }
 
   //    private static final void shuffle(double[][] aRray)
   //    {

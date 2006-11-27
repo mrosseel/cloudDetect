@@ -22,7 +22,7 @@ public class PlayWarning {
 	
 	public static void playRooster() {
 		SoundUtil util = new SoundUtil();
-		File sound = new File((BufferProcessorImpl.class.getResource("/conf/sounds/rooster.wav")).getFile());
+		File sound = new File((PlayWarning.class.getResource("/conf/sounds/rooster.wav")).getFile());
 		util.play(sound, 1);
 	}
 }
