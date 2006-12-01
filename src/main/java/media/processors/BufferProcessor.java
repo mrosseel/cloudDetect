@@ -5,6 +5,7 @@
 package media.processors;
 
 import media.image.CloudImage;
+import metrics.Metric;
 
 
 public interface BufferProcessor{
@@ -14,4 +15,8 @@ public interface BufferProcessor{
      * @param data frame data
      */
     public void process(CloudImage data);
+    
+    public Metric getMetric();
+
+	public void setMetric(Metric metric);
 }

@@ -25,7 +25,14 @@
 		<property name="maxElements"><value>500</value></property>
 	</bean>
 	
+	<bean id="bufferprocessor" class="media.processors.BufferProcessorImpl">
+		<property name="metric"><ref bean="linemediandifferencemetric"/></property>
+	</bean>
 	
+	<bean id="linemediandifferencemetric" class="metrics.LineMedianDifferenceMetric"/>
+	<bean id="cutoffdiferencemetric" class="metrics.CutoffDifferenceMetric"/>
+	<bean id="maxstddevmetric" class="metrics.splitters.MaxStdDevMetric"/>
+	<bean id="pixelbrightnessmetric" class="metrics.PixelBrightnessMetric"/>
 	
 	<!--  UI parts -->
 	

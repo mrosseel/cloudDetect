@@ -1,5 +1,8 @@
 package util;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Parameters.java
  *
@@ -16,13 +19,15 @@ public class Parameters
       you want to reproduce errors and you know the used seed. */
   public static long DEF_SEED;
  
+  private static Log log = LogFactory.getLog(Parameters.class);
+  
   // static initializers
   static {
     // the default init of DEF_SEED
     DEF_SEED = System.currentTimeMillis();
     // fixed seed for debugging purposes
     //    DEF_SEED = 17;
-    System.out.println("DEF_SEED has been set to : " + DEF_SEED);
+    log.info("Random seed has been set to : " + DEF_SEED);
   }
 }// Parameters
 

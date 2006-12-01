@@ -57,17 +57,6 @@ public class CutoffDifferenceMetric implements Metric {
 		System.out.println("splitter = " + splitterLocation);
 		System.out.println("Contrast = " + result);
 
-		//		if (imageFrame == null) {
-		//			imageFrame = new ImageFrame("processed image");
-		//		}
-		//		
-		//		DataBufferShort shortBuffer = new DataBufferShort(lineData, lineData.length);
-		//		Raster raster = new Raster()
-		//
-		//		if (img != null) {
-		//			imageFrame.setImage(img);
-		//		}
-
 		return result;
 	}
 

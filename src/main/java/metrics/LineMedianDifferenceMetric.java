@@ -25,8 +25,6 @@ import util.Median;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class LineMedianDifferenceMetric implements Metric {
-	private int width;
-
 	private static Log log = LogFactory
 			.getLog(LineMedianDifferenceMetric.class);
 
@@ -45,7 +43,7 @@ public class LineMedianDifferenceMetric implements Metric {
 	 */
 	public double compute(CloudImage image) {
 		double[] data = image.getData();
-		width = image.getWidth();
+		int width = image.getWidth();
 		int heigth = data.length / width;
 		double[] lineData = new double[heigth];
 		double median;
@@ -72,10 +70,6 @@ public class LineMedianDifferenceMetric implements Metric {
 		}
 
 		return result;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
 	}
 
 	// for debugging

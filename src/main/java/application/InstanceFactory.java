@@ -2,6 +2,7 @@ package application;
 
 import media.image.consumer.ImageConsumer;
 import media.image.producer.FileImageProducer;
+import media.processors.BufferProcessor;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -37,6 +38,10 @@ public class InstanceFactory {
 	
 	public static ContrastChart getContrastChart() {
 		return (ContrastChart) factory.getBean("contrastchart");
+	}
+	
+	public static BufferProcessor getBufferProcessor() {
+		return (BufferProcessor) factory.getBean("bufferprocessor");
 	}
 	
 }

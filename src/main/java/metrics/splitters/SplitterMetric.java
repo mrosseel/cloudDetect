@@ -65,7 +65,6 @@ public abstract class SplitterMetric implements Metric {
 			}
 			progress.update(splitterLocation);
 			if (splitterLocation % 1000 == 0) {
-				//System.out.print(getPctSplitterLocation() + " % - ");
 				progress.print();
 			}
 		}

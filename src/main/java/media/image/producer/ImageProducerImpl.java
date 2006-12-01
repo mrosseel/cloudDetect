@@ -28,10 +28,8 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 
 	public void run() {
 		if(timeBetweenPollsInMilliSeconds == -1 || queue == null) {
-			log.error("Producer '" + producerName + "' not initialized properly");
-			System.out.println(timeBetweenPollsInMilliSeconds);
-			System.out.println(queue);
-			//throw new RuntimeException("Producer '" + producerName + "'not initialized properly");
+			log.error("Producer '" + producerName + "' not initialized properly: queue = " 
+					+queue+", timeBetweenPollsInMilliSeconds = "+timeBetweenPollsInMilliSeconds);
 			return;
 		}
 		while(!hasStopped) {
@@ -54,10 +52,5 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 
 	public void setPolling(double timeBetweenPollsInSeconds) {
 		this.timeBetweenPollsInMilliSeconds = Math.round(timeBetweenPollsInSeconds*1000);
-	}
-
-	public void setQueue() {
-		// TODO Auto-generated method stub
-		
 	}
 }

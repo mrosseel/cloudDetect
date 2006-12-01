@@ -17,7 +17,11 @@ import java.util.Vector;
  */
 public class VideoPreview extends Frame implements BufferTransferHandler {
 
-    PushBufferDataSource cds = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2052105484941499448L;
+	PushBufferDataSource cds = null;
     BufferToImage bti = null;
     Canvas canvas = null;
 

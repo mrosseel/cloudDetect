@@ -1,3 +1,16 @@
 media.processors moet eruit
 imagecontainter en cloudimage zijn hetzelfde concept, kies
 Image via format omzetten naar short of double!
+
+dependencies (for maven use later)
+
+commons-cli
+commons-logging
+
+dom4j (may be killed I think, used for output)
+
+jfreechart-0.9.15
+jcommon
+
+junit.jar
+junitdoclet.jar

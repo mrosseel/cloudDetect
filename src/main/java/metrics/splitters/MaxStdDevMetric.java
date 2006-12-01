@@ -27,10 +27,6 @@ public class MaxStdDevMetric extends SplitterMetric {
 	protected void postDataManipulation(double[] data) {
 		int splitterLocation = getBestSplitterLocation();
 		
-//		for (int i = 0; i != data.length; i++) {
-//			System.out.println(data[i] + ",");
-//		}
-				
 		int length = data.length - 1;
 		double leftMedian = Median.find(data, 0, splitterLocation);
 		double rightMedian = Median.find(data, splitterLocation + 1, length);

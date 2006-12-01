@@ -6,6 +6,8 @@
  */
 package ui.handlers;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.werx.framework.bus.ReflectionBus;
 
 import ui.ImagePanel;
@@ -18,6 +20,7 @@ import ui.signal.ImageSignal;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImagePanelHandler {
+	private static Log log = LogFactory.getLog(ImagePanelHandler.class);
 
 	private ImagePanel panel;
 
@@ -30,7 +33,9 @@ public class ImagePanelHandler {
 	}
 
 	public void channel(ImageSignal signal) {
-		System.out.println("received image signal");
+		if(log.isDebugEnabled()) {
+		 log.debug("received image signal");
+		}
 		panel.setImage(signal.getImage());
 	}
 }

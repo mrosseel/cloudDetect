@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import persistence.XMLPersister;
+import application.InstanceFactory;
 
 public class PostAccessCodec implements Codec {
 	
@@ -60,7 +61,7 @@ public class PostAccessCodec implements Codec {
 
 	private synchronized void processBuffer(Buffer frame) {
 		if (buffer == null) {
-			buffer = BufferProcessorImpl.createInstance();
+			buffer = (BufferProcessorImpl) InstanceFactory.getBufferProcessor();
 		}
 
 		// should we process ?

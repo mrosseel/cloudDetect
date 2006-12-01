@@ -12,7 +12,6 @@ import org.werx.framework.bus.ReflectionBus;
 public class StartUI extends Frame {
 	
 	public boolean start() {
-		ReflectionBus.start();
 		CloudWatchFrame frame = new CloudWatchFrame();
 		frame.pack();
 		frame.setVisible(true);

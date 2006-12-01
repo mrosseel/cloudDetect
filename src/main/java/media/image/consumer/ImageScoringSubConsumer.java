@@ -2,7 +2,7 @@ package media.image.consumer;
 
 import media.image.CloudImage;
 import media.processors.BufferProcessor;
-import media.processors.BufferProcessorImpl;
+import application.InstanceFactory;
 
 
 /**
@@ -13,7 +13,7 @@ public class ImageScoringSubConsumer implements ImageSubConsumer {
 
 	public void consume(CloudImage image) {
 		// TODO inject it or something
-		BufferProcessor proc = BufferProcessorImpl.createInstance();
+		BufferProcessor proc = InstanceFactory.getBufferProcessor();
 		proc.process(image);
 	}
 }

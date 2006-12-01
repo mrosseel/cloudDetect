@@ -8,8 +8,10 @@ public interface ImageProducer extends Runnable {
 
 	public void stopProducer();
 	
-	public void setQueue();
+	public void setQueue(CloudImageQueue queue);
 	
 	public void setPolling(double timeBetweenPolls);
+	
+	public String getName();
 }
 

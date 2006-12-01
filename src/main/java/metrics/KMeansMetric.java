@@ -28,7 +28,6 @@ public class KMeansMetric implements Metric {
         Arrays.sort(data);
         KMeans kmeans = new KMeans(data, 2);
         double[] means = kmeans.getBinMeans();
-        int[] clusterSizes = kmeans.getBinSizes();
         return Math.abs(means[0] - means[1]);
     }
 }

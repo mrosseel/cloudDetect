@@ -1,6 +1,5 @@
 package application;
 
-import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageConsumerImpl;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
@@ -12,6 +11,7 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.werx.framework.bus.ReflectionBus;
 
 import ui.StartUI;
 
@@ -43,6 +43,9 @@ public class CloudWatchApp {
 	}
 	
 	private void startApplication() {
+		// starts the reflection bus
+		ReflectionBus.start();
+		// gets the producers
 		FileImageProducer producer = InstanceFactory.getFileImageProducer();
 		// TODO get rid of this ugly cast !!!
 		ImageConsumerImpl consumer = (ImageConsumerImpl) InstanceFactory.getImageConsumer();

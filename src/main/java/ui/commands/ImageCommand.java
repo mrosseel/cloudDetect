@@ -17,13 +17,15 @@ import ui.signal.ImageSignal;
 
 /**
  * @author Mike
- *
+ * 
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImageCommand implements ICommand {
 	private Image image;
+
 	private ImageSignal signal;
+
 	private static Log log = LogFactory.getLog(ImageCommand.class);
 
 	/**
@@ -33,12 +35,16 @@ public class ImageCommand implements ICommand {
 		this.image = image;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.werx.framework.commands.ICommand#execute()
 	 */
 	public void execute() {
 		this.signal = new ImageSignal(image);
-		log.info("sending new image signal");
+		if (log.isDebugEnabled()) {
+			log.debug("sending new image signal");
+		}
 		ReflectionBus.broadcast(signal);
 	}
 
