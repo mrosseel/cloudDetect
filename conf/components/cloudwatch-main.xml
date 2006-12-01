@@ -12,6 +12,7 @@
 	
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
+		<constructor-arg><value>/home/mike/quasar_blue.png</value></constructor-arg>
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>5</value></property>
 	</bean>

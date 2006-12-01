@@ -19,7 +19,7 @@ public class BufferProcessorImpl implements BufferProcessor {
 
 	private Metric metric;
 
-	public void process(CloudImage image) {
+	public double process(CloudImage image) {
 
 		if (log.isDebugEnabled()) {
 			log.debug("Processing data.");
@@ -29,8 +29,8 @@ public class BufferProcessorImpl implements BufferProcessor {
 		if (log.isDebugEnabled()) {
 			log.debug("result = " + result);
 		}
-		// TODO naughty naughty very naughty
-		InstanceFactory.getContrastChart().addValue(result);
+        
+        return result;
 	}
 
 	public Metric getMetric() {

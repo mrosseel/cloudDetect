@@ -14,7 +14,7 @@ public interface BufferProcessor{
      *
      * @param data frame data
      */
-    public void process(CloudImage data);
+    public double process(CloudImage data);
     
     public Metric getMetric();
 

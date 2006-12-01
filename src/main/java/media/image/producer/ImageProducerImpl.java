@@ -53,4 +53,8 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 	public void setPolling(double timeBetweenPollsInSeconds) {
 		this.timeBetweenPollsInMilliSeconds = Math.round(timeBetweenPollsInSeconds*1000);
 	}
+
+    public String getProducerName() {
+        return producerName;
+    }
 }

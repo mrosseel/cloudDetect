@@ -11,15 +11,17 @@ import util.ImageToolkit;
  * 
  */
 public class FileImageProducer extends ImageProducerImpl {
-
-	public FileImageProducer(String name) {
+    private String imageToLoad;
+    
+	public FileImageProducer(String name, String imageToLoad) {
 		super(name);
-		// TODO Auto-generated constructor stub
+	   this.imageToLoad = imageToLoad;
 	}
 
 	protected CloudImage produceContent() {
-		Image image = ImageToolkit.loadImage("/home/mike/quasar_blue.png");
+		Image image = ImageToolkit.loadImage(imageToLoad);
 		CloudImage result = new CloudImage(image);
+        result.setOrigin(getProducerName());
 		return result;
 	}
 

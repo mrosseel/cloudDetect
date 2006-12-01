@@ -12,6 +12,6 @@ public interface ImageProducer extends Runnable {
 	
 	public void setPolling(double timeBetweenPolls);
 	
-	public String getName();
+	public String getProducerName();
 }
 

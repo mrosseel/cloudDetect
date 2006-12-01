@@ -8,7 +8,8 @@ import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -34,15 +35,11 @@ import org.jfree.data.time.TimeSeriesCollection;
 public class ContrastChart extends ChartPanel {
 
 	static TimeSeriesCollection dataset = new TimeSeriesCollection();
-	static TimeSeries timeSeries =
-		new TimeSeries(
-			"Contrast",
-			"Millisecond",
-			"Value",
-			FixedMillisecond.class);
+	
 	static ChartPanel chartPanel;
 	static  JFreeChart chart;
-
+	private static HashMap timeSeriesMap = new HashMap();
+    
 	/**
 	 * A demonstration application showing how to create a simple time series chart.  This
 	 * example uses monthly data.
@@ -59,7 +56,10 @@ public class ContrastChart extends ChartPanel {
 
 		//XYDataset dataset = createDataset();
 
-		dataset.addSeries(timeSeries);
+        Iterator iter = ContrastChart.timeSeriesMap.values().iterator();
+        while(iter.hasNext()) {
+            dataset.addSeries((TimeSeries) iter.next());
+        }
 		dataset.setDomainIsPointsInTime(true);
 
 		JFreeChart chart = createChart(dataset);
@@ -97,7 +97,7 @@ public class ContrastChart extends ChartPanel {
 		plot.setRangeGridlinePaint(Color.white);
 		//		ValueAxis val = plot.getRangeAxis();
 
-		LogarithmicAxis val = new LogarithmicAxis("Contrast");
+		LogarithmicAxis val = new LogarithmicAxis("Contrasty");
 		val.setRange(0, 100);
 		val.setLog10TickLabelsFlag(false);
 		plot.setRangeAxis(val);
@@ -118,12 +118,29 @@ public class ContrastChart extends ChartPanel {
 		return chart;
 	}
 
-	public void addValue(double value) {
-		Date now = new Date();
-		timeSeries.add(new FixedMillisecond(now.getTime()), new Double(value));
-		//writeImage();
+	public void addValue(String timeSeriesName, double value) {
+        TimeSeries timeSeries = (TimeSeries) ContrastChart.timeSeriesMap.get(timeSeriesName);
+        if( timeSeries == null) {
+            timeSeries = createTimeSeries(timeSeriesName);
+        }
+		timeSeries.add(new FixedMillisecond(System.currentTimeMillis()), new Double(value));
 	}
 
+    private TimeSeries createTimeSeries(String timeSeriesName) {
+        TimeSeries timeSeries =
+            new TimeSeries(
+                timeSeriesName,
+                "Millisecond",
+                "Value",
+                FixedMillisecond.class);
+        if(timeSeriesName == null) {
+            throw new RuntimeException("All CloudImages should provide an origin a name.");
+        }
+        ContrastChart.timeSeriesMap.put(timeSeriesName, timeSeries);
+        super.setChart(getJFreeChart());
+        return timeSeries;
+    }
+    
 	private void writeImage() {
 		
 		try {
