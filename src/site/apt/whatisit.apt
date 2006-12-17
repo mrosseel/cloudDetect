@@ -1,0 +1,9 @@
+What is it?
+
+	Cloud detect is a program to process webcam images of the night sky and decide whether it's clear or not.
+	There are several ways to do this, but at the moment only one is employed: the contrast between the sky and a foreground object
+	is measured, the more contrast the more clouds we have. This is because of light pollution and it might be the only slightly positive
+	side benefit... . The second method works with dark skies as well: count the number of stars in a sky image.
+	Check the TODO section
+
+Why?                                  
