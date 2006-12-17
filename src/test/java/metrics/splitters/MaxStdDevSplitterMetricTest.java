@@ -12,24 +12,24 @@ import media.image.CloudImage;
 * the tool, the licence and the authors.
 */
 
-public class MaxStdDevMetricTest
+public class MaxStdDevSplitterMetricTest
 // JUnitDoclet begin extends_implements
 extends TestCase
 // JUnitDoclet end extends_implements
 {
 	// JUnitDoclet begin class
-	metrics.splitters.MaxStdDevMetric maxstddevmetric = null;
+	metrics.splitters.MaxStdDevSplitterMetric maxstddevmetric = null;
 	// JUnitDoclet end class
 
-	public MaxStdDevMetricTest(String name) {
+	public MaxStdDevSplitterMetricTest(String name) {
 		// JUnitDoclet begin method MaxStdDevMetricTest
 		super(name);
 		// JUnitDoclet end method MaxStdDevMetricTest
 	}
 
-	public metrics.splitters.MaxStdDevMetric createInstance() throws Exception {
+	public metrics.splitters.MaxStdDevSplitterMetric createInstance() throws Exception {
 		// JUnitDoclet begin method testcase.createInstance
-		return new metrics.splitters.MaxStdDevMetric();
+		return new metrics.splitters.MaxStdDevSplitterMetric();
 		// JUnitDoclet end method testcase.createInstance
 	}
 
@@ -76,7 +76,7 @@ extends TestCase
 
 	public static void main(String[] args) {
 		// JUnitDoclet begin method testcase.main
-		junit.textui.TestRunner.run(MaxStdDevMetricTest.class);
+		junit.textui.TestRunner.run(MaxStdDevSplitterMetricTest.class);
 		// JUnitDoclet end method testcase.main
 	}
 }

@@ -18,7 +18,7 @@ import util.MathMethods;
  * @author Mike
  * 
  */
-public class SlidingWindowSplitter extends Splitter {
+public class SlidingWindowSplitter implements Splitter {
     private static Log log = LogFactory.getLog(SlidingWindowSplitter.class);
 
     /*

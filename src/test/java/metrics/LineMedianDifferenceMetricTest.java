@@ -4,7 +4,7 @@ import junit.framework.TestCase;
 // JUnitDoclet begin import
 import media.image.CloudImage;
 import metrics.LineMedianDifferenceMetric;
-import metrics.splitters.MaxMedianMetric;
+import metrics.splitters.MaxMedianSplitterMetric;
 import metrics.splitters.SplitterMetric;
 
 // JUnitDoclet end import

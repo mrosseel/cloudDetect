@@ -12,7 +12,7 @@ import util.Median;
 import java.util.Arrays;
 
 
-public class MaxMedianMetric extends SplitterMetric {
+public class MaxMedianSplitterMetric extends SplitterMetric {
 
     protected double calculateValue(double[] data, int from, int to) {
         return Median.find(data, from, to);

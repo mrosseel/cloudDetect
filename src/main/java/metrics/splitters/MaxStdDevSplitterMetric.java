@@ -14,8 +14,8 @@ import org.apache.commons.logging.LogFactory;
 import util.Median;
 import util.StandardDeviation;
 
-public class MaxStdDevMetric extends SplitterMetric {
-	private static Log log = LogFactory.getLog(MaxStdDevMetric.class);
+public class MaxStdDevSplitterMetric extends SplitterMetric {
+	private static Log log = LogFactory.getLog(MaxStdDevSplitterMetric.class);
 	
 	protected double calculateValue(double[] data, int from, int to) {
 		return StandardDeviation.sdFast(data, from, to);
