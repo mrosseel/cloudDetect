@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src/main/java"/>
-	<classpathentry kind="src" path="src/test/java"/>
+	<classpathentry output=".deployables/clouddetect" kind="src" path="src/main/java"/>
+	<classpathentry output="target/test-classes" kind="src" path="src/test/java"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/junit.jar"/>
-	<classpathentry kind="lib" path="lib/JUnitDoclet.jar"/>
-	<classpathentry sourcepath="F:/down/jfreechart-0.9.15.zip" kind="lib" path="lib/jfreechart-0.9.15.jar"/>
-	<classpathentry kind="lib" path="lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="lib/werx.jar"/>
-	<classpathentry kind="lib" path="lib/reflectionbus.jar"/>
-	<classpathentry kind="lib" path="lib/bus.jar"/>
-	<classpathentry kind="lib" path="lib/commons-cli-1.0.jar"/>
-	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/jmf.jar"/>
-	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/mediaplayer.jar"/>
-	<classpathentry kind="lib" path="/opt/JMF-2.1.1e/lib/multiplayer.jar"/>
-	<classpathentry kind="lib" path="lib/dom4j.jar"/>
-	<classpathentry kind="lib" path="lib/jcommon-0.9.0.jar"/>
-	<classpathentry kind="lib" path="lib/skinlf.jar"/>
-	<classpathentry kind="lib" path="lib/spring-beans.jar"/>
-	<classpathentry kind="lib" path="lib/spring-core.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="var" path="M2_REPO/werx/reflectionbus/20dec04/reflectionbus-20dec04.jar"/>
+	<classpathentry kind="var" path="M2_REPO/werx/werx/20dec04/werx-20dec04.jar"/>
+	<classpathentry kind="var" path="M2_REPO/werx/bus/20dec04/bus-20dec04.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-lang/commons-lang/1.0/commons-lang-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/jmf/mediaplayer-linux/2.1.1e/mediaplayer-linux-2.1.1e.jar"/>
+	<classpathentry sourcepath="M2_REPO/junit/junit/3.8.1/junit-3.8.1-sources.jar" kind="var" path="M2_REPO/junit/junit/3.8.1/junit-3.8.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jaxme/jaxme-api/0.3/jaxme-api-0.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/pull-parser/pull-parser/2/pull-parser-2.jar"/>
+	<classpathentry sourcepath="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4-sources.jar" kind="var" path="M2_REPO/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+	<classpathentry sourcepath="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1-sources.jar" kind="var" path="M2_REPO/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar"/>
+	<classpathentry kind="var" path="M2_REPO/xpp3/xpp3/1.1.3.3/xpp3-1.1.3.3.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jfreechart/jfreechart/0.9.20/jfreechart-0.9.20.jar"/>
+	<classpathentry kind="var" path="M2_REPO/stax/stax-api/1.0/stax-api-1.0.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/jmf/multiplayer-linux/2.1.1e/multiplayer-linux-2.1.1e.jar"/>
+	<classpathentry sourcepath="M2_REPO/springframework/spring-beans/1.2.6/spring-beans-1.2.6-sources.jar" kind="var" path="M2_REPO/springframework/spring-beans/1.2.6/spring-beans-1.2.6.jar"/>
+	<classpathentry sourcepath="M2_REPO/springframework/spring-context/1.2.6/spring-context-1.2.6-sources.jar" kind="var" path="M2_REPO/springframework/spring-context/1.2.6/spring-context-1.2.6.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jaxen/jaxen/1.1-beta-6/jaxen-1.1-beta-6.jar"/>
+	<classpathentry kind="var" path="M2_REPO/javax/jmf/jmf-linux/2.1.1e/jmf-linux-2.1.1e.jar"/>
+	<classpathentry kind="var" path="M2_REPO/msv/xsdlib/20030807/xsdlib-20030807.jar"/>
+	<classpathentry kind="var" path="M2_REPO/commons-cli/commons-cli/1.0/commons-cli-1.0.jar"/>
+	<classpathentry sourcepath="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2-sources.jar" kind="var" path="M2_REPO/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
+	<classpathentry kind="var" path="M2_REPO/msv/relaxngDatatype/20030807/relaxngDatatype-20030807.jar"/>
+	<classpathentry kind="var" path="M2_REPO/jcommon/jcommon/0.9.5/jcommon-0.9.5.jar"/>
+	<classpathentry sourcepath="M2_REPO/springframework/spring-core/1.2.6/spring-core-1.2.6-sources.jar" kind="var" path="M2_REPO/springframework/spring-core/1.2.6/spring-core-1.2.6.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

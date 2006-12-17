@@ -14,7 +14,6 @@ import java.util.Iterator;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.Spacer;
 import org.jfree.chart.StandardLegend;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.LogarithmicAxis;
@@ -101,7 +100,8 @@ public class ContrastChart extends ChartPanel {
 		val.setRange(0, 100);
 		val.setLog10TickLabelsFlag(false);
 		plot.setRangeAxis(val);
-		plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
+        // deprecated since 0.9.16, don't know how to change
+		//plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
 		plot.setDomainCrosshairVisible(true);
 		plot.setRangeCrosshairVisible(true);
 

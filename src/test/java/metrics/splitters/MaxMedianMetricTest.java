@@ -46,7 +46,7 @@ extends TestCase
   public void testMaxMedian() {
 	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
 	     SplitterMetric metric = new MaxMedianMetric();
-	     CloudImage image = new CloudImage(data);
+	     CloudImage image = new CloudImage(data, 5, 4);
 	     assertEquals(0.0, metric.compute(image), 0.0);
   }
   

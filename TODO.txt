@@ -1,6 +1,6 @@
 media.processors moet eruit
-imagecontainter en cloudimage zijn hetzelfde concept, kies
 Image via format omzetten naar short of double!
+Unit test of metrics using the ieper image
 
 dependencies (for maven use later)
 

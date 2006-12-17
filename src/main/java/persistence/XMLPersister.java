@@ -69,9 +69,6 @@ public class XMLPersister {
         } catch (DocumentException e) {
             System.out.println("can't read xml");
             e.printStackTrace();
-        } catch (MalformedURLException e) {
-            System.out.println("filename incorrect");
-            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
         }
         System.out.println("document is " + document);
         return document;

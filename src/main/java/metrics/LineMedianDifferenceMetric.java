@@ -6,10 +6,6 @@
  */
 package metrics;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import media.image.CloudImage;
 import metrics.splitters.SlidingWindowSplitter;
 
@@ -19,22 +15,16 @@ import org.apache.commons.logging.LogFactory;
 import util.Median;
 
 /**
- * @author Mike
+ * Reduce each line of the image to 1 median value, 
+ * so we get a small strip of width=1 and heigth=heigth,
+ * and perform a split on this line.
  * 
- * To change the template for this generated type comment go to
- * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
+ * @author Mike
+ *
  */
 public class LineMedianDifferenceMetric implements Metric {
 	private static Log log = LogFactory
 			.getLog(LineMedianDifferenceMetric.class);
-
-	/**
-	 * 
-	 */
-	public LineMedianDifferenceMetric() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -43,21 +33,20 @@ public class LineMedianDifferenceMetric implements Metric {
 	 */
 	public double compute(CloudImage image) {
 		double[] data = image.getData();
+        double median;
+        
 		int width = image.getWidth();
-		int heigth = data.length / width;
+		int heigth = image.getHeight();
 		double[] lineData = new double[heigth];
-		double median;
+
 		for (int i = 0; i != heigth; i++) {
 			median = Median.find(data, i * width, (i + 1) * width - 1);
-
 			lineData[i] = median;
 		}
 
-		// writeData(lineData);
-
 		double result;
 		SlidingWindowSplitter splitter = new SlidingWindowSplitter();
-		int splitterLocation = splitter.split(lineData, 20);
+		int splitterLocation = splitter.split(lineData);
 		int length = lineData.length - 1;
 		double leftMedian = Median.find(lineData, 0, splitterLocation);
 		double rightMedian = Median
@@ -70,23 +59,5 @@ public class LineMedianDifferenceMetric implements Metric {
 		}
 
 		return result;
-	}
-
-	// for debugging
-	private void writeData(short[] data) {
-		BufferedWriter writer;
-		try {
-			writer = new BufferedWriter(new FileWriter("linedata.txt"));
-
-			for (int counter = 0; counter != data.length; counter++) {
-				writer.write(String.valueOf(data[counter]));
-				writer.write('\n');
-			}
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
 }

@@ -52,7 +52,7 @@ extends TestCase
     // JUnitDoclet begin method compute
 	  Metric kmeans = new KMeansMetric();
 	  double[] data = {0,0,0,0,0,1,1,1,1,1};
-	  CloudImage image = new CloudImage(data);
+	  CloudImage image = new CloudImage(data, 5, 2);
 	  double result = kmeans.compute(image);
 	  assertEquals(1.0, result, 0.0);
 	  

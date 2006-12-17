@@ -15,7 +15,6 @@ public class ImageScoringSubConsumer implements ImageSubConsumer {
         BufferProcessor proc = InstanceFactory.getBufferProcessor();
         double result = proc.process(image);
         // TODO naughty naughty very naughty
-        InstanceFactory.getContrastChart().addValue(image.getOrigin(), Math.random()*100);
-        InstanceFactory.getContrastChart().addValue("double it", result*2);
+        InstanceFactory.getContrastChart().addValue(image.getOrigin(), result);
     }
 }

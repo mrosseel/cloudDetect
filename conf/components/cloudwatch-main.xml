@@ -2,6 +2,12 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>general.properties</value>
+        </property>
+	</bean>
+	
 	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
 		<property name="commandLine"><value>true</value></property>
 	</bean>
@@ -15,6 +21,13 @@
 		<constructor-arg><value>/home/mike/quasar_blue.png</value></constructor-arg>
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>5</value></property>
+	</bean>
+	
+	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
+		<constructor-arg><value>HTTP image producer</value></constructor-arg>
+		<property name="url"><value>${http.url}</value></property>
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>480</value></property>
 	</bean>
 	
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
@@ -41,9 +54,4 @@
 	</bean>
 	
 	<bean id="imagepanel" class="ui.ImagePanel"/>
-	<bean id="soundutil" class="util.SoundUtil">
-		<constructor-arg><ref bean="anotherExampleBean"/></constructor-arg>
-		<constructor-arg><ref bean="yetAnotherBean"/></constructor-arg>
-			<property name="clipFile"><value>/conf/sounds/alert.wav</value></property>
-	</bean>
 </beans>

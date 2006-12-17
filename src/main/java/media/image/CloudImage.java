@@ -7,11 +7,12 @@
 package media.image;
 
 import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.image.MemoryImageSource;
 import java.awt.image.PixelGrabber;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 
 /**
  * @author Mike
@@ -22,109 +23,135 @@ import org.apache.commons.logging.LogFactory;
  * TODO check for null conditions!
  */
 public class CloudImage {
-	private static Log log = LogFactory.getLog(CloudImage.class);
+    private static Log log = LogFactory.getLog(CloudImage.class);
 
-	/** where does this image come from? */
-	private String origin;
-	
-	private Image image;
+    /** where does this image come from? */
+    private String origin;
 
-	private double[] data;
+    private Image image;
 
-	public CloudImage(Image image) {
-		setImage(image);
-	}
+    private double[] data;
+    
+    private int width;
+    private int height;
 
-	public CloudImage(double[] data) {
-		setData(data);
-	}
+    public CloudImage(Image image) {
+        setImage(image);
+    }
 
-	private void setImage(Image image) {
-		this.image = image;
-	}
-	
-	public Image getImage() {
-		if(image == null) {
-			this.image = createImage(data);
-		}
-		
-		return this.image;
-	}
-	
-	public double[] getData() {
-		if(data == null) {
-			this.data = createData(image);
-		}
-		
-		return this.data;
-	}
+    public CloudImage(double[] data, int width, int height) {
+        setData(data, width, height);
+    }
+    
+    public CloudImage(int[] data, int width, int height) {
+        setData(intToDoubleArray(data), width, height);
+    }
 
-	private void setData(double[] data) {
-		this.data = data;
-	}
+    private void setImage(Image image) {
+        this.image = image;
+        setWidth(image.getWidth(null));
+        setHeight(image.getHeight(null));
+    }
 
-	public int getWidth() {
-		return image.getWidth(null);
-	}
-	
-	public int getHeight() {
-		return image.getHeight(null);
-	}
-	
-	private double[] createData(Image image) {
-		return intToDoubleArray(getIntArrayFromImage(image));
-	}
+    public Image getImage() {
+        if (image == null) {
+            this.image = createImage(doubleToIntArray(getData()), getWidth(), getHeight());
+        }
 
-	private Image createImage(double[] data) {
-		log.warn("Not implemented yet!");
-		return null;
-	}
+        return this.image;
+    }
 
-	
-	
-	public String getOrigin() {
-		return origin;
-	}
+    private void setData(double[] data, int width, int height) {
+        this.data = data;
+        setWidth(width);
+        setHeight(height);
+    }
+    
+    public double[] getData() {
+        if (data == null) {
+            this.data = createData(image);
+        }
 
-	public void setOrigin(String origin) {
-		this.origin = origin;
-	}
-	
-	private double[] intToDoubleArray(int[] data) {
-		double[] result = new double[data.length];
-		for (int dataCounter = 0; dataCounter < data.length; dataCounter++) {
-			result[dataCounter] = data[dataCounter];
-		}
-		return result;
-	}
-	
-	//////////// example code for pixelgrabber and memoryimagesource
-	
+        return this.data;
+    }
 
+    
 
-	private int[] getIntArrayFromImage(Image image) {
-		int width = image.getWidth(null);
-		int height = image.getHeight(null);
-		//start.getGraphics().getColor().getColorSpace().
-		int [] pixstart = new int[width * height];
-		grab(image, pixstart, width, height);
-		return pixstart;
-//		System.arraycopy(pixstart, 0, pixbuf, 0, width * height);
-//		memImg = new MemoryImageSource(width, height, pixbuf, 0, width);
-//		memImg.setAnimated(true);
-//		Image actual = Toolkit.getDefaultToolkit().createImage(memImg);
-	}
+    public int getHeight() {
+        return height;
+    }
 
-	protected void grab(Image img, int pix[], int width, int height) {
-		// Kopiert die Bilddaten des ?bergebenen
-		// Bildes in das ?bergebene Array
-		PixelGrabber grabber = new PixelGrabber(img, 0, 0, width, height, pix,
-				0, width);
-		try {
-			grabber.grabPixels();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    private void setHeight(int height) {
+        this.height = height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    private void setWidth(int width) {
+        this.width = width;
+    }
+
+    private double[] createData(Image image) {
+        return intToDoubleArray(getIntArrayFromImage(image));
+    }
+
+    private Image createImage(int[] data, int width, int height) {
+        MemoryImageSource memImg = new MemoryImageSource(width, height, data,
+                0, width);
+        return Toolkit.getDefaultToolkit().createImage(memImg);
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
+    }
+
+    private double[] intToDoubleArray(int[] data) {
+        double[] result = new double[data.length];
+        for (int dataCounter = 0; dataCounter < data.length; dataCounter++) {
+            result[dataCounter] = data[dataCounter];
+        }
+        return result;
+    }
+    
+    private int[] doubleToIntArray(double[] data) {
+        int[] result = new int[data.length];
+        for (int dataCounter = 0; dataCounter < data.length; dataCounter++) {
+            result[dataCounter] = (int) Math.round(data[dataCounter]);
+        }
+        return result;
+    }
+
+    // ////////// example code for pixelgrabber and memoryimagesource
+
+    private int[] getIntArrayFromImage(Image image) {
+        int width = image.getWidth(null);
+        int height = image.getHeight(null);
+        // start.getGraphics().getColor().getColorSpace().
+        int[] pixstart = new int[width * height];
+        grab(image, pixstart, width, height);
+        return pixstart;
+        // System.arraycopy(pixstart, 0, pixbuf, 0, width * height);
+        // memImg = new MemoryImageSource(width, height, pixbuf, 0, width);
+        // memImg.setAnimated(true);
+        // Image actual = Toolkit.getDefaultToolkit().createImage(memImg);
+    }
+
+    protected void grab(Image img, int pix[], int width, int height) {
+        // Kopiert die Bilddaten des ?bergebenen
+        // Bildes in das ?bergebene Array
+        PixelGrabber grabber = new PixelGrabber(img, 0, 0, width, height, pix,
+                0, width);
+        try {
+            grabber.grabPixels();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

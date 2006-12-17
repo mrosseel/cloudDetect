@@ -4,6 +4,7 @@ import media.image.consumer.ImageConsumerImpl;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
 import media.image.producer.FileImageProducer;
+import media.image.producer.HTTPImageProducer;
 import media.image.producer.jmf.JMFInit;
 
 import org.apache.commons.cli.CommandLine;
@@ -46,7 +47,10 @@ public class CloudWatchApp {
 		// starts the reflection bus
 		ReflectionBus.start();
 		// gets the producers
-		FileImageProducer producer = InstanceFactory.getFileImageProducer();
+		//FileImageProducer producer = InstanceFactory.getFileImageProducer();
+//       gets the producers
+        HTTPImageProducer producer = InstanceFactory.getHTTPImageProducer();
+        
 		// TODO get rid of this ugly cast !!!
 		ImageConsumerImpl consumer = (ImageConsumerImpl) InstanceFactory.getImageConsumer();
 		consumer.addSubConsumer(new ImageScoringSubConsumer());
@@ -56,9 +60,9 @@ public class CloudWatchApp {
 			frame.start();
 			consumer.addSubConsumer(new UIPublishSubConsumer());
 		} else {
-			JMFInit jmf = new JMFInit();
+			//JMFInit jmf = new JMFInit();
 			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
-			jmf.init("v4l:Philips 740 webcam:0");	
+			//jmf.init("v4l:Philips 740 webcam:0");	
 			
 		}//
 		producer.start();

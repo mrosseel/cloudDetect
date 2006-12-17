@@ -2,6 +2,9 @@ package metrics.splitters;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
+import media.image.CloudImage;
+import metrics.LineMedianDifferenceMetric;
+import metrics.Metric;
 import metrics.splitters.SlidingWindowSplitter;
 // JUnitDoclet end import
 
@@ -51,7 +54,10 @@ extends TestCase
   
   public void testSplit() throws Exception {
     // JUnitDoclet begin method split
-	 //slidingwindowsplitter.split();
+      double[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 100, 100, 100, 100, 100, 100,
+              100, 100 };
+      int location = slidingwindowsplitter.split(data);
+      assertEquals(8.0, location, 0.0);
     // JUnitDoclet end method split
   }
   

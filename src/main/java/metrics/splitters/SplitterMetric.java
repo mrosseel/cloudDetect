@@ -16,11 +16,10 @@ import org.apache.commons.logging.LogFactory;
 import util.TextProgressBar;
 
 public abstract class SplitterMetric implements Metric {
-	private int bestSplitterLocation;
-	private int pctSplitterLocation;
-	private double result;
 	private static Log log = LogFactory.getLog(SplitterMetric.class);
-
+    private int bestSplitterLocation;
+    private int pctSplitterLocation;
+    private double result;
 	
 	public double compute(CloudImage image) {
 		double[] data = image.getData();
