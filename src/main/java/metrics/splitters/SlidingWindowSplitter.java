@@ -39,8 +39,9 @@ public class SlidingWindowSplitter implements Splitter {
         return bestWindow(data, determineWindowSize(data.length, windowSize));
     }
 
+    // min window is 2, otherwise differences don't work
     private int determineWindowSize(int dataLength) {
-        int hint = (int) Math.max(Math.round(dataLength/10.0), 1);
+        int hint = (int) Math.max(Math.round(dataLength/10.0), 2);
         return determineWindowSize(dataLength, hint);
     }
 

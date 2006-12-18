@@ -2,15 +2,13 @@ media.processors moet eruit
 Image via format omzetten naar short of double!
 Unit test of metrics using the ieper image
 
+documenteer verschil tussen /resources and /conf
+fix alle errors door /conf problemen (XMLPersister)
+laat alle unit testen draaien, javadoc van alle metrieken
+Maak een ImageScaler
+Bekijk Stacker en bepaal wat ermee te doen (subconsumer?)
+
+
 dependencies (for maven use later)
 
-commons-cli
-commons-logging
-
 dom4j (may be killed I think, used for output)
-
-jfreechart-0.9.15
-jcommon
-
-junit.jar
-junitdoclet.jar

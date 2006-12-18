@@ -58,6 +58,10 @@ extends TestCase
               100, 100 };
       int location = slidingwindowsplitter.split(data);
       assertEquals(8.0, location, 0.0);
+      
+      double[] data2={0.0, 0.0, 50.0, 100.0, 100.0};
+      location = slidingwindowsplitter.split(data2);
+      assertEquals(2, location, 0.0);
     // JUnitDoclet end method split
   }
   

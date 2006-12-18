@@ -31,14 +31,14 @@ public class ImageProducerImplTest extends TestCase {
 	}
 
 	class TestImageProducerImpl extends ImageProducerImpl {
-
+	    private double[] data = {0,1,2,3,4,5,6,7,8}; 
 		public TestImageProducerImpl(String name) {
 			super(name);
 			// TODO Auto-generated constructor stub
 		}
 
 		protected CloudImage produceContent() {
-			return new CloudImage((Image)null);
+			return new CloudImage(data, 2, 4);
 		}
 		
 	}

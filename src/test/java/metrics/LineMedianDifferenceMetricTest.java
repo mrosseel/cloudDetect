@@ -57,7 +57,7 @@ public class LineMedianDifferenceMetricTest
                 100, 100 };
         Metric metric = new LineMedianDifferenceMetric();
         CloudImage image = new CloudImage(data, 4, 5);
-        assertEquals(50.0, metric.compute(image), 0.0);
+        assertEquals(100.0, metric.compute(image), 0.0);
         // JUnitDoclet end method compute
     }
 
