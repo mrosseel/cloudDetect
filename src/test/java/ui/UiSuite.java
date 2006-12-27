@@ -31,14 +31,12 @@ public class UiSuite
     
     suite = new TestSuite("ui");
     
-    suite.addTestSuite(ui.WebImageSettingsPanelTest.class);
     suite.addTestSuite(ui.WebcamSettingsPanelTest.class);
     suite.addTestSuite(ui.StatusPanelTest.class);
     suite.addTestSuite(ui.RightPanelTest.class);
     suite.addTestSuite(ui.ImagePanelTest.class);
     suite.addTestSuite(ui.ControlPanelTest.class);
     suite.addTestSuite(ui.ContrastChartTest.class);
-    suite.addTestSuite(ui.CloudWatchFrameTest.class);
     suite.addTest(ui.commands.CommandsSuite.suite());
     suite.addTest(ui.handlers.HandlersSuite.suite());
     suite.addTest(ui.signal.SignalSuite.suite());

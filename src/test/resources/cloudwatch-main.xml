@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>general.properties</value>
+        </property>
+	</bean>
+	
+	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
+		<property name="commandLine"><value>true</value></property>
+	</bean>
+	
+	<bean id="cloudwatchapp" class="application.CloudWatchApp">
+		<property name="config"><ref bean="cloudwatchconfig"/></property>
+	</bean>
+	
+	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
+		<constructor-arg><value>file image producer</value></constructor-arg>
+		<constructor-arg><value>/home/mike/quasar_blue.png</value></constructor-arg>
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>5</value></property>
+	</bean>
+	
+	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
+		<constructor-arg><value>HTTP image producer</value></constructor-arg>
+		<property name="url"><value>${http.url}</value></property>
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>480</value></property>
+	</bean>
+	
+	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
+		<property name="queue"><ref bean="cloudimagequeue"/></property>
+		<property name="polling"><value>5</value></property>
+	</bean>
+
+	<bean id="cloudimagequeue" class="media.image.producer.CloudImageQueue">
+		<property name="maxElements"><value>500</value></property>
+	</bean>
+	
+	<bean id="bufferprocessor" class="media.processors.BufferProcessorImpl">
+		<property name="metric"><ref bean="linemediandifferencemetric"/></property>
+	</bean>
+	
+	<bean id="linemediandifferencemetric" class="metrics.LineMedianDifferenceMetric"/>
+	<bean id="cutoffdiferencemetric" class="metrics.CutoffDifferenceMetric"/>
+	<bean id="maxstddevmetric" class="metrics.splitters.MaxStdDevMetric"/>
+	<bean id="pixelbrightnessmetric" class="metrics.PixelBrightnessMetric"/>
+	
+	<!--  UI parts -->
+	
+	<bean id="contrastchart" class="ui.ContrastChart">
+	</bean>
+	
+	<bean id="imagepanel" class="ui.ImagePanel"/>
+</beans>
