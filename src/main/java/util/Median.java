@@ -160,7 +160,9 @@ public class Median {
 		 * @param to the index of the end of the interval in which the median value will be searched
 		 * @return the median value
 		 */
-	public static double find(double[] a, int from, int to) {
+	public static double find(double[] original, int from, int to) {
+        // add a clone because we don't want to mess up the original array!
+        double[] a = (double[]) original.clone();
 		int low = from;
 		int high = to;
 		int median = (low + high) / 2;

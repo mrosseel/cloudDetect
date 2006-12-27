@@ -44,7 +44,7 @@ public class XMLPersister {
         props = new Properties();
         try {
 
-            InputStream input = this.getClass().getResourceAsStream("/conf/general.properties");
+            InputStream input = this.getClass().getResourceAsStream("/general.properties");
             props.load(input);
         } catch (IOException e) {
             System.out.println("properties file not found");

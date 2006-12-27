@@ -3,7 +3,7 @@ package application;
 import media.image.consumer.ImageConsumer;
 import media.image.producer.FileImageProducer;
 import media.image.producer.HTTPImageProducer;
-import media.processors.BufferProcessor;
+import media.processors.CalculateMetricOnCloudImage;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
@@ -47,8 +47,8 @@ public class InstanceFactory {
 		return (ContrastChart) appContext.getBean("contrastchart");
 	}
 	
-	public static BufferProcessor getBufferProcessor() {
-		return (BufferProcessor) appContext.getBean("bufferprocessor");
+	public static CalculateMetricOnCloudImage getBufferProcessor() {
+		return (CalculateMetricOnCloudImage) appContext.getBean("bufferprocessor");
 	}
 	
 }

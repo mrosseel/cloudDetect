@@ -11,7 +11,12 @@ import util.Median;
 
 import java.util.Arrays;
 
-
+/**
+ * 
+ * 
+ * 
+ * @author mike
+ */
 public class MaxMedianSplitterMetric extends SplitterMetric {
 
     protected double calculateValue(double[] data, int from, int to) {

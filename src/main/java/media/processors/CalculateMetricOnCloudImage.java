@@ -8,7 +8,7 @@ import media.image.CloudImage;
 import metrics.Metric;
 
 
-public interface BufferProcessor{
+public interface CalculateMetricOnCloudImage{
 
     /**
      *

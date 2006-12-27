@@ -191,6 +191,8 @@ public class WebImageSettingsPanel extends JPanel {
 		if (jPanel2 == null) {
 			jPanel2 = new JPanel();
 			jPanel2.add(getJCheckBox(), null);
+            // init the jlabel, this is stupid
+            getJPanel1();
 			jPanel2.add(jLabel, null);
 		}
 		return jPanel2;
@@ -239,6 +241,8 @@ public class WebImageSettingsPanel extends JPanel {
 	private JPanel getJPanel5() {
 		if (jPanel5 == null) {
 			jPanel5 = new JPanel();
+            // init jlabel3, this code is a mess
+            getJPanel();
 			jPanel5.add(jLabel3, null);
 			jPanel5.add(getJTextField2(), null);
 		}

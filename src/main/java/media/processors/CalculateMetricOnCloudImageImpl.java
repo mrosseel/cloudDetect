@@ -11,9 +11,9 @@ import org.apache.commons.logging.LogFactory;
 
 import application.InstanceFactory;
 
-public class BufferProcessorImpl implements BufferProcessor {
+public class CalculateMetricOnCloudImageImpl implements CalculateMetricOnCloudImage {
 
-	private static Log log = LogFactory.getLog(BufferProcessorImpl.class);
+	private static Log log = LogFactory.getLog(CalculateMetricOnCloudImageImpl.class);
 
 	private double[] data;
 
