@@ -40,8 +40,8 @@
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
 		<constructor-arg><value>directory image producer</value></constructor-arg>
-		<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg> 
-<!--				<constructor-arg><value>/home/mike/incoming/movies/20061013</value></constructor-arg>-->
+		<!--<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg>-->
+		<constructor-arg><value>/home/mike/incoming/movies/20061017</value></constructor-arg>
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>1</value></property>
 		<property name="imgExtension"><value>jpg</value></property>
@@ -95,7 +95,14 @@
 	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">
 		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
 		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
+		<property name="notifier"><ref bean="soundnotify"/></property>
 	</bean>
+	
+	<bean id="savecontrastchartsubconsumer" class="media.image.consumer.SaveContrastChartSubConsumer">
+		<property name="saveFileName"><value>${chart.savefilename}</value></property>
+	</bean>
+	
+	<bean id="soundnotify" class="notification.SoundNotify"/>
 	
 	<!--  UI -->
 	

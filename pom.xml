@@ -177,6 +177,18 @@
           <maxmemory>512</maxmemory>
         </configuration>
       </plugin>
+      <!--
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>2.0-beta-1</version>
+        <configuration>
+          <descriptor>path/to/descriptor.xml</descriptor>
+          <finalName>final_name</finalName>
+          <outputDirectory>output/directory</outputDirectory>
+          <workDirectory>target/assembly/work</workDirectory>
+        </configuration>
+      </plugin>
+      -->
     </plugins>
   </reporting>
 </project>

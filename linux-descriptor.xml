@@ -1,0 +1,31 @@
+<assembly>
+  <id>linux-descriptor</id>
+  <formats>tar.bz2</formats>
+  <includeBaseDirectory>true</includeBaseDirectory>
+  <includeSiteDirectory/>
+ 
+ <fileSets>
+    <fileSet>
+      <directory>target/classes</directory>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
+  <files>
+    <file>
+      <source/>
+      <outputDirectory/>
+      <destName/>
+      <fileMode/>
+      <lineEnding/>
+      <filtered/>
+    </file>
+  </files>
+  <dependencySets>
+    <dependencySet>
+      <outputDirectory>/</outputDirectory>
+      <unpack>true</unpack>
+      <scope>runtime</scope>
+    </dependencySet>
+  </dependencySets>
+  <componentDescriptors/>
+</assembly>

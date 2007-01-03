@@ -19,6 +19,7 @@
 
 	<bean id="clearmailMessage" class="org.springframework.mail.SimpleMailMessage">
   		<property name="from" value="Mike.Rosseel@gmail.com"/>
+  		<property name="to" value="${mail.to}"/>
   		<property name="subject" value="${mail.subject}"/>
 	</bean>
 
