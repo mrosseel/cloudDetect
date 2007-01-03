@@ -3,12 +3,10 @@ package calculation.splitters;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
-import media.image.producer.FileClasspathImageProducer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import util.VisualiseSplitterLocation;
 import calculation.splitters.splittermetric.HorizonMetric;
 
 // JUnitDoclet end import

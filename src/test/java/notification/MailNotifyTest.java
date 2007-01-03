@@ -17,7 +17,7 @@ public class MailNotifyTest extends TestCase {
 
     public void testMailing() {
         MailNotify notify = InstanceFactory.getMailNotify();
-        notify.sendMail(600);
+        notify.sendMail();
     }
 
 }
