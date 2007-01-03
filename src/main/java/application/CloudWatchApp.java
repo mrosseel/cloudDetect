@@ -1,10 +1,10 @@
 package application;
 
-import media.image.consumer.CloudJudgeSubConsumer;
 import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.ImageSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
+import media.image.consumer.UpdateContrastChartSubConsumer;
 import media.image.producer.ImageProducer;
 
 import org.apache.commons.cli.CommandLine;
@@ -52,7 +52,9 @@ public class CloudWatchApp {
         ImageConsumer consumer = InstanceFactory.getImageConsumer();
         consumer.addSubConsumer(new ImageScoringSubConsumer());
         consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getAppContext().getBean("cloudjudgesubconsumer"));
-
+        consumer.addSubConsumer(new UpdateContrastChartSubConsumer());
+        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getAppContext().getBean("savecontrastchartsubconsumer"));
+        
         if (!config.isCommandLine()) {
             StartUI frame = new StartUI();
             frame.start();

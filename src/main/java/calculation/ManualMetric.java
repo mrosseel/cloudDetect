@@ -10,8 +10,6 @@ package calculation;
 import media.image.CloudImage;
 import util.VisualiseSplitterLocation;
 import calculation.contrastmetric.MedianContrastMetric;
-import calculation.splitters.BisectionSplitter;
-import calculation.splitters.splittermetric.MinStdDevSplitterMetric;
 
 public class ManualMetric implements Metric {
     private double manualSplitterLocation;

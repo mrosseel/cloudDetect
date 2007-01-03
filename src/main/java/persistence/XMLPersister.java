@@ -20,7 +20,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
@@ -113,7 +112,7 @@ public class XMLPersister {
 
         try {
             // Compact format : format = OutputFormat.createCompactFormat();
-            OutputFormat format = OutputFormat.createPrettyPrint();
+            //OutputFormat format = OutputFormat.createPrettyPrint();
             // lets write to a file
             XMLWriter writer = new XMLWriter(new FileWriter(file));
             writer.write(doc);

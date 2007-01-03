@@ -1,17 +1,13 @@
 package media.image.producer;
 
-import java.awt.Image;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
 import media.image.CloudImage;
-import media.image.CloudImageImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
-import util.ImageToolkit;
 
 /**
  * Class FileImageProvider

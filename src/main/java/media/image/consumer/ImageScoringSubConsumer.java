@@ -22,14 +22,6 @@ public class ImageScoringSubConsumer implements ImageSubConsumer {
         double result = proc.process(image);
         image.getMetaData().setContrastResult(result);
 
-        // TODO naughty naughty very naughty
-        if (image.getMetaData().getDate() == null) {
-            InstanceFactory.getContrastChart().addValue(
-                    image.getOriginComment(), result);
-        } else {
-            InstanceFactory.getContrastChart().addValue(
-                    image.getOriginComment(), image.getMetaData().getDate(),
-                    result);
-        }
+      
     }
 }

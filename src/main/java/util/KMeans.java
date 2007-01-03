@@ -162,7 +162,7 @@ public class KMeans {
             bins[i] = new Bin(aBins[i], aBinMinima[i], aBinMaxima[i],
                     aBinMeans[i]);
         }
-        Arrays.sort(bins, new Comparator() {
+        Arrays.sort(bins, new Comparator<Object>() {
 
             public int compare(Object aBin1, Object aBin2) {
                 Bin bin1 = (Bin) aBin1;

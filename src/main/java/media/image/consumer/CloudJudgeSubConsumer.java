@@ -1,11 +1,11 @@
 package media.image.consumer;
 
 import media.image.CloudImage;
+import notification.Notifier;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import application.InstanceFactory;
 import calculation.CloudJudge;
 import calculation.CloudJudge.CloudStatus;
 
@@ -21,14 +21,18 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
     private int transitionWaitInMinutes = 60;
     
     private CloudJudge cloudJudge;
+    
+    private Notifier notifier;
 
     public void consume(CloudImage image) {
         CloudStatus result = cloudJudge.judgeClouds(
                 image.getMetaData().getContrastResult());
         if (isWaitingForClear && result == CloudStatus.CLEAR
                 && isTransitionWaitOver(image)) {
-            log.info("Mailing to Dodi!");
-            InstanceFactory.getMailNotify().sendMail(transitionWaitInMinutes);
+            
+            image.getMetaData().setNotify(true);
+            notifier.notify(image);
+            
             this.isWaitingForClear = false;
         }
 
@@ -68,5 +72,13 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
 
     private void recordClearTransition(CloudImage image) {
         transitionTime = image.getMetaData().getDate().getTime();
+    }
+
+    public Notifier getNotifier() {
+        return notifier;
+    }
+
+    public void setNotifier(Notifier notifier) {
+        this.notifier = notifier;
     }
 }

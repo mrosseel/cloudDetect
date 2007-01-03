@@ -15,8 +15,6 @@ import java.awt.image.PixelGrabber;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.sun.jmx.mbeanserver.MetaData;
-
 import util.ImageToolkit;
 
 /**

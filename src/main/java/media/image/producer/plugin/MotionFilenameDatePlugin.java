@@ -1,7 +1,6 @@
 package media.image.producer.plugin;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,7 +17,6 @@ public class MotionFilenameDatePlugin implements ImageDatePlugin {
 
     public void insertDateInMetaData(CloudImage image, String filename) {
         CloudImageMetaData metaData = image.getMetaData();
-        Date date;
         Calendar calendar = DateUtil.getCurrentCalendar();
 
         Pattern p = Pattern

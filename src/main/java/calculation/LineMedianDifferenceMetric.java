@@ -11,10 +11,8 @@ import media.image.CloudImage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import calculation.splitters.SlidingWindowSplitter;
-
 import util.Median;
-import util.VisualiseSplitterLocation;
+import calculation.splitters.SlidingWindowSplitter;
 
 /**
  * Reduce each line of the image to 1 median value, so we get a small strip of

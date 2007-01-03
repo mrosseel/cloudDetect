@@ -25,7 +25,7 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
 
     private CloudImageQueue queue;
 
-    ArrayList consumers = new ArrayList();
+    ArrayList<ImageSubConsumer> consumers = new ArrayList<ImageSubConsumer>();
 
     /** keep track of start and total time */
     private long startTime;

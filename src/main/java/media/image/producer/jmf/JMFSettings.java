@@ -33,7 +33,7 @@ public class JMFSettings {
 
     private Vector deviceListVector;
 
-    private ArrayList videoDeviceList;
+    private ArrayList<CaptureDeviceInfo> videoDeviceList;
 
     private ArrayList videoFormatList;
 
