@@ -1,13 +1,11 @@
 package media.web;
 
-import java.awt.Button;
 import java.awt.Image;
-import java.awt.MediaTracker;
-import java.awt.Toolkit;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 
-import sun.awt.image.InputStreamImageSource;
+import javax.imageio.ImageIO;
 
 /**
  * Class used to load images from the web.
@@ -27,25 +25,15 @@ public class WebImageLoader {
      * @return the retrieved image
      */
     public static Image loadURLImage(String txtUrl) {
+        URL url;
         Image image = null;
         try {
-            URL url = new URL(txtUrl);
-            URLConnection uc = url.openConnection();
-            uc.connect();
-            Toolkit toolkit = Toolkit.getDefaultToolkit();
-            image = (Image) toolkit.createImage((InputStreamImageSource) uc
-                    .getContent());
-            // wait until the image is loaded before we return the image
-            MediaTracker mediaTracker = new MediaTracker(new Button());
-            mediaTracker.addImage(image, 0);
-            try {
-                mediaTracker.waitForID(0);
-            } catch (InterruptedException ie) {
-                System.err.println(ie);
-                System.exit(1);
-            }
-
-        } catch (Exception e1) {
+            url = new URL(txtUrl);
+            image = ImageIO.read(url);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e1) {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
