@@ -1,6 +1,8 @@
 <assembly>
   <id>linux-descriptor</id>
-  <formats>tar.bz2</formats>
+  <formats>
+  <format>tar.bz2</format>
+  </formats>
   <includeBaseDirectory>true</includeBaseDirectory>
   <includeSiteDirectory/>
  
@@ -10,16 +12,18 @@
       <outputDirectory>/</outputDirectory>
     </fileSet>
   </fileSets>
+  <!--
   <files>
     <file>
       <source/>
       <outputDirectory/>
       <destName/>
       <fileMode/>
-      <lineEnding/>
+      <lineEnding/> 
       <filtered/>
     </file>
   </files>
+  -->
   <dependencySets>
     <dependencySet>
       <outputDirectory>/</outputDirectory>

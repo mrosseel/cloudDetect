@@ -21,7 +21,7 @@
 	
 	<!-- Image producers -->
 	
-	<alias name="directoryimageproducer" alias="imageproducer"/>
+	<alias name="httpimageproducer" alias="imageproducer"/>
 	
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
