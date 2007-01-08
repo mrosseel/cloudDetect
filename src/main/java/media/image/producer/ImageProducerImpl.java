@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import media.image.CloudImage;
+import media.image.producer.plugin.ImageDatePlugin;
 
 /**
  * Class ImageProviderImpl
@@ -20,6 +21,10 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
     private boolean hasStopped = false;
 
     private CloudImageQueue queue;
+    
+    // TODO make the plugin stuff more generic, maybe add support in this class and not in all
+    // children, ... .
+    private ImageDatePlugin plugin;
 
     private static Log log = LogFactory.getLog(ImageProducerImpl.class);
 
@@ -68,5 +73,13 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 
     public String getProducerName() {
         return producerName;
+    }
+    
+    public ImageDatePlugin getPlugin() {
+        return plugin;
+    }
+
+    public void setPlugin(ImageDatePlugin plugin) {
+        this.plugin = plugin;
     }
 }

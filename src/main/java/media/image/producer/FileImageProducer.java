@@ -20,8 +20,6 @@ public class FileImageProducer extends ImageProducerImpl {
 
     private String imageToLoad;
 
-    private ImageDatePlugin plugin;
-
     public FileImageProducer(String name) {
         super(name);
     }
@@ -51,11 +49,4 @@ public class FileImageProducer extends ImageProducerImpl {
         this.imageToLoad = imageToLoad;
     }
 
-    public ImageDatePlugin getPlugin() {
-        return plugin;
-    }
-
-    public void setPlugin(ImageDatePlugin plugin) {
-        this.plugin = plugin;
-    }
 }

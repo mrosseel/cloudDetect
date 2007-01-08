@@ -36,6 +36,7 @@
 		<property name="url"><value>${http.url}</value></property>
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>480</value></property>
+		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
