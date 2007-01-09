@@ -96,7 +96,7 @@
 	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">
 		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
 		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
-		<property name="notifier"><ref bean="soundnotify"/></property>
+		<property name="notifier"><ref bean="dummynotify"/></property>
 	</bean>
 	
 	<bean id="savecontrastchartsubconsumer" class="media.image.consumer.SaveContrastChartSubConsumer">
@@ -104,6 +104,7 @@
 	</bean>
 	
 	<bean id="soundnotify" class="notification.SoundNotify"/>
+	<bean id="dummynotify" class="notification.DummyNotify"/>
 	
 	<!--  UI -->
 	
