@@ -44,29 +44,31 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
             log
                     .error("Consumer '" + producerName
                             + "'not initialized properly");
-            // throw new RuntimeException("Producer '" + producerName + "'not
-            // initialized properly");
             return;
         }
 
-        while (!hasStopped) {
-            CloudImage image = queue.get();
+        try {
+            while (!hasStopped) {
+                CloudImage image = queue.get();
 
-            startTime = System.currentTimeMillis();
+                startTime = System.currentTimeMillis();
 
-            // list can only grow, so assured to work.
-            // TODO are dynamic lists needed? How to do it?
-            if (image != null) {
-                for (int i = 0; i < consumers.size(); i++) {
-                    ((ImageSubConsumer) consumers.get(i)).consume(image);
+                // list can only grow, so assured to work.
+                // TODO are dynamic lists needed? How to do it?
+                if (image != null) {
+                    for (int i = 0; i < consumers.size(); i++) {
+                        ((ImageSubConsumer) consumers.get(i)).consume(image);
+                    }
+                }
+                totalTime = System.currentTimeMillis() - startTime;
+                if (totalTime < timeBetweenPollsInMilliSeconds) {
+                    try {
+                        sleep(timeBetweenPollsInMilliSeconds - totalTime);
+                    } catch (InterruptedException e) {}
                 }
             }
-            totalTime = System.currentTimeMillis() - startTime;
-            if (totalTime < timeBetweenPollsInMilliSeconds) {
-                try {
-                    sleep(timeBetweenPollsInMilliSeconds - totalTime);
-                } catch (InterruptedException e) {}
-            }
+        } catch (Throwable e) {
+            log.error("main Consumer loop has crashed: " + e.getMessage());
         }
     }
 
