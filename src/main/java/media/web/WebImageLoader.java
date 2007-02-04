@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.imageio.ImageIO;
+import util.ImageToolkit;
 
 /**
  * Class used to load images from the web.
@@ -29,13 +29,9 @@ public class WebImageLoader {
         Image image = null;
         try {
             url = new URL(txtUrl);
-            image = ImageIO.read(url);
+            image = ImageToolkit.loadImage(url);
         } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (IOException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         }
 
         return image;
