@@ -9,8 +9,6 @@ import metrics.Metric;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import application.InstanceFactory;
-
 public class CalculateMetricOnCloudImageImpl implements CalculateMetricOnCloudImage {
 
 	private static Log log = LogFactory.getLog(CalculateMetricOnCloudImageImpl.class);

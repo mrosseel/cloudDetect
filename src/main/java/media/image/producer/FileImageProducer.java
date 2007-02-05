@@ -3,6 +3,7 @@ package media.image.producer;
 import java.awt.Image;
 
 import media.image.CloudImage;
+import media.image.CloudImageImpl;
 import util.ImageToolkit;
 
 
@@ -20,7 +21,7 @@ public class FileImageProducer extends ImageProducerImpl {
 
 	protected CloudImage produceContent() {
 		Image image = ImageToolkit.loadImage(imageToLoad);
-		CloudImage result = new CloudImage(image);
+		CloudImage result = new CloudImageImpl(image);
         result.setOrigin(getProducerName());
 		return result;
 	}

@@ -16,6 +16,7 @@ import org.apache.commons.logging.LogFactory;
 import util.TextProgressBar;
 
 public abstract class SplitterMetric implements Metric {
+    public static int START_AND_END_AVOIDANCE = 2;
 	private static Log log = LogFactory.getLog(SplitterMetric.class);
     private int bestSplitterLocation;
     private int pctSplitterLocation;
@@ -27,11 +28,10 @@ public abstract class SplitterMetric implements Metric {
 
 		// choose a begin and end-point for the splitter
 		int length = data.length;
-		int splitterBegin = 5 - 1;
-		int splitterEnd = length - 5;
+		int splitterBegin = START_AND_END_AVOIDANCE - 1;
+		int splitterEnd = length - START_AND_END_AVOIDANCE;
 		int bestSplitterLocation = -1;
 		int splitterLocation;
-		;
 		double biggestValueDifference = Double.MIN_VALUE;
 		double valueDifference;
 		double valueLeft;
@@ -52,16 +52,18 @@ public abstract class SplitterMetric implements Metric {
 //				valueRight * splitterLocation
 //					+ valueLeft * (length - splitterLocation - 1);
 
-			if(log.isDebugEnabled()) {
-			log.debug("diff = " + valueDifference + " at " + splitterLocation +
-						" left = " + valueLeft + " right = " + valueRight + " bestSplitter = " + bestSplitterLocation);
-			}
+			
 
 			if (valueDifference > biggestValueDifference) {
-			//if (valueDifference < biggestValueDifference) {
 				biggestValueDifference = valueDifference;
 				bestSplitterLocation = splitterLocation;
 			}
+            
+            if(log.isDebugEnabled()) {
+                log.debug("diff = " + valueDifference + " at " + splitterLocation +
+                            " left = " + valueLeft + " right = " + valueRight + " bestSplitter = " + bestSplitterLocation);
+                }
+            
 			progress.update(splitterLocation);
 			if (splitterLocation % 1000 == 0) {
 				progress.print();
@@ -69,6 +71,7 @@ public abstract class SplitterMetric implements Metric {
 		}
 
 		setResult(biggestValueDifference);
+        setBestSplitterLocation(bestSplitterLocation);
 		setPctSplitterLocation(
 			(int) Math.round(
 				((double) bestSplitterLocation / (double) length * 100)));

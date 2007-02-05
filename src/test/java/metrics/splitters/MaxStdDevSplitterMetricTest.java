@@ -2,6 +2,7 @@ package metrics.splitters;
 
 import junit.framework.TestCase;
 import media.image.CloudImage;
+import media.image.CloudImageImpl;
 // JUnitDoclet end import
 
 /**
@@ -50,16 +51,16 @@ extends TestCase
 	public void testCompute() {
 		double[] data = new double[]{
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-		CloudImage image = new CloudImage(data, 10,2);
+		CloudImage image = new CloudImageImpl(data, 10,2);
 		maxstddevmetric.compute(image);
 		assertEquals(50, maxstddevmetric.getPctSplitterLocation());
 		
 		data = new double[]{
 					0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-		image = new CloudImage(data, 10, 2);
+		image = new CloudImageImpl(data, 10, 2);
 		maxstddevmetric.compute(image);
 		assertEquals(70, maxstddevmetric.getPctSplitterLocation());
-//		assertEquals(1.0, maxstddevmetric.getResult(), 0.0);
+		assertEquals(1.0, maxstddevmetric.getResult(), 0.0);
 				
 	}
 

@@ -3,9 +3,7 @@ package application;
 import media.image.consumer.ImageConsumerImpl;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
-import media.image.producer.FileImageProducer;
 import media.image.producer.HTTPImageProducer;
-import media.image.producer.jmf.JMFInit;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;

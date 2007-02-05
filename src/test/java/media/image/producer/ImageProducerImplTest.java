@@ -1,9 +1,8 @@
 package media.image.producer;
 
-import java.awt.Image;
-
-import media.image.CloudImage;
 import junit.framework.TestCase;
+import media.image.CloudImage;
+import media.image.CloudImageImpl;
 
 public class ImageProducerImplTest extends TestCase {
 	
@@ -38,7 +37,7 @@ public class ImageProducerImplTest extends TestCase {
 		}
 
 		protected CloudImage produceContent() {
-			return new CloudImage(data, 2, 4);
+			return new CloudImageImpl(data, 2, 4);
 		}
 		
 	}

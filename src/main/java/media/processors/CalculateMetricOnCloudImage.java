@@ -7,7 +7,11 @@ package media.processors;
 import media.image.CloudImage;
 import metrics.Metric;
 
-
+/**
+ * Calculates a certain metric on a CloudImage, and returns the result.
+ * 
+ * @author mike
+ */
 public interface CalculateMetricOnCloudImage{
 
     /**

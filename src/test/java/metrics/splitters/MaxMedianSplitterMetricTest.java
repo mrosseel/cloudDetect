@@ -2,8 +2,7 @@ package metrics.splitters;
 
 import junit.framework.TestCase;
 import media.image.CloudImage;
-import metrics.splitters.MaxMedianSplitterMetric;
-import metrics.splitters.SplitterMetric;
+import media.image.CloudImageImpl;
 // JUnitDoclet end import
 
 /**
@@ -46,8 +45,26 @@ extends TestCase
   public void testMaxMedian() {
 	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
 	     SplitterMetric metric = new MaxMedianSplitterMetric();
-	     CloudImage image = new CloudImage(data, 5, 4);
-	     assertEquals(0.0, metric.compute(image), 0.0);
+	     CloudImage image = new CloudImageImpl(data, 5, 4);
+	     assertEquals(10.0, metric.compute(image), 0.0);
+         // strange but acceptable
+         assertEquals(1, metric.getBestSplitterLocation());
+         
+         double[] data2 = { 1,2,3,4,5,6,7,8,9,10,110,120,130,140,150,160,170,180,190,200 };
+         metric = new MaxMedianSplitterMetric();
+         image = new CloudImageImpl(data2, 5, 4);
+         assertEquals(181.0, metric.compute(image), 0.0);
+         // strange but acceptable
+         assertEquals(16, metric.getBestSplitterLocation());
+         
+         // test sorting
+         double[] data3 = { 1,2,3,4,5,6,7,9,8,10,110,120,130,140,150,160,170,180,200,190 };
+         metric = new MaxMedianSplitterMetric();
+         image = new CloudImageImpl(data3, 5, 4);
+         assertEquals(181.0, metric.compute(image), 0.0);
+         // strange but acceptable
+         assertEquals(16, metric.getBestSplitterLocation());
+         
   }
   
   protected void tearDown() throws Exception {

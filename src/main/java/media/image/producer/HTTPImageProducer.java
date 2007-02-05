@@ -3,6 +3,7 @@ package media.image.producer;
 import java.awt.Image;
 
 import media.image.CloudImage;
+import media.image.CloudImageImpl;
 import media.web.WebImageLoader;
 
 
@@ -19,7 +20,7 @@ public class HTTPImageProducer extends ImageProducerImpl {
 
 	protected CloudImage produceContent() {
         Image image = WebImageLoader.loadURLImage(getUrl());
-        CloudImage result = new CloudImage(image);
+        CloudImage result = new CloudImageImpl(image);
         result.setOrigin(getProducerName());
 		return result;
 	}

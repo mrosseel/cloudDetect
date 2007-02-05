@@ -1,11 +1,8 @@
 package metrics;
 
 import junit.framework.TestCase;
-// JUnitDoclet begin import
 import media.image.CloudImage;
-import metrics.LineMedianDifferenceMetric;
-import metrics.splitters.MaxMedianSplitterMetric;
-import metrics.splitters.SplitterMetric;
+import media.image.CloudImageImpl;
 
 // JUnitDoclet end import
 
@@ -56,7 +53,7 @@ public class LineMedianDifferenceMetricTest
         int[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 100, 100, 100, 100, 100, 100,
                 100, 100 };
         Metric metric = new LineMedianDifferenceMetric();
-        CloudImage image = new CloudImage(data, 4, 5);
+        CloudImage image = new CloudImageImpl(data, 4, 5);
         assertEquals(100.0, metric.compute(image), 0.0);
         // JUnitDoclet end method compute
     }

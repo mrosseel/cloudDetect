@@ -2,13 +2,11 @@ media.processors moet eruit
 Image via format omzetten naar short of double!
 Unit test of metrics using the ieper image
 
-documenteer verschil tussen /resources and /conf
-fix alle errors door /conf problemen (XMLPersister)
-laat alle unit testen draaien, javadoc van alle metrieken
+javadoc van alle metrieken: splittermetric, maxmedianmetric
 Maak een ImageScaler
 Bekijk Stacker en bepaal wat ermee te doen (subconsumer?)
 
 
-dependencies (for maven use later)
+dependencies
 
 dom4j (may be killed I think, used for output)

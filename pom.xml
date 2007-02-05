@@ -7,12 +7,14 @@
   <version>1.0-SNAPSHOT</version>
   <name>Cloud Detect</name>
   <url>http://maven.apache.org</url>
+<!--
 <pluginRepositories>
   <pluginRepository>
     <id>snapshots</id>
     <url>http://snapshots.maven.codehaus.org/maven2</url>
   </pluginRepository>
 </pluginRepositories>
+-->
   <dependencies>
     <dependency>
       <groupId>junit</groupId>

@@ -18,7 +18,7 @@ public class MaxStdDevSplitterMetric extends SplitterMetric {
 	private static Log log = LogFactory.getLog(MaxStdDevSplitterMetric.class);
 	
 	protected double calculateValue(double[] data, int from, int to) {
-		return StandardDeviation.sdFast(data, from, to);
+		return StandardDeviation.sdFast(data, from, to)/(to-from+1);
 	}
 
 	protected void preDataManipulation(double[] data) {

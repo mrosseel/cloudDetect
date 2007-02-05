@@ -13,7 +13,7 @@ import javax.media.util.BufferToImage;
 import javax.swing.JFrame;
 
 import media.image.RGBImageStacker;
-import media.processors.CalculateMetricOnCloudImageImpl;
+import media.processors.CalculateMetricOnCloudImage;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -31,7 +31,7 @@ public class PostAccessCodec implements Codec {
 	private int[] keepData;
 	private int cntDataAccumulated;
 	private Thread thread = null;
-	private CalculateMetricOnCloudImageImpl buffer = null;
+	private CalculateMetricOnCloudImage buffer = null;
 	private static JFrame imageFrame;
 	private static RGBImageStacker imageStacker;
 
@@ -61,7 +61,7 @@ public class PostAccessCodec implements Codec {
 
 	private synchronized void processBuffer(Buffer frame) {
 		if (buffer == null) {
-			buffer = (CalculateMetricOnCloudImageImpl) InstanceFactory.getBufferProcessor();
+			buffer = (CalculateMetricOnCloudImage) InstanceFactory.getBufferProcessor();
 		}
 
 		// should we process ?
