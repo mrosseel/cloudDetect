@@ -54,7 +54,7 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
                 startTime = System.currentTimeMillis();
 
                 // list can only grow, so assured to work.
-                // TODO are dynamic lists needed? How to do it?
+                // TODO are dynamic lists needed? How to do it? Iterator?
                 if (image != null) {
                     for (int i = 0; i < consumers.size(); i++) {
                         ((ImageSubConsumer) consumers.get(i)).consume(image);
@@ -64,7 +64,9 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
                 if (totalTime < timeBetweenPollsInMilliSeconds) {
                     try {
                         sleep(timeBetweenPollsInMilliSeconds - totalTime);
-                    } catch (InterruptedException e) {}
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         } catch (Throwable e) {
