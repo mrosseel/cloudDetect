@@ -70,7 +70,7 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
                 }
             }
         } catch (Throwable e) {
-            log.error("main Consumer loop has crashed: " + e.getMessage());
+            log.error("main Consumer loop has crashed: ", e);
         }
     }
 

@@ -60,5 +60,4 @@ public class InstanceFactory {
     public static MailNotify getMailNotify() {
         return (MailNotify) appContext.getBean("mailnotify");
     }
-
 }

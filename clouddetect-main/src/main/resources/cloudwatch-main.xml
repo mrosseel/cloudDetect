@@ -3,6 +3,8 @@
 
 <beans>
 	<import resource="cloudwatch-mail.xml"/>
+	<import resource="applicationcontext-jdbc.xml"/>
+	<import resource="applicationcontext-dao.xml"/>
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
             <value>cloudwatch.properties</value>
