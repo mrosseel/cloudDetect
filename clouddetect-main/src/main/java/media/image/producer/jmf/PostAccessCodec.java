@@ -67,7 +67,7 @@ public class PostAccessCodec implements Codec {
     private synchronized void processBuffer(Buffer frame) {
         if (buffer == null) {
             buffer = (CalculateMetricOnCloudImage) InstanceFactory
-                    .getCalculateMetricOnCloudImage();
+                    .getBean("calculateMetricOnCloudImage");
         }
 
         // should we process ?

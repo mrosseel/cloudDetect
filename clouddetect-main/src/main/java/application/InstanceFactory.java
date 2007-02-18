@@ -27,6 +27,16 @@ public class InstanceFactory {
     public static ApplicationContext getAppContext() {
         return appContext;
     }
+    
+    /**
+     * Convenience function to save some key strokes
+     * 
+     * @param beanName
+     * @return
+     */
+    public static Object getBean(String beanName) {
+    	return appContext.getBean(beanName);
+    }
 
     public static CloudWatchApp getCloudWatchApp() {
         return (CloudWatchApp) appContext.getBean("cloudwatchapp");
@@ -42,15 +52,6 @@ public class InstanceFactory {
 
     public static ImageConsumer getImageConsumer() {
         return (ImageConsumer) appContext.getBean("imageconsumer");
-    }
-
-    public static ContrastChart getContrastChart() {
-        return (ContrastChart) appContext.getBean("contrastchart");
-    }
-
-    public static CalculateMetricOnCloudImage getCalculateMetricOnCloudImage() {
-        return (CalculateMetricOnCloudImage) appContext
-                .getBean("calculatemetriconcloudimage");
     }
 
     public static CloudJudge getCloudJudge() {

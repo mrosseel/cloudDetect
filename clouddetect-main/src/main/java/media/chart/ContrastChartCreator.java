@@ -5,14 +5,14 @@
 package media.chart;
 
 import java.awt.Color;
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -31,26 +31,19 @@ import persistence.model.Result;
 import util.DateUtil;
 
 /**
- * An example of a time series chart. For the most part, default settings are
- * used, except that the renderer is modified to show filled shapes (as well as
- * lines) at each data point.
+ * Time series chart
  * 
- * @author David Gilbert
  */
 public class ContrastChartCreator {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-
+	private static Log log = LogFactory.getLog(ContrastChartCreator.class);
     static TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-    static ChartPanel chartPanel;
+    ChartPanel chartPanel;
 
-    static JFreeChart chart;
+    JFreeChart chart;
 
-    private static HashMap timeSeriesMap = new HashMap();
+    private HashMap<String,TimeSeries> timeSeriesMap = new HashMap<String,TimeSeries>();
 
     /**
      * A demonstration application showing how to create a simple time series
@@ -66,7 +59,7 @@ public class ContrastChartCreator {
 
         // XYDataset dataset = createDataset();
 
-        Iterator iter = ContrastChartCreator.timeSeriesMap.values().iterator();
+        Iterator iter = timeSeriesMap.values().iterator();
         while (iter.hasNext()) {
             dataset.addSeries((TimeSeries) iter.next());
         }
@@ -84,7 +77,7 @@ public class ContrastChartCreator {
      * 
      * @return A chart.
      */
-    private static JFreeChart createChart(XYDataset dataset) {
+    private JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 "Cloud Detection", "Time", "", dataset, true, true, false);
@@ -109,6 +102,8 @@ public class ContrastChartCreator {
         // plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
         plot.setDomainCrosshairVisible(true);
         plot.setRangeCrosshairVisible(true);
+        plot.setOutlinePaint(Color.cyan);
+//        plot.setBackgroundPaint(new GradientPaint( 0.0f, 0.0f, Color.green, 480.0f, 480.0f, Color.lightGray ));
 
         XYItemRenderer renderer = plot.getRenderer();
         if (renderer instanceof StandardXYItemRenderer) {
@@ -118,18 +113,21 @@ public class ContrastChartCreator {
         }
 
         DateAxis axis = (DateAxis) plot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("dd - kk:mm"));
-        ContrastChartCreator.chart = chart;
+        axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
         return chart;
     }
 
     public void addValue(String timeSeriesName, double value, Date date) {
-        TimeSeries timeSeries = (TimeSeries) ContrastChartCreator.timeSeriesMap
+        TimeSeries timeSeries = (TimeSeries) timeSeriesMap
                 .get(timeSeriesName);
         if (timeSeries == null) {
             timeSeries = createTimeSeries(timeSeriesName);
         }
+        try{
         timeSeries.add(new FixedMillisecond(date), new Double(value));
+        } catch(Throwable e) {
+        	log.warn("Error adding observation to the chart.", e);
+        }
     }
 
     public void addValue(String timeSeriesName, double value) {
@@ -154,43 +152,8 @@ public class ContrastChartCreator {
             throw new RuntimeException(
                     "All CloudImages should provide an origin a name.");
         }
-        ContrastChartCreator.timeSeriesMap.put(timeSeriesName, timeSeries);
+        timeSeriesMap.put(timeSeriesName, timeSeries);
         //super.setChart(getJFreeChart());
         return timeSeries;
-    }
-
-    private void writeImage() {
-
-        try {
-            // org.jfree.chart.ChartUtilities.saveChartAsJPEG(new
-            // File("V:/current.jpg"),
-            // 99, ContrastChart.chart, 640,480);
-
-            org.jfree.chart.ChartUtilities.saveChartAsPNG(new File(
-                    "V:/current.png"), ContrastChartCreator.chart, 640, 480);
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        // Rectangle r = this.getBounds();
-        // Image image = this.createImage(r.width, r.height);
-        // try {
-        // ImageIO.write((RenderedImage) image, "png", new
-        // File("V:/current.png"));
-        // } catch (IOException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-    }
-
-    /**
-     * Creates a dataset, consisting of two series of monthly data.
-     * 
-     * @return the dataset.
-     */
-    private XYDataset createDataset() {
-        return null;
-
     }
 }

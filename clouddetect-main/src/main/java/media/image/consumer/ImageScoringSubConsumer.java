@@ -11,17 +11,26 @@ import application.InstanceFactory;
 /**
  * Class ImageScoringSubConsumer
  * 
+ * Give a score to the image and store the result in the metadata.
+ * 
  */
 public class ImageScoringSubConsumer implements ImageSubConsumer {
     private static Log log = LogFactory.getLog(ImageScoringSubConsumer.class);
 
+    private CalculateMetricOnCloudImage metricOnCloudImage;
+    
     public void consume(CloudImage image) {
-        // TODO inject it or something
-        CalculateMetricOnCloudImage proc = InstanceFactory
-                .getCalculateMetricOnCloudImage();
-        double result = proc.process(image);
+        double result = metricOnCloudImage.process(image);
         image.getMetaData().setContrastResult(result);
-
-      
     }
+
+	public CalculateMetricOnCloudImage getMetricOnCloudImage() {
+		return metricOnCloudImage;
+	}
+
+	public void setMetricOnCloudImage(CalculateMetricOnCloudImage metricOnCloudImage) {
+		this.metricOnCloudImage = metricOnCloudImage;
+	}
+    
+    
 }

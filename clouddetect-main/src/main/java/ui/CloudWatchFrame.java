@@ -349,7 +349,8 @@ public class CloudWatchFrame extends JFrame {
      */
     public ui.ContrastChart getContrastChart() {
         if (ContrastChart == null) {
-            ContrastChart = InstanceFactory.getContrastChart();
+        	// TODO this breaks the swing app
+//            ContrastChart = InstanceFactory.getContrastChart();
         }
         return ContrastChart;
     }

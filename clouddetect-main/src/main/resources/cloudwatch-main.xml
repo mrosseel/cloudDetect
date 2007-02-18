@@ -101,15 +101,25 @@
 		<property name="notifier"><ref bean="dummynotify"/></property>
 	</bean>
 	
-	<bean id="savecontrastchartsubconsumer" class="media.image.consumer.SaveContrastChartSubConsumer">
-		<property name="saveFileName"><value>${chart.savefilename}</value></property>
+	<bean id="savechartfromdbsubconsumer" class="media.image.consumer.SaveChartFromDBSubConsumer">
+		<property name="saveFilename"><value>${chart.savefilename}</value></property>
+		<property name="nrOfHours" value="24"/>
 	</bean>
+	
+	<bean id="persistresulttodbsubconsumer" class="media.image.consumer.PersistResultToDBSubConsumer">
+		<property name="dao"><ref bean="resultdao"/></property>
+	</bean>
+	<bean id="imagescoringsubconsumer" class="media.image.consumer.ImageScoringSubConsumer">
+		<property name="metricOnCloudImage"><ref bean="calculatemetriconcloudimage"/></property>
+	</bean>
+	
 	
 	<bean id="soundnotify" class="notification.SoundNotify"/>
 	<bean id="dummynotify" class="notification.DummyNotify"/>
 	
 	<!--  UI -->
-	
+
+	<!-- still needed after chart cleanup? -->	
 	<bean id="contrastchart" class="ui.ContrastChart">
 	</bean>
 	

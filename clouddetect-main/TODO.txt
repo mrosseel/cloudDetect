@@ -1,3 +1,5 @@
+make subconsumers a composite pattern
+
 refactoring van metrics package, clear split tussen splitters (doen het splitten), 
 splittermetric (gebruikt door splitters) en contrastmetrics (gegeven een split, wat is het contrast)
 --> Resultaten stupid gebruiken voor validatie bisectionsplitter (=smart)

@@ -1,11 +1,10 @@
 package application;
 
 import media.image.consumer.ImageConsumer;
-import media.image.consumer.ImageScorePersistenceSubConsumer;
+import media.image.consumer.PersistResultToDBSubConsumer;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.ImageSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
-import media.image.consumer.UpdateContrastChartSubConsumer;
 import media.image.producer.ImageProducer;
 
 import org.apache.commons.cli.CommandLine;
@@ -51,11 +50,10 @@ public class CloudWatchApp {
         // gets the producers, consumers
         ImageProducer producer = InstanceFactory.getImageProducer();
         ImageConsumer consumer = InstanceFactory.getImageConsumer();
-        consumer.addSubConsumer(new ImageScoringSubConsumer());
-        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getAppContext().getBean("cloudjudgesubconsumer"));
-        consumer.addSubConsumer(new UpdateContrastChartSubConsumer());
-        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getAppContext().getBean("savecontrastchartsubconsumer"));
-        consumer.addSubConsumer(new ImageScorePersistenceSubConsumer());
+        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("imagescoringsubconsumer"));
+        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("cloudjudgesubconsumer"));
+        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
+        consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("savechartfromdbsubconsumer"));
         
         if (!config.isCommandLine()) {
             StartUI frame = new StartUI();
