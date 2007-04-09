@@ -12,42 +12,66 @@ import calculation.CloudJudge.CloudStatus;
 public class CloudJudgeSubConsumer implements ImageSubConsumer {
     private static Log log = LogFactory.getLog(CloudJudgeSubConsumer.class);
     
-    private CloudStatus lastResult;
+    private CloudStatus toStatus = null;
+    
+    private CloudStatus lastResult = null;
 
-    private boolean isWaitingForClear = false;
+    private boolean isWaitingForTransitionTimeout = false;
 
     private long transitionTime;
 
-    private int transitionWaitInMinutes = 60;
+    private int transitionWaitInMinutes = 0
+    ;
     
     private CloudJudge cloudJudge;
     
     private Notifier notifier;
+    
+    /**
+     * Standard ToStatus is set to CLEAR
+     *
+     */
+    public CloudJudgeSubConsumer() {
+		this(CloudJudge.CloudStatus.CLEAR);
+	}
+    
+    public CloudJudgeSubConsumer(CloudStatus toStatus) {
+		super();
+		setToStatus(toStatus);
+	}
 
-    public void consume(CloudImage image) {
+	public void consume(CloudImage image) {
         CloudStatus result = cloudJudge.judgeClouds(
                 image.getMetaData().getContrastResult());
-        if (isWaitingForClear && result == CloudStatus.CLEAR
+        if (isWaitingForTransitionTimeout && result == toStatus
                 && isTransitionWaitOver(image)) {
             
             image.getMetaData().setNotify(true);
             notifier.notify(image);
             
-            this.isWaitingForClear = false;
+            this.isWaitingForTransitionTimeout = false;
         }
 
         if (result != lastResult) {
-            if (result == CloudStatus.CLEAR) {
-                isWaitingForClear = true;
-                recordClearTransition(image);
+            if (result == toStatus) {
+                isWaitingForTransitionTimeout = true;
+                recordTransition(image);
             } else {
-                isWaitingForClear = false;
+                isWaitingForTransitionTimeout = false;
             }
             log.info(result);
             lastResult = result;
         }
     }
 
+    private boolean isTransitionWaitOver(CloudImage image) {
+        return (image.getMetaData().getDate().getTime() - transitionTime) > this.transitionWaitInMinutes * 60000;
+    }
+
+    private void recordTransition(CloudImage image) {
+        transitionTime = image.getMetaData().getDate().getTime();
+    }
+    
     public int getTransitionWaitInMinutes() {
         return transitionWaitInMinutes;
     }
@@ -55,8 +79,6 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
     public void setTransitionWaitInMinutes(int transitionWaitInMinutes) {
         this.transitionWaitInMinutes = transitionWaitInMinutes;
     }
-    
-    
 
     public CloudJudge getCloudJudge() {
         return cloudJudge;
@@ -65,16 +87,16 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
     public void setCloudJudge(CloudJudge judge) {
         this.cloudJudge = judge;
     }
+  
+	public CloudStatus getToStatus() {
+		return toStatus;
+	}
 
-    private boolean isTransitionWaitOver(CloudImage image) {
-        return (image.getMetaData().getDate().getTime() - transitionTime) > this.transitionWaitInMinutes * 60000;
-    }
+	public void setToStatus(CloudStatus toStatus) {
+		this.toStatus = toStatus;
+	}
 
-    private void recordClearTransition(CloudImage image) {
-        transitionTime = image.getMetaData().getDate().getTime();
-    }
-
-    public Notifier getNotifier() {
+	public Notifier getNotifier() {
         return notifier;
     }
 

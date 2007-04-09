@@ -1,11 +1,12 @@
 package media.image.consumer;
 
-import org.joda.time.DateTime;
-
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
 import notification.UnitTestNotify;
+
+import org.joda.time.DateTime;
+
 import calculation.CloudJudge;
 
 public class CloudImageSubConsumerTest extends TestCase {
@@ -25,7 +26,7 @@ public class CloudImageSubConsumerTest extends TestCase {
 		judge = new CloudJudge();
 		judge.setMaxClear(1);
 		judge.setMaxPartialClear(2);
-		cj = new CloudJudgeSubConsumer();
+		cj = new CloudJudgeSubConsumer(CloudJudge.CloudStatus.CLEAR);
 		cj.setCloudJudge(judge);
 		cj.setNotifier(notify);
 		cj.setTransitionWaitInMinutes(10);
