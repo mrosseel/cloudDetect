@@ -5,6 +5,7 @@
 package media.chart;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,16 +17,16 @@ import org.apache.commons.logging.LogFactory;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardLegend;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.LogarithmicAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.StandardXYItemRenderer;
-import org.jfree.chart.renderer.XYItemRenderer;
-import org.jfree.data.XYDataset;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.ui.RectangleInsets;
 
 import persistence.model.Result;
 import util.DateUtil;
@@ -37,8 +38,7 @@ import util.DateUtil;
 public class ContrastChartCreator {
 
 	private static Log log = LogFactory.getLog(ContrastChartCreator.class);
-    static TimeSeriesCollection dataset = new TimeSeriesCollection();
-
+    
     ChartPanel chartPanel;
 
     JFreeChart chart;
@@ -57,13 +57,13 @@ public class ContrastChartCreator {
 
     public  JFreeChart getJFreeChart() {
 
-        // XYDataset dataset = createDataset();
+    	TimeSeriesCollection dataset = new TimeSeriesCollection();
 
         Iterator iter = timeSeriesMap.values().iterator();
         while (iter.hasNext()) {
             dataset.addSeries((TimeSeries) iter.next());
         }
-        dataset.setDomainIsPointsInTime(true);
+//        dataset.setDomainIsPointsInTime(true);
 
         JFreeChart chart = createChart(dataset);
         return chart;
@@ -80,12 +80,12 @@ public class ContrastChartCreator {
     private JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Cloud Detection", "Time", "", dataset, true, true, false);
+                "Cloud Detection", "Time", "value", dataset, true, true, false);
 
         chart.setBackgroundPaint(Color.white);
 
-        StandardLegend sl = (StandardLegend) chart.getLegend();
-        sl.setDisplaySeriesShapes(true);
+//        StandardLegend sl = (StandardLegend) chart.getLegend();
+//        sl.setDisplaySeriesShapes(true);
 
         XYPlot plot = chart.getXYPlot();
 
@@ -98,18 +98,17 @@ public class ContrastChartCreator {
         val.setRange(0, 100);
         val.setLog10TickLabelsFlag(false);
         plot.setRangeAxis(val);
-        // deprecated since 0.9.16, don't know how to change
-        // plot.setAxisOffset(new Spacer(Spacer.ABSOLUTE, 5.0, 5.0, 5.0, 5.0));
+        plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
         plot.setDomainCrosshairVisible(true);
         plot.setRangeCrosshairVisible(true);
         plot.setOutlinePaint(Color.cyan);
-//        plot.setBackgroundPaint(new GradientPaint( 0.0f, 0.0f, Color.green, 480.0f, 480.0f, Color.lightGray ));
+        plot.setBackgroundPaint(new GradientPaint( 0.0f, 0.0f, Color.green, 480.0f, 480.0f, Color.lightGray ));
 
-        XYItemRenderer renderer = plot.getRenderer();
-        if (renderer instanceof StandardXYItemRenderer) {
-            StandardXYItemRenderer rr = (StandardXYItemRenderer) renderer;
-            rr.setPlotShapes(true);
-            rr.setShapesFilled(true);
+        XYItemRenderer r = plot.getRenderer();
+        if (r instanceof XYLineAndShapeRenderer) {
+            XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
+            renderer.setShapesVisible(true);
+            renderer.setShapesFilled(true);
         }
 
         DateAxis axis = (DateAxis) plot.getDomainAxis();

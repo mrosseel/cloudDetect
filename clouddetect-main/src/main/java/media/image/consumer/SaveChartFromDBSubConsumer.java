@@ -28,7 +28,7 @@ public class SaveChartFromDBSubConsumer implements ImageSubConsumer {
         List<Result> results = dao.findResultsFromThePastHours(24);
         creator.addValue(image.getOriginComment(),results);
         try {
-            org.jfree.chart.ChartUtilities.saveChartAsJPEG(new File(saveFilename), 85, creator
+            org.jfree.chart.ChartUtilities.saveChartAsJPEG(new File(saveFilename), 0.85f, creator
                     .getJFreeChart(), 640, 480);
         } catch (IOException e) {
             log
