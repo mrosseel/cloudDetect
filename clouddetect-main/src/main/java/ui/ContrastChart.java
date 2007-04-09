@@ -15,16 +15,15 @@ import java.util.Iterator;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.StandardLegend;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.LogarithmicAxis;
 import org.jfree.chart.plot.XYPlot;
-import org.jfree.chart.renderer.StandardXYItemRenderer;
-import org.jfree.chart.renderer.XYItemRenderer;
-import org.jfree.data.XYDataset;
+import org.jfree.chart.renderer.xy.StandardXYItemRenderer;
+import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
+import org.jfree.data.xy.XYDataset;
 
 import util.DateUtil;
 
@@ -88,12 +87,12 @@ public class ContrastChart extends ChartPanel {
     private static JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Cloud Detection", "Time", "", dataset, true, true, false);
+                "Cloud Detection", "Time", "value", dataset, true, true, false);
 
         chart.setBackgroundPaint(Color.white);
 
-        StandardLegend sl = (StandardLegend) chart.getLegend();
-        sl.setDisplaySeriesShapes(true);
+//        StandardLegend sl = (StandardLegend) chart.getLegend();
+//        sl.setDisplaySeriesShapes(true);
 
         XYPlot plot = chart.getXYPlot();
 
@@ -114,7 +113,7 @@ public class ContrastChart extends ChartPanel {
         XYItemRenderer renderer = plot.getRenderer();
         if (renderer instanceof StandardXYItemRenderer) {
             StandardXYItemRenderer rr = (StandardXYItemRenderer) renderer;
-            rr.setPlotShapes(true);
+//            rr.setPlotShapes(true);
             rr.setShapesFilled(true);
         }
 
