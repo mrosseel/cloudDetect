@@ -70,15 +70,9 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>jfreechart</groupId>
+      <groupId>jfree</groupId>
       <artifactId>jfreechart</artifactId>
-      <version>0.9.20</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>jcommon</groupId>
-      <artifactId>jcommon</artifactId>
-      <version>0.9.5</version>
+      <version>1.0.4</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -164,6 +158,11 @@
       <groupId>hsqldb</groupId>
       <artifactId>hsqldb</artifactId>
       <version>1.8.0.7</version>
+    </dependency>
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>8.1-408.jdbc3</version>
     </dependency>
   </dependencies>
   <reporting>
