@@ -1,7 +1,7 @@
 <?xml version="1.0"?><project>
   <modelVersion>4.0.0</modelVersion>
   <groupId>eonconsult</groupId>
-  <artifactId>clouddetect</artifactId>
+  <artifactId>clouddetect-main</artifactId>
   <name>Cloud Detect</name>
   <version>1.0-SNAPSHOT</version>
   <url>http://maven.apache.org</url>

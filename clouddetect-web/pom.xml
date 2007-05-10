@@ -66,6 +66,12 @@
     </pluginRepository>
   </pluginRepositories>
   <dependencies>
+   <dependency>
+      <groupId>eonconsult</groupId>
+      <artifactId>clouddetect-main</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-core</artifactId>
