@@ -3,7 +3,7 @@
   <groupId>be.eonconsult</groupId>
   <artifactId>clouddetect-web</artifactId>
   <packaging>war</packaging>
-  <name>clouddetect-web Tapestry 5 Application</name>
+  <name>Cloud Detect Web</name>
   <version>1.0.0-SNAPSHOT</version>
   <build>
     <finalName>clouddetect-web</finalName>
@@ -108,6 +108,6 @@
     </plugins>
   </reporting>
   <properties>
-    <tapestry-release-version>5.0.3</tapestry-release-version>
+    <tapestry-release-version>5.0.4</tapestry-release-version>
   </properties>
 </project>
