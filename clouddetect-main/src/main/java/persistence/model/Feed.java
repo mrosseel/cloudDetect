@@ -13,9 +13,12 @@ public class Feed {
 		private int id;
 		private String source;
 		private String LocationFreeForm;
+        private double latitude;
+        private double longitude;
 		private String feedName;
 		private double division;
 		private boolean isPrivate;
+        private boolean isActive;
 		private Collection<User> users;
 		
 		public double getDivision() {
@@ -64,9 +67,22 @@ public class Feed {
 		public void setUsers(Collection<User> users) {
 			this.users = users;
 		}
-		
-		
-		
-		
-		
+        public double getLatitude() {
+            return latitude;
+        }
+        public void setLatitude(double latitude) {
+            this.latitude = latitude;
+        }
+        public double getLongitude() {
+            return longitude;
+        }
+        public void setLongitude(double longitude) {
+            this.longitude = longitude;
+        }
+        public boolean isActive() {
+            return isActive;
+        }
+        public void setActive(boolean isActive) {
+            this.isActive = isActive;
+        }
 }
