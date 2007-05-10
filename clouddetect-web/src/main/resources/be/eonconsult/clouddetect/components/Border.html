@@ -1,0 +1,195 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<head>
+<title>CloudWatch</title>
+<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+            
+<!--
+
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.78&amp;key=ABQIAAAAH8j29KizNDHPEH9E0aNEHxTwM0brOpm-All5BF6PoaKBxRWWERTjZ6hrcyjHTdd8lwnOJLXrA-lJpw" type="text/javascript"></script>
+    <script type="text/javascript">
+
+
+    function load() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map"));
+        map.addControl(new GSmallMapControl());
+		map.addControl(new GMapTypeControl());
+		map.enableScrollWheelZoom();
+        
+        map.setCenter(new GLatLng(30, 0), 1);
+        var point = new GLatLng(51, 2.9);
+        map.addOverlay(createMarker(point, map.scrollWheelZoomEnabled()));
+        
+      	}
+    }
+    
+    // Creates a marker at the given point with the given number label
+	function createMarker(point, number) {
+  		var marker = new GMarker(point);
+  		GEvent.addListener(marker, "click", function() {
+    		marker.openInfoWindowHtml('<a href="http://localhost:8080/login">Click to details</a>' + number );
+  		});
+  		return marker;
+	}
+	</script>
+-->
+    <script src="http://maps.google.com/maps?file=api&amp;v=2.78&amp;key=ABQIAAAAH8j29KizNDHPEH9E0aNEHxTwM0brOpm-All5BF6PoaKBxRWWERTjZ6hrcyjHTdd8lwnOJLXrA-lJpw" type="text/javascript"></script>
+	 <script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0" type="text/javascript"></script>
+
+    <script src="js/searchmaps.js" type="text/javascript"></script>
+
+<style type="text/css">
+
+
+    body {
+      background-color: white;
+      color: black;
+      font-family: Arial, sans-serif;
+      font-size: small;
+      margin: 15px;
+    }
+
+    a:link {
+      color: #0000cc;
+    }
+
+    a:active {
+      color: red;
+    }
+
+    a:visited {
+      color: #551a8b;
+    }
+
+    h1 {
+      font-size: x-large;
+      margin: 0;
+      margin-bottom: 0.25em;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1em;
+    }
+
+    #placelist {
+      width: 500px;
+    }
+
+    #search {
+      margin-bottom: 5px;
+    }
+
+    #searchform {
+      width : 100%;
+    }
+
+    #map {
+      border: 1px solid #979797;
+      height: 350px;
+    }
+
+    #results {
+      position: absolute;
+      left: 540px;
+    }
+
+    #searchwell {
+      width : 330px;
+    }
+
+    #searchwell .unselected {
+      padding-left: 18px;
+      padding-top: 1px;
+      background-image: url("http://labs.google.com/ridefinder/images/mm_20_yellow.png");
+      background-repeat: no-repeat;
+      background-position: top left;
+    }
+
+    .unselected .gs-watermark {
+      display: none;
+    }
+
+    #searchwell .select {
+      margin-bottom: 1em;
+    }
+
+    .unselected .select {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #7777cc;
+    }
+
+    #selected {
+      margin-top: 1em;
+    }
+
+    #selected .gs-result {
+      margin-bottom: 1em;
+    }
+
+    #selected .gs-result {
+      padding-left: 30px;
+      padding-top: 3px;
+      background-image: url("http://www.google.com/mapfiles/icon.png");
+      background-repeat: no-repeat;
+      background-position: top left;
+    }
+    
+    #gsc-input {
+    	width:100%;
+    
+    }
+
+    </style>
+
+
+
+
+  </head>
+
+<!-- <body onload="load()" onunload="GUnload()"> -->
+<body>
+
+
+
+<div id="header">
+
+<h1><img src="/images/webcam5.png"/> ${message:page.title}</h1>
+ <div id="menu">
+  <ul id="nav">
+   <li><a t:type="PageLink" t:page="Start">${message:top.home}</a></li>
+   <li><a t:type="PageLink" t:page="Login">${message:top.login}</a></li>
+   <li><a t:type="PageLink" t:page="Register">${message:top.register}</a></li>
+   <li><a t:type="PageLink" t:page="About">${message:top.about}</a></li>
+  </ul>
+ </div>
+</div>
+<div id="content">
+<div id="right">
+
+<t:body/>
+</div>
+</div>
+	
+<div id="left">
+	<div class="box">
+		<t:delegate to="firstbox"/>
+	</div>
+			
+	<div class="box">
+				<h2>Links :</h2>
+				<ul>
+				<li><a href="http://www.minimalistic-design.info">Web Design Directory</a></li>
+				<li><a href="http://www.historyexplorer.net">History Timelines</a></li>
+				<li><a href="http://www.minimalistic-design.net">Free templates</a></li>
+				</ul>
+	</div>
+		
+    <div class="box">
+	   <div style="font-size: 0.8em;">Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a></div>
+	</div>
+</div>
+
+</body>
+</html>

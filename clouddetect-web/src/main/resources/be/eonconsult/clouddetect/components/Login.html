@@ -1,0 +1,60 @@
+<span xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<t:form>
+<t:errors/>
+<table class="box">
+	<caption class="box">
+		<span jwcid="@Insert" value="message:title">Name</span>
+	</caption>
+	<tr>
+		<td class="loginRightAligned">
+			<t:label for="userName"/>
+		</td>
+		<td class="login">
+			<input t:type="textfield" t:id="username" t:validate="required,minlength=3"/>
+		</td>
+	</tr>
+	<tr>
+		<td class="loginRightAligned">
+			<t:label for="password"/>
+		</td>
+		<td class="login">
+			<input t:type="passwordfield" t:id="password" t:validate="required,minlength=3"/>
+		</td>
+	</tr>
+
+	<tr>
+		<td class="loginRightAligned">
+			<t:label for="rememberme"/>
+		</td>
+		<td class="loginLeftAligned">
+			<input t:type="checkbox" t:id="rememberme"/>
+		</td>
+	</tr>
+<!--
+	<tr>
+		<td class="login">
+			&nbsp;
+		</td>
+		<td class="button">
+			<input class="loginButton" type="submit" value="login" />
+		</td>
+	</tr>
+	<tr>
+		<td class="login">
+			&nbsp;
+		</td>
+		<td class="login">
+			<a class="login" href="forgot.html">
+				<span jwcid="@Insert" value="message:forgotpassword">Forgotten password?</span>
+			</a>
+		</td>
+	</tr>
+	-->
+	<tr>
+	<td>
+	 <input type="submit" value="Login"/>
+	 </td>
+	 </tr>
+</table>
+</t:form>
+</span>
