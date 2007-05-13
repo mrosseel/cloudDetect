@@ -16,4 +16,9 @@ public class FeedDaoImpl extends HibernateDaoSupport implements FeedDao {
         return list;
     }
 
+    public List<Feed> getAllFeeds() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

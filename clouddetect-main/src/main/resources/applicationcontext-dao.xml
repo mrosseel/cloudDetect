@@ -6,7 +6,7 @@
 
   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
     <property name="dataSource"><ref bean="dataSource"/></property>
-    <property name="configLocation"><value>hibernate_clouddetect.cfg.xml</value></property>
+    <property name="configLocation"><value>classpath:/hibernate_clouddetect.cfg.xml</value></property>
     <property name="configurationClass"><value>org.hibernate.cfg.AnnotationConfiguration</value></property>
     <property name="hibernateProperties">
       <props>
@@ -50,20 +50,12 @@
     </property>
   </bean>
 
-<!--
-  <bean id="daoTmpl">
-    <property name="sessionFactory"><ref local="sessionFactory"/></property>
-  </bean>
-
- <bean id="resultDao" class="persistence.dao.ResultDaoImpl" parent="daoTmpl"/>
- -->
- 
  <bean id="daoTmpl" abstract="true">
     <property name="sessionFactory"><ref local="sessionFactory"/></property>
   </bean>
  
- <bean id="resultdao" class="persistence.dao.ResultDaoImpl" parent="daoTmpl">
-<!--    <property name="sessionFactory"><ref local="sessionFactory"/></property>-->
-  </bean>
+ <bean id="resultdao" class="persistence.dao.ResultDaoImpl" parent="daoTmpl"/>
+ <bean id="feeddao" class="persistence.dao.FeedDaoImpl" parent="daoTmpl"/>
 
 </beans>
+
