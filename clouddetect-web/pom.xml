@@ -70,11 +70,15 @@
       <groupId>eonconsult</groupId>
       <artifactId>clouddetect-main</artifactId>
       <version>1.0-SNAPSHOT</version>
-      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-core</artifactId>
+      <version>5.0.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tapestry</groupId>
+      <artifactId>tapestry-spring</artifactId>
       <version>5.0.4</version>
     </dependency>
     <dependency>
