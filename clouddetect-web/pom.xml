@@ -39,7 +39,36 @@
         </configuration>
       </plugin>
     </plugins>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <filters>
+      <filter>src/main/filters/filter-${env}.properties</filter>
+    </filters>
   </build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <properties>
+        <env>dev</env>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <env>test</env>
+      </properties>
+    </profile>
+    <profile>
+      <id>live</id>
+      <properties>
+        <env>live</env>
+      </properties>
+    </profile>
+  </profiles>
   <repositories>
     <repository>
       <id>apache.snapshots</id>

@@ -15,6 +15,10 @@ public class Border {
             }
         };
     }
+    
+    public boolean getMapPage() {
+        return false;
+    }
 //    @Component(id="login")
 //    private Login login;
 //    

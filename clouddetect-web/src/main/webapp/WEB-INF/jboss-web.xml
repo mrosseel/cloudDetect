@@ -1,0 +1,5 @@
+<jboss-web>
+	<context-root>/</context-root>
+	<virtual-host>cloudwatch.mooo.com</virtual-host>
+</jboss-web>
+

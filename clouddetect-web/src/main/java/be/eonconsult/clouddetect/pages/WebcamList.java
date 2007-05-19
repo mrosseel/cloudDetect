@@ -7,6 +7,7 @@ import org.apache.tapestry.MarkupWriter;
 import org.apache.tapestry.Renderable;
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.spring.SpringBean;
+import org.apache.tapestry.util.TextStreamResponse;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
@@ -27,20 +28,30 @@ public class WebcamList {
     public String getWebcamList() {
         List<Feed> list = feedDao.getAllActiveFeeds();
         XStream xstream = new XStream();
-        return xstream.toXML(list)clone();
+        return xstream.toXML(list);
     }
     
-    public Renderable getFirstBox() {
-        return new Renderable()
-        {
-            public void render(MarkupWriter writer)
-            {
-                log.info("writing webcamlist");
-                writer.write(getWebcamList());
-                
-            }
-        };
+    public Object onActionFromTextStreamResponse() {
+        String text = getWebcamList();
+
+        return new TextStreamResponse("application/xml", text);
     }
+    
+    public Object getFirstBox() {
+        return onActionFromTextStreamResponse();
+    }
+    
+//    public Renderable getFirstBox() {
+//        return new Renderable()
+//        {
+//            public void render(MarkupWriter writer)
+//            {
+//                log.info("writing webcamlist");
+//                writer.write(getWebcamList());
+//                
+//            }
+//        };
+//    }
     
     void onActivate(String aMethod)
     {

@@ -49,5 +49,9 @@ font: 95%/1.3 TrebuchetMS,Arial,sans-serif;
 	
 }
 
+input#gsc-input {
+	width: 180px;
+}
+
 ul {  padding: 0; margin: 0;}
 li { list-style-type: none;}

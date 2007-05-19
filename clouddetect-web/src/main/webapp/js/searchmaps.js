@@ -19,7 +19,7 @@
 		 // Create the XMLHttpRequest object
         var request = GXmlHttp.create();
         // Prepare an asynchronous HTTP request to the server
-        request.open("GET", "webcamlist/findAllCities", true);
+        request.open("GET", "/webcamlist.textstreamresponse", true);
         // Returned data will be processed by this function
         request.onreadystatechange = getCallbackFunction(request, processWebcamData);
         // Send the query
@@ -49,12 +49,40 @@
         }
 
         function processWebcamData(xmlDoc) {
-	        alert(xmlDoc);
+            // obtain the array of markers and loop through it
+            var siteMarkers = xmlDoc.documentElement.getElementsByTagName("persistence.model.Feed");
+            displaySitesMarkers(siteMarkers);
         }
+
+        function displaySitesMarkers(siteMarkers) {
+            gMap.clearOverlays();
+            for (var i = 0; i < siteMarkers.length; i++) {
+                // obtain the attributes of each marker
+                var lat = parseFloat(siteMarkers[i].getElementsByTagName("latitude")[0].firstChild.nodeValue);
+                var lng = parseFloat(siteMarkers[i].getElementsByTagName("longitude")[0].firstChild.nodeValue);
+                var id = siteMarkers[i].getElementsByTagName("id")[0].firstChild.nodeValue;
+                var label = siteMarkers[i].getElementsByTagName("feedName")[0].firstChild.nodeValue;
+                var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
+                marker = createMarker(new GLatLng(lat,lng),label,id, url);
+                gMap.addOverlay(marker);
+            }
+        }
+        
+         // Creates a marker at the given point with the given number label
+		function createMarker(point, label, id, url) {
+		  var marker = new GMarker(point);
+		  GEvent.addListener(marker, "click", function() {
+		    marker.openInfoWindowHtml('Name:' + label + '<p/><a href="details/' + id + '">Details</a>');
+		  });
+		  return marker;
+		}
+		
+		
+		  
 
     // Set up the map and the local searcher.
     function OnLoad() {
-		loadWebcams();
+	  loadWebcams();
       gSearchForm = new GSearchForm(false, document.getElementById("searchform"));
       gSearchForm.setOnSubmitCallback(null, CaptureForm);
       gSearchForm.input.focus();
@@ -64,34 +92,13 @@
       gMap.addControl(new GSmallMapControl());
       gMap.addControl(new GMapTypeControl());
       gMap.addControl(new GOverviewMapControl());
-      gMap.setCenter(new GLatLng(37.4419, -122.1419), 13);
+      gMap.setCenter(new GLatLng(51.200001, 2.870000), 6);
       gMap.enableScrollWheelZoom();
       // Initialize the local searcher
       gLocalSearch = new GlocalSearch();
       gLocalSearch.setCenterPoint(gMap);
       gLocalSearch.setSearchCompleteCallback(null, OnLocalSearch);
       
-      // Creates a marker at the given point with the given number label
-		function createMarker(point, number) {
-		  var marker = new GMarker(point);
-		  GEvent.addListener(marker, "click", function() {
-		    marker.openInfoWindowHtml("Marker #<b>" + number + "</b>");
-		  });
-		  return marker;
-		}
-		
-		// Add 10 markers to the map at random locations
-		var bounds = gMap.getBounds();
-		var southWest = bounds.getSouthWest();
-		var northEast = bounds.getNorthEast();
-		var lngSpan = northEast.lng() - southWest.lng();
-		var latSpan = northEast.lat() - southWest.lat();
-		for (var i = 0; i < 10; i++) {
-		  var point = new GLatLng(southWest.lat() + latSpan * Math.random(),
-		                          southWest.lng() + lngSpan * Math.random());
-		  gMap.addOverlay(createMarker(point, i + 1));
-		}      
-
       // Execute the initial search
       //gSearchForm.execute("italian restaurants");
     }
@@ -99,7 +106,7 @@
     // Called when Local Search results are returned, we clear the old
     // results and load the new ones.
     function OnLocalSearch() {
- /*   
+
       if (!gLocalSearch.results) return;
       var searchWell = document.getElementById("searchwell");
 
@@ -115,7 +122,7 @@
       for (var i = 0; i < gLocalSearch.results.length; i++) {
         gCurrentResults.push(new LocalResult(gLocalSearch.results[i]));
       }
-
+ /*   
       var attribution = gLocalSearch.getAttribution();
       if (attribution) {
         document.getElementById("searchwell").appendChild(attribution);
@@ -123,8 +130,9 @@
 */
       // move the map to the first result
       var first = gLocalSearch.results[0];
-      gMap.recenterOrPanToLatLng(new GPoint(parseFloat(first.lng), parseFloat(first.lat)));
 
+      gMap.recenterOrPanToLatLng(new GPoint(parseFloat(first.lng), parseFloat(first.lat)));
+      gMap.setZoom(10);
     }
 
     // Cancel the form submission, executing an AJAX Search API search.
@@ -133,15 +141,15 @@
       return false;
     }
 
-
-
     // A class representing a single Local Search result returned by the
     // Google AJAX Search API.
     function LocalResult(result) {
+    /*
       this.result_ = result;
       this.resultNode_ = this.unselectedHtml();
       document.getElementById("searchwell").appendChild(this.resultNode_);
       gMap.addOverlay(this.marker(gSmallIcon));
+      */
     }
 
     // Returns the GMap marker for this result, creating it with the given

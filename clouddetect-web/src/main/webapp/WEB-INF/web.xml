@@ -9,9 +9,6 @@
                    of where to look for pages, components and mixins. -->
               <param-name>tapestry.app-package</param-name>
               <param-value>be.eonconsult.clouddetect</param-value>
-              
-              <param-name>contextConfigLocation</param-name>
-			  <param-value>applicationcontext-dao.xml applicationcontext-jdbc.xml</param-value>
           </context-param>
            <context-param>
               <param-name>contextConfigLocation</param-name>
