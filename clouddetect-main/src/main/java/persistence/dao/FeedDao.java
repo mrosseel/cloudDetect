@@ -10,6 +10,8 @@ public interface FeedDao {
     
     public List<Feed> getAllActiveFeeds();
     
+    public Feed getFeed(long id);
+    
     public void saveResult(Feed feed);
     
 }
