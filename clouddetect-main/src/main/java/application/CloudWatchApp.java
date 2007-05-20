@@ -1,8 +1,8 @@
 package application;
 
+import java.util.Date;
+
 import media.image.consumer.ImageConsumer;
-import media.image.consumer.PersistResultToDBSubConsumer;
-import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.ImageSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
 import media.image.producer.ImageProducer;
@@ -12,9 +12,16 @@ import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.SchedulerFactory;
+import org.quartz.Trigger;
+import org.quartz.TriggerUtils;
 import org.werx.framework.bus.ReflectionBus;
 
 import ui.StartUI;
+import application.schedulerjobs.ProducerConsumerJob;
 
 public class CloudWatchApp {
     private CloudWatchConfig config;
@@ -44,8 +51,6 @@ public class CloudWatchApp {
     }
 
     private void startApplication() {
-        // starts the reflection bus
-        ReflectionBus.start();
 
         // gets the producers, consumers
         ImageProducer producer = InstanceFactory.getImageProducer();
@@ -55,17 +60,53 @@ public class CloudWatchApp {
         consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
         consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("savechartfromdbsubconsumer"));
         
+        
+        
         if (!config.isCommandLine()) {
+            // starts the reflection bus
+            ReflectionBus.start();
+
             StartUI frame = new StartUI();
             frame.start();
             consumer.addSubConsumer(new UIPublishSubConsumer());
         } else {
             // nothing to do
         }
-        producer.start();
-        consumer.run();
 
+        schedule(producer, consumer);
     }
+    
+    private void schedule(ImageProducer producer, ImageConsumer consumer) {
+        SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
+
+        Scheduler sched;
+        try {
+            sched = schedFact.getScheduler();
+
+            sched.start();
+
+            JobDetail jobDetail = new JobDetail("producerConsumer", null, ProducerConsumerJob.class);
+            jobDetail.getJobDataMap().put("producer", producer);
+            jobDetail.getJobDataMap().put("consumer", consumer);
+            
+
+            Trigger trigger = TriggerUtils.makeSecondlyTrigger(10); // fire every
+                                                                // hour
+            trigger.setStartTime(new Date()); // start
+                                                                            // on
+                                                                            // the
+                                                                            // next
+                                                                            // even
+                                                                            // hour
+            trigger.setName("myTrigger");
+
+            sched.scheduleJob(jobDetail, trigger);
+        } catch (SchedulerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+    
 
     private void prUsage() {
         System.err.println("Usage: java cloudFrame <url>");

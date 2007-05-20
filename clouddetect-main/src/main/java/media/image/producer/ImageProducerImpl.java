@@ -10,7 +10,7 @@ import media.image.producer.plugin.ImageDatePlugin;
  * Class ImageProviderImpl
  * 
  */
-public abstract class ImageProducerImpl extends Thread implements ImageProducer {
+public abstract class ImageProducerImpl implements ImageProducer {
 
     private String producerName;
 
@@ -20,8 +20,6 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 
     private boolean hasStopped = false;
 
-    private CloudImageQueue queue;
-    
     // TODO make the plugin stuff more generic, maybe add support in this class and not in all
     // children, ... .
     private ImageDatePlugin plugin;
@@ -33,43 +31,7 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
         this.producerName = name;
     }
 
-    public void run() {
-        if (timeBetweenPollsInMilliSeconds == -1 || queue == null) {
-            log.error("Producer '" + producerName
-                    + "' not initialized properly: queue = " + queue
-                    + ", timeBetweenPollsInMilliSeconds = "
-                    + timeBetweenPollsInMilliSeconds);
-            return;
-        }
-        while (!hasStopped) {
-            try {
-                queue.put(produceContent());
-            } catch (Exception e) {
-                // ignore it, no data on the chart should be hint enough
-                log.warn("Problem producing the image, skipping it...", e);
-            }
-            try {
-                sleep(timeBetweenPollsInMilliSeconds);
-            } catch (InterruptedException e) {}
-        }
-    }
-
     public abstract CloudImage produceContent();
-
-    public void stopProducer() {
-        hasStopped = true;
-    }
-
-    public void setQueue(CloudImageQueue queue) {
-        this.queue = queue;
-
-    }
-
-    public void setPolling(double timeBetweenPollsInSeconds) {
-        this.timeBetweenPollsInMilliSeconds = Math.max(
-                minPollingTimeMilliseconds, Math
-                        .round(timeBetweenPollsInSeconds * 1000));
-    }
 
     public String getProducerName() {
         return producerName;

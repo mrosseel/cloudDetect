@@ -1,14 +1,15 @@
 package media.image.consumer;
 
+import media.image.CloudImage;
+
 /**
  * Interface ImageConsumer
  * 
  */
-public interface ImageConsumer extends Runnable {
-    // Methods
-    // Constructors
-    // Accessor Methods
-    // Operations
+public interface ImageConsumer {
+
+    public void consume(CloudImage image);
+    
     /**
      * 
      * @param subConsumer

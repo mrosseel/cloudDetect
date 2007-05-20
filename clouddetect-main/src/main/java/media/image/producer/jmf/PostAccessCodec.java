@@ -18,7 +18,6 @@ import media.processors.CalculateMetricOnCloudImage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import persistence.XMLPersister;
 import application.InstanceFactory;
 
 public class PostAccessCodec implements Codec {
@@ -26,7 +25,6 @@ public class PostAccessCodec implements Codec {
     // RGB or YUV or ...
     private VideoFormat format = null;
 
-    private XMLPersister persist;
 
     private int[] keepData;
 
@@ -51,7 +49,7 @@ public class PostAccessCodec implements Codec {
     private static Log log = LogFactory.getLog(PostAccessCodec.class);
 
     public PostAccessCodec() {
-        persist = new XMLPersister();
+//        persist = new XMLPersister();
         // this.collector.setImageSink(this.sink);
         // TODO here we notified that our image is ready for UI showing, how to
         // do it now?

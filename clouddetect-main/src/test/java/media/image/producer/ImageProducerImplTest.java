@@ -10,21 +10,15 @@ public class ImageProducerImplTest extends TestCase {
         CloudImageQueue queue = new CloudImageQueue();
         ImageProducerImpl impl = new TestImageProducerImpl(
                 "Test image producer");
-        impl.setQueue(new CloudImageQueue());
-        impl.start();
         assertEquals(0, queue.size());
 
         queue = new CloudImageQueue();
         impl = new TestImageProducerImpl("Test image producer");
-        impl.setPolling(0.01);
-        impl.setQueue(queue);
-        impl.start();
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
             fail();
         }
-        impl.stopProducer();
         assertTrue("Queue should not be empty", 0 < queue.size());
 
     }

@@ -28,16 +28,12 @@
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
 		<property name="imageToLoad"><value>/usr/local/apache2/htdocs/cam1/lastsnap.jpg</value></property>		
-		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>10</value></property>
 		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
 
 	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
 		<constructor-arg><value>HTTP image producer</value></constructor-arg>
 		<property name="url"><value>${http.url}</value></property>
-		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>10</value></property>
 		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
 	
@@ -45,8 +41,6 @@
 		<constructor-arg><value>directory image producer</value></constructor-arg>
 		<!--<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg>-->
 		<constructor-arg><value>/home/mike/incoming/movies/20061017</value></constructor-arg>
-		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>1</value></property>
 		<property name="imgExtension"><value>jpg</value></property>
 		<property name="looping"><value>0</value></property>
 		<property name="fileImageProducer"><ref bean="motionfileimageproducer"/></property>
@@ -62,8 +56,6 @@
 	<!-- Image Consumers -->	
 	
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
-		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>0</value></property>
 	</bean>
 	
 	<!-- Queues -->	
