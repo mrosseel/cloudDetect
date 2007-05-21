@@ -62,8 +62,6 @@ public class CloudWatchApp {
         consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
         consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("savechartfromdbsubconsumer"));
         
-        
-        
         if (!config.isCommandLine()) {
             // starts the reflection bus
             ReflectionBus.start();
@@ -84,22 +82,14 @@ public class CloudWatchApp {
         Scheduler sched;
         try {
             sched = schedFact.getScheduler();
-
             sched.start();
 
             JobDetail jobDetail = new JobDetail("producerConsumer", null, ProducerConsumerJob.class);
             jobDetail.getJobDataMap().put("producer", producer);
             jobDetail.getJobDataMap().put("consumer", consumer);
-            
 
-            Trigger trigger = TriggerUtils.makeSecondlyTrigger(10); // fire every
-                                                                // hour
-            trigger.setStartTime(new Date()); // start
-                                                                            // on
-                                                                            // the
-                                                                            // next
-                                                                            // even
-                                                                            // hour
+            Trigger trigger = TriggerUtils.makeSecondlyTrigger(10);
+            trigger.setStartTime(new Date());
             trigger.setName("myTrigger");
 
             sched.scheduleJob(jobDetail, trigger);
