@@ -38,10 +38,6 @@ public class InstanceFactory {
     	return appContext.getBean(beanName);
     }
 
-    public static CloudWatchApp getCloudWatchApp() {
-        return (CloudWatchApp) appContext.getBean("cloudwatchapp");
-    }
-
     public static FileImageProducer getFileImageProducer() {
         return (FileImageProducer) appContext.getBean("fileimageproducer");
     }

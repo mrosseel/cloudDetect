@@ -22,24 +22,7 @@
   </licenses>
   <build>
     <plugins>
-      <plugin>
-        <artifactId>maven-jar-plugin</artifactId>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>application.CloudWatch</mainClass>
-              <packageName>application</packageName>
-              <addClasspath>true</addClasspath>
-              <addExtensions></addExtensions>
-              <classpathPrefix></classpathPrefix>
-            </manifest>
-            <manifestEntries>
-              <mode>development</mode>
-              <url>${pom.url}</url>
-            </manifestEntries>
-          </archive>
-        </configuration>
-      </plugin>
+      
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>

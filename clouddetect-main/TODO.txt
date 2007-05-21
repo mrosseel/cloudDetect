@@ -28,6 +28,3 @@ er zitten negatieve waarden in de resultaat array, screws alle berekeningen.
 dependencies
 
 
-
-
-dom4j (may be killed I think, used for output)

@@ -17,10 +17,6 @@
 		<property name="commandLine"><value>true</value></property>
 	</bean>
 	
-	<bean id="cloudwatchapp" class="application.CloudWatchApp">
-		<property name="config"><ref bean="cloudwatchconfig"/></property>
-	</bean>
-	
 	<!-- Image producers -->
 	
 	<alias name="httpimageproducer" alias="imageproducer"/>
