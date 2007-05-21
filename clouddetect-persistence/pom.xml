@@ -32,6 +32,12 @@
     </plugins>
   </build>
   <dependencies>
+	<dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring</artifactId>
+      <version>2.0</version>
+      <scope>compile</scope>
+    </dependency>
     <dependency>
       <groupId>dom4j</groupId>
       <artifactId>dom4j</artifactId>
@@ -67,6 +73,11 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.2</version>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+      <version>1.4</version>
     </dependency>
   </dependencies>
   <reporting>

@@ -7,7 +7,6 @@ import org.joda.time.DateTime;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import persistence.model.Result;
-import util.DateUtil;
 
 public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 
@@ -17,7 +16,7 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 	}
 
 	public List<Result> findResultsFromThePastHours(int hours) {
-		DateTime until = new DateTime(DateUtil.getCurrentDate());
+		DateTime until = new DateTime();
 		DateTime from = until.minusHours(hours);
 		return findResultsFromUntil(from.toDate(), until.toDate());
 	}
