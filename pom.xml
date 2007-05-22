@@ -107,6 +107,7 @@
         <module>clouddetect-persistence</module>
         <module>clouddetect-main</module>
         <module>clouddetect-web</module>
+        <module>clouddetect-serverclient</module>
     </modules>
 
     <reporting>

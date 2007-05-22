@@ -19,6 +19,7 @@ public class Feed {
 		private double division;
 		private boolean isPrivate;
         private boolean isActive;
+        private long secondsBetweenUpdates;
 		private Collection<User> users;
 		
 		public double getDivision() {
@@ -85,4 +86,10 @@ public class Feed {
         public void setActive(boolean isActive) {
             this.isActive = isActive;
         }
+		public long getSecondsBetweenUpdates() {
+			return secondsBetweenUpdates;
+		}
+		public void setSecondsBetweenUpdates(long secondsBetweenUpdates) {
+			this.secondsBetweenUpdates = secondsBetweenUpdates;
+		}
 }

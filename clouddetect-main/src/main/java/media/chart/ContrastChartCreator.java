@@ -29,6 +29,7 @@ import org.jfree.data.xy.XYDataset;
 import org.jfree.ui.RectangleInsets;
 
 import persistence.model.Result;
+
 import util.DateUtil;
 
 /**
