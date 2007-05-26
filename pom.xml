@@ -10,10 +10,6 @@
     <name>Cloud Detect</name>
     <url>http://www.mycompany.com</url>
 
-    <prerequisites>
-        <maven>2.0.5</maven>
-    </prerequisites>
-
     <licenses>
         <license>
             <name></name>
