@@ -5,7 +5,6 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import media.image.producer.jmf.JMFInit;
 import util.ImageToolkit;
 import application.InstanceFactory;
 
@@ -217,10 +216,10 @@ public class CloudWatchFrame extends JFrame {
                     // WebImageSettingsPanel webImage = new
                     // WebImageSettingsPanel();
                     // webImage.show();
-                    JMFInit jmf = new JMFInit();
+                    //JMFInit jmf = new JMFInit();
                     // Vector list = jmf.getDevices(null);
                     // jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");
-                    jmf.init("v4l:Philips 740 webcam:0");
+                    //jmf.init("v4l:Philips 740 webcam:0");
 
                     // NewFileCommand command = new NewFileCommand(new
                     // NewYFileSignal(selFile));
