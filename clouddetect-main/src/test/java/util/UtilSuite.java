@@ -34,7 +34,6 @@ public class UtilSuite
         suite.addTestSuite(util.KMeansTest.class);
         suite.addTestSuite(util.IntVectorTest.class);
         suite.addTestSuite(util.ImageToolkitTest.class);
-        suite.addTestSuite(util.ImageStackerTest.class);
 
         // JUnitDoclet begin method suite
         // JUnitDoclet end method suite
