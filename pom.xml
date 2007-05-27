@@ -104,6 +104,7 @@
         <module>clouddetect-main</module>
         <module>clouddetect-web</module>
         <module>clouddetect-serverclient</module>
+        <module>clouddetect-swing</module>
     </modules>
 
     <reporting>

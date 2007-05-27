@@ -8,6 +8,8 @@ package ui;
 
 import javax.swing.JPanel;
 
+import util.ImagePanel;
+
 /**
  * @author Mike
  * 
@@ -23,7 +25,7 @@ public class RightPanel extends JPanel {
 
     private javax.swing.JPanel jPanel = null;
 
-    private ui.ImagePanel imagePanel = null;
+    private util.ImagePanel imagePanel = null;
 
     private javax.swing.JPanel jPanel1 = null;
 
@@ -91,7 +93,7 @@ public class RightPanel extends JPanel {
      * 
      * @return ui.ImagePanel
      */
-    public ui.ImagePanel getImagePanel() {
+    public util.ImagePanel getImagePanel() {
         if (imagePanel == null) {
             imagePanel = new ImagePanel();
             imagePanel.setLayout(new java.awt.GridBagLayout());

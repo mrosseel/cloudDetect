@@ -69,24 +69,6 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>werx</groupId>
-      <artifactId>bus</artifactId>
-      <version>20dec04</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>werx</groupId>
-      <artifactId>reflectionbus</artifactId>
-      <version>20dec04</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>werx</groupId>
-      <artifactId>werx</artifactId>
-      <version>20dec04</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>gov.nist.math</groupId>
       <artifactId>Jama</artifactId>
       <version>1.0.1</version>

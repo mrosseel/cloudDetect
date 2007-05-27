@@ -10,8 +10,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.werx.framework.bus.ReflectionBus;
 
-import ui.ImagePanel;
 import ui.signal.ImageSignal;
+import util.ImagePanel;
 
 /**
  * @author Mike

@@ -5,7 +5,7 @@
  * Time: 11:25:26 PM
  * To change this template use Options | File Templates.
  */
-package ui;
+package util;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import ui.handlers.ImagePanelHandler;
+//import ui.handlers.ImagePanelHandler;
 
 public class ImagePanel extends JPanel {
 
@@ -44,7 +44,7 @@ public class ImagePanel extends JPanel {
         this.setSize(width, heigth);
         this.setPreferredSize(new Dimension(width, heigth));
         this.setMinimumSize(new Dimension(width, heigth));
-        new ImagePanelHandler(this);
+//        new ImagePanelHandler(this);
     }
 
     private void initComponents(String txtName) {

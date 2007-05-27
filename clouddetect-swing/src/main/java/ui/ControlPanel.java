@@ -23,7 +23,7 @@ public class ControlPanel extends JPanel {
 
     private javax.swing.JPanel jPanel = null;
 
-    private ui.ImagePanel imagePanel = null;
+    private util.ImagePanel imagePanel = null;
 
     /**
      * This is the default constructor
@@ -86,9 +86,9 @@ public class ControlPanel extends JPanel {
      * 
      * @return be.realsoftware.ivs.ui.AlgorithmPanel
      */
-    private ui.ImagePanel getImagePanel() {
+    private util.ImagePanel getImagePanel() {
         if (imagePanel == null) {
-            imagePanel = new ui.ImagePanel();
+            imagePanel = new util.ImagePanel();
             imagePanel
                     .setBorder(javax.swing.BorderFactory
                             .createEtchedBorder(javax.swing.border.EtchedBorder.LOWERED));

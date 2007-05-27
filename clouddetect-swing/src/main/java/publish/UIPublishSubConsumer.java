@@ -1,6 +1,8 @@
-package media.image.consumer;
+package publish;
+
 
 import media.image.CloudImage;
+import media.image.consumer.ImageSubConsumer;
 import ui.commands.ImageCommand;
 
 /**

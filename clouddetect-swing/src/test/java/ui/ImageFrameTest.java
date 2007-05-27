@@ -2,7 +2,6 @@ package ui;
 
 import junit.framework.TestCase;
 
-// JUnitDoclet begin import
 // JUnitDoclet end import
 
 /**
@@ -11,51 +10,61 @@ import junit.framework.TestCase;
  * informations about the tool, the licence and the authors.
  */
 
-public class ImagePanelTest
+public class ImageFrameTest
 // JUnitDoclet begin extends_implements
         extends TestCase
 // JUnitDoclet end extends_implements
 {
     // JUnitDoclet begin class
-    ui.ImagePanel imagepanel = null;
+    util.ImagePanel imageframe = null;
 
     // JUnitDoclet end class
 
-    public ImagePanelTest(String name) {
-        // JUnitDoclet begin method ImagePanelTest
+    public ImageFrameTest(String name) {
+        // JUnitDoclet begin method ImageFrameTest
         super(name);
-        // JUnitDoclet end method ImagePanelTest
+        // JUnitDoclet end method ImageFrameTest
     }
 
-    public ui.ImagePanel createInstance() throws Exception {
+    public util.ImagePanel createInstance() throws Exception {
         // JUnitDoclet begin method testcase.createInstance
-        return new ui.ImagePanel();
+        return null;// new ui.ImagePanel("");
         // JUnitDoclet end method testcase.createInstance
     }
 
     protected void setUp() throws Exception {
         // JUnitDoclet begin method testcase.setUp
         super.setUp();
-        imagepanel = createInstance();
+        imageframe = createInstance();
         // JUnitDoclet end method testcase.setUp
     }
 
     protected void tearDown() throws Exception {
         // JUnitDoclet begin method testcase.tearDown
-        imagepanel = null;
+        imageframe = null;
         super.tearDown();
         // JUnitDoclet end method testcase.tearDown
     }
 
-    public void testSetGetImage() throws Exception {
-        // JUnitDoclet begin method setImage getImage
-        java.awt.Image[] tests = { null, null };
+    public void testPaint() throws Exception {
+    // JUnitDoclet begin method paint
+    // JUnitDoclet end method paint
+    }
 
-        for (int i = 0; i < tests.length; i++) {
-            imagepanel.setImage(tests[i]);
-            assertEquals(tests[i], imagepanel.getImage());
-        }
-        // JUnitDoclet end method setImage getImage
+    public void testMain() throws Exception {
+    // JUnitDoclet begin method main
+    // JUnitDoclet end method main
+    }
+
+    public void testSetGetImage() throws Exception {
+    // JUnitDoclet begin method setImage getImage
+    // java.awt.Image[] tests = {new java.awt.Image(), null};
+    //    
+    // for (int i = 0; i < tests.length; i++) {
+    // imageframe.setImage(tests[i]);
+    // assertEquals(tests[i], imageframe.getImage());
+    // }
+    // JUnitDoclet end method setImage getImage
     }
 
     /**
@@ -71,7 +80,7 @@ public class ImagePanelTest
 
     public static void main(String[] args) {
         // JUnitDoclet begin method testcase.main
-        junit.textui.TestRunner.run(ImagePanelTest.class);
+        junit.textui.TestRunner.run(ImageFrameTest.class);
         // JUnitDoclet end method testcase.main
     }
 }

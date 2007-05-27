@@ -1,8 +1,8 @@
 package util;
 
+
 import javax.swing.JFrame;
 
-import ui.ImagePanel;
 import media.image.CloudImage;
 
 public class VisualiseSplitterLocation {

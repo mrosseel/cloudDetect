@@ -24,7 +24,6 @@ public class CloudWatchSuite
 
         suite.addTest(application.ApplicationSuite.suite());
         suite.addTest(calculation.MetricsSuite.suite());
-        suite.addTest(ui.UiSuite.suite());
         suite.addTest(util.UtilSuite.suite());
 
         // JUnitDoclet begin method suite

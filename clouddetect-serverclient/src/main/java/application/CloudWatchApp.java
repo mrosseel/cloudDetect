@@ -5,7 +5,6 @@ import java.util.Date;
 
 import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageSubConsumer;
-import media.image.consumer.UIPublishSubConsumer;
 import media.image.producer.ImageProducer;
 
 import org.apache.commons.cli.CommandLine;
@@ -20,6 +19,8 @@ import org.quartz.SchedulerFactory;
 import org.quartz.Trigger;
 import org.quartz.TriggerUtils;
 import org.werx.framework.bus.ReflectionBus;
+
+import publish.UIPublishSubConsumer;
 
 import ui.StartUI;
 import application.InstanceFactory;
