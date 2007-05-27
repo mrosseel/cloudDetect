@@ -1,7 +1,5 @@
 package notification;
 
-import java.util.Date;
-
 import media.image.CloudImage;
 
 import org.apache.commons.logging.Log;
@@ -18,17 +16,17 @@ public class MailNotify implements Notifier {
 
     private MailSender mailSender;
 
-    private SimpleMailMessage message;
-
+    private SimpleMailMessage mailMessage;
+    
     public void setMailSender(MailSender mailSender) {
         this.mailSender = mailSender;
     }
 
-    public void setMessage(SimpleMailMessage message) {
-        this.message = message;
+    public void setMailMessage(SimpleMailMessage message) {
+        this.mailMessage = message;
     }
-
-    /* (non-Javadoc)
+    
+	/* (non-Javadoc)
      * @see notification.Notifier#notify(media.image.CloudImage)
      */
     public void notify(CloudImage image) {
@@ -38,9 +36,7 @@ public class MailNotify implements Notifier {
     
     public void sendMail() {
         // Create a thread safe "sandbox" of the message
-        SimpleMailMessage msg = new SimpleMailMessage(this.message);
-        msg
-                .setText("Het is nu " + DateUtil.getCurrentDate() + " en het is helder.\n\nMike");
+        SimpleMailMessage msg = new SimpleMailMessage(this.mailMessage);
         try {
             mailSender.send(msg);
         } catch (MailException ex) {

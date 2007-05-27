@@ -1,7 +1,12 @@
 package notification;
 
-import application.InstanceFactory;
+import static org.easymock.EasyMock.*;
 import junit.framework.TestCase;
+
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
+
+import application.InstanceFactory;
 
 public class MailNotifyTest extends TestCase {
 
@@ -16,7 +21,14 @@ public class MailNotifyTest extends TestCase {
     }
 
     public void testMailing() {
+    	MailSender mock = createMock(org.springframework.mail.MailSender.class);
+    	SimpleMailMessage message = new SimpleMailMessage();
+    	message.setText("test");
+    	mock.send(message);
+    	replay(mock);
         MailNotify notify = InstanceFactory.getMailNotify();
+        notify.setMailSender(mock);
+        notify.setMailMessage(message);
         notify.sendMail();
     }
 
