@@ -21,11 +21,12 @@
   		<property name="from" value="Mike.Rosseel@gmail.com"/>
   		<property name="to" value="${mail.to}"/>
   		<property name="subject" value="${mail.subject}"/>
+  		<property name="text" value="${mail.body}"/>
 	</bean>
 
 	<bean id="mailnotify" class="notification.MailNotify">
   		<property name="mailSender" ref="mailSender"/>
-  		<property name="message" ref="clearmailMessage"/>
+  		<property name="mailMessage" ref="clearmailMessage"/>
 	</bean>
 	<!-- mail config -->
 </beans>

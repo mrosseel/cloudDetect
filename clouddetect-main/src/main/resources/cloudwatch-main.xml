@@ -11,12 +11,6 @@
         </property>
 	</bean>
 	
-	<!-- Cloudwatcher Application settings -->
-	
-	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
-		<property name="commandLine"><value>true</value></property>
-	</bean>
-	
 	<!-- Image producers -->
 	
 	<alias name="httpimageproducer" alias="imageproducer"/>
