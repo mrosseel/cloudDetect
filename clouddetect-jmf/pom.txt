@@ -1,0 +1,20 @@
+<!--
+    <dependency>
+      <groupId>javax.jmf</groupId>
+      <artifactId>jmf-linux</artifactId>
+      <version>2.1.1e</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.jmf</groupId>
+      <artifactId>mediaplayer-linux</artifactId>
+      <version>2.1.1e</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.jmf</groupId>
+      <artifactId>multiplayer-linux</artifactId>
+      <version>2.1.1e</version>
+      <scope>compile</scope>
+    </dependency>
+    -->
