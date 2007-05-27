@@ -3,7 +3,6 @@ package media.image.consumer;
 import java.util.ArrayList;
 
 import media.image.CloudImage;
-import media.image.producer.CloudImageQueue;
 import media.image.producer.ImageProducerImpl;
 
 import org.apache.commons.logging.Log;
