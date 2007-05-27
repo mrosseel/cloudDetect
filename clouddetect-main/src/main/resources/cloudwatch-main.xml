@@ -95,9 +95,5 @@
 	
 	<!--  UI -->
 
-	<!-- still needed after chart cleanup? -->	
-	<bean id="contrastchart" class="ui.ContrastChart">
-	</bean>
-	
 	<bean id="imagepanel" class="ui.ImagePanel"/>
 </beans>
