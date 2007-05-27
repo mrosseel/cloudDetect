@@ -48,12 +48,6 @@
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
 	</bean>
 	
-	<!-- Queues -->	
-
-	<bean id="cloudimagequeue" class="media.image.producer.CloudImageQueue">
-		<property name="maxElements"><value>10</value></property>
-	</bean>
-	
 	<!-- Metrics -->	
 	
 	<bean id="calculatemetriconcloudimage" class="media.processors.CalculateMetricOnCloudImageImpl">
