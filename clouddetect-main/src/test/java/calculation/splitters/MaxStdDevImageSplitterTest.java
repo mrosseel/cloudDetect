@@ -70,8 +70,8 @@ public class MaxStdDevImageSplitterTest
         image = producer.produceContent();
         maxstddevmetric.split(image);
 
-        VisualiseSplitterLocation.showImage(image, maxstddevmetric
-                .getBestSplitterLocation());
+//        VisualiseSplitterLocation.showImage(image, maxstddevmetric
+//                .getBestSplitterLocation());
 
     }
 
