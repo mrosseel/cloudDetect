@@ -47,7 +47,7 @@ public class HorizonMetricTest
         // JUnitDoclet begin method compute
         int[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 100, 100, 100,
                 100, 100, 100, 100, 100 };
-        CloudImage image = new CloudImageImpl(data, 4, 5);
+        CloudImage image = new CloudImageImpl(data, 4, 5, false);
         assertEquals(1.8718, horizonMetric.compute(image, 6), 0.0001);
         try {
             horizonMetric.compute(image, data.length - 1);

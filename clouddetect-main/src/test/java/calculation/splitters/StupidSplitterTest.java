@@ -51,7 +51,7 @@ public class StupidSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2);
+        CloudImage image = new CloudImageImpl(data, 10, 2, false);
         split(image);
         log.info("best splitter location = "
                 + stupidSplitter.getBestSplitterLocation());

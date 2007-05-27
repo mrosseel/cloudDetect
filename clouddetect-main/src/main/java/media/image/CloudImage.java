@@ -18,10 +18,10 @@ import java.awt.Image;
 public interface CloudImage {
 
     public Image getImage();
-
+    
     public double[] getData();
 
-    public void setData(double[] data, int width, int heigth);
+    public void setData(double[] data, int width, int heigth, boolean color);
 
     public double[] getMonochromeData();
 
@@ -29,6 +29,8 @@ public interface CloudImage {
 
     public int getWidth();
 
+    public boolean isColor();
+    
     /**
      * Get where the image comes from
      * 

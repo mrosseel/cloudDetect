@@ -40,7 +40,7 @@ public class VisualiseSplitterLocation {
                 value = Integer.MAX_VALUE;
             }
         }
-        image.setData(datax, image.getWidth(), image.getHeight());
+        image.setData(datax, image.getWidth(), image.getHeight(), image.isColor());
         return image;
     }
 

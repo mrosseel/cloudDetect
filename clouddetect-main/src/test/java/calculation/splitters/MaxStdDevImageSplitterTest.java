@@ -54,7 +54,7 @@ public class MaxStdDevImageSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2);
+        CloudImage image = new CloudImageImpl(data, 10, 2, false);
         // maxstddevmetric.compute(image);
         // assertEquals(50, maxstddevmetric.getPctSplitterLocation());
         //

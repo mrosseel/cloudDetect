@@ -39,7 +39,7 @@ public class CloudImageImpl implements CloudImage {
 
     private int height;
 
-    private Color color;
+    private boolean color;
 
     private CloudImageMetaData metaData = new CloudImageMetaData();
 
@@ -47,15 +47,16 @@ public class CloudImageImpl implements CloudImage {
         if (image == null) {
             log.error("image passed to constructor is null");
         }
+        color=true;
         setImage(image);
     }
 
-    public CloudImageImpl(double[] data, int width, int height) {
-        setData(data, width, height);
+    public CloudImageImpl(double[] data, int width, int height, boolean color) {
+        setData(data, width, height, color);
     }
 
-    public CloudImageImpl(int[] data, int width, int height) {
-        setData(intToDoubleArray(data), width, height);
+    public CloudImageImpl(int[] data, int width, int height, boolean color) {
+        setData(intToDoubleArray(data), width, height, color);
     }
 
     private void setImage(Image image) {
@@ -74,7 +75,7 @@ public class CloudImageImpl implements CloudImage {
         return this.image;
     }
 
-    public void setData(double[] data, int width, int height) {
+    public void setData(double[] data, int width, int height, boolean color) {
         this.data = data;
         this.image = null;
         setWidth(width);
@@ -167,6 +168,9 @@ public class CloudImageImpl implements CloudImage {
     }
 
     public double[] getMonochromeData() {
+    	if(!color) {
+    		return getData();
+    	}
         double[] data = getData();
         double[] convertedData = new double[data.length];
         for (int i = 0; i < convertedData.length; i++) {
@@ -184,4 +188,8 @@ public class CloudImageImpl implements CloudImage {
     public void setMetaData(CloudImageMetaData metaData) {
         this.metaData = metaData;
     }
+
+	public boolean isColor() {
+		return this.color;
+	}
 }

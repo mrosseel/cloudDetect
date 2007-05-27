@@ -55,13 +55,13 @@ public class LineMedianDifferenceMetricTest
         int[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 100, 100, 100,
                 100, 100, 100, 100, 100 };
         Metric metric = new LineMedianDifferenceMetric();
-        CloudImage image = new CloudImageImpl(data, 4, 5);
+        CloudImage image = new CloudImageImpl(data, 4, 5, false);
         assertEquals(100.0, metric.compute(image), 0.0);
 
         FileClasspathImageProducer producer = new FileClasspathImageProducer(
                 "unit test", "/current_min_daylight.jpg");
         image = producer.produceContent();
-        assertEquals(100.0, metric.compute(image), 0.0);
+        assertEquals(83.25098039215688, metric.compute(image), 0.0);
 
         // JUnitDoclet end method compute
     }

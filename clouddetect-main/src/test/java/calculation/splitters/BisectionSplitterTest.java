@@ -47,7 +47,7 @@ public class BisectionSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2);
+        CloudImage image = new CloudImageImpl(data, 10, 2, false);
 
         // FileClasspathImageProducer producer = new FileClasspathImageProducer(
         // "unit test", "/01-20061009223010-snapshot.jpg");
@@ -61,8 +61,8 @@ public class BisectionSplitterTest
         // assertEquals(9, bisectionSplitter.getBestSplitterLocation());x
         System.out.println("best splittetr location "
                 + bisectionSplitter.getBestSplitterLocation());
-        VisualiseSplitterLocation.showImage(image, bisectionSplitter
-                .getBestSplitterLocation());
+//        VisualiseSplitterLocation.showImage(image, bisectionSplitter
+//                .getBestSplitterLocation());
 
     }
 

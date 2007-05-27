@@ -22,7 +22,7 @@ public class CloudImageSubConsumerTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		notify.reset();
-		image = new CloudImageImpl(new double[5], 5, 1);
+		image = new CloudImageImpl(new double[5], 5, 1, false);
 		judge = new CloudJudge();
 		judge.setMaxClear(1);
 		judge.setMaxPartialClear(2);
