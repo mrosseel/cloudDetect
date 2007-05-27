@@ -33,7 +33,9 @@ public class FileImageProducer extends ImageProducerImpl {
         }
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());
-        getPlugin().insertDateInMetaData(result, getImageToLoad());
+        if(getPlugin()!=null) {
+        	getPlugin().insertDateInMetaData(result, getImageToLoad());
+        }
         return result;
     }
 

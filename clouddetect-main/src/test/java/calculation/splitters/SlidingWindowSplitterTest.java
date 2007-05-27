@@ -65,11 +65,10 @@ public class SlidingWindowSplitterTest
                 "unit test", "/current_min_daylight.jpg");
         CloudImage image = producer.produceContent();
         double[] datax = image.getMonochromeData();
-        System.out.println(datax.length);
         location = slidingwindowsplitter.split(datax);
-        VisualiseSplitterLocation.showImage(image, location);
+//        VisualiseSplitterLocation.showImage(image, location);
 
-        assertEquals(100, location);
+        assertEquals(7704, location);
         // JUnitDoclet end method split
     }
 
