@@ -30,6 +30,7 @@ public class MailNotifyTest extends TestCase {
         notify.setMailSender(mock);
         notify.setMailMessage(message);
         notify.sendMail();
+        verify(mock); // make sure the method is called
     }
 
 }
