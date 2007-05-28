@@ -93,7 +93,4 @@
 	<bean id="soundnotify" class="notification.SoundNotify"/>
 	<bean id="dummynotify" class="notification.DummyNotify"/>
 	
-	<!--  UI -->
-
-	<bean id="imagepanel" class="ui.ImagePanel"/>
 </beans>
