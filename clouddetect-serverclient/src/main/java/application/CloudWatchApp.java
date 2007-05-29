@@ -1,6 +1,5 @@
 package application;
 
-
 import java.util.Date;
 
 import media.image.consumer.ImageConsumer;

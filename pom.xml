@@ -3,13 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>eon-consult</groupId>
+    <groupId>eonconsult</groupId>
     <artifactId>cloudDetect</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <name>Cloud Detect</name>
     <url>http://www.mycompany.com</url>
-
+ <developers>
+    <developer>
+      <id>mike</id>
+      <name>Mike Rosseel</name>
+      <email>mike@eon-consult.be</email>
+    </developer>
+  </developers>
     <licenses>
         <license>
             <name></name>
@@ -28,19 +34,9 @@
         <url></url>
     </issueManagement>
 
-    <developers>
-        <developer>
-            <id></id>
-            <name></name>
-            <email></email>
-            <timezone></timezone>
-        </developer>
-    </developers>
-	
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
-<!--              -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -66,37 +62,40 @@
     </pluginRepositories>
 
     <dependencies>
-        <!--
-	    <dependency>
-            <groupId>${jdbc.groupId}</groupId>
-            <artifactId>${jdbc.artifactId}</artifactId>
-            <version>${jdbc.version}</version>
-        </dependency>
         <dependency>
-            <groupId>jmock</groupId>
-            <artifactId>jmock</artifactId>
-            <version>${jmock.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-mock</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.subethamail</groupId>
-            <artifactId>subethasmtp-wiser</artifactId>
-            <version>${wiser.version}</version>
-            <scope>test</scope>
-        </dependency>
-	-->
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.0.4</version>
+		<scope>compile</scope>
+    	</dependency>
+      <dependency>
+	<groupId>org.testng</groupId>
+	<artifactId>testng</artifactId>
+	<version>5.1</version>
+	<classifier>jdk15</classifier>
+	<scope>test</scope>
+      </dependency>
+      <!--
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.0</version>
+    </dependency>
+    -->
+    
+      <dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring</artifactId>
+	<version>2.0</version>
+	<scope>compile</scope>
+      </dependency>
+      <dependency>
+	<groupId>org.easymock</groupId>
+	<artifactId>easymock</artifactId>
+	<version>2.2</version>
+	<scope>compile</scope>
+      </dependency>
+
     </dependencies>
     
     <modules>
@@ -109,6 +108,19 @@
 
     <reporting>
         <plugins>
+	    <plugin>
+        	<artifactId>maven-project-info-reports-plugin</artifactId>
+		<reportSets>
+			<reportSet>
+				<reports>
+					<report>project-team</report>
+					<report>issue-tracking</report>
+					<report>license</report>
+					<report>scm</report>
+				</reports>
+			</reportSet>
+		</reportSets>
+            </plugin>
             <plugin>
                 <artifactId>maven-changes-plugin</artifactId>
             </plugin>
@@ -131,6 +143,14 @@
             <plugin>
                 <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
+	    <plugin>
+	        <artifactId>maven-javadoc-plugin</artifactId>
+	        <configuration>
+			<minmemory>128m</minmemory>
+			<maxmemory>512</maxmemory>
+        	</configuration>
+      	    </plugin>
+
         </plugins>
     </reporting>
 
@@ -159,6 +179,24 @@
                 <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-4.0.5.GA.zip</cargo.container.url>
             </properties>
         </profile>
+	<profile>
+		<id>dev</id>
+		<properties>
+			<env>dev</env>
+		</properties>
+	</profile>
+	<profile>
+		<id>test</id>
+		<properties>
+			<env>test</env>
+		</properties>
+	</profile>
+	<profile>
+		<id>live</id>
+		<properties>
+			<env>live</env>
+		</properties>
+	</profile>
     </profiles>
 
     <properties>
