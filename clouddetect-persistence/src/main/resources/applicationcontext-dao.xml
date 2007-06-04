@@ -10,9 +10,9 @@
     <property name="configurationClass"><value>org.hibernate.cfg.AnnotationConfiguration</value></property>
     <property name="hibernateProperties">
       <props>
-<!--        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>-->
+        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
         <prop key="hibernate.show_sql">true</prop>
-        <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+<!--        <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop> -->
         <prop key="hibernate.hbm2ddl.auto">update</prop>
       </props>
     </property>
@@ -57,6 +57,7 @@
  
  <bean id="resultdao" class="persistence.dao.ResultDaoImpl" parent="daoTmpl"/>
  <bean id="feeddao" class="persistence.dao.FeedDaoImpl" parent="daoTmpl"/>
+ <bean id="userdao" class="persistence.dao.UserDaoImpl" parent="daoTmpl"/>
 
 </beans>
 

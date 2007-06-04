@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Feed {
@@ -20,6 +21,7 @@ public class Feed {
 		private boolean isPrivate;
         private boolean isActive;
         private long secondsBetweenUpdates;
+        private User owner;
 		private Collection<User> users;
 		
 		public double getDivision() {
@@ -91,5 +93,13 @@ public class Feed {
 		}
 		public void setSecondsBetweenUpdates(long secondsBetweenUpdates) {
 			this.secondsBetweenUpdates = secondsBetweenUpdates;
+		}
+		
+		@OneToOne
+		public User getOwner() {
+			return owner;
+		}
+		public void setOwner(User owner) {
+			this.owner = owner;
 		}
 }

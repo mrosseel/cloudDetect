@@ -27,6 +27,8 @@ public class User {
 
 	private boolean isPremium;
 	
+	private boolean isAdmin;
+	
 	private Collection<Feed> feeds;
 
 	@Id
@@ -86,6 +88,14 @@ public class User {
 
 	public void setPrivate(boolean isPrivate) {
 		this.isPrivate = isPrivate;
+	}
+	
+	public boolean isAdmin() {
+		return isAdmin;
+	}
+
+	public void setAdmin(boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
 
 	@ManyToMany(cascade={CascadeType.ALL})
