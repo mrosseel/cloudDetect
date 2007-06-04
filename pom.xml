@@ -144,6 +144,10 @@
                 <artifactId>maven-surefire-report-plugin</artifactId>
             </plugin>
 	    <plugin>
+		<groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+            </plugin>
+	    <plugin>
 	        <artifactId>maven-javadoc-plugin</artifactId>
 	        <configuration>
 			<minmemory>128m</minmemory>
@@ -179,6 +183,7 @@
                 <cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-4.0.5.GA.zip</cargo.container.url>
             </properties>
         </profile>
+	<!-- BUILD PROFILES -->
 	<profile>
 		<id>dev</id>
 		<properties>
@@ -200,10 +205,6 @@
     </profiles>
 
     <properties>
-        <dao.framework>hibernate</dao.framework>
-        <web.framework>tapestry</web.framework>
-        <appfuse.version>2.0-m3</appfuse.version>
-
         <!-- Database settings -->
         <hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
         <jdbc.groupId>mysql</jdbc.groupId>
