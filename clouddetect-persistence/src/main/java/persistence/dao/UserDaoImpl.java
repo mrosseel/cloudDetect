@@ -21,8 +21,8 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         getHibernateTemplate().saveOrUpdate(user);
     }
 
-    public Feed getUserById(long id) {
-        return (Feed) getHibernateTemplate().find("from persistence.model.User where id = ?", id).get(0);
+    public User getUserById(long id) {
+        return (User) getHibernateTemplate().find("from persistence.model.User where id = ?", id).get(0);
     }
 
 }

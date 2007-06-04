@@ -10,5 +10,5 @@ public interface UserDao {
 
 	    public void save(User user);
 
-	    public Feed getUserById(long id);
+	    public User getUserById(long id);
 }
