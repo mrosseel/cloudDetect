@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  <feed/>
+  <result id="1" time="2007-04-06 00:02:05.545" result="0.407843137254901" feedid="0"/>
+  <result id="2" time="2007-04-06 00:00:59.436" result="0.407843137254901" feedid="0"/>
+  <result id="3" time="2007-04-06 00:01:00.993" result="0.407843137254901" feedid="0"/>
+  <result id="4" time="2007-04-06 00:01:09.724" result="0.407843137254901" feedid="0"/>
+  <result id="5" time="2007-04-06 00:01:11.133" result="0.407843137254901" feedid="0"/>
+  <result id="6" time="2007-04-06 00:01:19.861" result="0.407843137254901" feedid="0"/>
+  <result id="7" time="2007-04-06 00:01:21.207" result="0.407843137254901" feedid="0"/>
+  <result id="8" time="2007-04-06 00:01:29.926" result="0.407843137254901" feedid="0"/>
+  <result id="9" time="2007-04-06 00:01:31.558" result="0.407843137254901" feedid="0"/>
+  <result id="10" time="2007-04-06 00:01:39.989" result="0.407843137254901" feedid="0"/>
+  <user_feed/>
+</dataset>
