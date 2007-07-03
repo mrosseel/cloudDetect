@@ -14,6 +14,13 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 		List list = getHibernateTemplate().find("from Result where id=?", id);
 		return (Result) list.get(0);
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Result> findResultByFeedId(int id) {
+		List<Result> list = getHibernateTemplate().find("from Result where feedid=?", id);
+		return list;
+	}
+
 
 	public List<Result> findResultsFromThePastHours(int hours) {
 		DateTime until = new DateTime();

@@ -25,8 +25,8 @@ public class FeedDaoImpl extends HibernateDaoSupport implements FeedDao {
         getHibernateTemplate().saveOrUpdate(feed);
     }
 
-    public Feed getFeed(long id) {
-        return (Feed) getHibernateTemplate().find("from persistence.model.Feed where id = " + id).get(0);
+    public Feed getFeed(int id) {
+        return (Feed) getHibernateTemplate().find("from persistence.model.Feed where id = ?", id).get(0);
     }
 
 }

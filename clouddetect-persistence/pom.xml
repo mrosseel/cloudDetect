@@ -10,7 +10,14 @@
   <name>Cloud Detect Persistence</name>
   <build>
     <plugins>
+	    
     </plugins>
+    <resources>
+      <resource>
+        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
   </build>
   <dependencies>
     <dependency>
@@ -50,6 +57,7 @@
       <version>1.4</version>
     </dependency>
   </dependencies>
+
   <reporting>
     <plugins>
     </plugins>

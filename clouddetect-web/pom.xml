@@ -44,7 +44,7 @@
       <filter>src/main/filters/filter-${env}.properties</filter>
     </filters>
   </build>
- 
+<!-- 
   <repositories>
     <repository>
       <id>apache.snapshots</id>
@@ -75,6 +75,7 @@
     </pluginRepository>
     
   </pluginRepositories>
+-->
   <dependencies>
    <dependency>
       <groupId>eonconsult</groupId>

@@ -46,7 +46,7 @@
             </plugin>
         </plugins>
     </build>
-
+<!--
     <repositories>
         <repository>
             <id>central</id>
@@ -60,7 +60,7 @@
             <url>http://snapshots.repository.codehaus.org</url>
         </pluginRepository>
     </pluginRepositories>
-
+-->
     <dependencies>
         <dependency>
 		<groupId>commons-logging</groupId>
@@ -159,20 +159,29 @@
     </reporting>
 
     <profiles>
-        <!-- ================= Database Profiles ================= -->
+  <!-- ================= Database Profiles ================= -->
+
+	<profile>
+		<id>hsqldb</id>
+		<activation>
+			<activeByDefault/>
+		</activation>
+		<properties>
+			<hibernate.dialect>org.hibernate.dialect.HSQLDialect</hibernate.dialect>
+			<hbm2ddl.auto>create</hbm2ddl.auto>
+			<alias.datasource>hsql_mem_dataSource</alias.datasource>
+		</properties>
+	</profile>
+
         <profile>
             <id>postgresql</id>
             <properties>
                 <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
-                <jdbc.groupId>postgresql</jdbc.groupId>
-                <jdbc.artifactId>postgresql</jdbc.artifactId>
-                <jdbc.version>8.1-407.jdbc3</jdbc.version>
-                <jdbc.driverClassName>org.postgresql.Driver</jdbc.driverClassName>
-                <jdbc.url><![CDATA[jdbc:postgresql://localhost/webshop]]></jdbc.url>
-                <jdbc.username>postgres</jdbc.username>
-                <jdbc.password>postgres</jdbc.password>
+		<hbm2ddl.auto>update</hbm2ddl.auto>
+		<alias.datasource>postgres_dataSource</alias.datasource>
             </properties>
         </profile>
+  
 
         <!-- ================= Container Profiles ================= -->
         <profile>
@@ -186,6 +195,9 @@
 	<!-- BUILD PROFILES -->
 	<profile>
 		<id>dev</id>
+                <activation>
+                        <activeByDefault/>
+                </activation>
 		<properties>
 			<env>dev</env>
 		</properties>
@@ -205,16 +217,7 @@
     </profiles>
 
     <properties>
-        <!-- Database settings -->
-        <hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
-        <jdbc.groupId>mysql</jdbc.groupId>
-        <jdbc.artifactId>mysql-connector-java</jdbc.artifactId>
-        <jdbc.version>5.0.3</jdbc.version>
-        <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
-        <jdbc.url><![CDATA[jdbc:mysql://localhost/webshop?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></jdbc.url>
-        <jdbc.username>root</jdbc.username>
-        <jdbc.password></jdbc.password>
-
+      
         <!-- Cargo settings -->
         <cargo.container>tomcat5x</cargo.container>
         <cargo.container.home>${env.CATALINA_HOME}</cargo.container.home>

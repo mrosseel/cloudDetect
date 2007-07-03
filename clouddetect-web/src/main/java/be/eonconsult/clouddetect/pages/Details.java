@@ -1,7 +1,7 @@
 package be.eonconsult.clouddetect.pages;
 
 import org.apache.tapestry.annotations.Inject;
-import org.apache.tapestry.ioc.internal.util.ClasspathResource;
+import org.apache.tapestry.annotations.Persist;
 import org.apache.tapestry.spring.SpringBean;
 
 import persistence.dao.FeedDao;
@@ -12,10 +12,11 @@ public class Details {
     @SpringBean("feedDao")
     private FeedDao feedDao;
     
-    private long id;
+    private int id;
+    @Persist
     private Feed feed;
     
-    void onActivate(long id)
+    void onActivate(int id)
     {
        this.id = id;
        this.feed = feedDao.getFeed(this.id);
@@ -29,4 +30,8 @@ public class Details {
     public String getImage() {
         return this.feed.getSource();
     }
+
+	public long getId() {
+		return id;
+	}
 }

@@ -35,7 +35,7 @@
       <artifactId>clouddetect-main</artifactId>
       <version>1.0-SNAPSHOT</version>
     </dependency>
-        <dependency>
+    <dependency>
       <groupId>eonconsult</groupId>
       <artifactId>clouddetect-swing</artifactId>
       <version>1.0-SNAPSHOT</version>

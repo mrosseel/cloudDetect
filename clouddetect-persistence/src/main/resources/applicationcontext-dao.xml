@@ -10,10 +10,9 @@
     <property name="configurationClass"><value>org.hibernate.cfg.AnnotationConfiguration</value></property>
     <property name="hibernateProperties">
       <props>
-        <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+        <prop key="hibernate.dialect">${hibernate.dialect}</prop>
         <prop key="hibernate.show_sql">true</prop>
-<!--        <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop> -->
-        <prop key="hibernate.hbm2ddl.auto">update</prop>
+        <prop key="hibernate.hbm2ddl.auto">${hbm2ddl.auto}</prop>
       </props>
     </property>
   </bean>
