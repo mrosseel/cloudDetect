@@ -3,10 +3,8 @@ package be.eonconsult.clouddetect.pages;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
-import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.Renderable;
 import org.apache.tapestry.annotations.Inject;
-import org.apache.tapestry.spring.SpringBean;
+import org.apache.tapestry.annotations.Service;
 import org.apache.tapestry.util.TextStreamResponse;
 
 import persistence.dao.FeedDao;
@@ -16,7 +14,7 @@ import com.thoughtworks.xstream.XStream;
 
 public class WebcamList {
     @Inject
-    @SpringBean("feedDao")
+    @Service("feeddao")
     private FeedDao feedDao;
     
     @Inject
