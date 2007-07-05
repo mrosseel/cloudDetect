@@ -2,14 +2,12 @@ package be.eonconsult.clouddetect.pages;
 
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Persist;
-import org.apache.tapestry.spring.SpringBean;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
 
 public class Details {
     @Inject
-    @SpringBean("feedDao")
     private FeedDao feedDao;
     
     private int id;

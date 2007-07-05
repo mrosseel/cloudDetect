@@ -14,7 +14,6 @@ import com.thoughtworks.xstream.XStream;
 
 public class WebcamList {
     @Inject
-    @Service("feeddao")
     private FeedDao feedDao;
     
     @Inject

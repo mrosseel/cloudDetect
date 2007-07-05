@@ -21,6 +21,7 @@ import org.apache.tapestry.annotations.Mixin;
 import org.apache.tapestry.annotations.OnEvent;
 import org.apache.tapestry.annotations.Parameter;
 import org.apache.tapestry.corelib.mixins.RenderInformals;
+import org.apache.tapestry.services.Response;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 
@@ -103,6 +104,11 @@ public class Chart {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			ChartUtilities.writeChartAsPNG(out, jfreechart, CHART_WIDTH, CHART_HEIGHT);
 			return new ByteArrayInputStream(out.toByteArray());
+		}
+
+		public void prepareResponse(Response arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	}
