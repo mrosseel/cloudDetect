@@ -8,6 +8,7 @@ import java.util.List;
 
 import media.chart.ContrastChartCreator;
 
+import org.apache.commons.logging.Log;
 import org.apache.tapestry.ComponentResources;
 import org.apache.tapestry.Link;
 import org.apache.tapestry.MarkupWriter;
@@ -47,10 +48,13 @@ public class Chart {
 	@Parameter
 	private String name;
 
-	
 	@Inject
 	private ComponentResources _resources;
 
+	@Inject
+	private Log log;
+
+	
 	@SuppressWarnings("unused")
 	@Mixin
 	private RenderInformals _renderInformals;
@@ -122,7 +126,8 @@ public class Chart {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
         
-        List<Result> results = dao.findResultByFeedId(1);
+        List<Result> results = dao.findResultByFeedId(id);
+        log.info("number of results: " + results.size());
         if(name==null) {
         	System.out.println("name = null");
         }

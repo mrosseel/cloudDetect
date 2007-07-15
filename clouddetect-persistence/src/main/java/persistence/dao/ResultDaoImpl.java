@@ -12,13 +12,13 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 
 	public Result findResultById(int id) {
 		List list = getHibernateTemplate().find("from Result where id=?", id);
-		return (Result) list.get(0);
+		return (list.size()>0)?(Result) list.get(0):null;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Result> findResultByFeedId(int id) {
 		List<Result> list = getHibernateTemplate().find("from Result where feedid=?", id);
-		return list;
+		return (list.size()>0)?list:null;
 	}
 
 

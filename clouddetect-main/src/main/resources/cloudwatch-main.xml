@@ -13,7 +13,7 @@
 	
 	<!-- Image producers -->
 	
-	<alias name="httpimageproducer" alias="imageproducer"/>
+	<alias name="directoryimageproducer" alias="imageproducer"/>
 	
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
@@ -30,7 +30,7 @@
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
 		<constructor-arg><value>directory image producer</value></constructor-arg>
 		<!--<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg>-->
-		<constructor-arg><value>/home/mike/incoming/movies/20061017</value></constructor-arg>
+		<constructor-arg><value>/opt/movies</value></constructor-arg>
 		<property name="imgExtension"><value>jpg</value></property>
 		<property name="looping"><value>0</value></property>
 		<property name="fileImageProducer"><ref bean="motionfileimageproducer"/></property>

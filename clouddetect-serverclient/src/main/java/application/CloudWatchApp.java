@@ -29,6 +29,7 @@ public class CloudWatchApp {
     private CloudWatchConfig config;
 
     public void start(String[] args) {
+    	config = new CloudWatchConfig();
         processCommandLine(args);
         startApplication();
 
@@ -88,7 +89,7 @@ public class CloudWatchApp {
             jobDetail.getJobDataMap().put("producer", producer);
             jobDetail.getJobDataMap().put("consumer", consumer);
 
-            Trigger trigger = TriggerUtils.makeSecondlyTrigger(10);
+            Trigger trigger = TriggerUtils.makeSecondlyTrigger(1);
             trigger.setStartTime(new Date());
             trigger.setName("myTrigger");
 
