@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.services;
+package be.eonconsult.clouddetect.web.services;
 
 import java.io.IOException;
 

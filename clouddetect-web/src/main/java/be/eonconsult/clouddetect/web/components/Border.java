@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.components;
+package be.eonconsult.clouddetect.web.components;
 
 import org.apache.tapestry.Asset;
 import org.apache.tapestry.MarkupWriter;

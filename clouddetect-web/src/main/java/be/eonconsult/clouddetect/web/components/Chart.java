@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.components;
+package be.eonconsult.clouddetect.web.components;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -114,7 +114,6 @@ public class Chart {
 			// TODO Auto-generated method stub
 			
 		}
-
 	}
 
 	/**
@@ -127,11 +126,12 @@ public class Chart {
         ContrastChartCreator creator = new ContrastChartCreator();
         
         List<Result> results = dao.findResultByFeedId(id);
-        log.info("number of results: " + results.size());
-        if(name==null) {
-        	System.out.println("name = null");
+        
+        if(results!=null) {
+        	log.info("number of results: " + results.size());
+        	creator.addValue(name,results);	
         }
-        creator.addValue(name,results);
+        
         return creator.getJFreeChart();
 	}
 }

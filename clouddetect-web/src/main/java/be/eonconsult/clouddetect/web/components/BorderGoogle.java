@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.components;
+package be.eonconsult.clouddetect.web.components;
 
 public class BorderGoogle extends Border {
 

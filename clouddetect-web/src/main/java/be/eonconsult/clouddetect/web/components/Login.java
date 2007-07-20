@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.components;
+package be.eonconsult.clouddetect.web.components;
 
 import org.apache.tapestry.annotations.Component;
 import org.apache.tapestry.annotations.Inject;

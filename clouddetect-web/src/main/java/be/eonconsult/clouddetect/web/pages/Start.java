@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.pages;
+package be.eonconsult.clouddetect.web.pages;
 
 import java.util.Date;
 

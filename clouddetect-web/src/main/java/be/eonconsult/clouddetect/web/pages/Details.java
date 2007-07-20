@@ -1,4 +1,4 @@
-package be.eonconsult.clouddetect.pages;
+package be.eonconsult.clouddetect.web.pages;
 
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Persist;
@@ -10,6 +10,7 @@ public class Details {
     @Inject
     private FeedDao feedDao;
     
+    @Persist
     private int id;
     @Persist
     private Feed feed;
