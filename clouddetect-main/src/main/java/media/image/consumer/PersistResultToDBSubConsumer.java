@@ -27,6 +27,7 @@ public class PersistResultToDBSubConsumer implements ImageSubConsumer {
 		CloudImageMetaData metaData = image.getMetaData();
 		Result result = new Result();
 		result.setResult(metaData.getContrastResult());
+		result.setFeedId(metaData.getFeedId());
 		result.setTime((metaData.getDate() == null)?DateUtil.getCurrentDate():metaData.getDate());
 		dao.saveResult(result);
 	}
@@ -38,6 +39,4 @@ public class PersistResultToDBSubConsumer implements ImageSubConsumer {
 	public void setDao(ResultDao dao) {
 		this.dao = dao;
 	}
-	
-	
 }

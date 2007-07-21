@@ -10,7 +10,8 @@ public class CloudImageMetaData {
     private double contrastResult;
     
     private boolean notify;
-
+    private int feedId;
+    
     public Date getDate() {
         return date;
     }
@@ -27,7 +28,15 @@ public class CloudImageMetaData {
         this.contrastResult = contrastResult;
     }
 
-    public boolean isNotify() {
+    public int getFeedId() {
+		return feedId;
+	}
+
+	public void setFeedId(int feedId) {
+		this.feedId = feedId;
+	}
+
+	public boolean isNotify() {
         return notify;
     }
 

@@ -11,25 +11,33 @@ import media.web.WebImageLoader;
  * 
  */
 public class HTTPImageProducer extends ImageProducerImpl {
-    private String url;
+    private String source;
+    private int sourceId;
 
     public HTTPImageProducer(String name) {
         super(name);
     }
 
     public CloudImage produceContent() {
-        Image image = WebImageLoader.loadURLImage(getUrl());
+        Image image = WebImageLoader.loadURLImage(getSource());
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());
+        result.getMetaData().setFeedId(sourceId);
         getPlugin().insertDateInMetaData(result, null);
         return result;
     }
+    
+    
 
-    public String getUrl() {
-        return url;
+    public String getSource() {
+        return source;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setSource(String imageSource) {
+        this.source = imageSource;
     }
+
+	public void setSourceId(int sourceId) {
+		this.sourceId = sourceId;
+	}
 }

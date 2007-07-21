@@ -14,13 +14,11 @@ import org.apache.commons.logging.LogFactory;
  */
 public class ImageConsumerImpl implements ImageConsumer {
 
-    private String producerName;
-
     ArrayList<ImageSubConsumer> consumers = new ArrayList<ImageSubConsumer>();
 
     private static Log log = LogFactory.getLog(ImageProducerImpl.class);
 
-    public synchronized void addSubConsumer(ImageSubConsumer subConsumer) {
+    public void addSubConsumer(ImageSubConsumer subConsumer) {
         consumers.add(subConsumer);
     }
 

@@ -27,28 +27,33 @@ public class FileImageProducer extends ImageProducerImpl {
     public CloudImage produceContent() {
         Image image = getImage();
         if (image == null || image.getHeight(null) == -1) {
-            log.warn("Could not load image " + getImageToLoad());
+            log.warn("Could not load image " + getSource());
             throw new IllegalArgumentException("Could not load image "
-                    + getImageToLoad());
+                    + getSource());
         }
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());
         if(getPlugin()!=null) {
-        	getPlugin().insertDateInMetaData(result, getImageToLoad());
+        	getPlugin().insertDateInMetaData(result, getSource());
         }
         return result;
     }
 
     protected Image getImage() {
-        return ImageToolkit.loadImage(getImageToLoad());
+        return ImageToolkit.loadImage(getSource());
     }
 
-    public String getImageToLoad() {
+    public String getSource() {
         return imageToLoad;
     }
 
-    public void setImageToLoad(String imageToLoad) {
+    public void setSource(String imageToLoad) {
         this.imageToLoad = imageToLoad;
     }
+
+	public void setSourceId(int sourceId) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

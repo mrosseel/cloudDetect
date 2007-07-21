@@ -17,19 +17,18 @@
 	
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
-		<property name="imageToLoad"><value>/usr/local/apache2/htdocs/cam1/lastsnap.jpg</value></property>		
+		<property name="source"><value>/usr/local/apache2/htdocs/cam1/lastsnap.jpg</value></property>		
 		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
 
-	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
+	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer" singleton="false">
 		<constructor-arg><value>HTTP image producer</value></constructor-arg>
-		<property name="url"><value>${http.url}</value></property>
+		<property name="source"><value>${http.url}</value></property>
 		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
 		<constructor-arg><value>directory image producer</value></constructor-arg>
-		<!--<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg>-->
 		<constructor-arg><value>/opt/movies</value></constructor-arg>
 		<property name="imgExtension"><value>jpg</value></property>
 		<property name="looping"><value>0</value></property>
@@ -45,7 +44,7 @@
 	
 	<!-- Image Consumers -->	
 	
-	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
+	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl" singleton="false">
 	</bean>
 	
 	<!-- Metrics -->	

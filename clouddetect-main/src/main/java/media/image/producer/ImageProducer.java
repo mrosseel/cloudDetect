@@ -11,4 +11,10 @@ public interface ImageProducer {
     public CloudImage produceContent();
 
     public String getProducerName();
-}
+    
+    public void setSource(String imageLocation);
+    
+    public String getSource();
+    
+    public void setSourceId(int sourceId);
+}    

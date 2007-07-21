@@ -39,7 +39,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
             return null;
         }
 
-        fileImageProducer.setImageToLoad(getNextImageName());
+        fileImageProducer.setSource(getNextImageName());
 
         CloudImage result = fileImageProducer.produceContent();
         result.setOriginComment(getProducerName());
@@ -48,7 +48,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
     }
 
     protected void loadImagesInDir() {
-        File dir = new File(getDirectoryToLoad());
+        File dir = new File(getSource());
 
         // This filter only returns directories
         FileFilter fileFilter = new FileFilter() {
@@ -61,13 +61,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
 
     }
 
-    protected String getDirectoryToLoad() {
-        return dirToLoad;
-    }
-
-    protected void setDirectoryToLoad(String dirToLoad) {
-        this.dirToLoad = dirToLoad;
-    }
+  
 
     protected String getNextImageName() {
         return (files[fileCounter % (files.length - 1)]).getAbsolutePath();
@@ -97,4 +91,16 @@ public class DirectoryImageProducer extends ImageProducerImpl {
         this.fileImageProducer = fileImageProducer;
     }
 
+	public String getSource() {
+		return dirToLoad;
+	}
+
+	public void setSource(String dirToLoad) {
+        this.dirToLoad = dirToLoad;
+	}
+
+	public void setSourceId(int sourceId) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -16,11 +16,11 @@ public class FileClasspathImageProducer extends FileImageProducer {
 
     public FileClasspathImageProducer(String name, String imageToLoad) {
         this(name);
-        setImageToLoad(imageToLoad);
+        setSource(imageToLoad);
     }
 
     protected Image getImage() {
-        return ImageToolkit.loadClasspathImage(getImageToLoad());
+        return ImageToolkit.loadClasspathImage(getSource());
     }
 
 }
