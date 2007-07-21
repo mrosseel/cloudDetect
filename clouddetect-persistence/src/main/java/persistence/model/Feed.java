@@ -3,6 +3,8 @@ package persistence.model;
 import java.util.Collection;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -21,6 +23,7 @@ public class Feed {
 		private boolean isPrivate;
         private boolean isActive;
         private long secondsBetweenUpdates;
+        private ProducerType producerType;
         private User owner;
 		private Collection<User> users;
 		
@@ -95,6 +98,13 @@ public class Feed {
 			this.secondsBetweenUpdates = secondsBetweenUpdates;
 		}
 		
+		@Enumerated(EnumType.STRING)
+		public ProducerType getProducerType() {
+			return producerType;
+		}
+		public void setProducerType(ProducerType producerType) {
+			this.producerType = producerType;
+		}
 		@OneToOne
 		public User getOwner() {
 			return owner;

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 @Entity()
 public class Result {
-	private int id;
+	private long id;
 	private int feedId;
 	private Date time;
 	private double result;
@@ -23,10 +23,10 @@ public class Result {
 	
 	@Id
 	@GeneratedValue
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public double getResult() {
