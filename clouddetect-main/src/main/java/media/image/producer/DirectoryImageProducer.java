@@ -31,12 +31,15 @@ public class DirectoryImageProducer extends ImageProducerImpl {
     public DirectoryImageProducer(String name, String dirToLoad) {
         super(name);
         this.dirToLoad = dirToLoad;
-        loadImagesInDir();
     }
 
     public CloudImage produceContent() {
         if (!isLooping && fileCounter >= files.length - 1) {
             return null;
+        }
+        
+        if(files==null) {
+        	loadImagesInDir();
         }
 
         fileImageProducer.setSource(getNextImageName());
