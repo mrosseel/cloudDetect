@@ -35,10 +35,12 @@ import application.InstanceFactory;
  */
 public class Chart {
 	
-	public static final int CHART_HEIGHT = 240;
-
-	public static final int CHART_WIDTH = 320;
-
+	@Parameter
+	private int height;
+	
+	@Parameter
+	private int width;
+	
 	@Parameter
 	private List<?> _context;
 
@@ -106,7 +108,7 @@ public class Chart {
 		 */
 		public InputStream getStream() throws IOException {
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			ChartUtilities.writeChartAsPNG(out, jfreechart, CHART_WIDTH, CHART_HEIGHT);
+			ChartUtilities.writeChartAsPNG(out, jfreechart, width, height);
 			return new ByteArrayInputStream(out.toByteArray());
 		}
 
