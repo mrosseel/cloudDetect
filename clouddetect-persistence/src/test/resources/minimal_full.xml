@@ -14,5 +14,6 @@
   <result id="11" time="2007-04-06 00:01:39.989" result="0.407843137254901" feedid="1"/>
   <result id="12" time="2007-04-06 00:01:39.989" result="0.407843137254901" feedid="1"/>
   <result id="13" time="2007-04-06 00:01:39.989" result="0.407843137254901" feedid="1"/>
-  <user_feed/>
+  <users_feed/>
+  <users/>
 </dataset>
