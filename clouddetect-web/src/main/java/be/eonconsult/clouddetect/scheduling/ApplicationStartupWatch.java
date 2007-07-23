@@ -11,8 +11,6 @@ public class ApplicationStartupWatch implements ServletContextListener {
 	}
 
 	public void contextInitialized(ServletContextEvent arg0) {
-		System.out
-				.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		schedule.startScheduler();
 	}
 }
