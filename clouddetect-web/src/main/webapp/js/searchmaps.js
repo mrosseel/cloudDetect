@@ -7,7 +7,8 @@
 
     // Create our "tiny" marker icon
     var gSmallIcon = new GIcon();
-    gSmallIcon.image = "http://labs.google.com/ridefinder/images/mm_20_yellow.png";
+//    gSmallIcon.image = "http://labs.google.com/ridefinder/images/mm_20_yellow.png";
+	gSmallIcon.image = "http://localhost:8080/images/small/weather-clear-night.png";	
     gSmallIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
     gSmallIcon.iconSize = new GSize(12, 20);
     gSmallIcon.shadowSize = new GSize(22, 20);
