@@ -28,6 +28,7 @@
         </configuration>
       </plugin>
     </plugins>
+  </build>
   <dependencies>
    <dependency>
       <groupId>eonconsult</groupId>
