@@ -42,6 +42,9 @@ public class Chart {
 	private int width;
 	
 	@Parameter
+	private int hours;
+	
+	@Parameter
 	private List<?> _context;
 
 	@Parameter
@@ -127,7 +130,7 @@ public class Chart {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
         
-        List<Result> results = dao.findResultByFeedId(id);
+        List<Result> results = dao.findResultsFromThePastHours(hours,id);
         
         if(results!=null) {
         	log.info("number of results: " + results.size());

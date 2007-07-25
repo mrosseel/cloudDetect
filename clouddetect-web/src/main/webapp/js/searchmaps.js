@@ -8,10 +8,10 @@
     // Create our "tiny" marker icon
     var gSmallIcon = new GIcon();
 //    gSmallIcon.image = "http://labs.google.com/ridefinder/images/mm_20_yellow.png";
-	gSmallIcon.image = "http://localhost:8080/images/small/weather-clear-night.png";	
-    gSmallIcon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
-    gSmallIcon.iconSize = new GSize(12, 20);
-    gSmallIcon.shadowSize = new GSize(22, 20);
+	gSmallIcon.image = "/images/weather/medium/weather-clear-night.png";	
+    gSmallIcon.shadow = "/images/weather/medium/shadow.png";
+    gSmallIcon.iconSize = new GSize(22, 22);
+    gSmallIcon.shadowSize = new GSize(22, 22);
     gSmallIcon.iconAnchor = new GPoint(6, 20);
     gSmallIcon.infoWindowAnchor = new GPoint(5, 1);
 
@@ -71,7 +71,7 @@
         
          // Creates a marker at the given point with the given number label
 		function createMarker(point, label, id, url) {
-		  var marker = new GMarker(point);
+		  var marker = new GMarker(point, {icon:gSmallIcon});
 		  GEvent.addListener(marker, "click", function() {
 		    marker.openInfoWindowHtml('Name:' + label + '<p/><a href="details/' + id + '">Details</a>');
 		  });
