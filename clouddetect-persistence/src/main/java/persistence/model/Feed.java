@@ -27,18 +27,28 @@ public class Feed {
         private User owner;
 		private Collection<User> users;
 		
-		public double getDivision() {
-			return division;
-		}
-		public void setDivision(double division) {
-			this.division = division;
-		}
 		public String getFeedName() {
 			return feedName;
 		}
 		public void setFeedName(String feedName) {
 			this.feedName = feedName;
 		}
+
+		public String getLocationFreeForm() {
+			return LocationFreeForm;
+		}
+		public void setLocationFreeForm(String locationFreeForm) {
+			LocationFreeForm = locationFreeForm;
+		}
+
+		
+		public double getDivision() {
+			return division;
+		}
+		public void setDivision(double division) {
+			this.division = division;
+		}
+		
 		
 		@Id
 		@GeneratedValue
@@ -48,23 +58,20 @@ public class Feed {
 		public void setId(int id) {
 			this.id = id;
 		}
-		public String getLocationFreeForm() {
-			return LocationFreeForm;
+
+		@Enumerated(EnumType.STRING)
+		public ProducerType getProducerType() {
+			return producerType;
 		}
-		public void setLocationFreeForm(String locationFreeForm) {
-			LocationFreeForm = locationFreeForm;
+		public void setProducerType(ProducerType producerType) {
+			this.producerType = producerType;
 		}
+		
 		public String getSource() {
 			return source;
 		}
 		public void setSource(String source) {
 			this.source = source;
-		}
-		public boolean isPrivate() {
-			return isPrivate;
-		}
-		public void setPrivate(boolean isPrivate) {
-			this.isPrivate = isPrivate;
 		}
 		@ManyToMany(mappedBy="feeds")
 		public Collection<User> getUsers() {
@@ -85,6 +92,13 @@ public class Feed {
         public void setLongitude(double longitude) {
             this.longitude = longitude;
         }
+		public boolean isPrivate() {
+			return isPrivate;
+		}
+		public void setPrivate(boolean isPrivate) {
+			this.isPrivate = isPrivate;
+		}
+       
         public boolean isActive() {
             return isActive;
         }
@@ -98,13 +112,6 @@ public class Feed {
 			this.secondsBetweenUpdates = secondsBetweenUpdates;
 		}
 		
-		@Enumerated(EnumType.STRING)
-		public ProducerType getProducerType() {
-			return producerType;
-		}
-		public void setProducerType(ProducerType producerType) {
-			this.producerType = producerType;
-		}
 		@OneToOne
 		public User getOwner() {
 			return owner;

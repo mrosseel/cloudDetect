@@ -39,6 +39,14 @@ public class ResultDaoTest extends SpringDBTest {
         Assert.assertNull(result);
 	}
 	
+	@Test
+	public void testFindResultsFromThePastHours() {
+		ResultDao resultDao = (ResultDao) appContext.getBean("resultdao");
+        List<Result> result = resultDao.findResultsFromThePastHours(0, 0);
+        Assert.assertNotNull(result);
+        Assert.assertEquals(result.size(), 0);
+	}
+        
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		return getFlatXmlDataSet("/minimal_full.xml");

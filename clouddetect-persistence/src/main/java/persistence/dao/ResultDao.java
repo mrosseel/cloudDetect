@@ -7,10 +7,10 @@ import persistence.model.Result;
 
 public interface ResultDao {
 
-	public Result findResultById(int id);
-	public List<Result> findResultByFeedId(int id);
-	public List<Result> findResultsFromThePastHours(int hours);
-	public List<Result> findResultsFromUntil(Date from, Date until);
+	public Result findResultById(long id);
+	public List<Result> findResultByFeedId(long id);
+	public List<Result> findResultsFromThePastHours(int hours, long id);
+	public List<Result> findResultsFromUntil(Date from, Date until, long id);
 	public void saveResult(Result result);
 	
 	

@@ -10,10 +10,9 @@ import media.image.CloudImage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import application.InstanceFactory;
-
 import persistence.dao.ResultDao;
 import persistence.model.Result;
+import application.InstanceFactory;
 
 public class SaveChartFromDBSubConsumer implements ImageSubConsumer {
 
@@ -25,7 +24,10 @@ public class SaveChartFromDBSubConsumer implements ImageSubConsumer {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
         
-        List<Result> results = dao.findResultsFromThePastHours(24);
+        // TODO
+        if(true)
+        throw new RuntimeException("get the correct feed id here");
+        List<Result> results = dao.findResultsFromThePastHours(24, 0);
         creator.addValue(image.getOriginComment(),results);
         try {
             org.jfree.chart.ChartUtilities.saveChartAsJPEG(new File(saveFilename), 0.85f, creator
