@@ -18,7 +18,7 @@ public class Feed {
 		private String LocationFreeForm;
         private double latitude;
         private double longitude;
-		private String feedName;
+		private String name;
 		private double division;
 		private boolean isPrivate;
         private boolean isActive;
@@ -27,11 +27,11 @@ public class Feed {
         private User owner;
 		private Collection<User> users;
 		
-		public String getFeedName() {
-			return feedName;
+		public String getName() {
+			return name;
 		}
-		public void setFeedName(String feedName) {
-			this.feedName = feedName;
+		public void setName(String feedName) {
+			this.name = feedName;
 		}
 
 		public String getLocationFreeForm() {

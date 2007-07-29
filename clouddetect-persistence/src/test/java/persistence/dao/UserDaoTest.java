@@ -17,7 +17,7 @@ public class UserDaoTest extends SpringDBTest {
 	public void testCreateUser() {
 		User user = new User();
 		user.setEmail("mike@email.com");
-		user.setName("mike");
+		user.setLastName("mike");
         UserDao userDao = (UserDao) appContext.getBean("userdao");
         userDao.save(user);
         
@@ -29,7 +29,7 @@ public class UserDaoTest extends SpringDBTest {
 	public void testGetById() {
 		User user = new User();
 		user.setEmail("mike@email.com");
-		user.setName("mike");
+		user.setLastName("mike");
         UserDao userDao = (UserDao) appContext.getBean("userdao");
         userDao.save(user);
         long id = user.getId();

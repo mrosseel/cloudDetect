@@ -18,9 +18,11 @@ import javax.persistence.Table;
 public class User {
 	private long id;
 
-	private String name;
+	private String lastName;
 
 	private String firstName;
+	
+	private String userName;
 
 	private String email;
 
@@ -61,12 +63,12 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	public String getName() {
-		return name;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLastName(String name) {
+		this.lastName = name;
 	}
 
 	public String getPassword() {
@@ -113,6 +115,16 @@ public class User {
 	public void setFeeds(Collection<Feed> feeds) {
 		this.feeds = feeds;
 	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
 	
 	
 

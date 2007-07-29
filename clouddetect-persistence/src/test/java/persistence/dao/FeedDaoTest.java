@@ -17,11 +17,11 @@ public class FeedDaoTest extends SpringDBTest {
         Feed feed = new Feed();
         User owner = new User();
         owner.setFirstName("mike");
-        owner.setName("rosseel");
+        owner.setLastName("rosseel");
         
         feed.setActive(true);
         feed.setDivision(0.7);
-        feed.setFeedName("test2");
+        feed.setName("test2");
         feed.setLatitude(50);
         feed.setLongitude(3);
         feed.setPrivate(false);
@@ -42,7 +42,7 @@ public class FeedDaoTest extends SpringDBTest {
         Feed feed = new Feed();
         feed.setActive(true);
         feed.setDivision(0.7);
-        feed.setFeedName("test");
+        feed.setName("test");
         feed.setLatitude(50);
         feed.setLongitude(3);
         feed.setPrivate(false);
