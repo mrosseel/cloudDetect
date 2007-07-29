@@ -7,7 +7,6 @@
 
     // Create our "tiny" marker icon
     var gSmallIcon = new GIcon();
-//    gSmallIcon.image = "http://labs.google.com/ridefinder/images/mm_20_yellow.png";
 	gSmallIcon.image = "/images/weather/medium/weather-clear-night.png";	
     gSmallIcon.shadow = "/images/weather/medium/shadow.png";
     gSmallIcon.iconSize = new GSize(22, 22);
@@ -20,7 +19,7 @@
 		 // Create the XMLHttpRequest object
         var request = GXmlHttp.create();
         // Prepare an asynchronous HTTP request to the server
-        request.open("GET", "/webcamlist.textstreamresponse", true);
+        request.open("GET", "/webcamlist", true);
         // Returned data will be processed by this function
         request.onreadystatechange = getCallbackFunction(request, processWebcamData);
         // Send the query
@@ -62,18 +61,21 @@
                 var lat = parseFloat(siteMarkers[i].getElementsByTagName("latitude")[0].firstChild.nodeValue);
                 var lng = parseFloat(siteMarkers[i].getElementsByTagName("longitude")[0].firstChild.nodeValue);
                 var id = siteMarkers[i].getElementsByTagName("id")[0].firstChild.nodeValue;
-                var label = siteMarkers[i].getElementsByTagName("feedName")[0].firstChild.nodeValue;
+                var name = siteMarkers[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+                if(siteMarkers[i].getElementsByTagName("LocationFreeForm").length != 0) {
+	                var freeForm = siteMarkers[i].getElementsByTagName("LocationFreeForm")[0].firstChild.nodeValue;
+                }
                 var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
-                marker = createMarker(new GLatLng(lat,lng),label,id, url);
+                marker = createMarker(new GLatLng(lat,lng),name, freeForm,id, url);
                 gMap.addOverlay(marker);
             }
         }
         
          // Creates a marker at the given point with the given number label
-		function createMarker(point, label, id, url) {
+		function createMarker(point, name, freeForm, id, url) {
 		  var marker = new GMarker(point, {icon:gSmallIcon});
 		  GEvent.addListener(marker, "click", function() {
-		    marker.openInfoWindowHtml('Name:' + label + '<p/><a href="details/' + id + '">Details</a>');
+		    marker.openInfoWindowHtml('<b>' + name + '</b><p/>' + freeForm + '<p/><a href="details/' + id + '">More details...</a>');
 		  });
 		  return marker;
 		}
@@ -213,13 +215,4 @@
       return this.selected_;
     }
     
-//	function wheelevent(e)
-//    {
-//        if (!e) e = window.event;
-//        if (e.preventDefault) e.preventDefault();
-//        e.returnValue = false;
-//    }
-//    GEvent.addDomListener(gMap, "DOMMouseScroll", wheelevent);
-//    gMap.onmousewheel = wheelevent;
-
     GSearch.setOnLoadCallback(OnLoad);

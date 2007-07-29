@@ -1,5 +1,6 @@
 package be.eonconsult.clouddetect.web.components;
 
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -110,9 +111,10 @@ public class Chart {
 		 * @see org.apache.tapestry.StreamResponse#getStream()
 		 */
 		public InputStream getStream() throws IOException {
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			ChartUtilities.writeChartAsPNG(out, jfreechart, width, height);
-			return new ByteArrayInputStream(out.toByteArray());
+			BufferedImage image  = jfreechart.createBufferedImage(width, height);
+            ByteArrayOutputStream byteArray = new ByteArrayOutputStream() ;
+            ChartUtilities.writeBufferedImageAsPNG(byteArray, image) ;
+            return new ByteArrayInputStream(byteArray.toByteArray());
 		}
 
 		public void prepareResponse(Response arg0) {

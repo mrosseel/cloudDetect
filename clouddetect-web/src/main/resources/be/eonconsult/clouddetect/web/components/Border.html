@@ -1,7 +1,8 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 <head>
 <title>CloudWatch</title>
-<link rel="stylesheet" type="text/css" href="../css/style.css" media="screen" />
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/google.css" media="screen" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 
 <t:if test="mappage"> 
@@ -12,16 +13,29 @@
 
   </head>
 
+<t:block id="login">
+  <t:login/>
+</t:block> 
+
+<t:block id="userinfo">
+ <t:userinfo/>
+</t:block> 
+
+
 <!-- <body onload="load()" onunload="GUnload()"> -->
 <body>
 
 <div id="header">
 
-<h1><img src="${logo}"/>${message:page.title}</h1>
+<div id="logo">
+<img src="${logo}"/>
+</div>
+<h1>${message:page.title}</h1>
+
+
  <div id="menu">
   <ul id="nav">
    <li><a t:type="PageLink" t:page="Start">${message:top.home}</a></li>
-   <li><a t:type="PageLink" t:page="Login">${message:top.login}</a></li>
    <li><a t:type="PageLink" t:page="Register">${message:top.register}</a></li>
    <li><a t:type="PageLink" t:page="About">${message:top.about}</a></li>
   </ul>
@@ -36,11 +50,17 @@
 	
 <div id="left">
 	<div class="box">
-		<t:delegate to="firstbox"/>
+		<t:if test="userExists">
+				<t:delegate to="block:userinfo"/>			
+			<t:parameter name="else"> 	
+				<t:delegate to="block:login"/>
+	        </t:parameter>
+		</t:if>
+	
 	</div>
 			
 	<div class="box">
-				<h2>Links :</h2>
+				<h2>Actions :</h2>
 				<ul>
 				<li><a href="http://www.minimalistic-design.info">Web Design Directory</a></li>
 				<li><a href="http://www.historyexplorer.net">History Timelines</a></li>
@@ -49,7 +69,7 @@
 	</div>
 		
     <div class="box">
-	   <div style="font-size: 0.8em;">Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a></div>
+	   <div style="font-size: 0.8em;">This site is in alpha testing, drenched telescopes will not be refunded</div>
 	</div>
 </div>
 

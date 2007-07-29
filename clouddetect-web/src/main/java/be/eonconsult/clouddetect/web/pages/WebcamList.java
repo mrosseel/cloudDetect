@@ -1,5 +1,7 @@
 package be.eonconsult.clouddetect.web.pages;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -9,6 +11,7 @@ import org.apache.tapestry.util.TextStreamResponse;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
+import persistence.model.User;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -20,38 +23,23 @@ public class WebcamList {
     private Log log;
     
     
-    private String method;
-    
     public String getWebcamList() {
         List<Feed> list = feedDao.getAllActiveFeeds();
         XStream xstream = new XStream();
+        for (Feed feed: list) {
+        	feed.setUsers(null);
+        	feed.setOwner(null);
+		}
+//        xstream.omitField(Collection.class, "users");
+//        xstream.omitField(User.class, "owner");
+        
         return xstream.toXML(list);
     }
     
-    public Object onActionFromTextStreamResponse() {
-        String text = getWebcamList();
-
-        return new TextStreamResponse("application/xml", text);
-    }
-    
-    public Object getFirstBox() {
-        return onActionFromTextStreamResponse();
-    }
-    
-//    public Renderable getFirstBox() {
-//        return new Renderable()
-//        {
-//            public void render(MarkupWriter writer)
-//            {
-//                log.info("writing webcamlist");
-//                writer.write(getWebcamList());
-//                
-//            }
-//        };
-//    }
-    
-    void onActivate(String aMethod)
+    public Object onActivate()
     {
-       method = aMethod;
+    	  String text = getWebcamList();
+
+          return new TextStreamResponse("application/xml", text);
     }
 }

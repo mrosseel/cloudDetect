@@ -68,3 +68,25 @@ img {
 	padding: 3px;
 	
 }
+
+<!-- Login -->
+
+ label
+{
+width: 4em;
+float: left;
+text-align: right;
+margin-right: 0.5em;
+display: block
+}
+
+#t-beaneditor-row input {
+	width: 40%;
+}
+
+.submit input
+{
+margin-left: 4.5em;
+}
+
+

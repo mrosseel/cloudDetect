@@ -47,8 +47,6 @@
     }
 
     #results {
-      position: absolute;
-      left: 540px;
     }
 
     #searchwell {
@@ -93,7 +91,7 @@
       background-position: top left;
     }
     
-    #gsc-input {
+    input.gsc-input {
     	width:100%;
     
     }

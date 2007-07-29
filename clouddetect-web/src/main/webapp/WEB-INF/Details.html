@@ -1,10 +1,14 @@
 <t:border xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
+<META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
+
 
 <div id="results">
-	<h1>${name}</h1>
-	<img src="${image}"/>
+	<h1>${feed.name}</h1>
+	<h4>${feed.locationfreeform}</h4>
+	<t:chart id="prop:feed.id" name="prop:feed.name" width="640" height="480" hours="24"></t:chart>
+	<img src="${feed.source}"/>
 </div>
-<t:chart id="prop:id" name="prop:name" width="640" height="480" hours="24"></t:chart>
+
 
 </t:border>

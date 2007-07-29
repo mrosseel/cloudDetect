@@ -20,17 +20,12 @@ public class Details {
        this.id = id;
        this.feed = feedDao.getFeed(this.id);
     }
-    
- 
-    public String getName() {
-        return this.feed.getFeedName();
-    }
-    
-    public String getImage() {
-        return this.feed.getSource();
-    }
 
-	public long getId() {
-		return id;
+	public Feed getFeed() {
+		return feed;
+	}
+
+	public void setFeed(Feed feed) {
+		this.feed = feed;
 	}
 }

@@ -1,21 +1,24 @@
 package be.eonconsult.clouddetect.web.pages;
 
 import org.apache.tapestry.annotations.Inject;
+import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.annotations.OnEvent;
-import org.apache.tapestry.annotations.Parameter;
 import org.apache.tapestry.annotations.Persist;
-import org.apache.tapestry.annotations.SetupRender;
+import org.apache.tapestry.internal.structure.Page;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
 
-public class EditFeed {
+public class EditFeed extends ProtectedPage {
 
 	@Persist
 	private int feedId;
 	
     @Inject
     private FeedDao feedDao;
+    
+    @InjectPage
+    private EditFeed editFeed;
 
     @Persist
 	private Feed feed;
@@ -25,14 +28,21 @@ public class EditFeed {
        this.feedId = id;
     }
     
+    
     @OnEvent(value="prepare")
     void initializeFeed() {
-    	setFeed(feedDao.getFeed(feedId));
+    	if(feedId != 0) {
+    		setFeed(feedDao.getFeed(feedId));	
+    	} else {
+    		setFeed(new Feed());
+    	}
     }
 
     @OnEvent(value="success")
-	public void saveResults() {
+	public Object saveResults() {
 		feedDao.saveResult(feed);
+		editFeed.setFeedId(feed.getId());
+		return editFeed;
 	}
 	
 	public Feed getFeed() {
@@ -43,6 +53,17 @@ public class EditFeed {
 		this.feed = feed;
 	}
 
+
+	public int getFeedId() {
+		return feedId;
+	}
+
+
+	public void setFeedId(int feedId) {
+		this.feedId = feedId;
+	}
+
+	
 	
 	
 }
