@@ -104,6 +104,7 @@
         <module>clouddetect-web</module>
         <module>clouddetect-serverclient</module>
         <module>clouddetect-swing</module>
+        <module>clouddetect-scheduling</module>
     </modules>
 
     <reporting>

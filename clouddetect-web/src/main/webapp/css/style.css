@@ -5,9 +5,11 @@ a { color: #0066B3; background: inherit; text-decoration: none;}
 h1 { font: bold 2.1em Arial, Arial, Sans-Serif; color: #036DA7 }
 h2 { font: bold 1.1em Arial, Arial, Sans-Serif; padding: 0; margin: 0; }
 
-div#header{width:100%;overflow:hidden;background: #BBD9EE; }
+<!-- div#header{width:100%;overflow:hidden;background: #BBD9EE; } -->
+div#header{width:100%;overflow:hidden;background-image:url('../images/clouds_crop_blend2.jpg'); background-repeat: no-repeat;}
+
 div#header h1,div#menu{width:770px;margin:0 auto;text-align:left}
-div#header h1{padding: 30px 0 20px;color: #fff}
+div#header h1{padding: 30px 0 20px;color: black}
 
 ul#nav,ul#nav li{list-style-type:none;margin:0;padding:0}
 ul#nav{float:right;font-size: 80%}
@@ -34,8 +36,8 @@ ul#nav li.activelink a,ul#nav li.activelink a:hover{background: #FFF;color: #003
 
 #left .box {
 	
-	padding: 1em;
-	margin: 0 0 1em 0;
+	padding: 5px;
+	margin: 5px;
 	background : #FFF6BF;
 }
 
@@ -69,16 +71,23 @@ img {
 	
 }
 
-<!-- Login -->
-
- label
-{
-width: 4em;
+label#username:label {
+width: 100%;
 float: left;
-text-align: right;
+text-align: left;
+margin-right: 0.5em;
+display: block;
+
+}
+
+#rememberMe:label {
+width: 10%;
+float: left;
+text-align: left;
 margin-right: 0.5em;
 display: block
 }
+
 
 #t-beaneditor-row input {
 	width: 40%;
@@ -89,4 +98,8 @@ display: block
 margin-left: 4.5em;
 }
 
+<!-- tapestry error fix -->
+div.t-error li {
+        margin-left: 20px;
+} 
 

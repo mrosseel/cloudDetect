@@ -31,6 +31,21 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <archiveClasses>true</archiveClasses>
+          
+          <webResources>
+    	     <resource>
+		           <directory>WEB-INF</directory>
+		           <!-- override the destination directory for this resource -->   
+		           <targetPath>WEB-INF</targetPath>
+		           <!-- enable filtering -->
+		           <filtering>true</filtering>
+		           <excludes>
+	               <exclude>*.html</exclude>
+           </excludes>
+         </resource>        
+      </webResources>
+        
+          
         </configuration>
       </plugin>
     </plugins>
