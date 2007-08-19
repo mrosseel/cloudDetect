@@ -66,8 +66,8 @@
 	<!--  Cloud Judging -->
 		
 	<bean id="cloudjudge" class="calculation.CloudJudge">
-		<property name="maxClear"><value>1</value></property>
-		<property name="maxPartialClear"><value>2</value></property>
+		<property name="maxClear"><value>0.5</value></property>
+		<property name="maxPartialClear"><value>1</value></property>
 	</bean>
 	
 	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">

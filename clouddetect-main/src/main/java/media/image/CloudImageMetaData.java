@@ -11,6 +11,7 @@ public class CloudImageMetaData {
     
     private boolean notify;
     private int feedId;
+    private String cloudJudgeResult;
     
     public Date getDate() {
         return date;
@@ -43,4 +44,14 @@ public class CloudImageMetaData {
     public void setNotify(boolean notify) {
         this.notify = notify;
     }
+
+    // TODO dirty hack for presentation
+	public String getCloudJudgeResult() {
+		return cloudJudgeResult;
+	}
+
+	public void setCloudJudgeResult(String cloudJudgeResult) {
+		this.cloudJudgeResult = cloudJudgeResult;
+	}
+    
 }

@@ -40,4 +40,11 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 		getHibernateTemplate().saveOrUpdate(result);
 	}
 
+	// TODO this can be done more efficient...
+	@SuppressWarnings("unchecked")
+	public Result findMostRecentResultByFeedId(long id) {
+		List<Result> list = getHibernateTemplate().find("from Result where feedid=? order by time DESC", id);
+		return (list.size()>0)?list.get(0):null;
+	}
+
 }

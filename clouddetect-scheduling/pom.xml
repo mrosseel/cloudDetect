@@ -6,7 +6,7 @@
       <version>1.0-SNAPSHOT</version>
    </parent>
   <artifactId>clouddetect-scheduling</artifactId>
-  <packaging>jar</packaging>
+  <packaging>war</packaging>
   <name>Cloud Detect Scheduling</name>
   <build>
     <finalName>clouddetect-scheduling</finalName>

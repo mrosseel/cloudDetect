@@ -29,6 +29,8 @@ public class PersistResultToDBSubConsumer implements ImageSubConsumer {
 		result.setResult(metaData.getContrastResult());
 		result.setFeedId(metaData.getFeedId());
 		result.setTime((metaData.getDate() == null)?DateUtil.getCurrentDate():metaData.getDate());
+		result.setCloudJudgeResult(metaData.getCloudJudgeResult());
+		log.warn("Saving result: " + result.getCloudJudgeResult());
 		dao.saveResult(result);
 	}
 

@@ -20,8 +20,7 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
 
     private long transitionTime;
 
-    private int transitionWaitInMinutes = 0
-    ;
+    private int transitionWaitInMinutes = 0;
     
     private CloudJudge cloudJudge;
     
@@ -62,6 +61,7 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
             log.info(result);
             lastResult = result;
         }
+        image.getMetaData().setCloudJudgeResult(result.toString());
     }
 
     private boolean isTransitionWaitOver(CloudImage image) {

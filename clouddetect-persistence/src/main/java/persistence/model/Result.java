@@ -12,6 +12,7 @@ public class Result {
 	private int feedId;
 	private Date time;
 	private double result;
+	private String cloudJudgeResult;
 	
 	
 	public int getFeedId() {
@@ -41,4 +42,11 @@ public class Result {
 	public void setTime(Date time) {
 		this.time = time;
 	}
+	public String getCloudJudgeResult() {
+		return cloudJudgeResult;
+	}
+	public void setCloudJudgeResult(String cloudJudgeResult) {
+		this.cloudJudgeResult = cloudJudgeResult;
+	}
+	
 }
