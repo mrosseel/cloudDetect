@@ -25,3 +25,6 @@ mvn install:install-file -DgroupId=werx -DartifactId=bus \
 # OTHER
 mvn install:install-file -DgroupId=gov.nist.math -DartifactId=Jama \
           -Dversion=1.0.1 -Dpackaging=jar -Dfile=Jama-1.0.1.jar
+
+mvn install:install-file -DgroupId=mhuss.com -DartifactId=astrolib \
+          -Dversion=1.1.4 -Dpackaging=jar -Dfile=AstroLib.jar
