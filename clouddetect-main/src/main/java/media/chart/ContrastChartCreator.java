@@ -81,7 +81,7 @@ public class ContrastChartCreator {
     private JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Cloud Detection", "Time", "value", dataset, true, true, false);
+                "", "Time", "value", dataset, false, true, false);
 
         chart.setBackgroundPaint(Color.white);
 

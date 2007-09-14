@@ -6,11 +6,10 @@
  */
 package calculation;
 
-import media.image.CloudImage;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import media.image.CloudImage;
 import util.Median;
 import calculation.splitters.SlidingWindowSplitter;
 
