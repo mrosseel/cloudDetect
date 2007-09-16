@@ -2,7 +2,6 @@ package media.web;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import media.web.ProxyConfigurator;
 // JUnitDoclet end import
 
 /**

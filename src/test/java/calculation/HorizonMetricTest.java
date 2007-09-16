@@ -1,11 +1,9 @@
 package calculation;
 
-import calculation.LineMedianDifferenceMetric;
-import calculation.splitters.splittermetric.HorizonMetric;
 import junit.framework.TestCase;
-// JUnitDoclet begin import
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
+import calculation.splitters.splittermetric.HorizonMetric;
 
 // JUnitDoclet end import
 

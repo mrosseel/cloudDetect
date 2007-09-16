@@ -6,7 +6,6 @@
  */
 package calculation.splitters;
 
-import media.image.CloudImage;
 
 /**
  * @author Mike

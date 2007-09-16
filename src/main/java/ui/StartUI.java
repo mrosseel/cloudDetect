@@ -2,8 +2,6 @@ package ui;
 
 import java.awt.Frame;
 
-import org.werx.framework.bus.ReflectionBus;
-
 
 /**
 * Just starts the reflectionbus and sets the main frame visible.
@@ -11,7 +9,12 @@ import org.werx.framework.bus.ReflectionBus;
  */
 public class StartUI extends Frame {
 	
-	public boolean start() {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    public boolean start() {
 		CloudWatchFrame frame = new CloudWatchFrame();
 		frame.pack();
 		frame.setVisible(true);

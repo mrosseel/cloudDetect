@@ -33,7 +33,12 @@ import org.jfree.data.time.TimeSeriesCollection;
  */
 public class ContrastChart extends ChartPanel {
 
-	static TimeSeriesCollection dataset = new TimeSeriesCollection();
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    static TimeSeriesCollection dataset = new TimeSeriesCollection();
 	
 	static ChartPanel chartPanel;
 	static  JFreeChart chart;

@@ -14,6 +14,10 @@ import ui.handlers.StatusHandler;
  * @author mikers
  */
 public class StatusPanel extends JPanel {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private String statusMessage =" ";
 	private javax.swing.JProgressBar jProgressBar = null;
 	private javax.swing.JLabel jLabel = null;

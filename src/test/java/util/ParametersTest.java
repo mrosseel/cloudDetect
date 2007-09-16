@@ -2,7 +2,6 @@ package util;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import util.Parameters;
 // JUnitDoclet end import
 
 /**

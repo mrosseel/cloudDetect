@@ -1,9 +1,6 @@
 package ui;
 
 import junit.framework.TestSuite;
-import ui.commands.CommandsSuite;
-import ui.handlers.HandlersSuite;
-import ui.signal.SignalSuite;
 
 
 // JUnitDoclet begin import

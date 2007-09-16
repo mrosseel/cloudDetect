@@ -1,6 +1,5 @@
 package calculation;
 
-import calculation.LineMedianDifferenceMetric;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
 // JUnitDoclet end import

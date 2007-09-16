@@ -6,13 +6,9 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.awt.image.ColorModel;
-import java.awt.image.ImageObserver;
 import java.awt.image.MemoryImageSource;
-import java.awt.image.PixelGrabber;
 import java.net.URL;
 import java.net.URLConnection;
-
-import org.jfree.xml.generator.DefaultModelReader;
 
 import sun.awt.image.InputStreamImageSource;
 

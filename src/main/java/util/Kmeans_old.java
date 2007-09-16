@@ -351,9 +351,9 @@ public class Kmeans_old
 	 */
 	private int allocate()
 	{
-		int nrOfData = this.mData.length;
+//		int nrOfData = this.mData.length;
 		int changes = 0;
-		int size;
+//		int size;
 		int minDistance;
 		int minDistanceCluster = 0;
 		int distance;

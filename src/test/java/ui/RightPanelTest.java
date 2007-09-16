@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  ui.RightPanel rightpanel = null;
+  RightPanel rightpanel = null;
   // JUnitDoclet end class
   
   public RightPanelTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method RightPanelTest
   }
   
-  public ui.RightPanel createInstance() throws Exception {
+  public RightPanel createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new ui.RightPanel();
+    return new RightPanel();
     // JUnitDoclet end method testcase.createInstance
   }
   

@@ -2,7 +2,6 @@ package ui;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import ui.ImagePanel;
 // JUnitDoclet end import
 
 /**

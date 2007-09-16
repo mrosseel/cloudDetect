@@ -1,11 +1,8 @@
 package calculation.splitters;
 
-import javax.swing.JFrame;
-
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.producer.FileClasspathImageProducer;
-import ui.ImagePanel;
 import util.VisualiseSplitterLocation;
 // JUnitDoclet end import
 

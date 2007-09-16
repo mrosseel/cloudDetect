@@ -2,7 +2,6 @@ package util;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import util.MathMethods;
 // JUnitDoclet end import
 
 /**

@@ -1,12 +1,9 @@
 package calculation;
 
-import calculation.LineMedianDifferenceMetric;
-import calculation.Metric;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
 import media.image.producer.FileClasspathImageProducer;
-import media.image.producer.FileImageProducer;
 
 // JUnitDoclet end import
 

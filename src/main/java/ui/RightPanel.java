@@ -16,7 +16,11 @@ import javax.swing.JPanel;
  */
 public class RightPanel extends JPanel {
 
-	private javax.swing.JPanel jPanel = null;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private javax.swing.JPanel jPanel = null;
 	private ui.ImagePanel imagePanel = null;
 	private javax.swing.JPanel jPanel1 = null;
 	private javax.swing.JPanel jPanel11 = null;

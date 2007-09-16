@@ -21,7 +21,12 @@ import ui.handlers.ImagePanelHandler;
 
 public class ImagePanel extends JPanel {
 
-	private static Log log = LogFactory.getLog(ImagePanel.class);
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+    private static Log log = LogFactory.getLog(ImagePanel.class);
 
 	private JPanel panel;
 

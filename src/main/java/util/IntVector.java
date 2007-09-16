@@ -21,7 +21,12 @@ public class IntVector implements Serializable
 // Data members
 ////////////////////////////////////////////////////////////////////////////////
 
-  private static final int DEF_CAPACITY_INCREMENT = 0;
+  /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+
+private static final int DEF_CAPACITY_INCREMENT = 0;
 
   private static final int DEF_INITIAL_CAPACITY = 10;
 

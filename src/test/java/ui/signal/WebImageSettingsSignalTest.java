@@ -2,7 +2,6 @@ package ui.signal;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import ui.signal.WebImageSettingsSignal;
 // JUnitDoclet end import
 
 /**

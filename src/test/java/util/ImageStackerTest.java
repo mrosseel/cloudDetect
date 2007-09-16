@@ -2,9 +2,6 @@ package util;
 
 import javax.media.format.RGBFormat;
 
-import media.image.RGBImageStacker;
-
-
 import junit.framework.TestCase;
 // JUnitDoclet begin import
 // JUnitDoclet end import

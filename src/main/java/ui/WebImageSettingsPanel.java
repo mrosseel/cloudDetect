@@ -16,7 +16,11 @@ import javax.swing.JTextField;
  */
 public class WebImageSettingsPanel extends JPanel {
 
-	private JCheckBox jCheckBox = null;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private JCheckBox jCheckBox = null;
 	private JLabel jLabel = null;
 	private JLabel jLabel1 = null;
 	private JTextField jTextField = null;

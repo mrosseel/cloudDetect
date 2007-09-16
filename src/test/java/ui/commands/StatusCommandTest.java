@@ -2,7 +2,6 @@ package ui.commands;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import ui.commands.StatusCommand;
 // JUnitDoclet end import
 
 /**

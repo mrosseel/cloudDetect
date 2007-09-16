@@ -12,6 +12,10 @@ import org.werx.framework.signals.BusSignal;
  * @author mikers
  */
 public class StatusSignal extends BusSignal {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private String message;
 
     /**

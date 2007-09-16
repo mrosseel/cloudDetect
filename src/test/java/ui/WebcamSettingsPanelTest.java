@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  ui.WebcamSettingsPanel webcamsettingspanel = null;
+  WebcamSettingsPanel webcamsettingspanel = null;
   // JUnitDoclet end class
   
   public WebcamSettingsPanelTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method WebcamSettingsPanelTest
   }
   
-  public ui.WebcamSettingsPanel createInstance() throws Exception {
+  public WebcamSettingsPanel createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new ui.WebcamSettingsPanel();
+    return new WebcamSettingsPanel();
     // JUnitDoclet end method testcase.createInstance
   }
   

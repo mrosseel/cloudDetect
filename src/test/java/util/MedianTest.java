@@ -57,7 +57,7 @@ extends TestCase
   public void testFind() throws Exception {
     // JUnitDoclet begin method find
       double[] testArray = { 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10};
-      double[] testArray2 = { 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10};
+     // double[] testArray2 = { 1, 2 , 3, 4, 5, 6, 7, 8, 9, 10};
       Median.find(testArray, 0, testArray.length-1);
       assertEquals(1, (long) testArray[0]);
       

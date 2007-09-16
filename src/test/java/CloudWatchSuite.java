@@ -1,4 +1,3 @@
-import ui.UiSuite;
 import junit.framework.TestSuite;
 
 

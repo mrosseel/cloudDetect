@@ -2,7 +2,6 @@ package ui.handlers;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import ui.handlers.WebImageSettingsPanelHandler;
 // JUnitDoclet end import
 
 /**

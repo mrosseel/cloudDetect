@@ -271,10 +271,10 @@ public class KMeans {
                                        util.IntVector[] aBins,
                                        double[] aBinMeans) {
 
-    final int div = aElements.length / aBinCount;
-    final int divPlusOne = div + 1;
-    final int mod = aElements.length % aBinCount;
-    util.IntVector bin;
+//    final int div = aElements.length / aBinCount;
+//    final int divPlusOne = div + 1;
+//    final int mod = aElements.length % aBinCount;
+//    util.IntVector bin;
     java.util.Random rand = new java.util.Random();
     for (int i = 0; i != aBinCount; i++) {
       aBins[i] = new IntVector();

@@ -1,12 +1,11 @@
 package calculation.splitters;
 
+import media.image.CloudImage;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import calculation.splitters.splittermetric.HorizonMetric;
 import calculation.splitters.splittermetric.SplitterMetric;
-
-import media.image.CloudImage;
 
 public class BisectionSplitter implements ImageSplitter {
     private static Log log = LogFactory.getLog(BisectionSplitter.class);

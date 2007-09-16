@@ -17,7 +17,11 @@ import org.werx.framework.signals.BusSignal;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImageSignal extends BusSignal {
-	private Image image;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private Image image;
 
 	/**
 	 * 

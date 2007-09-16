@@ -7,9 +7,6 @@
  */
 package calculation.splitters;
 
-import util.Median;
-
-import java.util.Arrays;
 
 /**
  * 

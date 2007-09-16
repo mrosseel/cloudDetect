@@ -31,6 +31,10 @@ public class ImageViewer {
 }
 
 class myFrame extends Frame {
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
     private Image image;
 
     public myFrame(Image image) {

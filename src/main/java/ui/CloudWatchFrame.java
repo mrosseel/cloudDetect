@@ -1,7 +1,6 @@
 package ui;
 
 import java.io.File;
-import java.util.Vector;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -26,6 +25,11 @@ import application.InstanceFactory;
  */
 public class CloudWatchFrame extends JFrame {
     //~ Instance fields ************************************************************************************************
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
     /** ? */
     private ui.ControlPanel controlPanel = null;
@@ -87,7 +91,7 @@ public class CloudWatchFrame extends JFrame {
     public static void main(String[] args) {
         JFrame jframe = new CloudWatchFrame();
         jframe.pack();
-        jframe.show();
+        jframe.setVisible(true);
     }
 
     /**
@@ -151,7 +155,7 @@ public class CloudWatchFrame extends JFrame {
             jMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_X);
             jMenuItem.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        File           selFile = chooseFile();
+//                        File           selFile = chooseFile();
                         //NewFileCommand command = new NewFileCommand(new NewXFileSignal(selFile));
                         //command.execute();
                     }
@@ -204,11 +208,11 @@ public class CloudWatchFrame extends JFrame {
           //  NewXFileSignal signal = new NewXFileSignal(new File("ypy"));
             jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent e) {
-                        File           selFile = chooseFile();
+//                        File           selFile = chooseFile();
                         //WebImageSettingsPanel webImage = new WebImageSettingsPanel();
                         //webImage.show();
             			JMFInit jmf = new JMFInit();
-            			Vector list = jmf.getDevices(null);
+//            			Vector list = jmf.getDevices(null);
             			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
             			jmf.init("v4l:Philips 740 webcam:0");	
             			

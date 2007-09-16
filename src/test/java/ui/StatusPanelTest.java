@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  ui.StatusPanel statuspanel = null;
+  StatusPanel statuspanel = null;
   // JUnitDoclet end class
   
   public StatusPanelTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method StatusPanelTest
   }
   
-  public ui.StatusPanel createInstance() throws Exception {
+  public StatusPanel createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new ui.StatusPanel();
+    return new StatusPanel();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -51,7 +51,7 @@ extends TestCase
   
   public void testSetGetStatusMessage() throws Exception {
     // JUnitDoclet begin method setStatusMessage getStatusMessage
-    java.lang.String[] tests = {"", " ", "a", "A", "ä", "ß", "0123456789", "012345678901234567890", "\n", null};
+    java.lang.String[] tests = {"", " ", "a", "A", "?", "?", "0123456789", "012345678901234567890", "\n", null};
     
     for (int i = 0; i < tests.length; i++) {
       statuspanel.setStatusMessage(tests[i]);

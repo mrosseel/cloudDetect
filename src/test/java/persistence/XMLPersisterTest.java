@@ -2,7 +2,6 @@ package persistence;
 
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import persistence.XMLPersister;
 // JUnitDoclet end import
 
 /**

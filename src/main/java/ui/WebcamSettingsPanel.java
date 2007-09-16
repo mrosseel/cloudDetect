@@ -18,7 +18,11 @@ import java.awt.GridBagConstraints;
  */
 public class WebcamSettingsPanel extends JPanel {
 
-	private JPanel jPanel = null;
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
+    private JPanel jPanel = null;
 	private JPanel jPanel1 = null;
 	/**
 	 * This method initializes 

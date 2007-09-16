@@ -12,10 +12,6 @@ import media.image.CloudImage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import calculation.Metric;
-
-import util.TextProgressBar;
-
 /**
  * Abstract ImageSplitter, provides the framework for all ImageSplitters.
  * Provides pre and post data manipulation methods, and getters/setters for best
