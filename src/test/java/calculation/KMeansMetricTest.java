@@ -1,8 +1,7 @@
-package metrics.splitters;
+package calculation;
 
-import calculation.splitters.AbstractImageSplitter;
-import calculation.splitters.MaxAvgSplitterMetric;
-import calculation.splitters.Splitter;
+import calculation.KMeansMetric;
+import calculation.Metric;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
@@ -17,57 +16,50 @@ import media.image.CloudImageImpl;
 */
 
 
-public class MaxAvgSplitterMetricTest
+public class KMeansMetricTest
 // JUnitDoclet begin extends_implements
 extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  Splitter maxmedianmetric = null;
+  calculation.KMeansMetric kmeansmetric = null;
   // JUnitDoclet end class
   
-  public MaxAvgSplitterMetricTest(String name) {
-    // JUnitDoclet begin method MaxMedianMetricTest
+  public KMeansMetricTest(String name) {
+    // JUnitDoclet begin method KMeansMetricTest
     super(name);
-    // JUnitDoclet end method MaxMedianMetricTest
+    // JUnitDoclet end method KMeansMetricTest
   }
   
-  public calculation.splitters.MaxMedianSplitterMetric createInstance() throws Exception {
+  public calculation.KMeansMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new calculation.splitters.MaxMedianSplitterMetric();
+    return new calculation.KMeansMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   
   protected void setUp() throws Exception {
     // JUnitDoclet begin method testcase.setUp
     super.setUp();
-    maxmedianmetric = createInstance();
+    kmeansmetric = createInstance();
     // JUnitDoclet end method testcase.setUp
-  }
-  
-  public void testMaxMedian() {
-	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-	     AbstractImageSplitter metric = new MaxAvgSplitterMetric();
-	     CloudImage image = new CloudImageImpl(data, 5, 4);
-         metric.split(image);
-	     assertEquals(9.88888888888889, metric.getResult(), 0.0);
-         // strange but acceptable
-         assertEquals(1, metric.getBestSplitterLocation());
-         
-         double[] data2 = { 1,2,3,4,5,6,7,8,9,10,110,120,130,140,150,160,170,180,190,200 };
-         metric = new MaxAvgSplitterMetric();
-         image = new CloudImageImpl(data2, 5, 4);
-         metric.split(image);
-         assertEquals(132.77777777777777, metric.getResult(), 0.0);
-         // it splits in the middle as it should
-         assertEquals(10, metric.getBestSplitterLocation());
   }
   
   protected void tearDown() throws Exception {
     // JUnitDoclet begin method testcase.tearDown
-    maxmedianmetric = null;
+    kmeansmetric = null;
     super.tearDown();
     // JUnitDoclet end method testcase.tearDown
+  }
+  
+  public void testCompute() throws Exception {
+    // JUnitDoclet begin method compute
+	  Metric kmeans = new KMeansMetric();
+	  double[] data = {0,0,0,0,0,1,1,1,1,1};
+	  CloudImage image = new CloudImageImpl(data, 5, 2);
+	  double result = kmeans.compute(image);
+	  assertEquals(1.0, result, 0.0);
+	  
+    // JUnitDoclet end method compute
   }
   
   
@@ -80,13 +72,12 @@ extends TestCase
   */
   public void testVault() throws Exception {
     // JUnitDoclet begin method testcase.testVault
-
     // JUnitDoclet end method testcase.testVault
   }
   
   public static void main(String[] args) {
     // JUnitDoclet begin method testcase.main
-    junit.textui.TestRunner.run(MaxAvgSplitterMetricTest.class);
+    junit.textui.TestRunner.run(KMeansMetricTest.class);
     // JUnitDoclet end method testcase.main
   }
 }

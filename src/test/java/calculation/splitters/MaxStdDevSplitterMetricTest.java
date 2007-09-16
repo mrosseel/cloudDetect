@@ -1,4 +1,4 @@
-package metrics.splitters;
+package calculation.splitters;
 
 import util.VisualiseSplitterLocation;
 import junit.framework.TestCase;

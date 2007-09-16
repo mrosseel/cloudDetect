@@ -1,10 +1,8 @@
-package metrics;
+package calculation;
 
-import calculation.KMeansMetric;
-import calculation.Metric;
+import calculation.StdDevMetric;
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+// JUnitDoclet begin import
 // JUnitDoclet end import
 
 /**
@@ -16,49 +14,43 @@ import media.image.CloudImageImpl;
 */
 
 
-public class KMeansMetricTest
+public class StdDevMetricTest
 // JUnitDoclet begin extends_implements
 extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  calculation.KMeansMetric kmeansmetric = null;
+  calculation.StdDevMetric stddevmetric = null;
   // JUnitDoclet end class
   
-  public KMeansMetricTest(String name) {
-    // JUnitDoclet begin method KMeansMetricTest
+  public StdDevMetricTest(String name) {
+    // JUnitDoclet begin method StdDevMetricTest
     super(name);
-    // JUnitDoclet end method KMeansMetricTest
+    // JUnitDoclet end method StdDevMetricTest
   }
   
-  public calculation.KMeansMetric createInstance() throws Exception {
+  public calculation.StdDevMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new calculation.KMeansMetric();
+    return new calculation.StdDevMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   
   protected void setUp() throws Exception {
     // JUnitDoclet begin method testcase.setUp
     super.setUp();
-    kmeansmetric = createInstance();
+    stddevmetric = createInstance();
     // JUnitDoclet end method testcase.setUp
   }
   
   protected void tearDown() throws Exception {
     // JUnitDoclet begin method testcase.tearDown
-    kmeansmetric = null;
+    stddevmetric = null;
     super.tearDown();
     // JUnitDoclet end method testcase.tearDown
   }
   
   public void testCompute() throws Exception {
     // JUnitDoclet begin method compute
-	  Metric kmeans = new KMeansMetric();
-	  double[] data = {0,0,0,0,0,1,1,1,1,1};
-	  CloudImage image = new CloudImageImpl(data, 5, 2);
-	  double result = kmeans.compute(image);
-	  assertEquals(1.0, result, 0.0);
-	  
     // JUnitDoclet end method compute
   }
   
@@ -77,7 +69,7 @@ extends TestCase
   
   public static void main(String[] args) {
     // JUnitDoclet begin method testcase.main
-    junit.textui.TestRunner.run(KMeansMetricTest.class);
+    junit.textui.TestRunner.run(StdDevMetricTest.class);
     // JUnitDoclet end method testcase.main
   }
 }

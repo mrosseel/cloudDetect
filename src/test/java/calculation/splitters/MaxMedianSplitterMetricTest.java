@@ -1,4 +1,4 @@
-package metrics.splitters;
+package calculation.splitters;
 
 import calculation.splitters.AbstractImageSplitter;
 import calculation.splitters.MaxMedianSplitterMetric;

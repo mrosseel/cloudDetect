@@ -5,7 +5,7 @@
  * Time: 12:20:18 AM
  * To change this template use Options | File Templates.
  */
-package metrics;
+package calculation;
 
 import java.util.Arrays;
 

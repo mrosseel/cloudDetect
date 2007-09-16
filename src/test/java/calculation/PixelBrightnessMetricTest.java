@@ -1,4 +1,4 @@
-package metrics;
+package calculation;
 
 import calculation.PixelBrightnessMetric;
 import junit.framework.TestCase;

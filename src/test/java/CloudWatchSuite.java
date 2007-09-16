@@ -28,7 +28,7 @@ public class CloudWatchSuite
     suite = new TestSuite("cloudwatch");
     
     suite.addTest(application.ApplicationSuite.suite());
-    suite.addTest(metrics.MetricsSuite.suite());
+    suite.addTest(calculation.MetricsSuite.suite());
     suite.addTest(persistence.PersistenceSuite.suite());
     suite.addTest(ui.UiSuite.suite());
     suite.addTest(util.UtilSuite.suite());

@@ -1,4 +1,4 @@
-package metrics;
+package calculation;
 
 import calculation.LineMedianDifferenceMetric;
 import calculation.Metric;

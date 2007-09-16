@@ -1,4 +1,4 @@
-package metrics;
+package calculation;
 
 import calculation.CutoffDifferenceMetric;
 import junit.framework.TestCase;

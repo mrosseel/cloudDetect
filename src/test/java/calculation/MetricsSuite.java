@@ -1,4 +1,4 @@
-package metrics;
+package calculation;
 
 import junit.framework.TestSuite;
 
@@ -28,15 +28,15 @@ public class MetricsSuite
     
     suite = new TestSuite("metrics");
     
-    suite.addTestSuite(metrics.StdDevMetricTest.class);
-    suite.addTestSuite(metrics.splitters.SlidingWindowSplitterTest.class);
-    suite.addTestSuite(metrics.PixelBrightnessMetricTest.class);
-    suite.addTestSuite(metrics.splitters.MaxStdDevSplitterMetricTest.class);
-    suite.addTestSuite(metrics.splitters.MaxMedianSplitterMetricTest.class);
-    suite.addTestSuite(metrics.LineMedianDifferenceMetricTest.class);
-    suite.addTestSuite(metrics.KMeansMetricTest.class);
-    suite.addTestSuite(metrics.HorizonMetricTest.class);
-    suite.addTestSuite(metrics.CutoffDifferenceMetricTest.class);
+    suite.addTestSuite(calculation.StdDevMetricTest.class);
+    suite.addTestSuite(calculation.splitters.SlidingWindowSplitterTest.class);
+    suite.addTestSuite(calculation.PixelBrightnessMetricTest.class);
+    suite.addTestSuite(calculation.splitters.MaxStdDevSplitterMetricTest.class);
+    suite.addTestSuite(calculation.splitters.MaxMedianSplitterMetricTest.class);
+    suite.addTestSuite(calculation.LineMedianDifferenceMetricTest.class);
+    suite.addTestSuite(calculation.KMeansMetricTest.class);
+    suite.addTestSuite(calculation.HorizonMetricTest.class);
+    suite.addTestSuite(calculation.CutoffDifferenceMetricTest.class);
     
     
     

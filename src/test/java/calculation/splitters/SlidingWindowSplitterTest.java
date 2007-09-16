@@ -1,4 +1,4 @@
-package metrics.splitters;
+package calculation.splitters;
 
 import javax.swing.JFrame;
 
