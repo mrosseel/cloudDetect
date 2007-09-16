@@ -14,26 +14,26 @@ import media.image.producer.FileClasspathImageProducer;
  * informations about the tool, the licence and the authors.
  */
 
-public class MaxStdDevSplitterMetricTest
+public class MaxStdDevImageSplitterTest
 // JUnitDoclet begin extends_implements
         extends TestCase
 // JUnitDoclet end extends_implements
 {
     // JUnitDoclet begin class
-    calculation.splitters.MaxStdDevSplitterMetric maxstddevmetric = null;
+    calculation.splitters.MaxStdDevImageSplitter maxstddevmetric = null;
 
     // JUnitDoclet end class
 
-    public MaxStdDevSplitterMetricTest(String name) {
+    public MaxStdDevImageSplitterTest(String name) {
         // JUnitDoclet begin method MaxStdDevMetricTest
         super(name);
         // JUnitDoclet end method MaxStdDevMetricTest
     }
 
-    public calculation.splitters.MaxStdDevSplitterMetric createInstance()
+    public calculation.splitters.MaxStdDevImageSplitter createInstance()
             throws Exception {
         // JUnitDoclet begin method testcase.createInstance
-        return new calculation.splitters.MaxStdDevSplitterMetric();
+        return new calculation.splitters.MaxStdDevImageSplitter();
         // JUnitDoclet end method testcase.createInstance
     }
 
@@ -88,7 +88,7 @@ public class MaxStdDevSplitterMetricTest
 
     public static void main(String[] args) {
         // JUnitDoclet begin method testcase.main
-        junit.textui.TestRunner.run(MaxStdDevSplitterMetricTest.class);
+        junit.textui.TestRunner.run(MaxStdDevImageSplitterTest.class);
         // JUnitDoclet end method testcase.main
     }
 }

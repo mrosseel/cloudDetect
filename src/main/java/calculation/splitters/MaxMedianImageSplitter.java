@@ -7,6 +7,9 @@
  */
 package calculation.splitters;
 
+import util.Median;
+
+import java.util.Arrays;
 
 /**
  * 
@@ -14,14 +17,10 @@ package calculation.splitters;
  * 
  * @author mike
  */
-public class MaxAvgSplitterMetric extends AbstractImageSplitter {
+public class MaxMedianImageSplitter extends AbstractImageSplitter {
 
     protected double calculateValue(double[] data, int from, int to) {
-        double result = 0;
-        for (int i = from; i < to; i++) {
-            result+=data[i];
-        }
-        return result/(to-from+1);
+        return Median.find(data, from, to);
     }
 
     protected void postDataManipulation(double[] data) {
@@ -29,6 +28,6 @@ public class MaxAvgSplitterMetric extends AbstractImageSplitter {
 
     protected void preDataManipulation(double[] data) {
         // sort it, otherwise it won't work
-        //Arrays.sort(data);
+        Arrays.sort(data);
     }
 }

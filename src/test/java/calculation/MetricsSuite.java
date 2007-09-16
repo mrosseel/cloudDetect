@@ -31,8 +31,8 @@ public class MetricsSuite
     suite.addTestSuite(calculation.StdDevMetricTest.class);
     suite.addTestSuite(calculation.splitters.SlidingWindowSplitterTest.class);
     suite.addTestSuite(calculation.PixelBrightnessMetricTest.class);
-    suite.addTestSuite(calculation.splitters.MaxStdDevSplitterMetricTest.class);
-    suite.addTestSuite(calculation.splitters.MaxMedianSplitterMetricTest.class);
+    suite.addTestSuite(calculation.splitters.MaxStdDevImageSplitterTest.class);
+    suite.addTestSuite(calculation.splitters.MaxMedianImageSplitterTest.class);
     suite.addTestSuite(calculation.LineMedianDifferenceMetricTest.class);
     suite.addTestSuite(calculation.KMeansMetricTest.class);
     suite.addTestSuite(calculation.HorizonMetricTest.class);

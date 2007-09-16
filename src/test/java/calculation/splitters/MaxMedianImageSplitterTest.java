@@ -1,7 +1,7 @@
 package calculation.splitters;
 
 import calculation.splitters.AbstractImageSplitter;
-import calculation.splitters.MaxMedianSplitterMetric;
+import calculation.splitters.MaxMedianImageSplitter;
 import calculation.splitters.Splitter;
 import junit.framework.TestCase;
 import media.image.CloudImage;
@@ -17,7 +17,7 @@ import media.image.CloudImageImpl;
 */
 
 
-public class MaxMedianSplitterMetricTest
+public class MaxMedianImageSplitterTest
 // JUnitDoclet begin extends_implements
 extends TestCase
 // JUnitDoclet end extends_implements
@@ -26,15 +26,15 @@ extends TestCase
   Splitter maxmedianmetric = null;
   // JUnitDoclet end class
   
-  public MaxMedianSplitterMetricTest(String name) {
+  public MaxMedianImageSplitterTest(String name) {
     // JUnitDoclet begin method MaxMedianMetricTest
     super(name);
     // JUnitDoclet end method MaxMedianMetricTest
   }
   
-  public calculation.splitters.MaxMedianSplitterMetric createInstance() throws Exception {
+  public calculation.splitters.MaxMedianImageSplitter createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new calculation.splitters.MaxMedianSplitterMetric();
+    return new calculation.splitters.MaxMedianImageSplitter();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -47,7 +47,7 @@ extends TestCase
   
   public void testMaxMedian() {
 	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-	     AbstractImageSplitter metric = new MaxMedianSplitterMetric();
+	     AbstractImageSplitter metric = new MaxMedianImageSplitter();
 	     CloudImage image = new CloudImageImpl(data, 5, 4);
          metric.split(image);
 	     assertEquals(10.0, metric.getResult(), 0.0);
@@ -55,7 +55,7 @@ extends TestCase
          assertEquals(1, metric.getBestSplitterLocation());
          
          double[] data2 = { 1,2,3,4,5,6,7,8,9,10,110,120,130,140,150,160,170,180,190,200 };
-         metric = new MaxMedianSplitterMetric();
+         metric = new MaxMedianImageSplitter();
          image = new CloudImageImpl(data2, 5, 4);
          metric.split(image);
          assertEquals(181.0, metric.getResult(), 0.0);
@@ -64,7 +64,7 @@ extends TestCase
          
          // test sorting
          double[] data3 = { 1,2,3,4,5,6,7,9,8,10,110,120,130,140,150,160,170,180,200,190 };
-         metric = new MaxMedianSplitterMetric();
+         metric = new MaxMedianImageSplitter();
          image = new CloudImageImpl(data3, 5, 4);
          metric.split(image);
          assertEquals(181.0, metric.getResult(), 0.0);
@@ -96,7 +96,7 @@ extends TestCase
   
   public static void main(String[] args) {
     // JUnitDoclet begin method testcase.main
-    junit.textui.TestRunner.run(MaxMedianSplitterMetricTest.class);
+    junit.textui.TestRunner.run(MaxMedianImageSplitterTest.class);
     // JUnitDoclet end method testcase.main
   }
 }

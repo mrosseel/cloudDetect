@@ -14,8 +14,8 @@ import org.apache.commons.logging.LogFactory;
 import util.Median;
 import util.StandardDeviation;
 
-public class MaxStdDevSplitterMetric extends AbstractImageSplitter {
-	private static Log log = LogFactory.getLog(MaxStdDevSplitterMetric.class);
+public class MaxStdDevImageSplitter extends AbstractImageSplitter {
+	private static Log log = LogFactory.getLog(MaxStdDevImageSplitter.class);
 	
 	protected double calculateValue(double[] data, int from, int to) {
 		return StandardDeviation.sdFast(data, from, to)/(to-from+1);
