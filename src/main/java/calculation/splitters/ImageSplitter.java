@@ -4,7 +4,9 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package metrics.splitters;
+package calculation.splitters;
+
+import media.image.CloudImage;
 
 /**
  * @author Mike
@@ -12,7 +14,7 @@ package metrics.splitters;
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public interface Splitter {
+public interface ImageSplitter extends Splitter {
 
-	public int split(double[] data);
+	public void split(CloudImage data);
 }

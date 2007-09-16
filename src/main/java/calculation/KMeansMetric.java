@@ -5,7 +5,7 @@
  * Time: 8:18:01 PM
  * To change this template use Options | File Templates.
  */
-package metrics;
+package calculation;
 
 import util.KMeans;
 

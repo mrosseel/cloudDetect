@@ -39,7 +39,7 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
 		}
 	}
 
-	protected abstract CloudImage produceContent();
+	public abstract CloudImage produceContent();
 	
 	public void stopProducer() {
 		hasStopped = true;

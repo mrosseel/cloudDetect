@@ -58,11 +58,8 @@ public class CloudWatchApp {
 			frame.start();
 			consumer.addSubConsumer(new UIPublishSubConsumer());
 		} else {
-			//JMFInit jmf = new JMFInit();
-			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
-			//jmf.init("v4l:Philips 740 webcam:0");	
-			
-		}//
+		    // nothing to do
+		}
 		producer.start();
 		consumer.start();
 		

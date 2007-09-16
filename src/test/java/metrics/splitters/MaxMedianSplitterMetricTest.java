@@ -1,5 +1,8 @@
 package metrics.splitters;
 
+import calculation.splitters.AbstractImageSplitter;
+import calculation.splitters.MaxMedianSplitterMetric;
+import calculation.splitters.Splitter;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
@@ -20,7 +23,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.splitters.SplitterMetric maxmedianmetric = null;
+  Splitter maxmedianmetric = null;
   // JUnitDoclet end class
   
   public MaxMedianSplitterMetricTest(String name) {
@@ -29,9 +32,9 @@ extends TestCase
     // JUnitDoclet end method MaxMedianMetricTest
   }
   
-  public metrics.splitters.MaxMedianSplitterMetric createInstance() throws Exception {
+  public calculation.splitters.MaxMedianSplitterMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.splitters.MaxMedianSplitterMetric();
+    return new calculation.splitters.MaxMedianSplitterMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -44,16 +47,18 @@ extends TestCase
   
   public void testMaxMedian() {
 	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-	     SplitterMetric metric = new MaxMedianSplitterMetric();
+	     AbstractImageSplitter metric = new MaxMedianSplitterMetric();
 	     CloudImage image = new CloudImageImpl(data, 5, 4);
-	     assertEquals(10.0, metric.compute(image), 0.0);
+         metric.split(image);
+	     assertEquals(10.0, metric.getResult(), 0.0);
          // strange but acceptable
          assertEquals(1, metric.getBestSplitterLocation());
          
          double[] data2 = { 1,2,3,4,5,6,7,8,9,10,110,120,130,140,150,160,170,180,190,200 };
          metric = new MaxMedianSplitterMetric();
          image = new CloudImageImpl(data2, 5, 4);
-         assertEquals(181.0, metric.compute(image), 0.0);
+         metric.split(image);
+         assertEquals(181.0, metric.getResult(), 0.0);
          // strange but acceptable
          assertEquals(16, metric.getBestSplitterLocation());
          
@@ -61,7 +66,8 @@ extends TestCase
          double[] data3 = { 1,2,3,4,5,6,7,9,8,10,110,120,130,140,150,160,170,180,200,190 };
          metric = new MaxMedianSplitterMetric();
          image = new CloudImageImpl(data3, 5, 4);
-         assertEquals(181.0, metric.compute(image), 0.0);
+         metric.split(image);
+         assertEquals(181.0, metric.getResult(), 0.0);
          // strange but acceptable
          assertEquals(16, metric.getBestSplitterLocation());
          

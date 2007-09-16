@@ -1,8 +1,8 @@
 package metrics;
 
+import calculation.CutoffDifferenceMetric;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import metrics.CutoffDifferenceMetric;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.CutoffDifferenceMetric cutoffdifferencemetric = null;
+  calculation.CutoffDifferenceMetric cutoffdifferencemetric = null;
   // JUnitDoclet end class
   
   public CutoffDifferenceMetricTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method CutoffDifferenceMetricTest
   }
   
-  public metrics.CutoffDifferenceMetric createInstance() throws Exception {
+  public calculation.CutoffDifferenceMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.CutoffDifferenceMetric();
+    return new calculation.CutoffDifferenceMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

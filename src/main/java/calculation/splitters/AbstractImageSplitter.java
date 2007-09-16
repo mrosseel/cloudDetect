@@ -5,24 +5,37 @@
  * Time: 2:23:07 AM
  * To change this template use Options | File Templates.
  */
-package metrics.splitters;
+package calculation.splitters;
 
 import media.image.CloudImage;
-import metrics.Metric;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import calculation.Metric;
+
 import util.TextProgressBar;
 
-public abstract class SplitterMetric implements Metric {
+/**
+ * Abstract ImageSplitter, provides the framework for all ImageSplitters.
+ * Provides pre and post data manipulation methods, and getters/setters for best
+ * split and % best split.
+ * @author mike
+ *
+ */
+        
+public abstract class AbstractImageSplitter implements ImageSplitter {
     public static int START_AND_END_AVOIDANCE = 2;
-	private static Log log = LogFactory.getLog(SplitterMetric.class);
+	private static Log log = LogFactory.getLog(AbstractImageSplitter.class);
     private int bestSplitterLocation;
     private int pctSplitterLocation;
     private double result;
+    protected static int NO_MORE_LOCATIONS = -1;
 	
-	public double compute(CloudImage image) {
+	/* (non-Javadoc)
+     * @see metrics.splitters.Splitter#compute(media.image.CloudImage)
+     */
+	public void split(CloudImage image) {
 		double[] data = image.getData();
 		preDataManipulation(data);
 
@@ -36,23 +49,13 @@ public abstract class SplitterMetric implements Metric {
 		double valueDifference;
 		double valueLeft;
 		double valueRight;
-		TextProgressBar progress =
-			new TextProgressBar(
-				40,
-				(double) splitterBegin,
-				(double) splitterEnd);
-
+		
 		for (splitterLocation = splitterBegin;
 			splitterLocation != splitterEnd;
 			splitterLocation++) {
 			valueLeft = calculateValue(data, 0, splitterLocation);
 			valueRight = calculateValue(data, splitterLocation + 1, length - 1);
 			valueDifference = Math.abs(valueRight - valueLeft);
-//			valueDifference =
-//				valueRight * splitterLocation
-//					+ valueLeft * (length - splitterLocation - 1);
-
-			
 
 			if (valueDifference > biggestValueDifference) {
 				biggestValueDifference = valueDifference;
@@ -63,11 +66,6 @@ public abstract class SplitterMetric implements Metric {
                 log.debug("diff = " + valueDifference + " at " + splitterLocation +
                             " left = " + valueLeft + " right = " + valueRight + " bestSplitter = " + bestSplitterLocation);
                 }
-            
-			progress.update(splitterLocation);
-			if (splitterLocation % 1000 == 0) {
-				progress.print();
-			}
 		}
 
 		setResult(biggestValueDifference);
@@ -76,22 +74,21 @@ public abstract class SplitterMetric implements Metric {
 			(int) Math.round(
 				((double) bestSplitterLocation / (double) length * 100)));
 		postDataManipulation(data);
-		System.out.println(
+		log.info(
 			"Best splitter located at pos "
 				+ bestSplitterLocation
 				+ " ("
 				+ 
 				+ ((double) bestSplitterLocation / (double) length * 100)
 				+ " %)");
+	}
 
+        
+	public double getResult() {
 		return result;
 	}
 
-	protected double getResult() {
-		return result;
-	}
-
-	protected void setResult(double result) {
+    public void setResult(double result) {
 		this.result = result;
 	}
 
@@ -103,27 +100,30 @@ public abstract class SplitterMetric implements Metric {
 	 */
 	protected abstract double calculateValue(double[] data, int from, int to);
 
+	/* (non-Javadoc)
+     * @see metrics.splitters.Splitter#getBestSplitterLocation()
+     */
 	public int getBestSplitterLocation() {
 		return bestSplitterLocation;
 	}
 
-	/**
-	 * @param i
-	 */
+	/* (non-Javadoc)
+     * @see metrics.splitters.Splitter#setBestSplitterLocation(int)
+     */
 	public void setBestSplitterLocation(int i) {
 		bestSplitterLocation = i;
 	}
 
-	/**
-	 * @return
-	 */
+	/* (non-Javadoc)
+     * @see metrics.splitters.Splitter#getPctSplitterLocation()
+     */
 	public int getPctSplitterLocation() {
 		return pctSplitterLocation;
 	}
 
-	/**
-	 * @param i
-	 */
+	/* (non-Javadoc)
+     * @see metrics.splitters.Splitter#setPctSplitterLocation(int)
+     */
 	public void setPctSplitterLocation(int i) {
 		pctSplitterLocation = i;
 	}

@@ -4,8 +4,8 @@
  */
 package media.processors;
 
+import calculation.Metric;
 import media.image.CloudImage;
-import metrics.Metric;
 
 /**
  * Calculates a certain metric on a CloudImage, and returns the result.

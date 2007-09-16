@@ -12,6 +12,8 @@ import java.awt.image.PixelGrabber;
 import java.net.URL;
 import java.net.URLConnection;
 
+import org.jfree.xml.generator.DefaultModelReader;
+
 import sun.awt.image.InputStreamImageSource;
 
 /**
@@ -21,6 +23,11 @@ import sun.awt.image.InputStreamImageSource;
  *  
  */
 public class ImageToolkit {
+    private static ColorModel defaultModel;
+    
+    static {
+        defaultModel = ColorModel.getRGBdefault();
+    }
     
 	/**
      * Full path is needed, otherwise a bad Image is returned.
@@ -113,34 +120,23 @@ public class ImageToolkit {
         return (Image) toolkit.createImage(source);
     }
     
-    public void handlesinglepixel(int x, int y, int pixel) {
-    	int alpha = (pixel >> 24) & 0xff;
-    	int red   = (pixel >> 16) & 0xff;
-    	int green = (pixel >>  8) & 0xff;
-    	int blue  = (pixel      ) & 0xff;
-    	// Deal with the pixel as necessary...
-     }
-
-     public void handlepixels(Image img, int x, int y, int w, int h) {
-    	int[] pixels = new int[w * h];
-    	PixelGrabber pg = new PixelGrabber(img, x, y, w, h, pixels, 0, w);
-    	try {
-    	    pg.grabPixels();
-    	} catch (InterruptedException e) {
-    	    System.err.println("interrupted waiting for pixels!");
-    	    return;
-    	}
-    	if ((pg.getStatus() & ImageObserver.ABORT) != 0) {
-    	    System.err.println("image fetch aborted or errored");
-    	    return;
-    	}
-    	for (int j = 0; j < h; j++) {
-    	    for (int i = 0; i < w; i++) {
-    		handlesinglepixel(x+i, y+j, pixels[j * w + i]);
-    	    }
-    	}
-     }
+    public static int getRed(int pixel) {
+        return defaultModel.getRed(pixel);
+    }
     
+    public static int getGreen(int pixel) {
+        return defaultModel.getGreen(pixel);
+    }
+    
+    public static int getBlue(int pixel) {
+        return defaultModel.getBlue(pixel);
+    }
+    
+    public static double getMonochrome(int pixel) {
+        return getRed(pixel)*0.3+getGreen(pixel)*0.59+getBlue(pixel)*0.11;
+    }
+    
+      
     /**
      * testing main.
      * 

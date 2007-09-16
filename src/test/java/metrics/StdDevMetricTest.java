@@ -1,8 +1,8 @@
 package metrics;
 
+import calculation.StdDevMetric;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import metrics.StdDevMetric;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.StdDevMetric stddevmetric = null;
+  calculation.StdDevMetric stddevmetric = null;
   // JUnitDoclet end class
   
   public StdDevMetricTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method StdDevMetricTest
   }
   
-  public metrics.StdDevMetric createInstance() throws Exception {
+  public calculation.StdDevMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.StdDevMetric();
+    return new calculation.StdDevMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

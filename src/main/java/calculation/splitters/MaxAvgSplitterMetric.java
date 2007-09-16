@@ -5,7 +5,7 @@
  * Time: 1:18:09 AM
  * To change this template use Options | File Templates.
  */
-package metrics.splitters;
+package calculation.splitters;
 
 import util.Median;
 
@@ -17,10 +17,14 @@ import java.util.Arrays;
  * 
  * @author mike
  */
-public class MaxMedianSplitterMetric extends SplitterMetric {
+public class MaxAvgSplitterMetric extends AbstractImageSplitter {
 
     protected double calculateValue(double[] data, int from, int to) {
-        return Median.find(data, from, to);
+        double result = 0;
+        for (int i = from; i < to; i++) {
+            result+=data[i];
+        }
+        return result/(to-from+1);
     }
 
     protected void postDataManipulation(double[] data) {
@@ -28,6 +32,6 @@ public class MaxMedianSplitterMetric extends SplitterMetric {
 
     protected void preDataManipulation(double[] data) {
         // sort it, otherwise it won't work
-        Arrays.sort(data);
+        //Arrays.sort(data);
     }
 }

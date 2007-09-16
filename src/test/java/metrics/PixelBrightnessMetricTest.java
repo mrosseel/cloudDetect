@@ -1,8 +1,8 @@
 package metrics;
 
+import calculation.PixelBrightnessMetric;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import metrics.PixelBrightnessMetric;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.PixelBrightnessMetric pixelbrightnessmetric = null;
+  calculation.PixelBrightnessMetric pixelbrightnessmetric = null;
   // JUnitDoclet end class
   
   public PixelBrightnessMetricTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method PixelBrightnessMetricTest
   }
   
-  public metrics.PixelBrightnessMetric createInstance() throws Exception {
+  public calculation.PixelBrightnessMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.PixelBrightnessMetric();
+    return new calculation.PixelBrightnessMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

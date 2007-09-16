@@ -5,7 +5,7 @@
  * Time: 10:34:16 PM
  * To change this template use Options | File Templates.
  */
-package metrics;
+package calculation;
 
 import media.image.CloudImage;
 import util.StandardDeviation;

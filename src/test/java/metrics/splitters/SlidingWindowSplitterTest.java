@@ -1,11 +1,12 @@
 package metrics.splitters;
 
+import javax.swing.JFrame;
+
 import junit.framework.TestCase;
-// JUnitDoclet begin import
 import media.image.CloudImage;
-import metrics.LineMedianDifferenceMetric;
-import metrics.Metric;
-import metrics.splitters.SlidingWindowSplitter;
+import media.image.producer.FileClasspathImageProducer;
+import ui.ImagePanel;
+import util.VisualiseSplitterLocation;
 // JUnitDoclet end import
 
 /**
@@ -23,7 +24,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.splitters.SlidingWindowSplitter slidingwindowsplitter = null;
+  calculation.splitters.SlidingWindowSplitter slidingwindowsplitter = null;
   // JUnitDoclet end class
   
   public SlidingWindowSplitterTest(String name) {
@@ -32,9 +33,9 @@ extends TestCase
     // JUnitDoclet end method SlidingWindowSplitterTest
   }
   
-  public metrics.splitters.SlidingWindowSplitter createInstance() throws Exception {
+  public calculation.splitters.SlidingWindowSplitter createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.splitters.SlidingWindowSplitter();
+    return new calculation.splitters.SlidingWindowSplitter();
     // JUnitDoclet end method testcase.createInstance
   }
   
@@ -62,6 +63,15 @@ extends TestCase
       double[] data2={0.0, 0.0, 50.0, 100.0, 100.0};
       location = slidingwindowsplitter.split(data2);
       assertEquals(2, location, 0.0);
+      
+      FileClasspathImageProducer producer = new FileClasspathImageProducer("unit test", "/current_min_daylight.jpg");
+      CloudImage image = producer.produceContent();
+      double[] datax = image.getMonochromeData();
+      System.out.println(datax.length);
+      location = slidingwindowsplitter.split(datax);
+      VisualiseSplitterLocation.showImage(image, location);
+      
+      assertEquals(100, location);
     // JUnitDoclet end method split
   }
   

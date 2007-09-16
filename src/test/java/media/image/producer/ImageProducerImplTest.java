@@ -36,7 +36,7 @@ public class ImageProducerImplTest extends TestCase {
 			// TODO Auto-generated constructor stub
 		}
 
-		protected CloudImage produceContent() {
+		public CloudImage produceContent() {
 			return new CloudImageImpl(data, 2, 4);
 		}
 		

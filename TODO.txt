@@ -1,3 +1,5 @@
+--> refactoring van metrics package, clear split tussen splitters (doen het splitten), 
+splittermetric (gebruikt door splitters) en contrastmetrics (gegeven een split, wat is het contrast)
 media.processors moet eruit
 Image via format omzetten naar short of double!
 Unit test of metrics using the ieper image
@@ -6,7 +8,19 @@ javadoc van alle metrieken: splittermetric, maxmedianmetric
 Maak een ImageScaler
 Bekijk Stacker en bepaal wat ermee te doen (subconsumer?)
 
+--------------------------------------------------------------------------------------------
+--> PixelGrabber implementatie is verkeerd, zie:
+
+http://www.experts-exchange.com/Programming/Programming_Languages/Java/Q_11310297.html
+http://www.docjar.com/docs/api/java/awt/image/PixelGrabber.html
+http://www.flex-compiler.lcs.mit.edu/jdk/api/java.awt.image.PixelGrabber.html
+
+er zitten negatieve waarden in de resultaat array, screws alle berekeningen.
+--------------------------------------------------------------------------------------------
 
 dependencies
+
+
+
 
 dom4j (may be killed I think, used for output)

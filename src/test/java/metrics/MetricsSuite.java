@@ -35,6 +35,7 @@ public class MetricsSuite
     suite.addTestSuite(metrics.splitters.MaxMedianSplitterMetricTest.class);
     suite.addTestSuite(metrics.LineMedianDifferenceMetricTest.class);
     suite.addTestSuite(metrics.KMeansMetricTest.class);
+    suite.addTestSuite(metrics.HorizonMetricTest.class);
     suite.addTestSuite(metrics.CutoffDifferenceMetricTest.class);
     
     

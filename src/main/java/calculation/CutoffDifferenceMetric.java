@@ -4,14 +4,15 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package metrics;
+package calculation;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import calculation.splitters.SlidingWindowSplitter;
+
 import media.image.CloudImage;
-import metrics.splitters.SlidingWindowSplitter;
 
 
 /**

@@ -1,8 +1,8 @@
 package metrics;
 
+import calculation.LineMedianDifferenceMetric;
 import junit.framework.TestCase;
 // JUnitDoclet begin import
-import metrics.LineMedianDifferenceMetric;
 // JUnitDoclet end import
 
 /**
@@ -20,7 +20,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.LineMedianDifferenceMetric linemaxstddevmetric = null;
+  calculation.LineMedianDifferenceMetric linemaxstddevmetric = null;
   // JUnitDoclet end class
   
   public LineMaxStdDevMetricTest(String name) {
@@ -29,9 +29,9 @@ extends TestCase
     // JUnitDoclet end method LineMaxStdDevMetricTest
   }
   
-  public metrics.LineMedianDifferenceMetric createInstance() throws Exception {
+  public calculation.LineMedianDifferenceMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.LineMedianDifferenceMetric();
+    return new calculation.LineMedianDifferenceMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

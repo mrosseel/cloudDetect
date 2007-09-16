@@ -4,10 +4,11 @@
 package media.processors;
 
 import media.image.CloudImage;
-import metrics.Metric;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import calculation.Metric;
 
 public class CalculateMetricOnCloudImageImpl implements CalculateMetricOnCloudImage {
 

@@ -20,6 +20,10 @@ public interface CloudImage {
     public Image getImage();
 
     public double[] getData();
+    
+    public void setData(double[] data, int width, int heigth);
+    
+    public double[] getMonochromeData();
 
     public int getHeight();
     
@@ -28,4 +32,5 @@ public interface CloudImage {
     public String getOrigin();
 
     public void setOrigin(String origin);
+    
 }

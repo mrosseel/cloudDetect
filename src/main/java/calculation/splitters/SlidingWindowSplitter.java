@@ -4,7 +4,7 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package metrics.splitters;
+package calculation.splitters;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,11 +14,13 @@ import util.MathMethods;
 /**
  * Splits data based on a sliding window.
  * 
+ * Takes the min and max of each window, and presumes the biggest difference will be the cutoff point.
+ * Very bad with noisy images, hotpixels, ... .
  * 
  * @author Mike
  * 
  */
-public class SlidingWindowSplitter implements Splitter {
+public class SlidingWindowSplitter implements DoubleSplitter {
     private static Log log = LogFactory.getLog(SlidingWindowSplitter.class);
 
     /*

@@ -9,6 +9,8 @@ package metrics;
 
 import java.util.Arrays;
 
+import calculation.Metric;
+
 import media.image.CloudImage;
 import util.StandardDeviation;
 

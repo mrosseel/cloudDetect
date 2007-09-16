@@ -1,8 +1,8 @@
 package util;
 
+import java.awt.Image;
+
 import junit.framework.TestCase;
-// JUnitDoclet begin import
-import util.ImageToolkit;
 // JUnitDoclet end import
 
 /**
@@ -51,6 +51,8 @@ extends TestCase
   
   public void testLoadClasspathImage() throws Exception {
     // JUnitDoclet begin method loadClasspathImage
+      Image image = ImageToolkit.loadClasspathImage("/current_min.jpg");
+      assertNotNull(image);
     // JUnitDoclet end method loadClasspathImage
   }
   

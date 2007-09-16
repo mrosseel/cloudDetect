@@ -1,5 +1,7 @@
 package metrics;
 
+import calculation.KMeansMetric;
+import calculation.Metric;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
@@ -20,7 +22,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  metrics.KMeansMetric kmeansmetric = null;
+  calculation.KMeansMetric kmeansmetric = null;
   // JUnitDoclet end class
   
   public KMeansMetricTest(String name) {
@@ -29,9 +31,9 @@ extends TestCase
     // JUnitDoclet end method KMeansMetricTest
   }
   
-  public metrics.KMeansMetric createInstance() throws Exception {
+  public calculation.KMeansMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new metrics.KMeansMetric();
+    return new calculation.KMeansMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

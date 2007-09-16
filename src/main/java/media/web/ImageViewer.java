@@ -26,7 +26,7 @@ public class ImageViewer {
         });
         frame.setSize(image.getWidth(null), image.getHeight(null));
         frame.setTitle(title);
-        frame.show();
+        frame.setVisible(true);
     }
 }
 

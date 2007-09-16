@@ -6,6 +6,7 @@
  */
 package media.image;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.MemoryImageSource;
@@ -13,6 +14,8 @@ import java.awt.image.PixelGrabber;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import util.ImageToolkit;
 
 /**
  * @author Mike
@@ -34,8 +37,12 @@ public class CloudImageImpl implements CloudImage {
     
     private int width;
     private int height;
+    private Color color;
 
     public CloudImageImpl(Image image) {
+        if(image == null) {
+            log.error("image passed to constructor is null");
+        }
         setImage(image);
     }
 
@@ -49,6 +56,7 @@ public class CloudImageImpl implements CloudImage {
 
     private void setImage(Image image) {
         this.image = image;
+        this.data = null;
         setWidth(image.getWidth(null));
         setHeight(image.getHeight(null));
     }
@@ -61,8 +69,9 @@ public class CloudImageImpl implements CloudImage {
         return this.image;
     }
 
-    private void setData(double[] data, int width, int height) {
+    public void setData(double[] data, int width, int height) {
         this.data = data;
+        this.image = null;
         setWidth(width);
         setHeight(height);
     }
@@ -132,7 +141,7 @@ public class CloudImageImpl implements CloudImage {
     private int[] getIntArrayFromImage(Image image) {
         int width = image.getWidth(null);
         int height = image.getHeight(null);
-        // start.getGraphics().getColor().getColorSpace().
+        
         int[] pixstart = new int[width * height];
         grab(image, pixstart, width, height);
         return pixstart;
@@ -154,4 +163,13 @@ public class CloudImageImpl implements CloudImage {
         }
     }
 
-}
+    public double[] getMonochromeData() {
+        double[] data = getData();
+        double[] convertedData = new double[data.length];
+        for (int i = 0; i < convertedData.length; i++) {
+            convertedData[i] = ImageToolkit.getMonochrome((int) Math.round(data[i]))/2.55;
+        }
+        return convertedData;
+    }
+
+   }

@@ -4,13 +4,14 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-package metrics;
+package calculation;
 
 import media.image.CloudImage;
-import metrics.splitters.SlidingWindowSplitter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import calculation.splitters.SlidingWindowSplitter;
 
 import util.Median;
 
@@ -32,7 +33,7 @@ public class LineMedianDifferenceMetric implements Metric {
 	 * @see metrics.Metric#compute(short[])
 	 */
 	public double compute(CloudImage image) {
-		double[] data = image.getData();
+		double[] data = image.getMonochromeData();
         double median;
         
 		int width = image.getWidth();

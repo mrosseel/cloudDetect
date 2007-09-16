@@ -1,8 +1,12 @@
 package metrics;
 
+import calculation.LineMedianDifferenceMetric;
+import calculation.Metric;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
+import media.image.producer.FileClasspathImageProducer;
+import media.image.producer.FileImageProducer;
 
 // JUnitDoclet end import
 
@@ -18,7 +22,7 @@ public class LineMedianDifferenceMetricTest
 // JUnitDoclet end extends_implements
 {
     // JUnitDoclet begin class
-    metrics.LineMedianDifferenceMetric linemediandifferencemetric = null;
+    calculation.LineMedianDifferenceMetric linemediandifferencemetric = null;
 
     // JUnitDoclet end class
 
@@ -28,9 +32,9 @@ public class LineMedianDifferenceMetricTest
         // JUnitDoclet end method LineMedianDifferenceMetricTest
     }
 
-    public metrics.LineMedianDifferenceMetric createInstance() throws Exception {
+    public calculation.LineMedianDifferenceMetric createInstance() throws Exception {
         // JUnitDoclet begin method testcase.createInstance
-        return new metrics.LineMedianDifferenceMetric();
+        return new calculation.LineMedianDifferenceMetric();
         // JUnitDoclet end method testcase.createInstance
     }
 
@@ -50,19 +54,26 @@ public class LineMedianDifferenceMetricTest
 
     public void testCompute() throws Exception {
         // JUnitDoclet begin method compute
-        int[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 100, 100, 100, 100, 100, 100,
-                100, 100 };
+        int[] data = {  0, 0, 0, 0, 
+                        0, 0, 0, 0, 
+                        50, 50, 50, 50, 
+                        100, 100, 100, 100, 
+                        100, 100, 100, 100 };
         Metric metric = new LineMedianDifferenceMetric();
         CloudImage image = new CloudImageImpl(data, 4, 5);
         assertEquals(100.0, metric.compute(image), 0.0);
+        
+        FileClasspathImageProducer producer = new FileClasspathImageProducer("unit test", "/current_min_daylight.jpg");
+        image = producer.produceContent();
+        assertEquals(100.0, metric.compute(image), 0.0);
+        
+        
+        
+        
         // JUnitDoclet end method compute
     }
 
-    public void testSetWidth() throws Exception {
-    // JUnitDoclet begin method setWidth
-    // JUnitDoclet end method setWidth
-    }
-
+  
     /**
      * JUnitDoclet moves marker to this method, if there is not match for them
      * in the regenerated code and if the marker is not empty. This way, no test

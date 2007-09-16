@@ -5,7 +5,7 @@
  * Time: 2:30:11 AM
  * To change this template use Options | File Templates.
  */
-package metrics.splitters;
+package calculation.splitters;
 
 
 import org.apache.commons.logging.Log;
@@ -14,7 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import util.Median;
 import util.StandardDeviation;
 
-public class MaxStdDevSplitterMetric extends SplitterMetric {
+public class MaxStdDevSplitterMetric extends AbstractImageSplitter {
 	private static Log log = LogFactory.getLog(MaxStdDevSplitterMetric.class);
 	
 	protected double calculateValue(double[] data, int from, int to) {
