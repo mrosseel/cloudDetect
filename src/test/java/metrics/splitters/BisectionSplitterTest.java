@@ -1,11 +1,11 @@
 package metrics.splitters;
 
-import util.VisualiseSplitterLocation;
 import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
 import media.image.producer.FileClasspathImageProducer;
-import metrics.splitter.BisectionSplitter;
+import util.VisualiseSplitterLocation;
+import calculation.splitters.BisectionSplitter;
 
 // JUnitDoclet end import
 
