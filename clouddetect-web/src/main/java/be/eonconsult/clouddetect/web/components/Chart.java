@@ -26,9 +26,12 @@ import org.apache.tapestry.corelib.mixins.RenderInformals;
 import org.apache.tapestry.services.Response;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.joda.time.DateTime;
 
 import persistence.dao.ResultDao;
 import persistence.model.Result;
+import util.AstroUtil;
+import util.RiseSetPair;
 import application.InstanceFactory;
 
 
@@ -43,7 +46,7 @@ public class Chart {
 	private int width;
 	
 	@Parameter
-	private int hours;
+	private int day;
 	
 	@Parameter
 	private List<?> _context;
@@ -132,14 +135,19 @@ public class Chart {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
         
-        List<Result> results = dao.findResultsFromThePastHours(hours,id);
+//        List<Result> results = dao.findResultsFromThePastHours(hours,id);
+        RiseSetPair pair = AstroUtil.getLastNight(50, 4, new DateTime(), day);
+        List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
+        
         
         if(results!=null) {
-        	log.info("number of results: " + results.size());
+        	log.debug("number of results: " + results.size());
         	creator.addValue(name,results);	
         }
         
-        return creator.getJFreeChart();
+        JFreeChart result = creator.getJFreeChart();
+        result.setTitle("Night of " + pair.getRise().toString("dd/MM/YY") + " to " + pair.getSet().toString("dd/MM/YY"));
+        return result;
 	}
 }
 
