@@ -19,6 +19,8 @@ import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
 import org.jfree.chart.axis.LogarithmicAxis;
+import org.jfree.chart.plot.Marker;
+import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYItemRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -26,10 +28,11 @@ import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
+import org.jfree.ui.RectangleAnchor;
 import org.jfree.ui.RectangleInsets;
+import org.jfree.ui.TextAnchor;
 
 import persistence.model.Result;
-
 import util.DateUtil;
 
 /**
@@ -43,6 +46,8 @@ public class ContrastChartCreator {
     ChartPanel chartPanel;
 
     JFreeChart chart;
+    
+    String title;
 
     private HashMap<String,TimeSeries> timeSeriesMap = new HashMap<String,TimeSeries>();
 
@@ -53,7 +58,12 @@ public class ContrastChartCreator {
      * @param title
      *            the frame title.
      */
+    public ContrastChartCreator(String title) {
+    	this.title = title;
+    }
+    
     public ContrastChartCreator() {
+    	this("");
     }
 
     public  JFreeChart getJFreeChart() {
@@ -81,12 +91,9 @@ public class ContrastChartCreator {
     private JFreeChart createChart(XYDataset dataset) {
 
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "", "Time", "value", dataset, false, true, false);
+                title, "", "value", dataset, false, true, false);
 
         chart.setBackgroundPaint(Color.white);
-
-//        StandardLegend sl = (StandardLegend) chart.getLegend();
-//        sl.setDisplaySeriesShapes(true);
 
         XYPlot plot = chart.getXYPlot();
 
@@ -94,7 +101,10 @@ public class ContrastChartCreator {
         plot.setDomainGridlinePaint(Color.white);
         plot.setRangeGridlinePaint(Color.white);
         // ValueAxis val = plot.getRangeAxis();
+        
+        
 
+        // contrast axis
         LogarithmicAxis val = new LogarithmicAxis("Contrast");
         val.setRange(0, 100);
         val.setLog10TickLabelsFlag(false);
@@ -104,7 +114,39 @@ public class ContrastChartCreator {
         plot.setRangeCrosshairVisible(true);
         plot.setOutlinePaint(Color.cyan);
         plot.setBackgroundPaint(new GradientPaint( 0.0f, 0.0f, Color.green, 480.0f, 480.0f, Color.lightGray ));
+        
+        // date axis
+        DateAxis axis = (DateAxis) plot.getDomainAxis();
+        axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
+        axis.setUpperMargin(0.11);
+//        axis.setLowerMargin(0.50);
 
+        
+////      set axis margins to allow space for marker labels...
+//        final DateAxis domainAxis = new DateAxis("Time");
+//        domainAxis.setUpperMargin(0.50);
+//        plot.setDomainAxis(domainAxis);
+//
+//        final ValueAxis rangeAxis = plot.getRangeAxis();
+//        rangeAxis.setUpperMargin(0.30);
+//        rangeAxis.setLowerMargin(0.50);
+        
+        
+        // markers
+        final Marker clear = new ValueMarker(1);
+        clear.setPaint(Color.green);
+        clear.setLabel("Clear");
+        clear.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
+        clear.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
+        plot.addRangeMarker(clear);
+
+        final Marker partClear = new ValueMarker(2);
+        partClear.setPaint(Color.orange);
+        partClear.setLabel("Partly Clear");
+        partClear.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
+        partClear.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
+        plot.addRangeMarker(partClear);
+        
         XYItemRenderer r = plot.getRenderer();
         if (r instanceof XYLineAndShapeRenderer) {
             XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
@@ -112,8 +154,7 @@ public class ContrastChartCreator {
             renderer.setShapesFilled(true);
         }
 
-        DateAxis axis = (DateAxis) plot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
+        
         return chart;
     }
 
