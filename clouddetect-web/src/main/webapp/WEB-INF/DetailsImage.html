@@ -1,0 +1,19 @@
+<t:border xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
+
+
+
+
+<div id="results">
+
+	<h1>${feed.name}</h1>
+	<h4>${feed.locationfreeform}</h4>
+
+	<h4>Warning: this page will not give notifications, please <t:pagelink t:context="context" t:page="Details">return to the details screen</t:pagelink></h4>
+<!--	<center><h1>Current cloud status: ${cloudstatus}</h1></center> -->
+	<img src="${feed.source}"/>
+</div>
+
+
+</t:border>

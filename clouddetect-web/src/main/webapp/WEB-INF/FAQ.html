@@ -1,0 +1,177 @@
+<t:border xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<div id="results">
+<!--
+	<t:actionlink>See the current image</t:actionlink>
+	-->
+	
+	<a href="#1">What is the purpose of this website?</a>
+	<p/>
+	<a href="#2">How is the cloud cover measured?</a>
+	<p/>
+	<a href="#3">What's this low cost webcam solution you talk about?</a>
+	<p/>
+	<a href="#4">Why would I share my cloud cover results?</a>
+	<p/>
+	<a href="#5">Can I get your software/algorithms and do this offline?</a>
+	<p/>
+	<a href="#6">Can you implement feature X/Y?</a>
+	<p/>
+	<a href="#7">You will eat all my bandwidth!!</a>
+	<p/>
+	<a href="#8">You will be ruined by bandwidth costs!</a>
+	<p/>
+	<a href="#9">What's in the future?</a>
+	<p/>
+
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="1" name="1"/>
+	</p>				
+	<h3>
+		<span>What is the purpose of this website?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Cloudwatch.net wants to gather real-time measurements of cloud status (clear, partially clear, cloudy) at night.
+		Amateur astronomers (and possibly others) can then monitor the cloud status in their city/region and take appropriate action such as going out to observe, 
+		close the observatory during a remote imaging session, ...
+		</p>
+	
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="2" name="2"/>
+	</p>				
+	<h3>
+		<span>How is the cloud cover measured?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		In principle, cloudwatch.net doesn't care how the cloud coverage is measured, all (correct) methods are welcomed.
+		At the moment we support the in-house developed <a href="#3">low-cost webcam solution</a>, 
+		but as soon as someone offers to put his Boltwood Sky Sensor measurements online that will be supported as well.
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="3" name="3"/>
+	</p>				
+	<h3>
+		<span>What's this low cost webcam solution you talk about?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Since the only commercially available cloud sensor is kinda pricey, a low cost webcam method was developed and tested.
+		In short: if you can get an image from your webcam online, we can measure the cloud cover it sees.
+		The good thing about it is that you don't need a PC running 24/7 (more about that at the webcam solution pages).
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="4" name="4"/>
+	</p>				
+	<h3>
+		<span>Why would I share my cloud cover results?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Whether you have a commercial sky sensor or a webcam solution, sharing is the main goal of this website.
+		Besides the fact that it should make you feel good, publishing your results enables less equiped astronomers 
+		in your neighbourhood to enhance their hobby. What's in it for you? The cloud cover is calculated for you and
+		presented in a nice graph, notifications, statistics, ... . People providing their measurements will also have
+		a special place in my heart, possibly resulting in some extra features for them. 
+		Plus, when you're on a trip/renting a remote observatory, maybe
+		someone has published his results and you can benefit from them.
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="5" name="4"/>
+	</p>				
+	<h3>
+		<span>Can I get your software/algorithms and do this offline?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		In order for this website to be useful, I would really love it if you shared your results!
+		If you really don't have the bandwidth, you could find someone in the neighbourhood who does.
+		There are no secrets though, so I can explain you the algorithm if you want to reimplement the webcam solution.
+		I'm not opposed to open sourcing the software, but it's kinda low on the priority list at the moment.
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="6" name="6"/>
+	</p>				
+	<h3>
+		<span>Can you implement feature X/Y?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Time is limited so not all feature requests will be implemented, but I value the input!
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="7" name="7"/>
+	</p>				
+	<h3>
+		<span>You will eat all my bandwidth!!</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Calm down! A 640x480 image with low jpeg compression is only 64Kb. Suppose I poll your webcam every 5 minutes for one month. 
+		This results in an average upload of 548 Mb per month. If I poll every minute it's 2.7 Gb per month. In most parts of the world,
+		these are reasonable bandwidths. I'm also looking into limiting the upload to the night only, slashing these figures at least by
+		half. The webcam image itself can be requested from cloudwatch.net by users, but it's not refreshed automatically and put on a 
+		non-bookmarkable page to limit traffic (disabling this view might be implemented in a later stage).
+		</p>
+	<!-- ****************************************************************************************** -->
+	<p>
+		<a id="8" name="8"/>
+	</p>				
+	<h3>
+		<span>You will be ruined by bandwidth costs!</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		Possibly...I've tried to limit the bandwidth usage to a minimum. Ideally I would run this in a data center with lots of 
+		bandwidth. In order to finance this I'm considering an add-supported free version and an ad-free subscription version.
+		I'll try to give the free version as much features as possible, the really bandwidth-hungry features will be reserved
+		for the subscription version. It's a balance which will have to be figured out as we go.
+		</p>
+	<!-- ****************************************************************************************** -->
+	
+	<p>
+		<a id="9" name="9"/>
+	</p>				
+	<h3>
+		<span>What's in the future?</span>
+	</h3>
+	<p>
+		<b>
+			<span title="Answer to this question" style="cursor: help;">A.</span>
+		</b>
+		With a decent grid of measuring stations, you could predict when clouds will arrive at your location (wind direction + stations downwind).
+		I could implement SMS services to notify you. Enterprising hardware people could develop an interface between the website and your observatory roll-off roof,
+		so it can open/close automatically. Statistics about average cloud cover for your site could be calculated, etc ...
+		</p>
+<!-- ****************************************************************************************** -->
+
+
+	
+</div>
+
+
+</t:border>

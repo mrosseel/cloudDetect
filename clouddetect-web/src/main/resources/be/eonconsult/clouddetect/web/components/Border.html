@@ -37,7 +37,8 @@
   <ul id="nav">
    <li><a t:type="PageLink" t:page="Start">${message:top.home}</a></li>
    <li><a t:type="PageLink" t:page="Register">${message:top.register}</a></li>
-   <li><a t:type="PageLink" t:page="About">${message:top.about}</a></li>
+   <li><a t:type="PageLink" t:page="FAQ">${message:top.faq}</a></li>
+   <li><a t:type="PageLink" t:page="Hardware">${message:top.hardware}</a></li>
   </ul>
  </div>
 </div>
@@ -63,8 +64,8 @@
 	<div class="box">
 				<h2>Actions :</h2>
 				<ul>
-				<li><a href="http://www.minimalistic-desiuoeugn.info">My Feeds</a></li>
-				<li><a href="http://www.historyexplorer.net">Add this Feed</a></li>
+				<li><a href="">My Feeds</a></li>
+				<li><a href="">Add this Feed</a></li>
 				</ul>
 	</div>
 		
@@ -73,5 +74,14 @@
 	</div>
 </div>
 
+<t:if test="tracking">
+<!-- google analytics -->
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-608595-3";
+urchinTracker();
+</script>
+</t:if>
 </body>
 </html>

@@ -6,10 +6,14 @@ import org.apache.commons.logging.Log;
 import org.apache.tapestry.ioc.MappedConfiguration;
 import org.apache.tapestry.ioc.OrderedConfiguration;
 import org.apache.tapestry.ioc.annotations.InjectService;
+import org.apache.tapestry.services.ApplicationStateContribution;
+import org.apache.tapestry.services.ApplicationStateCreator;
 import org.apache.tapestry.services.Request;
 import org.apache.tapestry.services.RequestFilter;
 import org.apache.tapestry.services.RequestHandler;
 import org.apache.tapestry.services.Response;
+
+import be.eonconsult.clouddetect.Global;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
@@ -77,7 +81,22 @@ public class AppModule
         
         configuration.add("Timing", filter);
     }
+    
+    /*
+    // TODO switch to application scope as soon as strategy is released !!!
+    public void contributeApplicationStateManager(MappedConfiguration<Class, ApplicationStateContribution> configuration)
+    {
+      ApplicationStateCreator<Global> creator = new ApplicationStateCreator<Global>()
+      {
+        public Global create()
+        {
+          return new Global();
+        }
+      };
+    
+      configuration.add(Global.class, new ApplicationStateContribution("session", creator));
+    }
 
-
+*/
 
 }

@@ -8,6 +8,8 @@ import org.apache.tapestry.annotations.Component;
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Path;
 
+import be.eonconsult.clouddetect.Global;
+
 import persistence.model.User;
 
 public class Border {
@@ -16,6 +18,10 @@ public class Border {
 	private User user;
 	
 	private boolean userExists;
+	
+	@ApplicationState
+	private Global global;
+	
 	
     @Inject
     @Path("context:images/webcam5.png")
@@ -41,8 +47,7 @@ public class Border {
 		this.userExists = userExists;
 	}
     
-    
-    
-
-   
+	public boolean isTracking() {
+		return global.isTracking();
+	}
 }

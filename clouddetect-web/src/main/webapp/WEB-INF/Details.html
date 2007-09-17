@@ -3,12 +3,27 @@
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
 
 
+
 <div id="results">
+
+<!--
+		<span t:type="SoundManager" />
+-->
+
+
 	<h1>${feed.name}</h1>
 	<h4>${feed.locationfreeform}</h4>
-	<center><h1>Current cloud status: ${cloudstatus}</h1></center>
-	<t:chart id="prop:feed.id" name="prop:feed.name" width="640" height="480" hours="24"></t:chart>
-	<img src="${feed.source}"/>
+	<div id="textbox"><h1>Current cloud status: ${cloudstatus}</h1></div>
+	<div>
+	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="0"></t:chart>
+	</div>
+	
+	<!--
+	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="1"></t:chart>
+
+	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="2"></t:chart>
+-->
+	<t:actionlink>See the current image</t:actionlink>
 </div>
 
 
