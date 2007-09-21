@@ -48,6 +48,7 @@ public class Schedule {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 	
 	private void schedule(Feed feed) {
 
@@ -76,6 +77,4 @@ public class Schedule {
 			e.printStackTrace();
 		}
 	}
-
-}
 }
