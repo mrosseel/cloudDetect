@@ -40,11 +40,19 @@ public class Schedule {
 		}
 	}
 
+	public void stopScheduler() {
+		try {
+			sched = schedFact.getScheduler();
+			sched.shutdown();
+		} catch (SchedulerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 	private void schedule(Feed feed) {
 
 		// gets the producers, consumers
 		ImageProducer producer = ProducerFactory.getImageProducer(feed.getProducerType());
-		System.out.println(feed.getSource());
 		producer.setSource(feed.getSource());
 		producer.setSourceId(feed.getId());
 		ImageConsumer consumer = InstanceFactory.getImageConsumer();
@@ -69,13 +77,5 @@ public class Schedule {
 		}
 	}
 
-	public void stopScheduler() {
-		try {
-			sched = schedFact.getScheduler();
-			sched.shutdown();
-		} catch (SchedulerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+}
 }
