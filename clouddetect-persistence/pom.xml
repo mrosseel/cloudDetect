@@ -29,12 +29,17 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate</artifactId>
-      <version>3.2.4.sp1</version>
+      <version>3.2.5.ga</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-annotations</artifactId>
-      <version>3.2.1.ga</version>
+      <version>3.3.0.ga</version>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-commons-annotations</artifactId>
+      <version>3.3.0.ga</version>
     </dependency>
     <dependency>
       <groupId>hsqldb</groupId>
@@ -44,7 +49,7 @@
     <dependency>
       <groupId>postgresql</groupId>
       <artifactId>postgresql</artifactId>
-      <version>8.1-407.jdbc3</version>
+      <version>8.2-504.jdbc4</version>
     </dependency>
     <dependency>
       <groupId>org.dbunit</groupId>

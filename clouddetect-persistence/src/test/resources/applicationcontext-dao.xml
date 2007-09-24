@@ -57,7 +57,7 @@
  <bean id="resultdao" class="persistence.dao.ResultDaoImpl" parent="daoTmpl"/>
  <bean id="feeddao" class="persistence.dao.FeedDaoImpl" parent="daoTmpl"/>
  <bean id="userdao" class="persistence.dao.UserDaoImpl" parent="daoTmpl"/>
-
+ <bean id="cloudjudgedao" class="persistence.dao.FeedDaoImpl" parent="daoTmpl"/>
 </beans>
 
 

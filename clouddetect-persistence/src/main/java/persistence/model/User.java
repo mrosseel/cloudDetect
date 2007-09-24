@@ -104,10 +104,7 @@ public class User {
 	}
 
 	@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(
-			//name="USER_FEED", 
-//			joinColumns={@JoinColumn(name="USER_ID")},
-			inverseJoinColumns={@JoinColumn(name="FEED_ID")})
+	@JoinTable(inverseJoinColumns={@JoinColumn(name="FEED_ID")})
 	public Collection<Feed> getFeeds() {
 		return feeds;
 	}

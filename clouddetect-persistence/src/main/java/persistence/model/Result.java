@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity()
 public class Result {
@@ -36,6 +38,8 @@ public class Result {
 	public void setResult(double result) {
 		this.result = result;
 	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	public Date getTime() {
 		return time;
 	}

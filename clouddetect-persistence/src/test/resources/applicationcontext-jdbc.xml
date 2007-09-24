@@ -2,7 +2,8 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-    <alias name="hsql_mem_dataSource" alias="dataSource"/>
+<!--     <alias name="hsql_mem_dataSource" alias="dataSource"/> -->
+        <alias name="postgres_dataSource" alias="dataSource"/>
     
   <bean id="hsql_dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName"><value>org.hsqldb.jdbcDriver</value></property>
@@ -23,7 +24,7 @@
   
    <bean id="postgres_dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName"><value>org.postgresql.Driver</value></property>
-    <property name="url"><value>jdbc:postgresql://polaris.lan:5432/clouddetecttest</value></property>
+    <property name="url"><value>jdbc:postgresql://polaris.lan:5432/clouddetectunittest</value></property>
     <property name="username"><value>mike</value></property>
     <property name="password"><value>198Ttc</value></property>
     </bean>

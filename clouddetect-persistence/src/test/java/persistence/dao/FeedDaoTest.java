@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import persistence.SpringDBTest;
+import persistence.model.CloudJudgeLimits;
 import persistence.model.Feed;
 import persistence.model.User;
 
@@ -16,8 +17,11 @@ public class FeedDaoTest extends SpringDBTest {
     public void testFeed() {
         Feed feed = new Feed();
         User owner = new User();
+        CloudJudgeLimits limits = new CloudJudgeLimits();
         owner.setFirstName("mike");
         owner.setLastName("rosseel");
+        limits.setMaxClear(1);
+        limits.setMaxPartlyClear(2);
         
         feed.setActive(true);
         feed.setDivision(0.7);
@@ -27,6 +31,7 @@ public class FeedDaoTest extends SpringDBTest {
         feed.setPrivate(false);
         feed.setSource("http://miker.homelinux.org/overview.html");
         feed.setOwner(owner);
+        feed.setCloudJudgeLimits(limits);
         
         FeedDao feedDao = (FeedDao) appContext.getBean("feeddao");
         UserDao userDao = (UserDao) appContext.getBean("userdao");
