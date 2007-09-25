@@ -24,8 +24,8 @@ public class CloudImageSubConsumerTest extends TestCase {
 		notify.reset();
 		image = new CloudImageImpl(new double[5], 5, 1, false);
 		judge = new CloudJudge();
-		judge.setMaxClear(1);
-		judge.setMaxPartialClear(2);
+		judge.getCloudJudgeLimits().setMaxClear(1);
+		judge.getCloudJudgeLimits().setMaxPartlyClear(2);
 		cj = new CloudJudgeSubConsumer(CloudJudge.CloudStatus.CLEAR);
 		cj.setCloudJudge(judge);
 		cj.setNotifier(notify);
