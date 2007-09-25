@@ -3,6 +3,7 @@ package be.eonconsult.clouddetect.scheduling;
 import java.util.Date;
 import java.util.List;
 
+import media.image.consumer.CloudJudgeSubConsumer;
 import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageSubConsumer;
 import media.image.producer.ImageProducer;
@@ -18,6 +19,7 @@ import org.quartz.TriggerUtils;
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
 import application.InstanceFactory;
+import calculation.CloudJudge;
 
 public class Schedule {
 	SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
@@ -55,10 +57,17 @@ public class Schedule {
 		// gets the producers, consumers
 		ImageProducer producer = ProducerFactory.getImageProducer(feed.getProducerType());
 		producer.setSource(feed.getSource());
-		producer.setSourceId(feed.getId());
+		producer.setSourceId((int)feed.getId());
 		ImageConsumer consumer = InstanceFactory.getImageConsumer();
+		
+		// construct the cloudjudge
+		CloudJudge cloudJudge = new CloudJudge();
+		cloudJudge.setCloudJudgeLimits(feed.getCloudJudgeLimits());
+		CloudJudgeSubConsumer cloudJudgeSubConsumer = new CloudJudgeSubConsumer();
+		cloudJudgeSubConsumer.setCloudJudge(cloudJudge);
+		
 		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("imagescoringsubconsumer"));
-		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("cloudjudgesubconsumer"));
+		consumer.addSubConsumer(cloudJudgeSubConsumer);
 		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
 
 		JobDetail jobDetail = new JobDetail("producerConsumerFeed" + feed.getId(), null, FeedJob.class);
