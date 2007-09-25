@@ -2,8 +2,8 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
-<!--     <alias name="hsql_mem_dataSource" alias="dataSource"/> -->
-        <alias name="postgres_dataSource" alias="dataSource"/>
+     <alias name="hsql_mem_dataSource" alias="dataSource"/> 
+<!--        <alias name="postgres_dataSource" alias="dataSource"/>-->
     
   <bean id="hsql_dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
     <property name="driverClassName"><value>org.hsqldb.jdbcDriver</value></property>

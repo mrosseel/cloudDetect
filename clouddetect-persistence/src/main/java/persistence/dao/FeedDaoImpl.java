@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import persistence.model.Feed;
-import persistence.model.Result;
 
 public class FeedDaoImpl extends HibernateDaoSupport implements FeedDao {
 
@@ -25,7 +24,7 @@ public class FeedDaoImpl extends HibernateDaoSupport implements FeedDao {
         getHibernateTemplate().saveOrUpdate(feed);
     }
 
-    public Feed getFeed(int id) {
+    public Feed getFeed(long id) {
         return (Feed) getHibernateTemplate().find("from persistence.model.Feed where id = ?", id).get(0);
     }
 
