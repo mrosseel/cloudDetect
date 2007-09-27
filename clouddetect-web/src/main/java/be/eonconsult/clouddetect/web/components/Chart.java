@@ -1,5 +1,6 @@
 package be.eonconsult.clouddetect.web.components;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -56,6 +57,13 @@ public class Chart {
 
 	@Parameter
 	private String name;
+	
+	@Parameter
+	private double maxClear;
+	
+	@Parameter
+	private double maxPartlyClear;
+	
 
 	@Inject
 	private ComponentResources _resources;
@@ -134,6 +142,8 @@ public class Chart {
 	private JFreeChart createChart() {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
+        creator.addMarker(maxClear, Color.green, "Clear");
+        creator.addMarker(maxPartlyClear, Color.orange, "Partly Clear");
         
 //        List<Result> results = dao.findResultsFromThePastHours(hours,id);
         RiseSetPair pair = AstroUtil.getLastNight(50, 4, new DateTime(), day);

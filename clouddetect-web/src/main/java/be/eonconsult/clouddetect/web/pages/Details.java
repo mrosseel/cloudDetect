@@ -1,14 +1,12 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.annotations.Persist;
 
 import persistence.dao.FeedDao;
 import persistence.dao.ResultDao;
+import persistence.model.CloudJudgeLimits;
 import persistence.model.Feed;
 import persistence.model.Result;
 import application.InstanceFactory;
@@ -30,6 +28,9 @@ public class Details {
        this.feed = feedDao.getFeed(this.id);
     }
 
+    public CloudJudgeLimits getLimits() {
+    	return feed.getCloudJudgeLimits();
+    }
 	public Feed getFeed() {
 		return feed;
 	}
