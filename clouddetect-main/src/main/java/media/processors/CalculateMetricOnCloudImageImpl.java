@@ -16,8 +16,6 @@ public class CalculateMetricOnCloudImageImpl implements
     private static Log log = LogFactory
             .getLog(CalculateMetricOnCloudImageImpl.class);
 
-    private double[] data;
-
     private Metric metric;
 
     public double process(CloudImage image) {
