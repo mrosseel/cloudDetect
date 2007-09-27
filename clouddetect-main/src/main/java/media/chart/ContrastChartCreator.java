@@ -6,7 +6,9 @@ package media.chart;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
+import java.awt.Paint;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -50,6 +52,8 @@ public class ContrastChartCreator {
     String title;
 
     private HashMap<String,TimeSeries> timeSeriesMap = new HashMap<String,TimeSeries>();
+    
+    private List<Marker> markers = new ArrayList<Marker>();
 
     /**
      * A demonstration application showing how to create a simple time series
@@ -119,33 +123,11 @@ public class ContrastChartCreator {
         DateAxis axis = (DateAxis) plot.getDomainAxis();
         axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
         axis.setUpperMargin(0.11);
-//        axis.setLowerMargin(0.50);
-
+        //        axis.setLowerMargin(0.50);
         
-////      set axis margins to allow space for marker labels...
-//        final DateAxis domainAxis = new DateAxis("Time");
-//        domainAxis.setUpperMargin(0.50);
-//        plot.setDomainAxis(domainAxis);
-//
-//        final ValueAxis rangeAxis = plot.getRangeAxis();
-//        rangeAxis.setUpperMargin(0.30);
-//        rangeAxis.setLowerMargin(0.50);
-        
-        
-        // markers
-        final Marker clear = new ValueMarker(1);
-        clear.setPaint(Color.green);
-        clear.setLabel("Clear");
-        clear.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
-        clear.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
-        plot.addRangeMarker(clear);
-
-        final Marker partClear = new ValueMarker(2);
-        partClear.setPaint(Color.orange);
-        partClear.setLabel("Partly Clear");
-        partClear.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
-        partClear.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
-        plot.addRangeMarker(partClear);
+        for(Marker currentMarker: markers) {
+        	plot.addRangeMarker(currentMarker);
+        }
         
         XYItemRenderer r = plot.getRenderer();
         if (r instanceof XYLineAndShapeRenderer) {
@@ -156,6 +138,15 @@ public class ContrastChartCreator {
 
         
         return chart;
+    }
+    
+    public void addMarker(double value, Paint paint, String label) {
+    	Marker marker = new ValueMarker(value);
+    	marker.setPaint(paint);
+    	marker.setLabel(label);
+    	marker.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
+    	marker.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
+        markers.add(marker);
     }
 
     public void addValue(String timeSeriesName, double value, Date date) {

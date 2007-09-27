@@ -7,6 +7,8 @@ import notification.UnitTestNotify;
 
 import org.joda.time.DateTime;
 
+import persistence.model.CloudJudgeLimits;
+
 import calculation.CloudJudge;
 
 public class CloudImageSubConsumerTest extends TestCase {
@@ -24,6 +26,7 @@ public class CloudImageSubConsumerTest extends TestCase {
 		notify.reset();
 		image = new CloudImageImpl(new double[5], 5, 1, false);
 		judge = new CloudJudge();
+		judge.setCloudJudgeLimits(new CloudJudgeLimits());
 		judge.getCloudJudgeLimits().setMaxClear(1);
 		judge.getCloudJudgeLimits().setMaxPartlyClear(2);
 		cj = new CloudJudgeSubConsumer(CloudJudge.CloudStatus.CLEAR);

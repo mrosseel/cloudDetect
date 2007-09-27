@@ -65,16 +65,13 @@
 	
 	<!--  Cloud Judging -->
 		
-	<bean id="cloudjudge" class="calculation.CloudJudge">
-		<property name="maxClear"><value>0.5</value></property>
-		<property name="maxPartialClear"><value>1</value></property>
-	</bean>
-	
+		<!--
 	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">
 		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
 		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
 		<property name="notifier"><ref bean="dummynotify"/></property>
 	</bean>
+	-->
 	
 	<bean id="savechartfromdbsubconsumer" class="media.image.consumer.SaveChartFromDBSubConsumer">
 		<property name="saveFilename"><value>${chart.savefilename}</value></property>
