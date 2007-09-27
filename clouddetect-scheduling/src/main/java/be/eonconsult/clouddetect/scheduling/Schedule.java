@@ -70,11 +70,13 @@ public class Schedule {
 		consumer.addSubConsumer(cloudJudgeSubConsumer);
 		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
 
+		// make jobdetail + map
 		JobDetail jobDetail = new JobDetail("producerConsumerFeed" + feed.getId(), null, FeedJob.class);
 		jobDetail.getJobDataMap().put("feed", feed);
 		jobDetail.getJobDataMap().put("producer", producer);
 		jobDetail.getJobDataMap().put("consumer", consumer);
 
+		// make trigger
 		Trigger trigger = TriggerUtils.makeSecondlyTrigger((int) feed.getSecondsBetweenUpdates());
 		trigger.setStartTime(new Date());
 		trigger.setName("FeedTrigger" + feed.getId());
