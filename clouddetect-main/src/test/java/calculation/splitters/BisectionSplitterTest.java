@@ -51,10 +51,10 @@ public class BisectionSplitterTest
 
         // FileClasspathImageProducer producer = new FileClasspathImageProducer(
         // "unit test", "/01-20061009223010-snapshot.jpg");
-        FileClasspathImageProducer producer = new FileClasspathImageProducer(
-                "unit test", "/01-20061013203310-snapshot.jpg");
+//        FileClasspathImageProducer producer = new FileClasspathImageProducer(
+//                "unit test", "/01-20061013203310-snapshot.jpg");
 
-        image = producer.produceContent();
+//        image = producer.produceContent();
         bisectionSplitter = new BisectionSplitter();
         bisectionSplitter.setSplitterMetric(new HorizonMetric());
         bisectionSplitter.split(image);
@@ -64,22 +64,5 @@ public class BisectionSplitterTest
 //        VisualiseSplitterLocation.showImage(image, bisectionSplitter
 //                .getBestSplitterLocation());
 
-    }
-
-    /**
-     * JUnitDoclet moves marker to this method, if there is not match for them
-     * in the regenerated code and if the marker is not empty. This way, no test
-     * gets lost when regenerating after renaming. Method testVault is supposed
-     * to be empty.
-     */
-    public void testVault() throws Exception {
-    // JUnitDoclet begin method testcase.testVault
-    // JUnitDoclet end method testcase.testVault
-    }
-
-    public static void main(String[] args) {
-        // JUnitDoclet begin method testcase.main
-        junit.textui.TestRunner.run(BisectionSplitterTest.class);
-        // JUnitDoclet end method testcase.main
     }
 }
