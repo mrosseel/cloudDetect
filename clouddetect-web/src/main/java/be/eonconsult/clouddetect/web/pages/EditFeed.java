@@ -12,7 +12,7 @@ import persistence.model.Feed;
 public class EditFeed extends ProtectedPage {
 
 	@Persist
-	private int feedId;
+	private long feedId;
 	
     @Inject
     private FeedDao feedDao;
@@ -54,13 +54,13 @@ public class EditFeed extends ProtectedPage {
 	}
 
 
-	public int getFeedId() {
+	public long getFeedId() {
 		return feedId;
 	}
 
 
-	public void setFeedId(int feedId) {
-		this.feedId = feedId;
+	public void setFeedId(long l) {
+		this.feedId = l;
 	}
 
 	
