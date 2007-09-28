@@ -1,5 +1,5 @@
 <jboss-web>
 	<context-root>/</context-root>
-	<virtual-host>www.cloudwatch.net</virtual-host>
+	<virtual-host>${domain}</virtual-host>
 </jboss-web>
 

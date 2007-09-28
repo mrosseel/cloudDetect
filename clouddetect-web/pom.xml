@@ -8,6 +8,7 @@
   <artifactId>clouddetect-web</artifactId>
   <packaging>war</packaging>
   <name>Cloud Detect Web</name>
+
   <build>
     <finalName>clouddetect-web</finalName>
     <plugins>
@@ -29,15 +30,26 @@
       </plugin>
       <plugin>
         <artifactId>maven-war-plugin</artifactId>
+
         <configuration>
           <archiveClasses>true</archiveClasses>
 
-          
+        <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>src/main/resources</directory>
+              <targetPath>WEB-INF</targetPath>
+              <filtering>true</filtering>
+               <includes>
+               <include>jboss-web.xml</include>
+            </includes>        
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
     </plugins>
     <resources>
-      <resource>
+	  <resource>
         <filtering>true</filtering>
         <directory>src/main/resources</directory>
       </resource>
@@ -46,38 +58,7 @@
       <filter>src/main/filters/filter-${env}.properties</filter>
     </filters>
   </build>
-<!-- 
-  <repositories>
-    <repository>
-      <id>apache.snapshots</id>
-      <url>http://people.apache.org/repo/m2-snapshot-repository/</url>
-    </repository>
-    <repository>
-      <id>codehaus.snapshots</id>
-      <url>http://snapshots.repository.codehaus.org</url>
-    </repository>
-    <repository>
-      <id>openqa</id>
-      <name>OpenQA Maven Repository</name>
-      <url>http://maven.openqa.org/</url>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache.snapshots</id>
-      <url>http://people.apache.org/repo/m2-snapshot-repository/</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>howardlewisship.com</id>
-      <url>http://howardlewisship.com/repository</url>
-    </pluginRepository>
-    <pluginRepository>
-      <id>tapestry.snapshots</id>
-      <url>http://people.apache.org/~hlship/tapestry-snapshot-repository</url>
-    </pluginRepository>
-    
-  </pluginRepositories>
--->
+
   <dependencies>
    <dependency>
       <groupId>eonconsult</groupId>
@@ -87,12 +68,12 @@
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-core</artifactId>
-      <version>5.0.5</version>
+      <version>${tapestry-release-version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.tapestry</groupId>
       <artifactId>tapestry-spring</artifactId>
-      <version>5.0.5</version>
+      <version>${tapestry-release-version}</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
@@ -111,6 +92,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+
   <reporting>
     <plugins>
       <plugin>
@@ -123,7 +105,8 @@
       </plugin>
     </plugins>
   </reporting>
+  
   <properties>
-    <tapestry-release-version>5.0.4</tapestry-release-version>
+    <tapestry-release-version>5.0.5</tapestry-release-version>
   </properties>
 </project>
