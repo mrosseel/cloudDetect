@@ -24,28 +24,18 @@ public class DetailsImage {
        this.id = id;
        this.feed = feed;
     }
-    
-    
 
     public Feed getFeed() {
 		return feed;
 	}
 
-
-
 	public void setFeed(Feed feed) {
 		this.feed = feed;
 	}
-	
-	
-
-
 
 	public int getId() {
 		return id;
 	}
-
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -56,7 +46,6 @@ public class DetailsImage {
 		arrayList.add(id);
 		return arrayList;
 	}
-
 
 	public String getCloudStatus() {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");

@@ -2,7 +2,44 @@
 
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
 
+<t:if test="notify">
+	<t:soundmanager/>
+    <button onClick="soundManager.stop()">Stop sound</button>
+</t:if>
 
+<t:block id="testit">
+
+<t:form t:id="transitions">
+ <div>
+      <t:checkbox t:id="clearWarning" label="Warn when Clear"/>
+      <t:label for="clearWarning"/>
+    </div>
+ <div>
+      <t:checkbox t:id="cloudyWarning" label="Warn when Cloudy"/>
+      <t:label for="cloudyWarning"/>
+</div>
+ <div>
+      <t:textfield t:id="delay" label="mins delay before notify" size="1"/>
+      <t:label for="delay"/>
+</div>
+ <div>
+      <t:Submit id="submit" value="Change settings"/>
+</div>
+
+
+
+</t:form>
+
+</t:block> 
+
+<div id="left">
+	<div class="box">
+				<t:delegate to="block:testit"/>			
+	</div>
+
+</div>
+
+<div id="right">
 
 <div id="results">
 
@@ -23,8 +60,8 @@
 
 	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="2"></t:chart>
 -->
-	<t:actionlink>See the current image</t:actionlink>
+	<t:actionlink t:id="currentImage">See the current image</t:actionlink>
 </div>
-
+</div>
 
 </t:border>
