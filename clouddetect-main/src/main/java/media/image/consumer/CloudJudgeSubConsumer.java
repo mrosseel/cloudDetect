@@ -7,100 +7,66 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import calculation.CloudJudge;
+import calculation.CloudStatusMonitor;
 import calculation.CloudJudge.CloudStatus;
 
+/**
+ * Thin facade around the cloudstatusmonitor, which does the heavy lifting.
+ * This class knows about images and notifiers, the monitor only about dates and results.
+ * 
+ * @author mike
+ *
+ */
 public class CloudJudgeSubConsumer implements ImageSubConsumer {
-    private static Log log = LogFactory.getLog(CloudJudgeSubConsumer.class);
-    
-    private CloudStatus toStatus = null;
-    
-    private CloudStatus lastResult = null;
+	private static Log log = LogFactory.getLog(CloudJudgeSubConsumer.class);
 
-    private boolean isWaitingForTransitionTimeout = false;
+	private Notifier notifier;
 
-    private long transitionTime;
+	private CloudStatusMonitor monitor;
 
-    private int transitionWaitInMinutes = 0;
-    
-    private CloudJudge cloudJudge;
-    
-    private Notifier notifier;
-    
-    /**
-     * Standard ToStatus is set to CLEAR
-     *
-     */
-    public CloudJudgeSubConsumer() {
+	/**
+	 * Standard ToStatus is set to CLEAR
+	 * 
+	 */
+	public CloudJudgeSubConsumer() {
 		this(CloudJudge.CloudStatus.CLEAR);
 	}
-    
-    public CloudJudgeSubConsumer(CloudStatus toStatus) {
+
+	public CloudJudgeSubConsumer(CloudStatus toStatus) {
 		super();
+		monitor = new CloudStatusMonitor();
 		setToStatus(toStatus);
 	}
 
 	public void consume(CloudImage image) {
-        CloudStatus result = cloudJudge.judgeClouds(
-                image.getMetaData().getContrastResult());
-        if (isWaitingForTransitionTimeout && result == toStatus
-                && isTransitionWaitOver(image)) {
-            
-            image.getMetaData().setNotify(true);
-            notifier.notify(image);
-            
-            this.isWaitingForTransitionTimeout = false;
-        }
+		CloudStatus result = monitor.getCloudJudge().judgeClouds(image.getMetaData().getContrastResult());
+		boolean shouldNotify = monitor.checkIfNotify(result, image.getMetaData().getDate());
+		if (shouldNotify) {
+			image.getMetaData().setNotify(true);
+			notifier.notify(image);
+		}
+		// TODO do we need this, will always be the same as the
+		// contrastresult...
+		image.getMetaData().setCloudJudgeResult(result.toString());
+	}
 
-        if (result != lastResult) {
-            if (result == toStatus) {
-                isWaitingForTransitionTimeout = true;
-                recordTransition(image);
-            } else {
-                isWaitingForTransitionTimeout = false;
-            }
-            log.info(result);
-            lastResult = result;
-        }
-        image.getMetaData().setCloudJudgeResult(result.toString());
-    }
-
-    private boolean isTransitionWaitOver(CloudImage image) {
-        return (image.getMetaData().getDate().getTime() - transitionTime) > this.transitionWaitInMinutes * 60000;
-    }
-
-    private void recordTransition(CloudImage image) {
-        transitionTime = image.getMetaData().getDate().getTime();
-    }
-    
-    public int getTransitionWaitInMinutes() {
-        return transitionWaitInMinutes;
-    }
-
-    public void setTransitionWaitInMinutes(int transitionWaitInMinutes) {
-        this.transitionWaitInMinutes = transitionWaitInMinutes;
-    }
-
-    public CloudJudge getCloudJudge() {
-        return cloudJudge;
-    }
-
-    public void setCloudJudge(CloudJudge judge) {
-        this.cloudJudge = judge;
-    }
-  
-	public CloudStatus getToStatus() {
-		return toStatus;
+	public void setTransitionWaitInMinutes(int transitionWaitInMinutes) {
+		this.monitor.setTransitionWaitInMinutes(transitionWaitInMinutes);
 	}
 
 	public void setToStatus(CloudStatus toStatus) {
-		this.toStatus = toStatus;
+		this.monitor.setToStatus(toStatus);
+	}
+
+	public void setCloudJudge(CloudJudge judge) {
+		this.monitor.setCloudJudge(judge);
 	}
 
 	public Notifier getNotifier() {
-        return notifier;
-    }
+		return notifier;
+	}
 
-    public void setNotifier(Notifier notifier) {
-        this.notifier = notifier;
-    }
+	public void setNotifier(Notifier notifier) {
+		this.notifier = notifier;
+	}
 }
