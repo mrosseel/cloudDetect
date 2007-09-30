@@ -9,15 +9,18 @@
   <artifactId>clouddetect-persistence</artifactId>
   <name>Cloud Detect Persistence</name>
   <build>
-    <plugins>
-	    
-    </plugins>
     <resources>
       <resource>
         <filtering>true</filtering>
-        <directory>src/main/resources</directory>
+        <directory>${basedir}/src/main/resources</directory>
+        <includes>
+        	<include>**/*</include>
+        </includes>
       </resource>
     </resources>
+    <filters>
+     <filter>src/main/filters/filter-${env}.properties</filter>
+    </filters>
   </build>
   <dependencies>
     <dependency>
