@@ -38,6 +38,7 @@
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.5</source>
@@ -46,21 +47,7 @@
             </plugin>
         </plugins>
     </build>
-<!--
-    <repositories>
-        <repository>
-            <id>central</id>
-            <url>http://repo1.maven.org/maven2</url>
-        </repository>
-    </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>maven-snapshots</id>
-            <url>http://snapshots.repository.codehaus.org</url>
-        </pluginRepository>
-    </pluginRepositories>
--->
     <dependencies>
         <dependency>
 		<groupId>commons-logging</groupId>
@@ -131,6 +118,12 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
+		<configuration>
+	          <formats>
+	            <format>html</format>
+	            <format>xml</format>
+	          </formats>
+        	</configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-javadoc-plugin</artifactId>
