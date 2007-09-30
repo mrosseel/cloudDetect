@@ -22,25 +22,29 @@ public class CloudStatusMonitor {
 
 	    private int transitionWaitInMinutes = 0;
 	    
-	    private CloudJudge cloudJudge;
-	    
 	    /**
 	     * Standard ToStatus is set to CLEAR
 	     *
 	     */
-	    public CloudStatusMonitor() {
-			this(CloudJudge.CloudStatus.CLEAR);
+	    public CloudStatusMonitor(CloudStatus toStatus) {
+			this(toStatus, null);
 		}
 	    
-	    public CloudStatusMonitor(CloudStatus toStatus) {
+	    /**
+	     * 
+	     * @param toStatus the status we want to be notified of if it occurs
+	     * @param currentStatus the current status, if it's clear when we start monitoring, 
+	     * we don't want to be notified of that
+	     */
+	    public CloudStatusMonitor(CloudStatus toStatus, CloudStatus currentStatus) {
 			setToStatus(toStatus);
+			lastResult = currentStatus;
 		}
 
 
 	    public boolean checkIfNotify(CloudStatus result, Date resultDate) {
 			boolean shouldNotify = false;
-			  if (isWaitingForTransitionTimeout && result == toStatus
-		                && isTransitionWaitOver(resultDate)) {
+			  if (result == toStatus && (transitionWaitInMinutes == 0 || (isWaitingForTransitionTimeout && isTransitionWaitOver(resultDate)))) {
 		            shouldNotify = true;
 		            this.isWaitingForTransitionTimeout = false;
 		        }
@@ -74,14 +78,6 @@ public class CloudStatusMonitor {
 	        this.transitionWaitInMinutes = transitionWaitInMinutes;
 	    }
 
-	    public CloudJudge getCloudJudge() {
-	        return cloudJudge;
-	    }
-
-	    public void setCloudJudge(CloudJudge judge) {
-	        this.cloudJudge = judge;
-	    }
-	  
 		public CloudStatus getToStatus() {
 			return toStatus;
 		}
@@ -89,6 +85,4 @@ public class CloudStatusMonitor {
 		public void setToStatus(CloudStatus toStatus) {
 			this.toStatus = toStatus;
 		}
-	    
-	    
 	}

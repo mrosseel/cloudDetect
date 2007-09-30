@@ -23,6 +23,8 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
 	private Notifier notifier;
 
 	private CloudStatusMonitor monitor;
+	
+	private CloudJudge judge;
 
 	/**
 	 * Standard ToStatus is set to CLEAR
@@ -34,12 +36,12 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
 
 	public CloudJudgeSubConsumer(CloudStatus toStatus) {
 		super();
-		monitor = new CloudStatusMonitor();
+		monitor = new CloudStatusMonitor(toStatus);
 		setToStatus(toStatus);
 	}
 
 	public void consume(CloudImage image) {
-		CloudStatus result = monitor.getCloudJudge().judgeClouds(image.getMetaData().getContrastResult());
+		CloudStatus result = judge.judgeClouds(image.getMetaData().getContrastResult());
 		boolean shouldNotify = monitor.checkIfNotify(result, image.getMetaData().getDate());
 		if (shouldNotify) {
 			image.getMetaData().setNotify(true);
@@ -59,7 +61,11 @@ public class CloudJudgeSubConsumer implements ImageSubConsumer {
 	}
 
 	public void setCloudJudge(CloudJudge judge) {
-		this.monitor.setCloudJudge(judge);
+		this.judge = judge;
+	}
+	
+	public CloudJudge getJudge() {
+		return judge;
 	}
 
 	public Notifier getNotifier() {
