@@ -19,9 +19,14 @@
       <t:label for="cloudyWarning"/>
 </div>
  <div>
-      <t:textfield t:id="delay" label="mins delay before notify" size="1"/>
-      <t:label for="delay"/>
+      <t:textfield t:id="delayClear" label="mins delay if it Clears" size="1"/>
+      <t:label for="delayClear"/>
 </div>
+ <div>
+      <t:textfield t:id="delayCloudy" label="mins delay if it gets Cloudy" size="1"/>
+      <t:label for="delayCloudy"/>
+</div>
+
  <div>
       <t:Submit id="submit" value="Change settings"/>
 </div>
@@ -50,7 +55,7 @@
 
 	<h1>${feed.name}</h1>
 	<h4>${feed.locationfreeform}</h4>
-	<div id="textbox"><h1>Current cloud status: ${cloudstatus}</h1></div>
+	<div id="textbox" width="700"><h1>Current cloud status: ${cloudstatus}</h1></div>
 	<div>
 	<t:chart id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" width="700" height="320" day="0"></t:chart>
 	</div>

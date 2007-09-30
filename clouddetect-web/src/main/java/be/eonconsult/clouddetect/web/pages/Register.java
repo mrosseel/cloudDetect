@@ -9,7 +9,7 @@ import be.eonconsult.clouddetect.web.services.PasswordService;
 
 public class Register {
 	
-	RegisterForm registerForm;
+	private RegisterForm registerForm;
 	
 	@Inject
 	private UserDao userDao;
