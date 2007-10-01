@@ -1,7 +1,5 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import java.util.Date;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.tapestry.annotations.Inject;
@@ -14,7 +12,7 @@ import persistence.model.CloudJudgeLimits;
 import persistence.model.Feed;
 import persistence.model.Result;
 import application.InstanceFactory;
-import calculation.CloudStatusMonitor;
+import be.eonconsult.clouddetect.web.services.ClearCloudyMonitor;
 import calculation.CloudJudge.CloudStatus;
 
 public class Details {
@@ -36,29 +34,31 @@ public class Details {
 	private Feed feed;
 
 	@Persist
-	private boolean clearWarning;
+	private boolean clearWarning = false;
 
 	@Persist
-	private boolean cloudyWarning;
+	private boolean cloudyWarning = false;
 
 	@Persist
 	private int delayClear = 20;
 
 	@Persist
 	private int delayCloudy = 0;
-
+	
 	@Persist
-	private CloudStatusMonitor clearMonitor;
+	private ClearCloudyMonitor monitor = new ClearCloudyMonitor();
 
-	@Persist
-	private CloudStatusMonitor cloudyMonitor;
 
 	@Persist
 	private CloudStatus cloudStatusResult;
 
 	@Persist
-	private boolean notify = false;
+	private boolean isClearNotify = false;
 
+	@Persist
+	private boolean isCloudyNotify = false;
+
+	
 	void onActivate(int id) {
 		log.info("in activate with id " + id);
 		this.id = id;
@@ -67,22 +67,10 @@ public class Details {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
 		Result result = dao.findMostRecentResultByFeedId(new Long(feed.getId()).longValue());
 		cloudStatusResult = CloudStatus.valueOf(result.getCloudJudgeResult());
-		if (clearMonitor == null || cloudyMonitor == null) {
-			clearMonitor = new CloudStatusMonitor(CloudStatus.CLEAR, cloudStatusResult);
-			cloudyMonitor = new CloudStatusMonitor(CloudStatus.CLOUDED, cloudStatusResult);
-			log.debug("Creating new cloudStatusMonitor");
-		}
-		clearMonitor.setTransitionWaitInMinutes(delayClear);
-		cloudyMonitor.setTransitionWaitInMinutes(delayCloudy);
-
-		Date now = new Date();
-
-		if (clearWarning) {
-			this.notify = clearMonitor.checkIfNotify(cloudStatusResult, now);
-		}
-		if (cloudyWarning) {
-			this.notify = this.notify || cloudyMonitor.checkIfNotify(cloudStatusResult, now);
-		}
+		monitor.setDelayClear(delayClear);
+		monitor.setDelayCloudy(delayCloudy);
+		isClearNotify = monitor.isClearNotify(cloudStatusResult);
+		isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult);
 	}
 
 	int onPassivate() {
@@ -151,28 +139,22 @@ public class Details {
 		this.delayCloudy = delayCloudy;
 	}
 
-	public boolean isNotify() {
-		return notify;
+	public boolean isClearNotify() {
+		return isClearNotify;
 	}
 
-	public void setNotify(boolean notify) {
-		this.notify = notify;
+	public void setClearNotify(boolean isClearNotify) {
+		this.isClearNotify = isClearNotify;
 	}
 
-	private CloudStatusMonitor getClearMonitor() {
-		return clearMonitor;
+	public boolean isCloudyNotify() {
+		return isCloudyNotify;
 	}
 
-	private void setClearMonitor(CloudStatusMonitor clearMonitor) {
-		this.clearMonitor = clearMonitor;
+	public void setCloudyNotify(boolean isCloudyNotify) {
+		this.isCloudyNotify = isCloudyNotify;
 	}
 
-	private CloudStatusMonitor getCloudyMonitor() {
-		return cloudyMonitor;
-	}
 
-	private void setCloudyMonitor(CloudStatusMonitor cloudyMonitor) {
-		this.cloudyMonitor = cloudyMonitor;
-	}
 
 }

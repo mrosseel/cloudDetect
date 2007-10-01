@@ -2,10 +2,17 @@
 
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
 
-<t:if test="notify">
-	<t:soundmanager/>
-    <button onClick="soundManager.stop()">Stop sound</button>
+<t:if test="clearnotify">
+	it's clear!
+<!--	<t:soundmanager/> -->
+    <button onClick="soundManager.stopAll()">Stop sound</button>
 </t:if>
+<t:if test="cloudynotify">
+it's cloudy!
+<!--	<t:soundmanager/> -->
+    <button onClick="soundManager.stopAll()">Stop sound</button>
+</t:if>
+
 
 <t:block id="testit">
 
