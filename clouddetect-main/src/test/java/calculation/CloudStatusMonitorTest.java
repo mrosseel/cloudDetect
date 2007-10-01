@@ -61,6 +61,20 @@ public class CloudStatusMonitorTest {
 		assertEquals(true, check(CloudStatus.CLEAR, "2007-01-01T20:01+00:00"));
 	}
 	
+	@Test
+	public void testZeroWait() {
+		monitor = new CloudStatusMonitor(CloudJudge.CloudStatus.CLEAR, CloudJudge.CloudStatus.CLEAR);
+		monitor.setTransitionWaitInMinutes(0);
+		assertEquals(false, check(CloudStatus.CLEAR, "2007-01-01T19:00+00:00"));
+		assertEquals(false, check(CloudStatus.CLEAR, "2007-01-01T19:11+00:00"));
+		
+		monitor = new CloudStatusMonitor(CloudJudge.CloudStatus.CLOUDED, CloudJudge.CloudStatus.CLOUDED);
+		monitor.setTransitionWaitInMinutes(0);
+		assertEquals(false, check(CloudStatus.CLOUDED, "2007-01-01T19:00+00:00"));
+		assertEquals(false, check(CloudStatus.CLOUDED, "2007-01-01T19:11+00:00"));
+
+	}
+	
 	private boolean check(CloudStatus status, String iso8601) {
 		return monitor.checkIfNotify(status, new DateTime(iso8601).toDate());
 	}
