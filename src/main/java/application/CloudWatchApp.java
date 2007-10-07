@@ -1,6 +1,6 @@
 package application;
 
-import media.image.consumer.ImageConsumerImpl;
+import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
 import media.image.producer.HTTPImageProducer;
@@ -49,8 +49,7 @@ public class CloudWatchApp {
 //       gets the producers
         HTTPImageProducer producer = InstanceFactory.getHTTPImageProducer();
         
-		// TODO get rid of this ugly cast !!!
-		ImageConsumerImpl consumer = (ImageConsumerImpl) InstanceFactory.getImageConsumer();
+		ImageConsumer consumer = InstanceFactory.getImageConsumer();
 		consumer.addSubConsumer(new ImageScoringSubConsumer());
 
 		if(!config.isCommandLine()) {
@@ -61,7 +60,7 @@ public class CloudWatchApp {
 		    // nothing to do
 		}
 		producer.start();
-		consumer.start();
+		consumer.run();
 		
 	}
 	

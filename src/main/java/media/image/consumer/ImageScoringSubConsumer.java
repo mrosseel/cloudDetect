@@ -15,6 +15,6 @@ public class ImageScoringSubConsumer implements ImageSubConsumer {
         CalculateMetricOnCloudImage proc = InstanceFactory.getBufferProcessor();
         double result = proc.process(image);
         // TODO naughty naughty very naughty
-        InstanceFactory.getContrastChart().addValue(image.getOrigin(), result);
+        InstanceFactory.getContrastChart().addValue(image.getOriginComment(), result);
     }
 }

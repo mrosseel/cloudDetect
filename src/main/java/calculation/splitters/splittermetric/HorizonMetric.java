@@ -4,18 +4,27 @@ import media.image.CloudImage;
 import Jama.Matrix;
 
 public class HorizonMetric implements SplitterMetric {
+    int leftCount;
+    int rightCount;
 
+    // smaller is better
     public double compute(double[] data, int location) {
 //      compute the horizon metric 
-        double[] left = new double[location+1];
-        double[] right = new double[data.length-location-1];
-        System.arraycopy(data, 0, left, 0, location+1);
-        System.arraycopy(data, location+1, right, 0, data.length-location-1);
+        if(location >= data.length-1) {
+            throw new IllegalArgumentException("no compute locations at the last element of the array!");
+        }
+        leftCount = location+1;
+        rightCount = data.length-location-1;
+        double[] left = new double[leftCount];
+        double[] right = new double[rightCount];
+        System.arraycopy(data, 0, left, 0, leftCount);
+        System.arraycopy(data, leftCount, right, 0, rightCount);
         
         double variance1 = computeVariance(left);
         double variance2 = computeVariance(right);
+        double varianceResult = variance1 + variance2;
         
-        return variance1 + variance2; 
+        return (varianceResult==0)?Double.MAX_VALUE:(1.0/varianceResult);
     }
    
     public double compute(CloudImage data, int location) {

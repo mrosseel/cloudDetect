@@ -1,5 +1,10 @@
 package calculation.splitters.splittermetric;
 
+import media.image.CloudImage;
+
 public interface SplitterMetric {
-    public double compute(double[] data, int location);
+    /*
+     * @return higher is better
+     */
+    public double compute(CloudImage data, int location);
 }

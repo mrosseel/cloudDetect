@@ -1,6 +1,6 @@
 package calculation.splitters;
 
-import calculation.splitters.AbstractImageSplitter;
+import calculation.splitters.AbstractGenericImageSplitter;
 import calculation.splitters.MaxMedianImageSplitter;
 import calculation.splitters.Splitter;
 import junit.framework.TestCase;
@@ -47,7 +47,7 @@ extends TestCase
   
   public void testMaxMedian() {
 	  double[] data = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20 };
-	     AbstractImageSplitter metric = new MaxMedianImageSplitter();
+	     AbstractGenericImageSplitter metric = new MaxMedianImageSplitter();
 	     CloudImage image = new CloudImageImpl(data, 5, 4);
          metric.split(image);
 	     assertEquals(10.0, metric.getResult(), 0.0);

@@ -21,7 +21,7 @@ public class HTTPImageProducer extends ImageProducerImpl {
 	public CloudImage produceContent() {
         Image image = WebImageLoader.loadURLImage(getUrl());
         CloudImage result = new CloudImageImpl(image);
-        result.setOrigin(getProducerName());
+        result.setOriginComment(getProducerName());
 		return result;
 	}
 

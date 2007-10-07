@@ -4,6 +4,10 @@ import junit.framework.TestCase;
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
 import media.image.producer.FileClasspathImageProducer;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import util.VisualiseSplitterLocation;
 import calculation.splitters.splittermetric.HorizonMetric;
 
@@ -15,17 +19,19 @@ import calculation.splitters.splittermetric.HorizonMetric;
  * informations about the tool, the licence and the authors.
  */
 
-public class BisectionSplitterTest
+public class StupidSplitterTest
 // JUnitDoclet begin extends_implements
         extends TestCase
 // JUnitDoclet end extends_implements
 {
     // JUnitDoclet begin class
-    BisectionSplitter bisectionSplitter = null;
+    StupidImageSplitter stupidSplitter = null;
 
+    private static Log log = LogFactory.getLog(StupidSplitterTest.class);
+    
     // JUnitDoclet end class
 
-    public BisectionSplitterTest(String name) {
+    public StupidSplitterTest(String name) {
         // JUnitDoclet begin method MaxStdDevMetricTest
         super(name);
         // JUnitDoclet end method MaxStdDevMetricTest
@@ -40,7 +46,7 @@ public class BisectionSplitterTest
 
     protected void tearDown() throws Exception {
         // JUnitDoclet begin method testcase.tearDown
-        bisectionSplitter = null;
+        stupidSplitter = null;
         super.tearDown();
         // JUnitDoclet end method testcase.tearDown
     }
@@ -49,19 +55,27 @@ public class BisectionSplitterTest
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
        CloudImage image = new CloudImageImpl(data, 10, 2);
+       split(image);
+       log.info("best splitter location = " + stupidSplitter.getBestSplitterLocation());
+       assertEquals(9, stupidSplitter.getBestSplitterLocation());
+       
+//         FileClasspathImageProducer producer = new FileClasspathImageProducer(
+//                 "unit test", "/current_min.jpg");
+//         image = producer.produceContent();
+//         split(image);
+//         VisualiseSplitterLocation.showImage(image,
+//         stupidSplitter.getBestSplitterLocation());
 
-         FileClasspathImageProducer producer = new FileClasspathImageProducer(
-                 "unit test", "/current_max.jpg");
-         image = producer.produceContent();
-         bisectionSplitter = new BisectionSplitter();
-         bisectionSplitter.setSplitterMetric(new HorizonMetric());
-         bisectionSplitter.split(image);
-//         assertEquals(9, bisectionSplitter.getBestSplitterLocation());
-         VisualiseSplitterLocation.showImage(image,
-         bisectionSplitter.getBestSplitterLocation());
+
 
     }
 
+    private void split(CloudImage image) {
+        stupidSplitter = new StupidImageSplitter();
+        stupidSplitter.setSplitterMetric(new HorizonMetric());
+        stupidSplitter.split(image);
+    }
+    
     /**
      * JUnitDoclet moves marker to this method, if there is not match for them
      * in the regenerated code and if the marker is not empty. This way, no test
@@ -75,7 +89,7 @@ public class BisectionSplitterTest
 
     public static void main(String[] args) {
         // JUnitDoclet begin method testcase.main
-        junit.textui.TestRunner.run(BisectionSplitterTest.class);
+        junit.textui.TestRunner.run(StupidSplitterTest.class);
         // JUnitDoclet end method testcase.main
     }
 }

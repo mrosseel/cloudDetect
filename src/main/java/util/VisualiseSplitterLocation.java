@@ -8,9 +8,10 @@ import media.image.CloudImage;
 public class VisualiseSplitterLocation {
 
     public static void showImage(CloudImage image, int location) {
+        try {
         double[] datax = image.getData();
         int value = Integer.MIN_VALUE;
-        for (int dataCnt = location - image.getWidth(); dataCnt < location
+        for (int dataCnt = Math.max(0, location - image.getWidth()); dataCnt < location
                 + image.getWidth() && dataCnt < datax.length; dataCnt++) {
             datax[dataCnt] = value;
             if (value == Integer.MAX_VALUE) {
@@ -26,11 +27,13 @@ public class VisualiseSplitterLocation {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
-
-        try {
             Thread.sleep(10000);
-        } catch (InterruptedException e) {
+        }  
+        
+        catch (InterruptedException e) {
             // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(Exception e) {
             e.printStackTrace();
         }
     }

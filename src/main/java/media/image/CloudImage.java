@@ -29,8 +29,16 @@ public interface CloudImage {
     
     public int getWidth();
 
-    public String getOrigin();
+    /**
+     * Get where the image comes from
+     * @return
+     */
+    public String getOriginComment();
 
-    public void setOrigin(String origin);
+    /**
+     * Set where the image comes from
+     * @return
+     */
+    public void setOriginComment(String origin);
     
 }

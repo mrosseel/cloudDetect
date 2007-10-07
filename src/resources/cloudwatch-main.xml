@@ -40,13 +40,14 @@
 	</bean>
 	
 	<bean id="bufferprocessor" class="media.processors.CalculateMetricOnCloudImageImpl">
-		<property name="metric"><ref bean="linemediandifferencemetric"/></property>
+		<property name="metric"><ref bean="pixelbrightnessmetric"/></property>
 	</bean>
 	
-	<bean id="linemediandifferencemetric" class="metrics.LineMedianDifferenceMetric"/>
-	<bean id="cutoffdiferencemetric" class="metrics.CutoffDifferenceMetric"/>
-	<bean id="maxstddevmetric" class="metrics.splitters.MaxStdDevSplitterMetric"/>
-	<bean id="pixelbrightnessmetric" class="metrics.PixelBrightnessMetric"/>
+	<bean id="linemediandifferencemetric" class="calculation.LineMedianDifferenceMetric"/>
+	<bean id="cutoffdiferencemetric" class="calculation.CutoffDifferenceMetric"/>
+	<bean id="maxstddevmetric" class="calculation.splitters.MaxStdDevImageSplitter"/>
+	<bean id="pixelbrightnessmetric" class="calculation.PixelBrightnessMetric"/>
+	<bean id="horizonmetric" class="calculation.HorizonBlablaMetric"/>
 	
 	<!--  UI parts -->
 	

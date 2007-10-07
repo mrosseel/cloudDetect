@@ -21,12 +21,12 @@ public class FileImageProducer extends ImageProducerImpl {
     public CloudImage produceContent() {
         Image image = getImage();
         CloudImage result = new CloudImageImpl(image);
-        result.setOrigin(getProducerName());
+        result.setOriginComment(getProducerName());
         return result;
     }
 
     protected Image getImage() {
-        return ImageToolkit.loadImage(imageToLoad);
+        return ImageToolkit.loadImage(getImageToLoad());
     }
 
     protected String getImageToLoad() {

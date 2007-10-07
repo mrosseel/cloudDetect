@@ -5,22 +5,17 @@ import media.image.CloudImage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import calculation.splitters.splittermetric.SplitterMetric;
-
-public class BisectionSplitter implements ImageSplitter {
+public class BisectionSplitter extends AbstractImageSplitter {
     private static Log log = LogFactory.getLog(BisectionSplitter.class);
     private double bestResult;
-    private int bestSplitterLocation;
-    private SplitterMetric metric;
     
     public void split(CloudImage data) {
-        double[] monoData = data.getMonochromeData();
         bestResult= Double.MAX_VALUE;
         bestSplitterLocation = -1;
-        bisection(monoData, 0, monoData.length-1);
+        bisection(data, 0, data.getHeight()*data.getWidth()-1);
     }
 
-    protected void bisection(double[] data, int start, int end) {
+    protected void bisection(CloudImage data, int start, int end) {
         int location;
         int currentStart = start;
         int currentEnd = end;
@@ -41,7 +36,7 @@ public class BisectionSplitter implements ImageSplitter {
                 log.debug("locationLeft = " + locationLeft + " locationRight = " + locationRight);
                 log.debug("resultLeft = " + resultLeft + " resultRight = " + resultRight);
             }
-            if(resultLeft < resultRight) {
+            if(resultLeft > resultRight) {
                 recordResult(resultLeft, locationLeft);
                 currentEnd = locationRight;
                 
@@ -55,10 +50,8 @@ public class BisectionSplitter implements ImageSplitter {
     }
     
     protected void recordResult(double currentResult, int currentLocation) {
-        if(isFirstBetterResult(currentResult, bestResult)) {
             bestResult = currentResult;
             bestSplitterLocation = currentLocation;
-        }
     }
     
     protected int getOneThird(int start, int end) {
@@ -71,33 +64,5 @@ public class BisectionSplitter implements ImageSplitter {
     
     protected double calculateValue(double[] data, int location) {
         return 0;
-    }
-    
-    protected boolean isFirstBetterResult(double first, double second) {
-        return first < second;
-    }
-
-    public double getResult() {
-        return bestResult;
-    }
-
-    public void setResult(double result) {
-        this.bestResult = result;
-    }
-    
-    public int getBestSplitterLocation() {
-        return bestSplitterLocation;
-    }
-
-    public void setBestSplitterLocation(int i) {
-        bestSplitterLocation = i;
-    }
-
-    public SplitterMetric getMetric() {
-        return metric;
-    }
-
-    public void setMetric(SplitterMetric metric) {
-        this.metric = metric;
     }
 }

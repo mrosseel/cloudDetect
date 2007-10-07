@@ -1,8 +1,9 @@
 package calculation.splitters;
 
 import calculation.splitters.splittermetric.HorizonMetric;
+import calculation.splitters.splittermetric.SplitterMetric;
 
-public class HorizonImageSplitter extends AbstractImageSplitter {
+public class HorizonImageSplitter extends AbstractGenericImageSplitter {
 
     HorizonMetric horizon = new HorizonMetric();
    
@@ -18,6 +19,16 @@ protected void postDataManipulation(double[] data) {
 
 protected double calculateValue(double[] data, int from, int to) {
     return 0;
+}
+
+public void setSplitterMetric(SplitterMetric metric) {
+    // TODO Auto-generated method stub
+    
+}
+
+public SplitterMetric getSplitterMetric() {
+    // TODO Auto-generated method stub
+    return null;
 }
 
 

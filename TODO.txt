@@ -1,5 +1,9 @@
---> refactoring van metrics package, clear split tussen splitters (doen het splitten), 
+refactoring van metrics package, clear split tussen splitters (doen het splitten), 
 splittermetric (gebruikt door splitters) en contrastmetrics (gegeven een split, wat is het contrast)
+--> Resultaten stupid gebruiken voor validatie bisectionsplitter (=smart)
+--> horizonmetric fixen, evt kleureninfo gebruiken. ANders: forget it, moeten
+ calibratie maar overdag doen en werk verder aan echte metrics en config
+
 media.processors moet eruit
 Image via format omzetten naar short of double!
 Unit test of metrics using the ieper image

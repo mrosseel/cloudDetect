@@ -7,6 +7,8 @@
  */
 package calculation.splitters;
 
+import calculation.splitters.splittermetric.SplitterMetric;
+
 
 /**
  * 
@@ -14,7 +16,7 @@ package calculation.splitters;
  * 
  * @author mike
  */
-public class MaxAvgImageSplitter extends AbstractImageSplitter {
+public class MaxAvgImageSplitter extends AbstractGenericImageSplitter {
 
     protected double calculateValue(double[] data, int from, int to) {
         double result = 0;
@@ -30,5 +32,15 @@ public class MaxAvgImageSplitter extends AbstractImageSplitter {
     protected void preDataManipulation(double[] data) {
         // sort it, otherwise it won't work
         //Arrays.sort(data);
+    }
+
+    public void setSplitterMetric(SplitterMetric metric) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public SplitterMetric getSplitterMetric() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

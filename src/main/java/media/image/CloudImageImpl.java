@@ -29,7 +29,7 @@ public class CloudImageImpl implements CloudImage {
     private static Log log = LogFactory.getLog(CloudImageImpl.class);
 
     /** where does this image come from? */
-    private String origin;
+    private String originComment;
 
     private Image image;
 
@@ -112,12 +112,12 @@ public class CloudImageImpl implements CloudImage {
         return Toolkit.getDefaultToolkit().createImage(memImg);
     }
 
-    public String getOrigin() {
-        return origin;
+    public String getOriginComment() {
+        return originComment;
     }
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
+    public void setOriginComment(String origin) {
+        this.originComment = origin;
     }
 
     private double[] intToDoubleArray(int[] data) {

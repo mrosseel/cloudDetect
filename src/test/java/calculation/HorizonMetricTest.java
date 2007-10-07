@@ -49,7 +49,14 @@ public class HorizonMetricTest
                 100, 100, 100, 100, 100 };
         CloudImage image = new CloudImageImpl(data, 4, 5);
         assertEquals(1.8718, horizonMetric.compute(image, 6), 0.0001);
-
+        try {
+            horizonMetric.compute(image, data.length-1);
+            fail();
+        } catch (IllegalArgumentException e) {
+            // expected behaviour
+        }
+        assertEquals(3.65978991, horizonMetric.compute(image, data.length-2), 0.0001);
+        assertEquals(10, horizonMetric.compute(image, data.length-2), 0.0001);
         // JUnitDoclet end method compute
     }
 

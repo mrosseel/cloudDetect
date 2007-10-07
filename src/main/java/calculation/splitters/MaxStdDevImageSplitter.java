@@ -11,10 +11,12 @@ package calculation.splitters;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import calculation.splitters.splittermetric.SplitterMetric;
+
 import util.Median;
 import util.StandardDeviation;
 
-public class MaxStdDevImageSplitter extends AbstractImageSplitter {
+public class MaxStdDevImageSplitter extends AbstractGenericImageSplitter {
 	private static Log log = LogFactory.getLog(MaxStdDevImageSplitter.class);
 	
 	protected double calculateValue(double[] data, int from, int to) {
@@ -33,4 +35,14 @@ public class MaxStdDevImageSplitter extends AbstractImageSplitter {
 		log.info("left = " + leftMedian + " right = " + rightMedian);
 		setResult(Math.abs(leftMedian - rightMedian));
 	}
+
+    public void setSplitterMetric(SplitterMetric metric) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    public SplitterMetric getSplitterMetric() {
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
