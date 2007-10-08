@@ -23,6 +23,7 @@ public class CloudStatusMonitorTest {
 		// 2 clears
 		assertEquals(false, check(CloudStatus.CLEAR, "2007-01-01T19:00+00:00"));
 		assertEquals(true, check(CloudStatus.CLEAR, "2007-01-01T19:11+00:00"));
+		assertEquals(false, check(CloudStatus.CLEAR, "2007-01-01T19:12+00:00"));
 	}
 		
 	@Test

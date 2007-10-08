@@ -1,9 +1,9 @@
-// Our global state
-    var gLocalSearch;
+//	google.load("maps", "2.78");
+//	google.load("search", "1"`);
+
+
+	// Our global state
     var gMap;
-    var gSelectedResults = [];
-    var gCurrentResults = [];
-    var gSearchForm;
 
     // Create our "tiny" marker icon
     var gSmallIcon = new GIcon();
@@ -80,7 +80,7 @@
 		  return marker;
 		}
 		
-		
+	
 		  
 
     // Set up the map and the local searcher.
@@ -88,11 +88,13 @@
 	  loadWebcams();
 
       // Initialize the map
-      gMap = new GMap(document.getElementById("map"));
+      gMap = new GMap2(document.getElementById("map"));
       gMap.addControl(new GSmallMapControl());
       gMap.addControl(new GMapTypeControl());
       gMap.addControl(new GOverviewMapControl());
       gMap.setCenter(new GLatLng(51.200001, 2.870000), 6);
+      gMap.enableDoubleClickZoom();
+      gMap.enableContinuousZoom();
       gMap.enableScrollWheelZoom();
       // Initialize the local searcher
       // request that tabular search results should be suppressed
@@ -100,8 +102,31 @@
 		resultList : google.maps.LocalSearch.RESULT_LIST_SUPPRESS,
 		searchFormHint : "Example Search: Londen, UK"
 	};
-      map.addControl(new google.maps.LocalSearch(options));
-      searchControl.focus();
+
+	
+      gMap.addControl(new google.maps.LocalSearch(options),
+      new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(60,0))
+      );
+//      searchControl.focus();
     }
     
-    GSearch.setOnLoadCallback(OnLoad);
+    	///prevent page scroll
+
+		function wheelevent(e)
+		{
+				if (!e){
+					e = window.event
+				}
+				if (e.preventDefault){
+					e.preventDefault()
+				}
+				e.returnValue = false;
+		}
+		
+    
+    //google.setOnLoadCallback(OnLoad);
+      GSearch.setOnLoadCallback(OnLoad);
+//      GSearch.setUnLoadCallback(GUnLoad);
+		GEvent.addDomListener(gMap.getContainer(), "DOMMouseScroll", wheelevent);
+		gMap.getContainer().onmousewheel = wheelevent; 
+

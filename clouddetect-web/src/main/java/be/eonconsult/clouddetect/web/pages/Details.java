@@ -34,10 +34,10 @@ public class Details {
 	private Feed feed;
 
 	@Persist
-	private boolean clearWarning = false;
+	private boolean shouldWarnWhenClear = false;
 
 	@Persist
-	private boolean cloudyWarning = false;
+	private boolean shouldWarnWhenCloudy = false;
 
 	@Persist
 	private int delayClear = 20;
@@ -69,8 +69,12 @@ public class Details {
 		cloudStatusResult = CloudStatus.valueOf(result.getCloudJudgeResult());
 		monitor.setDelayClear(delayClear);
 		monitor.setDelayCloudy(delayCloudy);
-		isClearNotify = monitor.isClearNotify(cloudStatusResult);
-		isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult);
+		if(shouldWarnWhenClear) {
+			isClearNotify = monitor.isClearNotify(cloudStatusResult);
+		}
+		if(shouldWarnWhenCloudy) {
+			isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult);
+		}
 	}
 
 	int onPassivate() {
@@ -108,19 +112,19 @@ public class Details {
 	}
 
 	public boolean isClearWarning() {
-		return clearWarning;
+		return shouldWarnWhenClear;
 	}
 
 	public void setClearWarning(boolean clearWarning) {
-		this.clearWarning = clearWarning;
+		this.shouldWarnWhenClear = clearWarning;
 	}
 
 	public boolean isCloudyWarning() {
-		return cloudyWarning;
+		return shouldWarnWhenCloudy;
 	}
 
 	public void setCloudyWarning(boolean cloudyWarning) {
-		this.cloudyWarning = cloudyWarning;
+		this.shouldWarnWhenCloudy = cloudyWarning;
 	}
 
 	public int getDelayClear() {

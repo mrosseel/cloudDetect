@@ -24,6 +24,7 @@ public class ClearCloudyMonitorTest {
 		monitor.setDelayClear(0);
 		assertEquals(false, monitor.isClearNotify(cloudy));
 		assertEquals(true, monitor.isClearNotify(clear));
+		monitor.setDelayClear(10);
 	}
 	
 	@Test

@@ -4,13 +4,13 @@
 
 <t:if test="clearnotify">
 	it's clear!
-<!--	<t:soundmanager/> -->
-    <button onClick="soundManager.stopAll()">Stop sound</button>
+	<t:soundmanager/> 
+    <button onClick="soundManager.stop('mySound')">Stop sound</button>
 </t:if>
 <t:if test="cloudynotify">
 it's cloudy!
-<!--	<t:soundmanager/> -->
-    <button onClick="soundManager.stopAll()">Stop sound</button>
+	<t:soundmanager/>
+    <button onClick="soundManager.stop('mySound')">Stop sound</button>
 </t:if>
 
 
@@ -55,16 +55,11 @@ it's cloudy!
 
 <div id="results">
 
-<!--
-		<span t:type="SoundManager" />
--->
-
-
 	<h1>${feed.name}</h1>
 	<h4>${feed.locationfreeform}</h4>
 	<div id="textbox" width="700"><h1>Current cloud status: ${cloudstatus}</h1></div>
 	<div>
-	<t:chart id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" width="700" height="320" day="0"></t:chart>
+	<t:chart class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" width="700" height="320" day="0"></t:chart>
 	</div>
 	
 	<!--

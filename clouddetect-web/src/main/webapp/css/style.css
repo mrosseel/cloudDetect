@@ -69,7 +69,7 @@ table#gsc-search-box {
 ul {  padding: 0; margin: 0;}
 li { list-style-type: none;}
 
-img {
+img.dotted {
 	border-style:dotted;
 	border-width: 1px;
 	margin: 5px;
