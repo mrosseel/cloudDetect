@@ -11,7 +11,7 @@
     <property name="hibernateProperties">
       <props>
         <prop key="hibernate.dialect">${hibernate.dialect}</prop>
-        <prop key="hibernate.show_sql">true</prop>
+	<prop key="hibernate.show_sql">${sql.show}</prop>
         <prop key="hibernate.hbm2ddl.auto">${hbm2ddl.auto}</prop>
       </props>
     </property>
