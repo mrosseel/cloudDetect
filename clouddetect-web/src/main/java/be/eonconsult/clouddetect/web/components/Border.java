@@ -24,7 +24,7 @@ public class Border {
 	
 	
     @Inject
-    @Path("context:images/webcam5.png")
+    @Path("context:images/CloudWatchBETA.png")
     private Asset logo;
     
     public boolean getMapPage() {
