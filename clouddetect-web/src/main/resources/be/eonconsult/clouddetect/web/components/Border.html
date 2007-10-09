@@ -68,9 +68,9 @@
 
 
 
-<!--
+ <t:if test="userExists">
 	<div class="box">
-		<t:if test="userExists">
+		 <t:if test="userExists">
 				<t:delegate to="block:userinfo"/>			
 			<t:parameter name="else"> 	
 				<t:delegate to="block:login"/>
@@ -78,7 +78,7 @@
 		</t:if>
 	
 	</div>
-	-->		
+
 	<div class="box">
 				<h2>Actions :</h2>
 				<ul>
@@ -86,7 +86,7 @@
 				<li><a href="">Add this Feed</a></li>
 				</ul>
 	</div>
-
+</t:if>
 	
 
 		

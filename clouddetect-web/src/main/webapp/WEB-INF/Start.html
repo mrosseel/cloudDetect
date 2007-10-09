@@ -1,14 +1,21 @@
 <t:bordergoogle xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
+<script>
+</script>
 
-    <div id="right">
+  <div id="right">
   <div id="results">
 		search for a location in the form "street, city, country"
-        <div id="searchform" size="40" style="width: 60%"/>
-        <div id="map" style="width: 70%; height: 60%;"></div>
-<!--        s        tyle="width: 600px; height: 400px"></div> -->
+   <form action="#" onsubmit="showAddress(this.address.value); return false">
+      <p>
+        <input type="text" size="53" name="address" value="Fifth Avenue, New York, US" />
+        <input type="submit" value="Go!" />
+      </p>
+       <div id="map" style="width: 600px; height: 400px"></div> 
 
-       <div id="searchwell"/>
-      </div>
-            </div>
+    </form>
+
+
+  </div>
+  </div>
 </t:bordergoogle>

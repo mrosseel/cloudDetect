@@ -96,18 +96,10 @@
       gMap.enableDoubleClickZoom();
       gMap.enableContinuousZoom();
       gMap.enableScrollWheelZoom();
-      // Initialize the local searcher
-      // request that tabular search results should be suppressed
-      var options = {
-		resultList : google.maps.LocalSearch.RESULT_LIST_SUPPRESS,
-		searchFormHint : "Example Search: Londen, UK"
-	};
-
-	
-      gMap.addControl(new google.maps.LocalSearch(options),
-      new GControlPosition(G_ANCHOR_TOP_LEFT, new GSize(60,0))
-      );
-//      searchControl.focus();
+	  geocoder = new GClientGeocoder();	
+	  GEvent.addDomListener(gMap.getContainer(), "DOMMouseScroll", wheelevent);
+	  gMap.getContainer().onmousewheel = wheelevent; 
+	  
     }
     
     	///prevent page scroll
@@ -123,10 +115,26 @@
 				e.returnValue = false;
 		}
 		
+   function showAddress(address) {
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+              alert(address + " not found");
+            } else {
+              gMap.setCenter(point, 13);
+              var marker = new GMarker(point);
+              gMap.addOverlay(marker);
+              marker.openInfoWindowHtml(address);
+            }
+          }
+        );
+      }
+    }
+
     
     //google.setOnLoadCallback(OnLoad);
       GSearch.setOnLoadCallback(OnLoad);
 //      GSearch.setUnLoadCallback(GUnLoad);
-		GEvent.addDomListener(gMap.getContainer(), "DOMMouseScroll", wheelevent);
-		gMap.getContainer().onmousewheel = wheelevent; 
 
