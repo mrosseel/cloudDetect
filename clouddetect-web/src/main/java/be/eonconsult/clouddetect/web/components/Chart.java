@@ -115,7 +115,7 @@ public class Chart {
 		}
 
 		public String getContentType() {
-			return "image/jpg";
+			return "image/png";
 		}
 
 		/* (non-Javadoc)
@@ -124,8 +124,8 @@ public class Chart {
 		public InputStream getStream() throws IOException {
 			BufferedImage image  = jfreechart.createBufferedImage(width, height);
             ByteArrayOutputStream byteArray = new ByteArrayOutputStream() ;
-//            ChartUtilities.writeBufferedImageAsPNG(byteArray, image, true, 9) ;
-            ChartUtilities.writeBufferedImageAsJPEG(byteArray, (float) 0.7, image);
+            ChartUtilities.writeBufferedImageAsPNG(byteArray, image, true, 5) ;
+//            ChartUtilities.writeBufferedImageAsJPEG(byteArray, (float) 0.7, image);
             return new ByteArrayInputStream(byteArray.toByteArray());
 		}
 
