@@ -45,7 +45,7 @@
                 alert("HTTP error: "+req.status);
               }
             }
-          }
+          };
         }
 
         function processWebcamData(xmlDoc) {
@@ -62,7 +62,7 @@
                 var lng = parseFloat(siteMarkers[i].getElementsByTagName("longitude")[0].firstChild.nodeValue);
                 var id = siteMarkers[i].getElementsByTagName("id")[0].firstChild.nodeValue;
                 var name = siteMarkers[i].getElementsByTagName("name")[0].firstChild.nodeValue;
-                if(siteMarkers[i].getElementsByTagName("LocationFreeForm").length != 0) {
+                if(siteMarkers[i].getElementsByTagName("LocationFreeForm").length !== 0) {
 	                var freeForm = siteMarkers[i].getElementsByTagName("LocationFreeForm")[0].firstChild.nodeValue;
                 }
                 var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
@@ -107,10 +107,10 @@
 		function wheelevent(e)
 		{
 				if (!e){
-					e = window.event
+					e = window.event;
 				}
 				if (e.preventDefault){
-					e.preventDefault()
+					e.preventDefault();
 				}
 				e.returnValue = false;
 		}
