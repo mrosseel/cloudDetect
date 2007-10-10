@@ -1,7 +1,3 @@
-//	google.load("maps", "2.78");
-//	google.load("search", "1"`);
-
-
 	// Our global state
     var gMap;
 
@@ -48,40 +44,37 @@
           };
         }
 
-        function processWebcamData(xmlDoc) {
-            // obtain the array of markers and loop through it
-            var siteMarkers = xmlDoc.documentElement.getElementsByTagName("persistence.model.Feed");
-            displaySitesMarkers(siteMarkers);
-        }
+	function processWebcamData(xmlDoc) {
+		// obtain the array of markers and loop through it
+		var siteMarkers = xmlDoc.documentElement.getElementsByTagName("persistence.model.Feed");
+		displaySitesMarkers(siteMarkers);
+    }
 
-        function displaySitesMarkers(siteMarkers) {
-            gMap.clearOverlays();
-            for (var i = 0; i < siteMarkers.length; i++) {
-                // obtain the attributes of each marker
-                var lat = parseFloat(siteMarkers[i].getElementsByTagName("latitude")[0].firstChild.nodeValue);
-                var lng = parseFloat(siteMarkers[i].getElementsByTagName("longitude")[0].firstChild.nodeValue);
-                var id = siteMarkers[i].getElementsByTagName("id")[0].firstChild.nodeValue;
-                var name = siteMarkers[i].getElementsByTagName("name")[0].firstChild.nodeValue;
-                if(siteMarkers[i].getElementsByTagName("LocationFreeForm").length !== 0) {
-	                var freeForm = siteMarkers[i].getElementsByTagName("LocationFreeForm")[0].firstChild.nodeValue;
-                }
-                var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
-                marker = createMarker(new GLatLng(lat,lng),name, freeForm,id, url);
-                gMap.addOverlay(marker);
+    function displaySitesMarkers(siteMarkers) {
+        gMap.clearOverlays();
+        for (var i = 0; i < siteMarkers.length; i++) {
+            // obtain the attributes of each marker
+            var lat = parseFloat(siteMarkers[i].getElementsByTagName("latitude")[0].firstChild.nodeValue);
+            var lng = parseFloat(siteMarkers[i].getElementsByTagName("longitude")[0].firstChild.nodeValue);
+            var id = siteMarkers[i].getElementsByTagName("id")[0].firstChild.nodeValue;
+            var name = siteMarkers[i].getElementsByTagName("name")[0].firstChild.nodeValue;
+            if(siteMarkers[i].getElementsByTagName("LocationFreeForm").length !== 0) {
+                var freeForm = siteMarkers[i].getElementsByTagName("LocationFreeForm")[0].firstChild.nodeValue;
             }
+            var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
+            marker = createMarker(new GLatLng(lat,lng),name, freeForm,id, url);
+            gMap.addOverlay(marker);
         }
+    }
         
-         // Creates a marker at the given point with the given number label
-		function createMarker(point, name, freeForm, id, url) {
-		  var marker = new GMarker(point, {icon:gSmallIcon});
-		  GEvent.addListener(marker, "click", function() {
-		    marker.openInfoWindowHtml('<b>' + name + '</b><p/>' + freeForm + '<p/><a href="details/' + id + '">More details...</a>');
-		  });
-		  return marker;
-		}
-		
-	
-		  
+     // Creates a marker at the given point with the given number label
+	function createMarker(point, name, freeForm, id, url) {
+	  var marker = new GMarker(point, {icon:gSmallIcon});
+	  GEvent.addListener(marker, "click", function() {
+	    marker.openInfoWindowHtml('<b>' + name + '</b><p/>' + freeForm + '<p/><a href="details/' + id + '">More details...</a>');
+	  });
+	  return marker;
+	}
 
     // Set up the map and the local searcher.
     function OnLoad() {
@@ -102,18 +95,17 @@
 	  
     }
     
-    	///prevent page scroll
-
-		function wheelevent(e)
-		{
-				if (!e){
-					e = window.event;
-				}
-				if (e.preventDefault){
-					e.preventDefault();
-				}
-				e.returnValue = false;
-		}
+	///prevent page scroll
+	function wheelevent(e)
+	{
+			if (!e){
+				e = window.event;
+			}
+			if (e.preventDefault){
+				e.preventDefault();
+			}
+			e.returnValue = false;
+	}
 		
    function showAddress(address) {
       if (geocoder) {
@@ -132,9 +124,8 @@
         );
       }
     }
-
     
     //google.setOnLoadCallback(OnLoad);
-      GSearch.setOnLoadCallback(OnLoad);
-//      GSearch.setUnLoadCallback(GUnLoad);
+	GSearch.setOnLoadCallback(OnLoad);
+	//      GSearch.setUnLoadCallback(GUnLoad);
 

@@ -51,9 +51,12 @@ it's cloudy!
 
 
 	<div class="box">
-		<td width="100" align="right">
+Current Moon Phase:
 			<img width="100" height="100" src="http://tycho.usno.navy.mil/cgi-bin/phase.gif"/>
-		</td>
+			
+			
+<!--		<td width="100" align="right">
+		</td> -->
 	</div>
 	
 
@@ -63,12 +66,27 @@ it's cloudy!
 
 <div id="results">
 
+<div id="titlebox">
 	<h1>${feed.name}</h1>
 	<h4>${feed.locationfreeform}</h4>
-	<div id="textbox" width="700"><h1>Current cloud status: ${cloudstatus}</h1></div>
+</div>
+	<div class="textbox" id="detailsTextbox" width="700"><h1 id="detailsTextbox">Current cloud status: ${cloudstatus}</h1></div>
 	<div>
 	<t:chart class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" width="700" height="320" day="0"></t:chart>
 	</div>
+	
+	<!--
+	<div id="products">
+	</div>
+	
+	<a href="#" onClick="update()"> ... </a>
+	
+	<script>
+	function update() {
+		new Ajax.Updater('products', '${urlFromClass}', { method: 'get' });
+	}
+	</script>	
+	-->
 	
 	<!--
 	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="1"></t:chart>

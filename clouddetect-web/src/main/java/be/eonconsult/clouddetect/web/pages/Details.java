@@ -2,6 +2,8 @@ package be.eonconsult.clouddetect.web.pages;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.tapestry.ComponentResources;
+import org.apache.tapestry.StreamResponse;
 import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.annotations.Persist;
@@ -58,6 +60,21 @@ public class Details {
 	@Persist
 	private boolean isCloudyNotify = false;
 
+	
+	/* TODO
+
+	@Inject
+	private ComponentResources resources;
+	 
+	public String getUrlFromClass() {
+	     return resources.createActionLink("rpcTrigger",false).toString();
+	}
+	
+	StreamResponse onRpcTrigger() {
+	      //build your json object and wrapp it in a StreamResponse
+	     return streamResponse;
+	}
+	 */	
 	
 	void onActivate(int id) {
 		log.info("in activate with id " + id);

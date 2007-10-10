@@ -35,20 +35,19 @@ import util.AstroUtil;
 import util.RiseSetPair;
 import application.InstanceFactory;
 
-
 /**
  */
 public class Chart {
-	
+
 	@Parameter
 	private int height;
-	
+
 	@Parameter
 	private int width;
-	
+
 	@Parameter
 	private int day;
-	
+
 	@Parameter
 	private List<?> _context;
 
@@ -57,13 +56,12 @@ public class Chart {
 
 	@Parameter
 	private String name;
-	
+
 	@Parameter
 	private double maxClear;
-	
+
 	@Parameter
 	private double maxPartlyClear;
-	
 
 	@Inject
 	private ComponentResources _resources;
@@ -71,7 +69,6 @@ public class Chart {
 	@Inject
 	private Log log;
 
-	
 	@SuppressWarnings("unused")
 	@Mixin
 	private RenderInformals _renderInformals;
@@ -85,7 +82,8 @@ public class Chart {
 
 		Object[] contextArray = _context == null ? new Object[0] : _context.toArray();
 
-		Link link = _resources.createActionLink(org.apache.tapestry.TapestryConstants.ACTION_EVENT, false, contextArray);
+		Link link = _resources
+				.createActionLink(org.apache.tapestry.TapestryConstants.ACTION_EVENT, false, contextArray);
 
 		writer.element("img", "src", link, "id", clientId);
 
@@ -98,7 +96,6 @@ public class Chart {
 		writer.end();
 	}
 
-
 	@OnEvent
 	public StreamResponse renderChart() throws IOException {
 		JFreeChart jfreechart = createChart();
@@ -106,6 +103,7 @@ public class Chart {
 		return new ChartStreamResponse(jfreechart);
 	}
 
+	// 
 	private class ChartStreamResponse implements StreamResponse {
 
 		private JFreeChart jfreechart;
@@ -118,20 +116,23 @@ public class Chart {
 			return "image/png";
 		}
 
-		/* (non-Javadoc)
+		/*
+		 * (non-Javadoc)
+		 * 
 		 * @see org.apache.tapestry.StreamResponse#getStream()
 		 */
 		public InputStream getStream() throws IOException {
-			BufferedImage image  = jfreechart.createBufferedImage(width, height);
-            ByteArrayOutputStream byteArray = new ByteArrayOutputStream() ;
-            ChartUtilities.writeBufferedImageAsPNG(byteArray, image, true, 5) ;
-//            ChartUtilities.writeBufferedImageAsJPEG(byteArray, (float) 0.7, image);
-            return new ByteArrayInputStream(byteArray.toByteArray());
+			BufferedImage image = jfreechart.createBufferedImage(width, height);
+			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+			ChartUtilities.writeBufferedImageAsPNG(byteArray, image, true, 5);
+			// ChartUtilities.writeBufferedImageAsJPEG(byteArray, (float) 0.7,
+			// image);
+			return new ByteArrayInputStream(byteArray.toByteArray());
 		}
 
 		public void prepareResponse(Response arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
 
@@ -142,23 +143,23 @@ public class Chart {
 	 */
 	private JFreeChart createChart() {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
-        ContrastChartCreator creator = new ContrastChartCreator();
-        creator.addMarker(maxClear, Color.green, "Clear");
-        creator.addMarker(maxPartlyClear, Color.orange, "Partly Clear");
-        
-//        List<Result> results = dao.findResultsFromThePastHours(hours,id);
-        RiseSetPair pair = AstroUtil.getLastNight(50, 4, new DateTime(), day);
-        List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
-        
-        
-        if(results!=null) {
-        	log.debug("number of results: " + results.size());
-        	creator.addValue(name,results);	
-        }
-        
-        JFreeChart result = creator.getJFreeChart();
-        result.setTitle("Night of " + pair.getRise().toString("dd/MM/YY") + " to " + pair.getSet().toString("dd/MM/YY"));
-        return result;
+		ContrastChartCreator creator = new ContrastChartCreator();
+		creator.addMarker(maxClear, Color.green, "Clear");
+		creator.addMarker(maxPartlyClear, Color.orange, "Partly Clear");
+
+		// List<Result> results = dao.findResultsFromThePastHours(hours,id);
+		RiseSetPair pair = AstroUtil.getLastNight(50, 4, new DateTime(), day);
+		List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
+
+		if (results != null) {
+			log.debug("number of results: " + results.size());
+			creator.addValue(name, results);
+		}
+
+		JFreeChart result = creator.getJFreeChart();
+		result
+				.setTitle("Night of " + pair.getRise().toString("dd/MM/YY") + " to "
+						+ pair.getSet().toString("dd/MM/YY"));
+		return result;
 	}
 }
-
