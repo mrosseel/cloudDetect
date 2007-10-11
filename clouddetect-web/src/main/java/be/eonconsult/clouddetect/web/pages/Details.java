@@ -87,11 +87,13 @@ public class Details {
 		monitor.setDelayClear(delayClear);
 		monitor.setDelayCloudy(delayCloudy);
 		if(shouldWarnWhenClear) {
-			isClearNotify = monitor.isClearNotify(cloudStatusResult);
+			isClearNotify = monitor.isClearNotify(cloudStatusResult, result.getTime());
 		}
 		if(shouldWarnWhenCloudy) {
-			isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult);
+			isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult, result.getTime());
 		}
+		
+//		isClearNotify = true;
 	}
 
 	int onPassivate() {
@@ -176,6 +178,9 @@ public class Details {
 		this.isCloudyNotify = isCloudyNotify;
 	}
 
+	public boolean isClearOrCloudyNotify() {
+		return isCloudyNotify || isClearNotify;
+	}
 
 
 }

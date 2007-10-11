@@ -2,16 +2,6 @@
 
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
 
-<t:if test="clearnotify">
-	it's clear!
-	<t:soundmanager/> 
-    <button onClick="soundManager.stop('mySound')">Stop sound</button>
-</t:if>
-<t:if test="cloudynotify">
-it's cloudy!
-	<t:soundmanager/>
-    <button onClick="soundManager.stop('mySound')">Stop sound</button>
-</t:if>
 
 
 <t:block id="testit">
@@ -49,6 +39,23 @@ it's cloudy!
 				<t:delegate to="block:testit"/>			
 	</div>
 
+	<t:if test="clearorcloudynotify">
+	<div class="box">
+		<t:if test="clearnotify">
+			<h1>Clear Alert!</h1>
+			<t:soundmanager/> 
+		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
+		</t:if>
+		<t:if test="cloudynotify">
+			<h1>Cloudy Alert!</h1>
+			<t:soundmanager/>
+		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
+		</t:if>
+	</div>
+	</t:if>
+
+
+
 
 	<div class="box">
 Current Moon Phase:
@@ -72,7 +79,7 @@ Current Moon Phase:
 </div>
 	<div class="textbox" id="detailsTextbox" width="700"><h1 id="detailsTextbox">Current cloud status: ${cloudstatus}</h1></div>
 	<div>
-	<t:chart class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" width="700" height="320" day="0"></t:chart>
+	<img t:type="chart" class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" chartWidth="700" chartHeight="320" day="0" width="700" height="320" alt="${feed.name} chart"></img>
 	</div>
 	
 	<!--

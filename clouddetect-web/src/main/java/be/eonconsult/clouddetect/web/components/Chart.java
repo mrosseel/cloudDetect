@@ -40,10 +40,10 @@ import application.InstanceFactory;
 public class Chart {
 
 	@Parameter
-	private int height;
+	private int chartHeight;
 
 	@Parameter
-	private int width;
+	private int chartWidth;
 
 	@Parameter
 	private int day;
@@ -122,7 +122,7 @@ public class Chart {
 		 * @see org.apache.tapestry.StreamResponse#getStream()
 		 */
 		public InputStream getStream() throws IOException {
-			BufferedImage image = jfreechart.createBufferedImage(width, height);
+			BufferedImage image = jfreechart.createBufferedImage(chartWidth, chartHeight);
 			ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
 			ChartUtilities.writeBufferedImageAsPNG(byteArray, image, true, 5);
 			// ChartUtilities.writeBufferedImageAsJPEG(byteArray, (float) 0.7,

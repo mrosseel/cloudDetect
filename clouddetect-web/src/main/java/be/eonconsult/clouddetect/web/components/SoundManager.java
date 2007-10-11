@@ -13,29 +13,25 @@ import org.apache.tapestry.annotations.Path;
  * A component that provides the soundmanager.
  */
 public class SoundManager {
-
-		
-	    public String getScript() {
-	    	return 
-	    	String.format("soundManager.url = '/js/soundmanager2.swf'; // path to movie") +
-	    	String.format("soundManager.onload = function() {") +
-	    	String.format("soundManager._writeDebug('soundManager.onload() - my code executes here');") +
-	    	String.format("soundManager.createSound('mySound','song.mp3');") +
-	    	String.format("soundManager.play('mySound');");
-	    }
-
 	    @Environmental
 	    private PageRenderSupport _pageRenderSupport;
 		
 	    @Inject
 	    @Path("context:js/soundmanager2.js")
 	    private Asset jsSoundManager2Script;
+
+	    @Inject
+	    @Path("context:js/mysoundmanager.js")
+	    private Asset mySoundManagerScript;
+
+	    
 	    
 //	    @Inject
 //	    private Environment environment;
 	    
 	    void beginRender(MarkupWriter writer) {
 			_pageRenderSupport.addScriptLink(jsSoundManager2Script);
+			_pageRenderSupport.addScriptLink(mySoundManagerScript);
 			
 			//todo fix this when TAPESTRY-1393 is fixed
 //			Document document = environment.peek(Document.class);

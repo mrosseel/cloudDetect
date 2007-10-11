@@ -1,28 +1,20 @@
 <html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd" style="height:100%">
 <head>
-<title>Cloudwatch.net Your astronomy weather watcher</title>
-<meta name="copyright" content="Eon Consult 2007" />
-<meta name="author" content="Mike Rosseel" />
-<meta name="keywords" content="Clouds Webcam Astronomy Weather Clear Skies Alert Alarm Observatory Roof Automation Boltwood Sky sensor Cloud cover" />
-<meta name="verify-v1" content="zMPcOiGnP4a24JM/RvXyKj+o0W39h1P++DvdvHmLpi8=" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-
-<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
-<!-- <link rel="stylesheet" type="text/css" href="../css/google.css" media="screen" /> -->
-
-<t:if test="mappage"> 
-	<script src="http://maps.google.com/maps?file=api&amp;v=2.78&amp;key=${google.maps.key}" type="text/javascript"></script>
-	<script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0" type="text/javascript"></script>
-	<script src="http://www.google.com/uds/solutions/localsearch/gmlocalsearch.js" type="text/javascript"></script>
-	<script src="js/searchmaps.js" type="text/javascript"></script>
+	<title>Cloudwatch.net - Your astronomy weather watcher</title>
+	<meta name="copyright" content="Eon Consult 2007" />
+	<meta name="author" content="Mike Rosseel" />
+	<meta name="keywords" content="Clouds Webcam Astronomy Weather Clear Skies Alert Alarm Observatory Roof Automation Boltwood Sky sensor Cloud cover" />
+	<meta name="verify-v1" content="zMPcOiGnP4a24JM/RvXyKj+o0W39h1P++DvdvHmLpi8=" />
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	
-	<style type="text/css">
-	  @import url("http://www.google.com/uds/css/gsearch.css");
-	  @import url("http://www.google.com/uds/solutions/localsearch/gmlocalsearch.css");
-	</style>
-</t:if>
-
-  </head>
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	
+	<t:if test="mappage"> 
+		<script src="http://maps.google.com/maps?file=api&amp;v=2.78&amp;key=${google.maps.key}" type="text/javascript"></script>
+		<script src="http://www.google.com/uds/api?file=uds.js&amp;v=1.0" type="text/javascript"></script>
+		<script src="js/searchmaps.js" type="text/javascript"></script>
+	</t:if>
+</head>
 
 <t:block id="login">
   <t:login/>
@@ -39,7 +31,7 @@
 <div id="header">
 
 <div id="logo">
- <img src="${logo}"/>
+ <img src="${logo}" width="315" height="90" />
 </div>
 <!--<h1>${message:page.title}</h1>-->
 
@@ -57,8 +49,6 @@
 <div id="content">
 
 
-
-
 <t:body/>
 <!--
 <div id="right">
@@ -66,8 +56,6 @@
 -->
 
 <div id="left">
-
-
 
  <t:if test="userExists">
 	<div class="box">
@@ -89,8 +77,6 @@
 	</div>
 </t:if>
 	
-
-		
     <div class="box">
 	   <div style="font-size: 0.8em;">This site is in beta testing, drenched telescopes will not be refunded</div>
    </div>
@@ -108,13 +94,13 @@
 </div>
 
 <t:if test="tracking">
-<!-- google analytics -->
-<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-<script type="text/javascript">
-_uacct = "UA-608595-3";
-urchinTracker();
-</script>
+	<!-- google analytics -->
+	<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+	</script>
+	<script type="text/javascript">
+	_uacct = "UA-608595-3";
+	urchinTracker();
+	</script>
 </t:if>
 </body>
 </html>

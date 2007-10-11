@@ -19,18 +19,16 @@ public class ClearCloudyMonitor {
 
 	private int delayCloudy;
 
-	public boolean isClearNotify(CloudStatus cloudStatusResult) {
+	public boolean isClearNotify(CloudStatus cloudStatusResult, Date date) {
 		setupMonitors(cloudStatusResult);
-		Date now = new Date();
 
-		return clearMonitor.checkIfNotify(cloudStatusResult, now);
+		return clearMonitor.checkIfNotify(cloudStatusResult, date);
 	}
 
-	public boolean isCloudyNotify(CloudStatus cloudStatusResult) {
+	public boolean isCloudyNotify(CloudStatus cloudStatusResult, Date date) {
 		setupMonitors(cloudStatusResult);
-		Date now = new Date();
 
-		return cloudyMonitor.checkIfNotify(cloudStatusResult, now);
+		return cloudyMonitor.checkIfNotify(cloudStatusResult, date);
 	}
 
 	public int getDelayClear() {
