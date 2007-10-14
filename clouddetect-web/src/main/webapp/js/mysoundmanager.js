@@ -1,6 +1,7 @@
 function doitagain() {
 
-
+ 	nrTimes = 0;
+	stopSound = false; 
  	while (nrTimes <= 10 && !stopSound)
     {
 	 	nrTimes++;	
@@ -19,11 +20,9 @@ function doitagain() {
 		 volume: 100,
 		 autoPlay: true,
 		 multishot: true,
-		 onbeforefinish: doitagain
+		 onfinish: doitagain
 	 });
 
- 	nrTimes = 0;	 
-	stopSound = false; 
  	soundManager.play('mySound');
  	
 }
