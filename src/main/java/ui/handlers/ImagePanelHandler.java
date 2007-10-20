@@ -33,9 +33,9 @@ public class ImagePanelHandler {
 	}
 
 	public void channel(ImageSignal signal) {
-		if(log.isDebugEnabled()) {
-		 log.debug("received image signal");
-		}
+//		if(log.isDebugEnabled()) {
+//		 log.debug("received image signal");
+//		}
 		panel.setImage(signal.getImage());
 	}
 }

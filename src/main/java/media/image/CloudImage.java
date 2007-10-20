@@ -41,4 +41,8 @@ public interface CloudImage {
      */
     public void setOriginComment(String origin);
     
+    public CloudImageMetaData getMetaData();
+    
+    public void setMetaData(CloudImageMetaData metaData);
+    
 }

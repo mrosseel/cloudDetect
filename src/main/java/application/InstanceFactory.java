@@ -2,12 +2,14 @@ package application;
 
 import media.image.consumer.ImageConsumer;
 import media.image.producer.FileImageProducer;
-import media.image.producer.HTTPImageProducer;
+import media.image.producer.ImageProducer;
 import media.processors.CalculateMetricOnCloudImage;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+
+import calculation.CloudJudge;
 
 import ui.ContrastChart;
 
@@ -33,8 +35,8 @@ public class InstanceFactory {
 		return (FileImageProducer) appContext.getBean("fileimageproducer");
 	}
     
-    public static HTTPImageProducer getHTTPImageProducer() {
-        return (HTTPImageProducer) appContext.getBean("httpimageproducer");
+    public static ImageProducer getImageProducer() {
+        return (ImageProducer) appContext.getBean("imageproducer");
     }
 	
 	public static ImageConsumer getImageConsumer() {
@@ -45,8 +47,12 @@ public class InstanceFactory {
 		return (ContrastChart) appContext.getBean("contrastchart");
 	}
 	
-	public static CalculateMetricOnCloudImage getBufferProcessor() {
-		return (CalculateMetricOnCloudImage) appContext.getBean("bufferprocessor");
+	public static CalculateMetricOnCloudImage getCalculateMetricOnCloudImage() {
+		return (CalculateMetricOnCloudImage) appContext.getBean("calculatemetriconcloudimage");
 	}
+    
+    public static CloudJudge getCloudJudge() {
+        return (CloudJudge) appContext.getBean("cloudjudge");
+    }
 	
 }

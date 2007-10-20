@@ -4,6 +4,11 @@ import java.awt.Image;
 
 import media.image.CloudImage;
 import media.image.CloudImageImpl;
+import media.image.producer.plugin.ImageDatePlugin;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import util.ImageToolkit;
 
 /**
@@ -11,17 +16,23 @@ import util.ImageToolkit;
  * 
  */
 public class FileImageProducer extends ImageProducerImpl {
+    private static Log log = LogFactory.getLog(FileImageProducer.class);
     private String imageToLoad;
+    private ImageDatePlugin plugin;
 
-    public FileImageProducer(String name, String imageToLoad) {
+    public FileImageProducer(String name) {
         super(name);
-        this.imageToLoad = imageToLoad;
     }
 
     public CloudImage produceContent() {
         Image image = getImage();
+        if(image == null || image.getHeight(null) == -1) {
+            log.warn("Could not load image " + getImageToLoad());
+            throw new IllegalArgumentException("Could not load image " + getImageToLoad());
+        }
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());
+        getPlugin().insertDateInMetaData(result, getImageToLoad());
         return result;
     }
 
@@ -29,12 +40,19 @@ public class FileImageProducer extends ImageProducerImpl {
         return ImageToolkit.loadImage(getImageToLoad());
     }
 
-    protected String getImageToLoad() {
+    public String getImageToLoad() {
         return imageToLoad;
     }
 
-    protected void setImageToLoad(String imageToLoad) {
+    public void setImageToLoad(String imageToLoad) {
         this.imageToLoad = imageToLoad;
     }
 
+    public ImageDatePlugin getPlugin() {
+        return plugin;
+    }
+
+    public void setPlugin(ImageDatePlugin plugin) {
+        this.plugin = plugin;
+    }
 }

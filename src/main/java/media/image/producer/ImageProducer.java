@@ -17,5 +17,7 @@ public interface ImageProducer extends Runnable {
     public CloudImage produceContent();
 	
 	public String getProducerName();
+    
+    public void start();
 }
 

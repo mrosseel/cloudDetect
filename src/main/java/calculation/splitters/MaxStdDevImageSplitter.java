@@ -8,6 +8,8 @@
 package calculation.splitters;
 
 
+import media.image.CloudImage;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -15,6 +17,7 @@ import calculation.splitters.splittermetric.SplitterMetric;
 
 import util.Median;
 import util.StandardDeviation;
+import util.VisualiseSplitterLocation;
 
 public class MaxStdDevImageSplitter extends AbstractGenericImageSplitter {
 	private static Log log = LogFactory.getLog(MaxStdDevImageSplitter.class);
@@ -39,6 +42,15 @@ public class MaxStdDevImageSplitter extends AbstractGenericImageSplitter {
     public void setSplitterMetric(SplitterMetric metric) {
         // TODO Auto-generated method stub
         
+    }
+    
+    
+
+    @Override
+    public void split(CloudImage image) {
+        // TODO Auto-generated method stub
+        super.split(image);
+        VisualiseSplitterLocation.addSplitterLine(image, getBestSplitterLocation());
     }
 
     public SplitterMetric getSplitterMetric() {

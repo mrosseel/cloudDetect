@@ -3,6 +3,7 @@ splittermetric (gebruikt door splitters) en contrastmetrics (gegeven een split, 
 --> Resultaten stupid gebruiken voor validatie bisectionsplitter (=smart)
 --> horizonmetric fixen, evt kleureninfo gebruiken. ANders: forget it, moeten
  calibratie maar overdag doen en werk verder aan echte metrics en config
+--> add src/main/resources to maven2 dependencies and remove from RUN classpath of main app
 
 media.processors moet eruit
 Image via format omzetten naar short of double!

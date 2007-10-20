@@ -9,7 +9,7 @@
     <developer>
       <id>mike</id>
       <name>Mike Rosseel</name>
-      <email></email>
+      <email>mike@eon-consult.be</email>
       <url></url>
       <organization></organization>
     </developer>
@@ -49,6 +49,15 @@
       <version>0.9.20</version>
       <scope>compile</scope>
     </dependency>
+    
+    <!--
+     <dependency>
+      <groupId>jfree</groupId>
+      <artifactId>jfreechart</artifactId>
+      <version>1.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+    -->
     
     <dependency>
       <groupId>jcommon</groupId>

@@ -21,92 +21,103 @@ import ui.handlers.ImagePanelHandler;
 
 public class ImagePanel extends JPanel {
 
-	/**
+    /**
      * 
      */
     private static final long serialVersionUID = 1L;
 
     private static Log log = LogFactory.getLog(ImagePanel.class);
 
-	private JPanel panel;
+    private JPanel panel;
 
-	private String txtName = "Current View"; // too specific, remove it
+    private String txtName = "Current View"; // too specific, remove it
 
-	public Image image;
+    public Image image;
 
-	public Image currentImage;
+    public Image currentImage;
 
-	public ImagePanel() {
-		int width = 160;
-		int heigth = 120;
-		this.setSize(width, heigth);
-		this.setPreferredSize(new Dimension(width, heigth));
-		this.setMinimumSize(new Dimension(width, heigth));
-		new ImagePanelHandler(this);
-	}
+    private double aspect;
 
-	private void initComponents(String txtName) {
-		int width = image.getWidth(this);
-		int heigth = image.getHeight(this);
-		this.setSize(width, heigth);
-		this.setPreferredSize(new Dimension(width, heigth));
-	}
+    public ImagePanel() {
+        int width = 160;
+        int heigth = 120;
+        this.setSize(width, heigth);
+        this.setPreferredSize(new Dimension(width, heigth));
+        this.setMinimumSize(new Dimension(width, heigth));
+        new ImagePanelHandler(this);
+    }
 
-	/***************************************************************************
-	 * 
-	 * @param graphics
-	 **************************************************************************/
-	// public void paint(Graphics graphics) {
-	// if (image != currentImage) {
-	// currentImage = image;
-	// graphics.drawImage(currentImage, 0, 0, this);
-	// repaint();
-	// }
-	//		
-	// }
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-	 */
-	protected void paintComponent(Graphics graphics) {
-		if (image != null) {
-			currentImage = image;
-			graphics.drawImage(currentImage, 0, 0, this);
-			// repaint();
-		}
-	}
+    private void initComponents(String txtName) {
+        int width = image.getWidth(this);
+        int heigth = image.getHeight(this);
+        // this.setSize(width, heigth);
+        this.setPreferredSize(new Dimension(width, heigth));
+        // this.setMaximumSize(new Dimension(width, heigth));
+    }
 
-	private void exitForm(WindowEvent windowEvent) {
-		System.exit(0);
-	}
+    /***************************************************************************
+     * 
+     * @param graphics
+     **************************************************************************/
+    // public void paint(Graphics graphics) {
+    // if (image != currentImage) {
+    // currentImage = image;
+    // graphics.drawImage(currentImage, 0, 0, this);
+    // repaint();
+    // }
+    //
+    // }
+    /*
+     * (non-Javadoc)
+     * 
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
+    protected void paintComponent(Graphics graphics) {
+        if (image != null) {
+            currentImage = image;
+            graphics.drawImage(currentImage, 0, 0, this.getWidth(), this
+                    .getHeight(), 0, 0, image.getWidth(null), image
+                    .getHeight(null), this);
 
-	/**
-	 * @return
-	 */
-	public Image getImage() {
-		return image;
-	}
+            // log.info("this = " + this.getWidth() + " " + this.getHeight());
+            // log.info("image = " + image.getWidth(null) + " " + image
+            // .getHeight(null));
 
-	/**
-	 * @param image
-	 */
-	public void setImage(Image image) {
-		if (image == null) {
-			if (log.isDebugEnabled()) {
-				log.debug("Skipping empty image.");
-			}
-		} else {
-			if (log.isDebugEnabled()) {
-				log.debug("inside setimage");
-			}
-			this.image = image;
+            this.setSize(this.getWidth(), (int) (this.getWidth() * (image
+                    .getHeight(null) / (double) image.getWidth(null))));
+            // repaint();
+        }
+    }
 
-			if (currentImage == null) {
-				initComponents(txtName);
-			}
-			repaint();
-		}
-	}
+    private void exitForm(WindowEvent windowEvent) {
+        System.exit(0);
+    }
+
+    /**
+     * @return
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * @param image
+     */
+    public void setImage(Image image) {
+        if (image == null) {
+            if (log.isDebugEnabled()) {
+                log.debug("Skipping empty image.");
+            }
+        } else {
+            this.image = image;
+            initComponents(txtName);
+            repaint();
+        }
+    }
+
+    public Dimension getPreferredSize() {
+        Dimension layoutSize = super.getPreferredSize();
+        return new Dimension(layoutSize.width, layoutSize.height);
+    }
 
 }

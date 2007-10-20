@@ -19,7 +19,7 @@ extends TestCase
 // JUnitDoclet end extends_implements
 {
   // JUnitDoclet begin class
-  calculation.StdDevMetric stddevmetric = null;
+  calculation.MinStdDevMetric stddevmetric = null;
   // JUnitDoclet end class
   
   public StdDevMetricTest(String name) {
@@ -28,9 +28,9 @@ extends TestCase
     // JUnitDoclet end method StdDevMetricTest
   }
   
-  public calculation.StdDevMetric createInstance() throws Exception {
+  public calculation.MinStdDevMetric createInstance() throws Exception {
     // JUnitDoclet begin method testcase.createInstance
-    return new calculation.StdDevMetric();
+    return new calculation.MinStdDevMetric();
     // JUnitDoclet end method testcase.createInstance
   }
   

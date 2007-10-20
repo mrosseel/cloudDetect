@@ -10,9 +10,14 @@ import util.ImageToolkit;
  * 
  */
 public class FileClasspathImageProducer extends FileImageProducer {
-        
+       
+    public FileClasspathImageProducer(String name) {
+        super(name);
+    }
+    
 	public FileClasspathImageProducer(String name, String imageToLoad) {
-		super(name, imageToLoad);
+		this(name);
+        setImageToLoad(imageToLoad);
 	}
 
     protected Image getImage() {

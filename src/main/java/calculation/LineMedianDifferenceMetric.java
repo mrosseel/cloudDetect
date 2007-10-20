@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import calculation.splitters.SlidingWindowSplitter;
 
 import util.Median;
+import util.VisualiseSplitterLocation;
 
 /**
  * Reduce each line of the image to 1 median value, 
@@ -59,6 +60,6 @@ public class LineMedianDifferenceMetric implements Metric {
 			log.debug("Contrast = " + result);
 		}
 
-		return result;
+        return result;
 	}
 }

@@ -24,7 +24,7 @@ public class KMeansMetric implements Metric {
      * @return abs(avg cluster1 - avg cluster2)
      */
     public double compute(CloudImage image) {
-    	double[] data = image.getData();
+    	double[] data = image.getMonochromeData();
         Arrays.sort(data);
         KMeans kmeans = new KMeans(data, 2);
         double[] means = kmeans.getBinMeans();

@@ -1,9 +1,10 @@
 package application;
 
+import media.image.consumer.CloudJudgeSubConsumer;
 import media.image.consumer.ImageConsumer;
 import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.UIPublishSubConsumer;
-import media.image.producer.HTTPImageProducer;
+import media.image.producer.ImageProducer;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -44,13 +45,12 @@ public class CloudWatchApp {
 	private void startApplication() {
 		// starts the reflection bus
 		ReflectionBus.start();
-		// gets the producers
-		//FileImageProducer producer = InstanceFactory.getFileImageProducer();
-//       gets the producers
-        HTTPImageProducer producer = InstanceFactory.getHTTPImageProducer();
         
+		// gets the producers, consumers
+		ImageProducer producer = InstanceFactory.getImageProducer();
 		ImageConsumer consumer = InstanceFactory.getImageConsumer();
 		consumer.addSubConsumer(new ImageScoringSubConsumer());
+        consumer.addSubConsumer(new CloudJudgeSubConsumer());
 
 		if(!config.isCommandLine()) {
 			StartUI frame = new StartUI();

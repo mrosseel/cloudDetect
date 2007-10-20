@@ -15,6 +15,8 @@ import java.awt.image.PixelGrabber;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.sun.jmx.mbeanserver.MetaData;
+
 import util.ImageToolkit;
 
 /**
@@ -34,13 +36,17 @@ public class CloudImageImpl implements CloudImage {
     private Image image;
 
     private double[] data;
-    
+
     private int width;
+
     private int height;
+
     private Color color;
+    
+    private CloudImageMetaData metaData = new CloudImageMetaData();
 
     public CloudImageImpl(Image image) {
-        if(image == null) {
+        if (image == null) {
             log.error("image passed to constructor is null");
         }
         setImage(image);
@@ -49,7 +55,7 @@ public class CloudImageImpl implements CloudImage {
     public CloudImageImpl(double[] data, int width, int height) {
         setData(data, width, height);
     }
-    
+
     public CloudImageImpl(int[] data, int width, int height) {
         setData(intToDoubleArray(data), width, height);
     }
@@ -63,7 +69,8 @@ public class CloudImageImpl implements CloudImage {
 
     public Image getImage() {
         if (image == null) {
-            this.image = createImage(doubleToIntArray(getData()), getWidth(), getHeight());
+            this.image = createImage(doubleToIntArray(getData()), getWidth(),
+                    getHeight());
         }
 
         return this.image;
@@ -75,7 +82,7 @@ public class CloudImageImpl implements CloudImage {
         setWidth(width);
         setHeight(height);
     }
-    
+
     public double[] getData() {
         if (data == null) {
             this.data = createData(image);
@@ -83,8 +90,6 @@ public class CloudImageImpl implements CloudImage {
 
         return this.data;
     }
-
-    
 
     public int getHeight() {
         return height;
@@ -127,7 +132,7 @@ public class CloudImageImpl implements CloudImage {
         }
         return result;
     }
-    
+
     private int[] doubleToIntArray(double[] data) {
         int[] result = new int[data.length];
         for (int dataCounter = 0; dataCounter < data.length; dataCounter++) {
@@ -141,7 +146,7 @@ public class CloudImageImpl implements CloudImage {
     private int[] getIntArrayFromImage(Image image) {
         int width = image.getWidth(null);
         int height = image.getHeight(null);
-        
+
         int[] pixstart = new int[width * height];
         grab(image, pixstart, width, height);
         return pixstart;
@@ -167,9 +172,20 @@ public class CloudImageImpl implements CloudImage {
         double[] data = getData();
         double[] convertedData = new double[data.length];
         for (int i = 0; i < convertedData.length; i++) {
-            convertedData[i] = ImageToolkit.getMonochrome((int) Math.round(data[i]))/2.55;
+            convertedData[i] = ImageToolkit.getMonochrome((int) Math
+                    .round(data[i])) / 2.55;
         }
         return convertedData;
     }
 
-   }
+    public CloudImageMetaData getMetaData() {
+        // TODO Auto-generated method stub
+        return metaData;
+    }
+
+    public void setMetaData(CloudImageMetaData metaData) {
+       this.metaData = metaData;
+    }
+}
+
+

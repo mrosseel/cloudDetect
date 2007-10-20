@@ -24,7 +24,8 @@ public class HorizonMetric implements SplitterMetric {
         double variance2 = computeVariance(right);
         double varianceResult = variance1 + variance2;
         
-        return (varianceResult==0)?Double.MAX_VALUE:(1.0/varianceResult);
+ return (varianceResult==0)?Double.MAX_VALUE:(1.0/varianceResult);
+//        return (varianceResult==0)?Double.MAX_VALUE:(varianceResult);
     }
    
     public double compute(CloudImage data, int location) {

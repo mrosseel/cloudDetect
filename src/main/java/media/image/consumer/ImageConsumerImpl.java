@@ -18,7 +18,8 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
 	private String producerName;
 
 	private long timeBetweenPollsInMilliSeconds = -1;
-
+    private static long minPollingTimeMilliseconds = 10;
+    
 	private boolean hasStopped = false;
 
 	private CloudImageQueue queue;
@@ -75,11 +76,10 @@ public class ImageConsumerImpl extends Thread implements ImageConsumer {
 
 	public void setQueue(CloudImageQueue queue) {
 		this.queue = queue;
-
 	}
 
 	public void setPolling(double timeBetweenPollsInSeconds) {
-		this.timeBetweenPollsInMilliSeconds = Math
-				.round(timeBetweenPollsInSeconds * 1000);
+        this.timeBetweenPollsInMilliSeconds = Math.max(minPollingTimeMilliseconds, Math
+                .round(timeBetweenPollsInSeconds * 1000));
 	}
 }

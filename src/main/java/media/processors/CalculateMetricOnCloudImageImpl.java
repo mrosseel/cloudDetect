@@ -37,6 +37,9 @@ public class CalculateMetricOnCloudImageImpl implements CalculateMetricOnCloudIm
 	}
 
 	public void setMetric(Metric metric) {
+        if (log.isDebugEnabled()) {
+            log.debug("Setting metric to " + metric.toString());
+        }
 		this.metric = metric;
 	}
 }
