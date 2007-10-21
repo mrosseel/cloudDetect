@@ -25,10 +25,8 @@
 		<property name="imageToLoad"><value>/usr/local/apache2/htdocs/cam1/lastsnap.jpg</value></property>		
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>10</value></property>
-		<property name="plugin"><ref bean="motionFilenameDatePlugin"/></property>
+		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
-	
-	<bean id="motionFilenameDatePlugin" class="media.image.producer.plugin.MotionFilenameDatePlugin"/>
 
 	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
 		<constructor-arg><value>HTTP image producer</value></constructor-arg>
@@ -39,14 +37,21 @@
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
 		<constructor-arg><value>directory image producer</value></constructor-arg>
-<!--		<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg> -->
-				<constructor-arg><value>/home/mike/incoming/movies/20061013</value></constructor-arg>
+		<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg> 
+<!--				<constructor-arg><value>/home/mike/incoming/movies/20061013</value></constructor-arg>-->
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>1</value></property>
 		<property name="imgExtension"><value>jpg</value></property>
 		<property name="looping"><value>0</value></property>
-		<property name="fileImageProducer"><ref bean="fileimageproducer"/></property>
+		<property name="fileImageProducer"><ref bean="motionfileimageproducer"/></property>
 	</bean>
+	
+	<bean id="motionfileimageproducer" class="media.image.producer.FileImageProducer">
+		<constructor-arg><value>file image producer</value></constructor-arg>
+		<property name="plugin"><ref bean="motionFilenameDatePlugin"/></property>
+	</bean>
+	<bean id="motionFilenameDatePlugin" class="media.image.producer.plugin.MotionFilenameDatePlugin"/>
+	<bean id="nowDatePlugin" class="media.image.producer.plugin.NowDatePlugin"/>
 	
 	<!-- -->	
 	
@@ -82,7 +87,7 @@
 	
 		
 	<bean id="cloudjudge" class="calculation.CloudJudge">
-		<property name="maxClear"><value>2.5</value></property>
-		<property name="maxPartialClear"><value>6</value></property>
+		<property name="maxClear"><value>1.5</value></property>
+		<property name="maxPartialClear"><value>3</value></property>
 	</bean>
 </beans>
