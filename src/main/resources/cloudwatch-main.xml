@@ -2,11 +2,14 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<import resource="cloudwatch-mail.xml"/>
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
-            <value>general.properties</value>
+            <value>cloudwatch.properties</value>
         </property>
 	</bean>
+	
+	<!-- Cloudwatcher Application settings -->
 	
 	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
 		<property name="commandLine"><value>true</value></property>
@@ -53,16 +56,20 @@
 	<bean id="motionFilenameDatePlugin" class="media.image.producer.plugin.MotionFilenameDatePlugin"/>
 	<bean id="nowDatePlugin" class="media.image.producer.plugin.NowDatePlugin"/>
 	
-	<!-- -->	
+	<!-- Image Consumers -->	
 	
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
 		<property name="polling"><value>0</value></property>
 	</bean>
+	
+	<!-- Queues -->	
 
 	<bean id="cloudimagequeue" class="media.image.producer.CloudImageQueue">
 		<property name="maxElements"><value>10</value></property>
 	</bean>
+	
+	<!-- Metrics -->	
 	
 	<bean id="calculatemetriconcloudimage" class="media.processors.CalculateMetricOnCloudImageImpl">
 		<property name="metric"><ref bean="manualmetric"/></property>
@@ -78,16 +85,22 @@
 	<bean id="kmeansmetric" class="calculation.KMeansMetric"/>
 	<bean id="horizonmetric" class="calculation.HorizonBlablaMetric"/>
 	
-	<!--  UI parts -->
+	<!--  Cloud Judging -->
+		
+	<bean id="cloudjudge" class="calculation.CloudJudge">
+		<property name="maxClear"><value>1</value></property>
+		<property name="maxPartialClear"><value>2</value></property>
+	</bean>
+	
+	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">
+		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
+		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
+	</bean>
+	
+	<!--  UI -->
 	
 	<bean id="contrastchart" class="ui.ContrastChart">
 	</bean>
 	
 	<bean id="imagepanel" class="ui.ImagePanel"/>
-	
-		
-	<bean id="cloudjudge" class="calculation.CloudJudge">
-		<property name="maxClear"><value>1.5</value></property>
-		<property name="maxPartialClear"><value>3</value></property>
-	</bean>
 </beans>

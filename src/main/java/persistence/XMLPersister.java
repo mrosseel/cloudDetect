@@ -26,24 +26,31 @@ import org.dom4j.io.XMLWriter;
 
 import util.GeneralProperties;
 
-
 public class XMLPersister {
     public static final String ROOT = "cloudData";
+
     public static final String DATA = "data";
+
     public static final String STDEV = "stdev";
+
     public static final String MOONPHASE = "moonphase";
+
     public static final String TWILIGHT = "twilight";
+
     public static final String EVAL = "eval";
 
     private Properties props;
+
     private Document doc;
+
     private File file;
 
     public XMLPersister() {
         props = new Properties();
         try {
 
-            InputStream input = this.getClass().getResourceAsStream("/general.properties");
+            InputStream input = this.getClass().getResourceAsStream(
+                    "/general.properties");
             props.load(input);
         } catch (IOException e) {
             System.out.println("properties file not found");
@@ -52,7 +59,7 @@ public class XMLPersister {
 
         String txtFileName = props.getProperty(GeneralProperties.DATA_FILE);
         file = new File(txtFileName);
-        if(file.exists()) {
+        if (file.exists()) {
             doc = parseFile(file);
         } else {
             doc = createDocument();
@@ -73,27 +80,26 @@ public class XMLPersister {
         return document;
     }
 
-
     protected Document createDocument() {
         doc = DocumentHelper.createDocument();
-        doc.addElement( ROOT );
+        doc.addElement(ROOT);
         return doc;
     }
 
-    public void addRecord(double stdev, double moonphase, double twilight, String eval) {
+    public void addRecord(double stdev, double moonphase, double twilight,
+            String eval) {
         System.out.println("doc = " + doc);
         Element root = doc.getRootElement();
-        root.addElement( DATA )
-                .addAttribute( STDEV, String.valueOf(stdev))
-                .addAttribute( MOONPHASE, String.valueOf(moonphase))
-                .addAttribute( TWILIGHT, String.valueOf(twilight))
-                .addAttribute( EVAL, String.valueOf(eval));
+        root.addElement(DATA).addAttribute(STDEV, String.valueOf(stdev))
+                .addAttribute(MOONPHASE, String.valueOf(moonphase))
+                .addAttribute(TWILIGHT, String.valueOf(twilight)).addAttribute(
+                        EVAL, String.valueOf(eval));
     }
 
     public List getData() {
-              List list = doc.selectNodes( "//data" );
+        List list = doc.selectNodes("//data");
 
-        for (Iterator iter = list.iterator(); iter.hasNext(); ) {
+        for (Iterator iter = list.iterator(); iter.hasNext();) {
             Attribute attribute = (Attribute) iter.next();
             String url = attribute.getValue();
         }
@@ -101,19 +107,16 @@ public class XMLPersister {
     }
 
     /**
-     *      Writing a document to a file
+     * Writing a document to a file
      */
     public void writeFile() {
-
 
         try {
             // Compact format : format = OutputFormat.createCompactFormat();
             OutputFormat format = OutputFormat.createPrettyPrint();
             // lets write to a file
-            XMLWriter writer = new XMLWriter(
-                new FileWriter( file )
-            );
-            writer.write( doc );
+            XMLWriter writer = new XMLWriter(new FileWriter(file));
+            writer.write(doc);
             writer.close();
         } catch (IOException e) {
             System.out.println("error writing file");
@@ -122,7 +125,3 @@ public class XMLPersister {
     }
 
 }
-
-
-
-

@@ -14,8 +14,8 @@ import util.MathMethods;
 /**
  * Splits data based on a sliding window.
  * 
- * Takes the min and max of each window, and presumes the biggest difference will be the cutoff point.
- * Very bad with noisy images, hotpixels, ... .
+ * Takes the min and max of each window, and presumes the biggest difference
+ * will be the cutoff point. Very bad with noisy images, hotpixels, ... .
  * 
  * @author Mike
  * 
@@ -43,7 +43,7 @@ public class SlidingWindowSplitter implements DoubleSplitter {
 
     // min window is 2, otherwise differences don't work
     private int determineWindowSize(int dataLength) {
-        int hint = (int) Math.max(Math.round(dataLength/10.0), 2);
+        int hint = (int) Math.max(Math.round(dataLength / 10.0), 2);
         return determineWindowSize(dataLength, hint);
     }
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+<!-- mail config -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="username" value="Mike.Rosseel@gmail.com"/>
+		<property name="password" value="86--17Ab"/>
+  		<property name="host" value="smtp.gmail.com"/>
+  		<property name="port" value="587"/>
+  		<property name="javaMailProperties">
+        	<props>
+            	<prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+	</bean>
+
+	<bean id="clearmailMessage" class="org.springframework.mail.SimpleMailMessage">
+  		<property name="from" value="Mike.Rosseel@gmail.com"/>
+  		<property name="subject" value="${mail.subject}"/>
+	</bean>
+
+	<bean id="mailnotify" class="notification.MailNotify">
+  		<property name="mailSender" ref="mailSender"/>
+  		<property name="message" ref="clearmailMessage"/>
+	</bean>
+	<!-- mail config -->
+</beans>

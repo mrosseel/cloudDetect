@@ -44,245 +44,244 @@ import org.apache.commons.logging.LogFactory;
  */
 public class JMFInit implements ControllerListener {
 
-	Processor p;
+    Processor p;
 
-	boolean stateTransitionOK = true;
+    boolean stateTransitionOK = true;
 
-	private CaptureControlsDialog dlgCaptureControls = null;
+    private CaptureControlsDialog dlgCaptureControls = null;
 
-	DataSource dataSource;
+    DataSource dataSource;
 
-	// thread sync object
-	Object waitSync = new Object();
+    // thread sync object
+    Object waitSync = new Object();
 
-	private static Log log = LogFactory.getLog(JMFInit.class);
+    private static Log log = LogFactory.getLog(JMFInit.class);
 
-	public void setDataSource(MediaLocator ml) throws NoDataSourceException,
-			IOException {
-		dataSource = Manager.createDataSource(ml);
-	}
+    public void setDataSource(MediaLocator ml) throws NoDataSourceException,
+            IOException {
+        dataSource = Manager.createDataSource(ml);
+    }
 
-	/**
-	 * Given a media locator, create a processor and use that processor as a
-	 * player to playback the media.
-	 * 
-	 * During the processor's Configured state, two "pass-thru" codecs,
-	 * PreAccessCodec and application.PostAccessCodec, are set on the video
-	 * track. These codecs are used to get access to individual video frames of
-	 * the media.
-	 * 
-	 * Much of the code is just standard code to present media in JMF.
-	 */
-	public boolean open(MediaLocator ml) {
+    /**
+     * Given a media locator, create a processor and use that processor as a
+     * player to playback the media.
+     * 
+     * During the processor's Configured state, two "pass-thru" codecs,
+     * PreAccessCodec and application.PostAccessCodec, are set on the video
+     * track. These codecs are used to get access to individual video frames of
+     * the media.
+     * 
+     * Much of the code is just standard code to present media in JMF.
+     */
+    public boolean open(MediaLocator ml) {
 
-		try {
-			p = Manager.createProcessor(dataSource);
-		} catch (Exception e) {
-			log.error("Failed to create a processor from the given url: " + e);
-			return false;
-		}
+        try {
+            p = Manager.createProcessor(dataSource);
+        } catch (Exception e) {
+            log.error("Failed to create a processor from the given url: " + e);
+            return false;
+        }
 
-		// all controller events are sent to this, see controllerUpdate method.
-		p.addControllerListener(this);
+        // all controller events are sent to this, see controllerUpdate method.
+        p.addControllerListener(this);
 
-		// Put the Processor into configured state.
-		p.configure();
-		if (!waitForState(Processor.Configured)) {
-			log.error("Failed to configure the processor.");
-			return false;
-		}
+        // Put the Processor into configured state.
+        p.configure();
+        if (!waitForState(Processor.Configured)) {
+            log.error("Failed to configure the processor.");
+            return false;
+        }
 
-		// So I can use it as a player.
-		p.setContentDescriptor(null);
+        // So I can use it as a player.
+        p.setContentDescriptor(null);
 
-		// Obtain the track controls.
-		TrackControl tc[] = p.getTrackControls();
+        // Obtain the track controls.
+        TrackControl tc[] = p.getTrackControls();
 
-		if (tc == null) {
-			log.error("Failed to obtain track controls from the processor.");
-			return false;
-		}
+        if (tc == null) {
+            log.error("Failed to obtain track controls from the processor.");
+            return false;
+        }
 
-		// Search for the track control for the video track.
-		TrackControl videoTrack = null;
+        // Search for the track control for the video track.
+        TrackControl videoTrack = null;
 
-		for (int i = 0; i < tc.length; i++) {
-			if (tc[i].getFormat() instanceof VideoFormat) {
-				videoTrack = tc[i];
-			}
-		}
+        for (int i = 0; i < tc.length; i++) {
+            if (tc[i].getFormat() instanceof VideoFormat) {
+                videoTrack = tc[i];
+            }
+        }
 
-		if (videoTrack == null) {
-			log.error("The input media does not contain a video track.");
-			return false;
-		}
+        if (videoTrack == null) {
+            log.error("The input media does not contain a video track.");
+            return false;
+        }
 
-		log.info("Video format: " + videoTrack.getFormat());
+        log.info("Video format: " + videoTrack.getFormat());
 
-		// Instantiate and set the frame access codec to the data flow path.
-		try {
-			Codec codec[] = { null, new PostAccessCodec() };
-			videoTrack.setCodecChain(codec);
-		} catch (UnsupportedPlugInException e) {
-			log.error("The process does not support effects.");
-		}
+        // Instantiate and set the frame access codec to the data flow path.
+        try {
+            Codec codec[] = { null, new PostAccessCodec() };
+            videoTrack.setCodecChain(codec);
+        } catch (UnsupportedPlugInException e) {
+            log.error("The process does not support effects.");
+        }
 
-		// Realize the processor.
-		p.prefetch();
-		if (!waitForState(Processor.Prefetched)) {
-			System.err.println("Failed to realize the processor.");
-			return false;
-		}
+        // Realize the processor.
+        p.prefetch();
+        if (!waitForState(Processor.Prefetched)) {
+            System.err.println("Failed to realize the processor.");
+            return false;
+        }
 
-		setFrameRate(p, 5.0);
+        setFrameRate(p, 5.0);
 
-		p.start();
+        p.start();
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * @param processor
-	 *  
-	 */
-	private void setFrameRate(Processor processor, double frameRate) {
-		Object control = processor
-				.getControl("javax.media.control.FrameRateControl");
-		FrameRateControl frc = (javax.media.control.FrameRateControl) control;
-		if (frc != null) {
-			log.info("The frame rate is currently set to " + frc.getFrameRate()
-					+ "fps. Setting to rate of " + frameRate + ", max rate is "
-					+ frc.getMaxSupportedFrameRate() + "fps");
+    /**
+     * @param processor
+     * 
+     */
+    private void setFrameRate(Processor processor, double frameRate) {
+        Object control = processor
+                .getControl("javax.media.control.FrameRateControl");
+        FrameRateControl frc = (javax.media.control.FrameRateControl) control;
+        if (frc != null) {
+            log.info("The frame rate is currently set to " + frc.getFrameRate()
+                    + "fps. Setting to rate of " + frameRate + ", max rate is "
+                    + frc.getMaxSupportedFrameRate() + "fps");
 
-			frc.setFrameRate((float) Math.min(frameRate, frc
-					.getMaxSupportedFrameRate()));
-			log.info("Frame rate set at : " + frc.getFrameRate() + "fps");
-		}
-	}
+            frc.setFrameRate((float) Math.min(frameRate, frc
+                    .getMaxSupportedFrameRate()));
+            log.info("Frame rate set at : " + frc.getFrameRate() + "fps");
+        }
+    }
 
-	public VideoFormat getDefaultPreferredFormat() {
-		String prefEncoding = null;
-		float prefFPS = 5.0f;
-		Dimension prefSize = new Dimension(160, 120);
-		VideoFormat prefFormat = new VideoFormat(prefEncoding, prefSize,
-				Format.NOT_SPECIFIED, //length
-				null, // data type
-				prefFPS);
-		return prefFormat;
-	}
+    public VideoFormat getDefaultPreferredFormat() {
+        String prefEncoding = null;
+        float prefFPS = 5.0f;
+        Dimension prefSize = new Dimension(160, 120);
+        VideoFormat prefFormat = new VideoFormat(prefEncoding, prefSize,
+                Format.NOT_SPECIFIED, // length
+                null, // data type
+                prefFPS);
+        return prefFormat;
+    }
 
-	// TODO not used any more, framerate is controlled in another way
-	public void setPreferredFormat(DataSource ds, CaptureDeviceInfo cdi) {
-		// Preferred capture format parameters
+    // TODO not used any more, framerate is controlled in another way
+    public void setPreferredFormat(DataSource ds, CaptureDeviceInfo cdi) {
+        // Preferred capture format parameters
 
-		VideoFormat prefFormat = getDefaultPreferredFormat();
+        VideoFormat prefFormat = getDefaultPreferredFormat();
 
-		if (ds instanceof CaptureDevice) {
-			FormatControl[] fcs = ((CaptureDevice) ds).getFormatControls();
-			for (int i = 0; i < cdi.getFormats().length; i++) {
-				VideoFormat vf = (VideoFormat) cdi.getFormats()[i];
-				if (vf.matches(prefFormat)) {
-					prefFormat = (VideoFormat) vf.intersects(prefFormat);
-					fcs[0].setFormat(prefFormat);
-					break;
-				}
-			}
-		}
-	}
+        if (ds instanceof CaptureDevice) {
+            FormatControl[] fcs = ((CaptureDevice) ds).getFormatControls();
+            for (int i = 0; i < cdi.getFormats().length; i++) {
+                VideoFormat vf = (VideoFormat) cdi.getFormats()[i];
+                if (vf.matches(prefFormat)) {
+                    prefFormat = (VideoFormat) vf.intersects(prefFormat);
+                    fcs[0].setFormat(prefFormat);
+                    break;
+                }
+            }
+        }
+    }
 
-	/**
-	 * Block until the processor has transitioned to the given state. Return
-	 * false if the transition failed.
-	 */
-	boolean waitForState(int state) {
-		synchronized (waitSync) {
-			try {
-				while (p.getState() != state && stateTransitionOK)
-					waitSync.wait();
-			} catch (Exception e) {
-			}
-		}
-		return stateTransitionOK;
-	}
+    /**
+     * Block until the processor has transitioned to the given state. Return
+     * false if the transition failed.
+     */
+    boolean waitForState(int state) {
+        synchronized (waitSync) {
+            try {
+                while (p.getState() != state && stateTransitionOK)
+                    waitSync.wait();
+            } catch (Exception e) {}
+        }
+        return stateTransitionOK;
+    }
 
-	/**
-	 * Controller Listener (implements interface)
-	 */
-	public void controllerUpdate(ControllerEvent evt) {
+    /**
+     * Controller Listener (implements interface)
+     */
+    public void controllerUpdate(ControllerEvent evt) {
 
-		if (evt instanceof ConfigureCompleteEvent
-				|| evt instanceof RealizeCompleteEvent
-				|| evt instanceof PrefetchCompleteEvent) {
-			synchronized (waitSync) {
-				stateTransitionOK = true;
-				waitSync.notifyAll();
-			}
-		} else if (evt instanceof ResourceUnavailableEvent) {
-			synchronized (waitSync) {
-				stateTransitionOK = false;
-				waitSync.notifyAll();
-			}
-		} else if (evt instanceof EndOfMediaEvent) {
-			p.close();
-			System.exit(0);
-		}
-	}
+        if (evt instanceof ConfigureCompleteEvent
+                || evt instanceof RealizeCompleteEvent
+                || evt instanceof PrefetchCompleteEvent) {
+            synchronized (waitSync) {
+                stateTransitionOK = true;
+                waitSync.notifyAll();
+            }
+        } else if (evt instanceof ResourceUnavailableEvent) {
+            synchronized (waitSync) {
+                stateTransitionOK = false;
+                waitSync.notifyAll();
+            }
+        } else if (evt instanceof EndOfMediaEvent) {
+            p.close();
+            System.exit(0);
+        }
+    }
 
-	/**
-	 * takes a string and makes a medialocator, then calls open.
-	 */
-	public void init(String url) {
+    /**
+     * takes a string and makes a medialocator, then calls open.
+     */
+    public void init(String url) {
 
-		MediaLocator ml;
+        MediaLocator ml;
 
-		if ((ml = new MediaLocator(url)) == null) {
-			log.error("Cannot build media locator from: " + url);
-			System.exit(0);
-		}
+        if ((ml = new MediaLocator(url)) == null) {
+            log.error("Cannot build media locator from: " + url);
+            System.exit(0);
+        }
 
-		CaptureDeviceInfo info = CaptureDeviceManager.getDevice(url);
+        CaptureDeviceInfo info = CaptureDeviceManager.getDevice(url);
 
-		// TODO doesn't do anything !
-		Format[] fmts = info.getFormats();
-		for (int i = 0; i != fmts.length; i++) {
-			if (log.isDebugEnabled()) {
-				log.debug("Format = " + fmts[i].toString());
-			}
-		}
+        // TODO doesn't do anything !
+        Format[] fmts = info.getFormats();
+        for (int i = 0; i != fmts.length; i++) {
+            if (log.isDebugEnabled()) {
+                log.debug("Format = " + fmts[i].toString());
+            }
+        }
 
-		ml = info.getLocator();
+        ml = info.getLocator();
 
-		// TODO UI, might go ?
-		Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
+        // TODO UI, might go ?
+        Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
 
-		//		JMFInit fa = new JMFInit();
-		//		JMFInit.imageContainer = new ImageContainer();
+        // JMFInit fa = new JMFInit();
+        // JMFInit.imageContainer = new ImageContainer();
 
-		try {
-			setDataSource(ml);
-		} catch (NoDataSourceException e) {
-			e.printStackTrace();
-			System.exit(0);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(0);
-		}
+        try {
+            setDataSource(ml);
+        } catch (NoDataSourceException e) {
+            e.printStackTrace();
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
 
-		setPreferredFormat(dataSource, info);
+        setPreferredFormat(dataSource, info);
 
-		if (!open(ml))
-			System.exit(0);
+        if (!open(ml))
+            System.exit(0);
 
-	}
+    }
 
-	public Vector getDevices(VideoFormat prefFormat) {
-		return CaptureDeviceManager.getDeviceList(prefFormat);
-	}
+    public Vector getDevices(VideoFormat prefFormat) {
+        return CaptureDeviceManager.getDeviceList(prefFormat);
+    }
 
-	public static void main(String[] args) {
-		String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
+    public static void main(String[] args) {
+        String webcamURL = "vfw:Microsoft WDM Image Capture (Win32):0";
 
-		JMFInit init = new JMFInit();
-		init.init(webcamURL);
-	}
+        JMFInit init = new JMFInit();
+        init.init(webcamURL);
+    }
 }

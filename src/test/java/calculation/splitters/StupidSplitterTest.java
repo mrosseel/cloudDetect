@@ -28,7 +28,7 @@ public class StupidSplitterTest
     StupidImageSplitter stupidSplitter = null;
 
     private static Log log = LogFactory.getLog(StupidSplitterTest.class);
-    
+
     // JUnitDoclet end class
 
     public StupidSplitterTest(String name) {
@@ -37,7 +37,6 @@ public class StupidSplitterTest
         // JUnitDoclet end method MaxStdDevMetricTest
     }
 
-  
     protected void setUp() throws Exception {
         // JUnitDoclet begin method testcase.setUp
         super.setUp();
@@ -54,19 +53,18 @@ public class StupidSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-       CloudImage image = new CloudImageImpl(data, 10, 2);
-       split(image);
-       log.info("best splitter location = " + stupidSplitter.getBestSplitterLocation());
-       assertEquals(9, stupidSplitter.getBestSplitterLocation());
-       
-//         FileClasspathImageProducer producer = new FileClasspathImageProducer(
-//                 "unit test", "/current_min.jpg");
-//         image = producer.produceContent();
-//         split(image);
-//         VisualiseSplitterLocation.showImage(image,
-//         stupidSplitter.getBestSplitterLocation());
+        CloudImage image = new CloudImageImpl(data, 10, 2);
+        split(image);
+        log.info("best splitter location = "
+                + stupidSplitter.getBestSplitterLocation());
+        assertEquals(9, stupidSplitter.getBestSplitterLocation());
 
-
+        // FileClasspathImageProducer producer = new FileClasspathImageProducer(
+        // "unit test", "/current_min.jpg");
+        // image = producer.produceContent();
+        // split(image);
+        // VisualiseSplitterLocation.showImage(image,
+        // stupidSplitter.getBestSplitterLocation());
 
     }
 
@@ -75,7 +73,7 @@ public class StupidSplitterTest
         stupidSplitter.setSplitterMetric(new HorizonMetric());
         stupidSplitter.split(image);
     }
-    
+
     /**
      * JUnitDoclet moves marker to this method, if there is not match for them
      * in the regenerated code and if the marker is not empty. This way, no test

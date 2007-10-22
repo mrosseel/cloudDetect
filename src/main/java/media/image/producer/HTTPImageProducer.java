@@ -6,24 +6,23 @@ import media.image.CloudImage;
 import media.image.CloudImageImpl;
 import media.web.WebImageLoader;
 
-
 /**
  * Class HTTPImageProvider
  * 
  */
 public class HTTPImageProducer extends ImageProducerImpl {
     private String url;
-    
-	public HTTPImageProducer(String name) {
-		super(name);
-	}
 
-	public CloudImage produceContent() {
+    public HTTPImageProducer(String name) {
+        super(name);
+    }
+
+    public CloudImage produceContent() {
         Image image = WebImageLoader.loadURLImage(getUrl());
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());
-		return result;
-	}
+        return result;
+    }
 
     public String getUrl() {
         return url;
@@ -33,4 +32,3 @@ public class HTTPImageProducer extends ImageProducerImpl {
         this.url = url;
     }
 }
-

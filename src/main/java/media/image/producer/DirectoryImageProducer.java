@@ -19,13 +19,18 @@ import util.ImageToolkit;
  */
 public class DirectoryImageProducer extends ImageProducerImpl {
     private static Log log = LogFactory.getLog(DirectoryImageProducer.class);
+
     private String dirToLoad;
+
     private String imgExtension;
+
     private File[] files;
+
     private int fileCounter = 0;
+
     private boolean isLooping = false;
+
     private FileImageProducer fileImageProducer;
-   
 
     public DirectoryImageProducer(String name, String dirToLoad) {
         super(name);
@@ -34,21 +39,21 @@ public class DirectoryImageProducer extends ImageProducerImpl {
     }
 
     public CloudImage produceContent() {
-        if (!isLooping && fileCounter >= files.length-1) {
+        if (!isLooping && fileCounter >= files.length - 1) {
             return null;
         }
-        
+
         fileImageProducer.setImageToLoad(getNextImageName());
-        
+
         CloudImage result = fileImageProducer.produceContent();
         result.setOriginComment(getProducerName());
         fileCounter++;
         return result;
     }
-    
+
     protected void loadImagesInDir() {
         File dir = new File(getDirectoryToLoad());
-        
+
         // This filter only returns directories
         FileFilter fileFilter = new FileFilter() {
             public boolean accept(File file) {
@@ -57,7 +62,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
         };
         files = dir.listFiles(fileFilter);
         Arrays.sort(files);
-        
+
     }
 
     protected String getDirectoryToLoad() {
@@ -67,11 +72,11 @@ public class DirectoryImageProducer extends ImageProducerImpl {
     protected void setDirectoryToLoad(String dirToLoad) {
         this.dirToLoad = dirToLoad;
     }
-    
+
     protected String getNextImageName() {
-        return (files[fileCounter%(files.length-1)]).getAbsolutePath();
+        return (files[fileCounter % (files.length - 1)]).getAbsolutePath();
     }
-    
+
     public String getImgExtension() {
         return imgExtension;
     }
@@ -95,6 +100,5 @@ public class DirectoryImageProducer extends ImageProducerImpl {
     public void setFileImageProducer(FileImageProducer fileImageProducer) {
         this.fileImageProducer = fileImageProducer;
     }
-    
-    
+
 }

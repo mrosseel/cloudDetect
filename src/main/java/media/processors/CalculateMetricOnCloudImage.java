@@ -12,15 +12,16 @@ import media.image.CloudImage;
  * 
  * @author mike
  */
-public interface CalculateMetricOnCloudImage{
+public interface CalculateMetricOnCloudImage {
 
     /**
-     *
-     * @param data frame data
+     * 
+     * @param data
+     *            frame data
      */
     public double process(CloudImage data);
-    
+
     public Metric getMetric();
 
-	public void setMetric(Metric metric);
+    public void setMetric(Metric metric);
 }

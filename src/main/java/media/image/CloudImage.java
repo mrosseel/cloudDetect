@@ -20,29 +20,31 @@ public interface CloudImage {
     public Image getImage();
 
     public double[] getData();
-    
+
     public void setData(double[] data, int width, int heigth);
-    
+
     public double[] getMonochromeData();
 
     public int getHeight();
-    
+
     public int getWidth();
 
     /**
      * Get where the image comes from
+     * 
      * @return
      */
     public String getOriginComment();
 
     /**
      * Set where the image comes from
+     * 
      * @return
      */
     public void setOriginComment(String origin);
-    
+
     public CloudImageMetaData getMetaData();
-    
+
     public void setMetaData(CloudImageMetaData metaData);
-    
+
 }

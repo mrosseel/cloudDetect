@@ -17,7 +17,9 @@ import util.ImageToolkit;
  */
 public class FileImageProducer extends ImageProducerImpl {
     private static Log log = LogFactory.getLog(FileImageProducer.class);
+
     private String imageToLoad;
+
     private ImageDatePlugin plugin;
 
     public FileImageProducer(String name) {
@@ -26,9 +28,10 @@ public class FileImageProducer extends ImageProducerImpl {
 
     public CloudImage produceContent() {
         Image image = getImage();
-        if(image == null || image.getHeight(null) == -1) {
+        if (image == null || image.getHeight(null) == -1) {
             log.warn("Could not load image " + getImageToLoad());
-            throw new IllegalArgumentException("Could not load image " + getImageToLoad());
+            throw new IllegalArgumentException("Could not load image "
+                    + getImageToLoad());
         }
         CloudImage result = new CloudImageImpl(image);
         result.setOriginComment(getProducerName());

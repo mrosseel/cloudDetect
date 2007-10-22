@@ -10,11 +10,11 @@ import media.image.CloudImage;
  * 
  */
 public abstract class ImageProducerImpl extends Thread implements ImageProducer {
-    
-    
+
     private String producerName;
 
     private long timeBetweenPollsInMilliSeconds = -1;
+
     private static long minPollingTimeMilliseconds = 10;
 
     private boolean hasStopped = false;
@@ -61,8 +61,9 @@ public abstract class ImageProducerImpl extends Thread implements ImageProducer 
     }
 
     public void setPolling(double timeBetweenPollsInSeconds) {
-        this.timeBetweenPollsInMilliSeconds = Math.max(minPollingTimeMilliseconds, Math
-                .round(timeBetweenPollsInSeconds * 1000));
+        this.timeBetweenPollsInMilliSeconds = Math.max(
+                minPollingTimeMilliseconds, Math
+                        .round(timeBetweenPollsInSeconds * 1000));
     }
 
     public String getProducerName() {

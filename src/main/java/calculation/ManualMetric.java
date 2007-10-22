@@ -24,14 +24,16 @@ public class ManualMetric implements Metric {
      */
     public double compute(CloudImage data) {
         MedianContrastMetric metric = new MedianContrastMetric();
-        int splitterLocation = (int) Math.round(data.getMonochromeData().length*getManualSplitterLocation());
+        int splitterLocation = (int) Math.round(data.getMonochromeData().length
+                * getManualSplitterLocation());
         VisualiseSplitterLocation.addSplitterLine(data, splitterLocation);
-        
+
         return metric.calculateContrast(data, splitterLocation);
     }
-    
+
     /**
      * value between 0 and 1, where 1 = 100%s (bottom row) and 0 = 0% (top row)
+     * 
      * @return
      */
     public double getManualSplitterLocation() {
@@ -40,6 +42,7 @@ public class ManualMetric implements Metric {
 
     /**
      * value between 0 and 1, where 1 = 100%s (bottom row) and 0 = 0% (top row)
+     * 
      * @param manualSplitterLocation
      */
     public void setManualSplitterLocation(double manualSplitterLocation) {

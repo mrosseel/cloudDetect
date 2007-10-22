@@ -31,7 +31,6 @@ public class BisectionSplitterTest
         // JUnitDoclet end method MaxStdDevMetricTest
     }
 
-  
     protected void setUp() throws Exception {
         // JUnitDoclet begin method testcase.setUp
         super.setUp();
@@ -48,21 +47,22 @@ public class BisectionSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-       CloudImage image = new CloudImageImpl(data, 10, 2);
+        CloudImage image = new CloudImageImpl(data, 10, 2);
 
-//         FileClasspathImageProducer producer = new FileClasspathImageProducer(
-//                 "unit test", "/01-20061009223010-snapshot.jpg");
-         FileClasspathImageProducer producer = new FileClasspathImageProducer(
-                 "unit test", "/01-20061013203310-snapshot.jpg");
-         
-         image = producer.produceContent();
-         bisectionSplitter = new BisectionSplitter();
-         bisectionSplitter.setSplitterMetric(new HorizonMetric());
-         bisectionSplitter.split(image);
-//         assertEquals(9, bisectionSplitter.getBestSplitterLocation());x
-         System.out.println("best splittetr location " + bisectionSplitter.getBestSplitterLocation());
-         VisualiseSplitterLocation.showImage(image,
-         bisectionSplitter.getBestSplitterLocation());
+        // FileClasspathImageProducer producer = new FileClasspathImageProducer(
+        // "unit test", "/01-20061009223010-snapshot.jpg");
+        FileClasspathImageProducer producer = new FileClasspathImageProducer(
+                "unit test", "/01-20061013203310-snapshot.jpg");
+
+        image = producer.produceContent();
+        bisectionSplitter = new BisectionSplitter();
+        bisectionSplitter.setSplitterMetric(new HorizonMetric());
+        bisectionSplitter.split(image);
+        // assertEquals(9, bisectionSplitter.getBestSplitterLocation());x
+        System.out.println("best splittetr location "
+                + bisectionSplitter.getBestSplitterLocation());
+        VisualiseSplitterLocation.showImage(image, bisectionSplitter
+                .getBestSplitterLocation());
 
     }
 

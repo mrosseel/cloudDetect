@@ -11,13 +11,15 @@ import media.image.CloudImageMetaData;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import util.DateUtil;
+
 public class MotionFilenameDatePlugin implements ImageDatePlugin {
     private static Log log = LogFactory.getLog(MotionFilenameDatePlugin.class);
 
     public void insertDateInMetaData(CloudImage image, String filename) {
         CloudImageMetaData metaData = image.getMetaData();
         Date date;
-        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = DateUtil.getCurrentCalendar();
 
         Pattern p = Pattern
                 .compile("(?i).*(\\d\\d)[-](\\d\\d\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)(\\d\\d)[-].*");
@@ -32,7 +34,7 @@ public class MotionFilenameDatePlugin implements ImageDatePlugin {
         } else {
             log.warn("Could not determine date and time from filename: "
                     + filename);
-            calendar.setTimeInMillis(System.currentTimeMillis());
+            // calendar set to current time, no need to change this.
         }
 
         metaData.setDate(calendar.getTime());

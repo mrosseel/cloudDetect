@@ -26,6 +26,8 @@ import org.jfree.data.time.FixedMillisecond;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 
+import util.DateUtil;
+
 /**
  * An example of a time series chart. For the most part, default settings are
  * used, except that the renderer is modified to show filled shapes (as well as
@@ -132,7 +134,7 @@ public class ContrastChart extends ChartPanel {
     }
 
     public void addValue(String timeSeriesName, double value) {
-        addValue(timeSeriesName, new Date(System.currentTimeMillis()), value);
+        addValue(timeSeriesName, DateUtil.getCurrentDate(), value);
     }
 
     private TimeSeries createTimeSeries(String timeSeriesName) {

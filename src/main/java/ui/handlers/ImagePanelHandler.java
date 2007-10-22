@@ -15,27 +15,27 @@ import ui.signal.ImageSignal;
 
 /**
  * @author Mike
- *
+ * 
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImagePanelHandler {
-	private static Log log = LogFactory.getLog(ImagePanelHandler.class);
+    private static Log log = LogFactory.getLog(ImagePanelHandler.class);
 
-	private ImagePanel panel;
+    private ImagePanel panel;
 
-	/**
-	 * 
-	 */
-	public ImagePanelHandler(ImagePanel panel) {
-		this.panel = panel;
-		ReflectionBus.plug(this);
-	}
+    /**
+     * 
+     */
+    public ImagePanelHandler(ImagePanel panel) {
+        this.panel = panel;
+        ReflectionBus.plug(this);
+    }
 
-	public void channel(ImageSignal signal) {
-//		if(log.isDebugEnabled()) {
-//		 log.debug("received image signal");
-//		}
-		panel.setImage(signal.getImage());
-	}
+    public void channel(ImageSignal signal) {
+        // if(log.isDebugEnabled()) {
+        // log.debug("received image signal");
+        // }
+        panel.setImage(signal.getImage());
+    }
 }

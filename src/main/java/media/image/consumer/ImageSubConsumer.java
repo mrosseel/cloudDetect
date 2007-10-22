@@ -7,17 +7,15 @@ import media.image.CloudImage;
  * 
  */
 public interface ImageSubConsumer {
-  // Methods
-  // Constructors
-  // Accessor Methods
-  // Operations
-  /**
-   * 
-   * @param image 
-   * @return void  
-   */
-  public void consume ( CloudImage image);
-    
-  
-}
+    // Methods
+    // Constructors
+    // Accessor Methods
+    // Operations
+    /**
+     * 
+     * @param image
+     * @return void
+     */
+    public void consume(CloudImage image);
 
+}

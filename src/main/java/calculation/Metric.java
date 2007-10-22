@@ -13,9 +13,9 @@ public interface Metric {
 
     /**
      * Compute a certain metric on the given data.
-     *
+     * 
      * @param data
      * @return
      */
-	public double compute(CloudImage data);
+    public double compute(CloudImage data);
 }

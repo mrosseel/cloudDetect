@@ -11,7 +11,8 @@ import ui.StatusPanel;
 import ui.signal.StatusSignal;
 
 /**
- * Class 
+ * Class
+ * 
  * @author mikers
  */
 public class StatusHandler {
@@ -26,7 +27,7 @@ public class StatusHandler {
         this.panel = panel;
         ReflectionBus.plug(this);
     }
-    
+
     public void channel(StatusSignal signal) {
         panel.setStatusMessage(signal.getMessage());
     }

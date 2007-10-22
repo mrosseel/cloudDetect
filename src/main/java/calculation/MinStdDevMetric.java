@@ -25,10 +25,11 @@ public class MinStdDevMetric implements Metric {
         splitter.setSplitterMetric(new MinStdDevSplitterMetric());
         splitter.split(data);
         MedianContrastMetric metric = new MedianContrastMetric();
-        VisualiseSplitterLocation.addSplitterLine(data, splitter.getBestSplitterLocation());
-        
-        return metric.calculateContrast(data, splitter.getBestSplitterLocation());
+        VisualiseSplitterLocation.addSplitterLine(data, splitter
+                .getBestSplitterLocation());
+
+        return metric.calculateContrast(data, splitter
+                .getBestSplitterLocation());
     }
-    
-    
+
 }

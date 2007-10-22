@@ -42,7 +42,7 @@ public class CloudImageImpl implements CloudImage {
     private int height;
 
     private Color color;
-    
+
     private CloudImageMetaData metaData = new CloudImageMetaData();
 
     public CloudImageImpl(Image image) {
@@ -184,8 +184,6 @@ public class CloudImageImpl implements CloudImage {
     }
 
     public void setMetaData(CloudImageMetaData metaData) {
-       this.metaData = metaData;
+        this.metaData = metaData;
     }
 }
-
-

@@ -60,7 +60,7 @@ public class RightPanel extends JPanel {
         this.setLayout(new java.awt.GridBagLayout());
         this.add(getJPanel(), consGridBagConstraints3);
         this.add(getJPanel11(), consGridBagConstraints4);
-        this.setPreferredSize(new java.awt.Dimension(160,140));
+        this.setPreferredSize(new java.awt.Dimension(160, 140));
 
     }
 

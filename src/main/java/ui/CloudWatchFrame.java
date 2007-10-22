@@ -9,7 +9,6 @@ import media.image.producer.jmf.JMFInit;
 import util.ImageToolkit;
 import application.InstanceFactory;
 
-
 /*
  * Created on 20-jan-2004
  *
@@ -19,12 +18,13 @@ import application.InstanceFactory;
 
 /**
  * DOCUMENT ME!
- *
- * @author mikers To change the template for this generated type comment go to Window&gt;Preferences&gt;Java&gt;Code
- *         Generation&gt;Code and Comments
+ * 
+ * @author mikers To change the template for this generated type comment go to
+ *         Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class CloudWatchFrame extends JFrame {
-    //~ Instance fields ************************************************************************************************
+    // ~ Instance fields
+    // ************************************************************************************************
 
     /**
      * 
@@ -67,10 +67,13 @@ public class CloudWatchFrame extends JFrame {
     /** ? */
     private ui.StatusPanel statusPanel = null;
 
-	private ui.ContrastChart ContrastChart = null;
-    //~ Constructors ***************************************************************************************************
+    private ui.ContrastChart ContrastChart = null;
 
-    //~ Constructors ***************************************************************************************************
+    // ~ Constructors
+    // ***************************************************************************************************
+
+    // ~ Constructors
+    // ***************************************************************************************************
 
     /**
      * This is the default constructor
@@ -81,11 +84,12 @@ public class CloudWatchFrame extends JFrame {
         initialize();
     }
 
-    //~ Methods ********************************************************************************************************
+    // ~ Methods
+    // ********************************************************************************************************
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param args ?
      */
     public static void main(String[] args) {
@@ -96,7 +100,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes controlPanel
-     *
+     * 
      * @return be.realsoftware.ivs.ui.ControlPanel
      */
     private ui.ControlPanel getControlPanel() {
@@ -109,7 +113,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jJMenuBar1
-     *
+     * 
      * @return javax.swing.JMenuBar
      */
     private javax.swing.JMenuBar getJJMenuBar1() {
@@ -124,7 +128,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jMenu
-     *
+     * 
      * @return javax.swing.JMenu
      */
     private javax.swing.JMenu getJMenu() {
@@ -145,7 +149,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jMenuItem
-     *
+     * 
      * @return javax.swing.JMenuItem
      */
     private javax.swing.JMenuItem getJMenuItem() {
@@ -154,12 +158,13 @@ public class CloudWatchFrame extends JFrame {
             jMenuItem.setText("Take Darkframe");
             jMenuItem.setMnemonic(java.awt.event.KeyEvent.VK_X);
             jMenuItem.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent e) {
-//                        File           selFile = chooseFile();
-                        //NewFileCommand command = new NewFileCommand(new NewXFileSignal(selFile));
-                        //command.execute();
-                    }
-                });
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                // File selFile = chooseFile();
+                // NewFileCommand command = new NewFileCommand(new
+                // NewXFileSignal(selFile));
+                // command.execute();
+                }
+            });
         }
 
         return jMenuItem;
@@ -167,7 +172,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jMenuItem1
-     *
+     * 
      * @return javax.swing.JMenuItem
      */
     private javax.swing.JMenuItem getJMenuItem1() {
@@ -181,7 +186,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jMenuItem2
-     *
+     * 
      * @return javax.swing.JMenuItem
      */
     private javax.swing.JMenuItem getJMenuItem2() {
@@ -196,7 +201,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jMenuItem4
-     *
+     * 
      * @return javax.swing.JMenuItem
      */
     private javax.swing.JMenuItem getJMenuItem4() {
@@ -205,21 +210,23 @@ public class CloudWatchFrame extends JFrame {
             jMenuItem4.setText("Configure Image source");
 
             jMenuItem4.setMnemonic(java.awt.event.KeyEvent.VK_Y);
-          //  NewXFileSignal signal = new NewXFileSignal(new File("ypy"));
+            // NewXFileSignal signal = new NewXFileSignal(new File("ypy"));
             jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-                    public void actionPerformed(java.awt.event.ActionEvent e) {
-//                        File           selFile = chooseFile();
-                        //WebImageSettingsPanel webImage = new WebImageSettingsPanel();
-                        //webImage.show();
-            			JMFInit jmf = new JMFInit();
-//            			Vector list = jmf.getDevices(null);
-            			//jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");	
-            			jmf.init("v4l:Philips 740 webcam:0");	
-            			
-                        // NewFileCommand command = new NewFileCommand(new NewYFileSignal(selFile));
-                        //command.execute();
-                    }
-                });
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    // File selFile = chooseFile();
+                    // WebImageSettingsPanel webImage = new
+                    // WebImageSettingsPanel();
+                    // webImage.show();
+                    JMFInit jmf = new JMFInit();
+                    // Vector list = jmf.getDevices(null);
+                    // jmf.init("vfw:Microsoft WDM Image Capture (Win32):0");
+                    jmf.init("v4l:Philips 740 webcam:0");
+
+                    // NewFileCommand command = new NewFileCommand(new
+                    // NewYFileSignal(selFile));
+                    // command.execute();
+                }
+            });
         }
 
         return jMenuItem4;
@@ -227,7 +234,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jPanel1
-     *
+     * 
      * @return javax.swing.JPanel
      */
     private javax.swing.JPanel getJPanel1() {
@@ -236,16 +243,16 @@ public class CloudWatchFrame extends JFrame {
 
             java.awt.GridBagConstraints consGridBagConstraints4 = new java.awt.GridBagConstraints();
             java.awt.GridBagConstraints consGridBagConstraints5 = new java.awt.GridBagConstraints();
-            consGridBagConstraints4.gridx       = 0;
-            consGridBagConstraints4.gridy       = 1;
-            consGridBagConstraints4.weightx     = 1.0D;
-            consGridBagConstraints4.weighty     = 1.0D;
-            consGridBagConstraints4.fill        = java.awt.GridBagConstraints.BOTH;
-            consGridBagConstraints4.insets      = new java.awt.Insets(2, 2, 2, 2);
-            consGridBagConstraints5.gridx       = 0;
-            consGridBagConstraints5.gridy       = 2;
-            consGridBagConstraints5.fill        = java.awt.GridBagConstraints.HORIZONTAL;
-            consGridBagConstraints5.insets      = new java.awt.Insets(0, 2, 2, 2);
+            consGridBagConstraints4.gridx = 0;
+            consGridBagConstraints4.gridy = 1;
+            consGridBagConstraints4.weightx = 1.0D;
+            consGridBagConstraints4.weighty = 1.0D;
+            consGridBagConstraints4.fill = java.awt.GridBagConstraints.BOTH;
+            consGridBagConstraints4.insets = new java.awt.Insets(2, 2, 2, 2);
+            consGridBagConstraints5.gridx = 0;
+            consGridBagConstraints5.gridy = 2;
+            consGridBagConstraints5.fill = java.awt.GridBagConstraints.HORIZONTAL;
+            consGridBagConstraints5.insets = new java.awt.Insets(0, 2, 2, 2);
             jPanel1.setLayout(new java.awt.GridBagLayout());
             jPanel1.add(getJSplitPane(), consGridBagConstraints4);
             jPanel1.add(getStatusPanel(), consGridBagConstraints5);
@@ -257,7 +264,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jSeparator
-     *
+     * 
      * @return javax.swing.JSeparator
      */
     private javax.swing.JSeparator getJSeparator() {
@@ -270,7 +277,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes jSplitPane
-     *
+     * 
      * @return javax.swing.JSplitPane
      */
     private javax.swing.JSplitPane getJSplitPane() {
@@ -282,7 +289,8 @@ public class CloudWatchFrame extends JFrame {
             jSplitPane.setPreferredSize(new java.awt.Dimension(640, 480));
             jSplitPane.setOneTouchExpandable(true);
             jSplitPane.setDividerSize(7);
-            jSplitPane.setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
+            jSplitPane
+                    .setComponentOrientation(java.awt.ComponentOrientation.LEFT_TO_RIGHT);
             jSplitPane.setContinuousLayout(false);
             jSplitPane.setResizeWeight(1.0D);
         }
@@ -292,7 +300,7 @@ public class CloudWatchFrame extends JFrame {
 
     /**
      * This method initializes statusPanel
-     *
+     * 
      * @return be.realsoftware.ivs.ui.StatusPanel
      */
     private ui.StatusPanel getStatusPanel() {
@@ -303,16 +311,17 @@ public class CloudWatchFrame extends JFrame {
         return statusPanel;
     }
 
-   /**
-     *
-     *
+    /**
+     * 
+     * 
      * @return ?
      */
     private File chooseFile() {
-        String       filename = File.separator + "tmp";
+        String filename = File.separator + "tmp";
         JFileChooser fc = new JFileChooser(new File(filename));
 
-        // Show open dialog; this method does not return until the dialog is closed
+        // Show open dialog; this method does not return until the dialog is
+        // closed
         fc.showOpenDialog(thisFrame);
 
         File selFile = fc.getSelectedFile();
@@ -332,19 +341,18 @@ public class CloudWatchFrame extends JFrame {
         this.setTitle("CloudWatcher v0.2");
         this.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
     }
-    
-	/**
-	 * This method initializes ContrastChart
-	 * 
-	 * @return ui.ContrastChart
-	 */
-	public ui.ContrastChart getContrastChart() {
-		if(ContrastChart == null) {
-			ContrastChart = InstanceFactory.getContrastChart();
-		}
-		return ContrastChart;
-	}
-}  //  @jve:decl-index=0:visual-constraint="10,10"
 
+    /**
+     * This method initializes ContrastChart
+     * 
+     * @return ui.ContrastChart
+     */
+    public ui.ContrastChart getContrastChart() {
+        if (ContrastChart == null) {
+            ContrastChart = InstanceFactory.getContrastChart();
+        }
+        return ContrastChart;
+    }
+} // @jve:decl-index=0:visual-constraint="10,10"
 
-//  @jve:visual-info  decl-index=0 visual-constraint="36,6"
+// @jve:visual-info decl-index=0 visual-constraint="36,6"

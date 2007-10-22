@@ -22,30 +22,30 @@ import ui.signal.ImageSignal;
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImageCommand implements ICommand {
-	private Image image;
+    private Image image;
 
-	private ImageSignal signal;
+    private ImageSignal signal;
 
-	private static Log log = LogFactory.getLog(ImageCommand.class);
+    private static Log log = LogFactory.getLog(ImageCommand.class);
 
-	/**
-	 * 
-	 */
-	public ImageCommand(Image image) {
-		this.image = image;
-	}
+    /**
+     * 
+     */
+    public ImageCommand(Image image) {
+        this.image = image;
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.werx.framework.commands.ICommand#execute()
-	 */
-	public void execute() {
-		this.signal = new ImageSignal(image);
-		if (log.isDebugEnabled()) {
-			log.debug("sending new image signal");
-		}
-		ReflectionBus.broadcast(signal);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see org.werx.framework.commands.ICommand#execute()
+     */
+    public void execute() {
+        this.signal = new ImageSignal(image);
+        if (log.isDebugEnabled()) {
+            log.debug("sending new image signal");
+        }
+        ReflectionBus.broadcast(signal);
+    }
 
 }

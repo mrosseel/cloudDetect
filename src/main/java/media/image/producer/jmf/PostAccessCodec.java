@@ -22,179 +22,174 @@ import persistence.XMLPersister;
 import application.InstanceFactory;
 
 public class PostAccessCodec implements Codec {
-	
-	
-	// RGB or YUV or ...
-	private VideoFormat format = null;
-	
-	private XMLPersister persist;
-	private int[] keepData;
-	private int cntDataAccumulated;
-	private Thread thread = null;
-	private CalculateMetricOnCloudImage buffer = null;
-	private static JFrame imageFrame;
-	private static RGBImageStacker imageStacker;
 
-	// We'll advertize as supporting all video formats.
-	protected Format supportedIns[] = new Format[] { new VideoFormat(null)};
+    // RGB or YUV or ...
+    private VideoFormat format = null;
 
-	// We'll advertize as supporting all video formats.
-	protected Format supportedOuts[] = new Format[] { new VideoFormat(null)};
+    private XMLPersister persist;
 
-	Format input = null, output = null;
+    private int[] keepData;
 
-	private static Log log = LogFactory.getLog(PostAccessCodec.class);
-	
-	public PostAccessCodec() {
-		persist = new XMLPersister();
-		//this.collector.setImageSink(this.sink);
-	// TODO here we notified that our image is ready for UI showing, how to do it now?
-		}
-	
+    private int cntDataAccumulated;
 
-	/**
-	 * Callback to access individual video frames.
-	 */
-	void accessFrame(Buffer frame) {
-		processBuffer(frame);
-	}
+    private Thread thread = null;
 
-	private synchronized void processBuffer(Buffer frame) {
-		if (buffer == null) {
-			buffer = (CalculateMetricOnCloudImage) InstanceFactory.getCalculateMetricOnCloudImage();
-		}
+    private CalculateMetricOnCloudImage buffer = null;
 
-		// should we process ?
-//		if (!buffer.isProcessing()) {
+    private static JFrame imageFrame;
 
-			if (format == null) {
-				format = (VideoFormat) frame.getFormat();
-				//imageStacker = new RGBImageStacker(format);
-			}
+    private static RGBImageStacker imageStacker;
 
-			byte[] originalData = (byte[]) frame.getData();
-			
-				log.info("getting data of length: " + originalData.length );
-			
-			/*
-			imageStacker.stackData(originalData);
+    // We'll advertize as supporting all video formats.
+    protected Format supportedIns[] = new Format[] { new VideoFormat(null) };
 
-			if (imageStacker.isStacked()) {
-				originalData = imageStacker.getOriginalStackData();
-				// TODO look why this is needed and reinstate it
-				//CloudFrame.imageContainer.setOriginalImage(originalData);
-				//writeData(data);
-				frame.setData(originalData);
-				*/
-				BufferToImage bufferto =
-					new BufferToImage((VideoFormat) format);
-				Image img = bufferto.createImage(frame);
+    // We'll advertize as supporting all video formats.
+    protected Format supportedOuts[] = new Format[] { new VideoFormat(null) };
 
-				System.out.println(frame.getFormat().toString());
-				//collector.addImage(img);
-				/*
-				ImageCommand command = new ImageCommand(img);
-				command.execute();
-				buffer.setImageData(img, imageStacker.getProcessedStackData());
-				buffer.setWidth(img.getWidth(null));
-				thread = new Thread(buffer, "buffer processor");
-				buffer.setProcessing(true);
-				thread.start();
-			}
-			*/
-//		}
-	}
+    Format input = null, output = null;
 
+    private static Log log = LogFactory.getLog(PostAccessCodec.class);
 
-	/**
-	 * The code for a pass through codec.
-	 */
+    public PostAccessCodec() {
+        persist = new XMLPersister();
+        // this.collector.setImageSink(this.sink);
+        // TODO here we notified that our image is ready for UI showing, how to
+        // do it now?
+    }
 
+    /**
+     * Callback to access individual video frames.
+     */
+    void accessFrame(Buffer frame) {
+        processBuffer(frame);
+    }
 
-	public String getName() {
-		return "Post-Access Codec";
-	}
+    private synchronized void processBuffer(Buffer frame) {
+        if (buffer == null) {
+            buffer = (CalculateMetricOnCloudImage) InstanceFactory
+                    .getCalculateMetricOnCloudImage();
+        }
 
-	// No op.
-	public void open() {
-	}
+        // should we process ?
+        // if (!buffer.isProcessing()) {
 
-	// No op.
-	public void close() {
-	}
+        if (format == null) {
+            format = (VideoFormat) frame.getFormat();
+            // imageStacker = new RGBImageStacker(format);
+        }
 
-	// No op.
-	public void reset() {
-	}
+        byte[] originalData = (byte[]) frame.getData();
 
-	public Format[] getSupportedInputFormats() {
-		return supportedIns;
-	}
+        log.info("getting data of length: " + originalData.length);
 
-	public Format[] getSupportedOutputFormats(Format in) {
-		if (in == null)
-			return supportedOuts;
-		else {
-			// If an input format is given, we use that input format
-			// as the output since we are not modifying the bit stream
-			// at all.
-			Format outs[] = new Format[1];
-			outs[0] = in;
-			return outs;
-		}
-	}
+        /*
+         * imageStacker.stackData(originalData);
+         * 
+         * if (imageStacker.isStacked()) { originalData =
+         * imageStacker.getOriginalStackData(); // TODO look why this is needed
+         * and reinstate it
+         * //CloudFrame.imageContainer.setOriginalImage(originalData);
+         * //writeData(data); frame.setData(originalData);
+         */
+        BufferToImage bufferto = new BufferToImage((VideoFormat) format);
+        Image img = bufferto.createImage(frame);
 
-	public Format setInputFormat(Format format) {
-		input = format;
-		return input;
-	}
+        System.out.println(frame.getFormat().toString());
+        // collector.addImage(img);
+        /*
+         * ImageCommand command = new ImageCommand(img); command.execute();
+         * buffer.setImageData(img, imageStacker.getProcessedStackData());
+         * buffer.setWidth(img.getWidth(null)); thread = new Thread(buffer,
+         * "buffer processor"); buffer.setProcessing(true); thread.start(); }
+         */
+        // }
+    }
 
-	public Format setOutputFormat(Format format) {
-		output = format;
-		return output;
-	}
+    /**
+     * The code for a pass through codec.
+     */
 
-	public int process(Buffer in, Buffer out) {
+    public String getName() {
+        return "Post-Access Codec";
+    }
 
-		// This is the "Callback" to access individual frames.
-		accessFrame(in);
+    // No op.
+    public void open() {}
 
-		// Swap the data between the input & output.
-		Object data = in.getData();
-		in.setData(out.getData());
-		out.setData(data);
+    // No op.
+    public void close() {}
 
-		// Copy the input attributes to the output
-		out.setFormat(in.getFormat());
-		out.setLength(in.getLength());
-		out.setOffset(in.getOffset());
+    // No op.
+    public void reset() {}
 
-		return BUFFER_PROCESSED_OK;
-	}
+    public Format[] getSupportedInputFormats() {
+        return supportedIns;
+    }
 
-	// TODO delete
-	private void writeData(short[] data) {
-		BufferedWriter writer;
-		try {
-			writer = new BufferedWriter(new FileWriter("data.txt"));
+    public Format[] getSupportedOutputFormats(Format in) {
+        if (in == null)
+            return supportedOuts;
+        else {
+            // If an input format is given, we use that input format
+            // as the output since we are not modifying the bit stream
+            // at all.
+            Format outs[] = new Format[1];
+            outs[0] = in;
+            return outs;
+        }
+    }
 
-			for (int counter = 0; counter != data.length; counter++) {
-				writer.write(String.valueOf(data[counter]));
-				writer.write('\n');
-			}
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    public Format setInputFormat(Format format) {
+        input = format;
+        return input;
+    }
 
-	}
+    public Format setOutputFormat(Format format) {
+        output = format;
+        return output;
+    }
 
-	public Object[] getControls() {
-		return new Object[0];
-	}
+    public int process(Buffer in, Buffer out) {
 
-	public Object getControl(String type) {
-		return null;
-	}
+        // This is the "Callback" to access individual frames.
+        accessFrame(in);
+
+        // Swap the data between the input & output.
+        Object data = in.getData();
+        in.setData(out.getData());
+        out.setData(data);
+
+        // Copy the input attributes to the output
+        out.setFormat(in.getFormat());
+        out.setLength(in.getLength());
+        out.setOffset(in.getOffset());
+
+        return BUFFER_PROCESSED_OK;
+    }
+
+    // TODO delete
+    private void writeData(short[] data) {
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter("data.txt"));
+
+            for (int counter = 0; counter != data.length; counter++) {
+                writer.write(String.valueOf(data[counter]));
+                writer.write('\n');
+            }
+            writer.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
+
+    public Object[] getControls() {
+        return new Object[0];
+    }
+
+    public Object getControl(String type) {
+        return null;
+    }
 }

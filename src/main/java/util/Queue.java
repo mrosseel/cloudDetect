@@ -16,87 +16,85 @@ package util;
  *  if they have been or are hereafter advised of the possibility of
  *  such damages.
  */
- 
+
 import java.util.LinkedList;
 
-public class Queue 
-{
+public class Queue {
 
-	private LinkedList items;
+    private LinkedList items;
 
-	/**
-	 * Creats an empty queue
-	 */
-	 
-	public Queue ()
-	{
-		items = new LinkedList();
-	}
-	
-	/**
-	 * Inserts a new element at the rear of the queue.
-	 * @param element element to be inserted.
-	 */
-	
-	public Object enqueue (Object element)
-	{
-		items.add (element);
-		return element;
-	}
-	
-	/**
-	 * Removes the element at the top of the queue.
-	 * @return the removed element.
-	 * @throws Exception 
-	 * @throws EmptyQueueException if the queue is empty.
-	 */
+    /**
+     * Creats an empty queue
+     */
 
-	public Object dequeue () throws Exception 
-	{
-		if (items.size()== 0)	
-			throw new Exception("Empty queue") ;
-		return items.removeFirst();		
-	}
+    public Queue() {
+        items = new LinkedList();
+    }
 
-	/**
-	 * Inspects the element at the top of the queue without removing it.
-	 * @return the element at the top of the queue.
-	 * @throws Exception 
-	 * @throws EmptyQueueException if the queue is empty.
-	 */
-	
-	public Object front () throws Exception 
-	{
-		if (items.size()== 0)	
-			throw new Exception("Empty queue") ;
-		return items.getFirst();	
-	}
-	
-	/**
-	 * @return the number of elements at the queue.
-	 */
+    /**
+     * Inserts a new element at the rear of the queue.
+     * 
+     * @param element
+     *            element to be inserted.
+     */
 
-	public int size()
-	{
-		return items.size();
-	}
+    public Object enqueue(Object element) {
+        items.add(element);
+        return element;
+    }
 
-	/**
-	 * @return true of the queue is empty.
-	 */	
+    /**
+     * Removes the element at the top of the queue.
+     * 
+     * @return the removed element.
+     * @throws Exception
+     * @throws EmptyQueueException
+     *             if the queue is empty.
+     */
 
-	public boolean empty()
-	{
-		return (size()==0);
-	}
+    public Object dequeue() throws Exception {
+        if (items.size() == 0)
+            throw new Exception("Empty queue");
+        return items.removeFirst();
+    }
 
-	/**
-	 * Removes all elements at the queue.
-	 */	
+    /**
+     * Inspects the element at the top of the queue without removing it.
+     * 
+     * @return the element at the top of the queue.
+     * @throws Exception
+     * @throws EmptyQueueException
+     *             if the queue is empty.
+     */
 
-	public void clear ()
-	{
-		items.clear();
-	}    
+    public Object front() throws Exception {
+        if (items.size() == 0)
+            throw new Exception("Empty queue");
+        return items.getFirst();
+    }
+
+    /**
+     * @return the number of elements at the queue.
+     */
+
+    public int size() {
+        return items.size();
+    }
+
+    /**
+     * @return true of the queue is empty.
+     */
+
+    public boolean empty() {
+        return (size() == 0);
+    }
+
+    /**
+     * Removes all elements at the queue.
+     */
+
+    public void clear() {
+        items.clear();
+    }
 
 }

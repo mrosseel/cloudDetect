@@ -4,8 +4,9 @@ import java.util.Date;
 
 public class CloudImageMetaData {
     private Date date;
+
     private double contrastResult;
-    
+
     public Date getDate() {
         return date;
     }
@@ -21,6 +22,5 @@ public class CloudImageMetaData {
     public void setContrastResult(double contrastResult) {
         this.contrastResult = contrastResult;
     }
-    
-    
+
 }

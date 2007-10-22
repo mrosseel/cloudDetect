@@ -8,6 +8,23 @@
         </property>
 	</bean>
 	
+	<!-- mail config -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+  		<property name="host" value="smtp.gmail.com"/>
+	</bean>
+
+	<bean id="mailMessage" class="org.springframework.mail.SimpleMailMessage">
+  		<property name="from" value="Mike.Rosseel@gmail.com"/>
+  		<property name="subject" value="Automatisch bericht: Het is opgeklaard!"/>
+	</bean>
+
+	<bean id="mailnotify" class="notification.MailNotify">
+  		<property name="mailSender" ref="mailSender"/>
+  		<property name="message" ref="mailMessage"/>
+	</bean>
+	<!-- mail config -->
+
+	
 	<bean id="cloudwatchconfig" class="application.CloudWatchConfig">
 		<property name="commandLine"><value>true</value></property>
 	</bean>
@@ -18,15 +35,16 @@
 	
 	<!-- Image producers -->
 	
-	<alias name="fileimageproducer" alias="imageproducer"/>
+	<alias name="directoryimageproducer" alias="imageproducer"/>
 	
 	<bean id="fileimageproducer" class="media.image.producer.FileImageProducer">
 		<constructor-arg><value>file image producer</value></constructor-arg>
-		<constructor-arg><value>/home/mike/quasar_blue.png</value></constructor-arg>
+		<property name="imageToLoad"><value>/usr/local/apache2/htdocs/cam1/lastsnap.jpg</value></property>		
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>5</value></property>
+		<property name="polling"><value>10</value></property>
+		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
-	
+
 	<bean id="httpimageproducer" class="media.image.producer.HTTPImageProducer">
 		<constructor-arg><value>HTTP image producer</value></constructor-arg>
 		<property name="url"><value>${http.url}</value></property>
@@ -35,31 +53,46 @@
 	</bean>
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
-	<constructor-arg><value>file image producer</value></constructor-arg>
-		<constructor-arg><value>/home/mike/quasar_blue.png</value></constructor-arg>
+		<constructor-arg><value>directory image producer</value></constructor-arg>
+		<constructor-arg><value>/usr/local/apache2/htdocs/cam1</value></constructor-arg> 
+<!--				<constructor-arg><value>/home/mike/incoming/movies/20061013</value></constructor-arg>-->
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>5</value></property>
+		<property name="polling"><value>1</value></property>
+		<property name="imgExtension"><value>jpg</value></property>
+		<property name="looping"><value>0</value></property>
+		<property name="fileImageProducer"><ref bean="motionfileimageproducer"/></property>
 	</bean>
+	
+	<bean id="motionfileimageproducer" class="media.image.producer.FileImageProducer">
+		<constructor-arg><value>file image producer</value></constructor-arg>
+		<property name="plugin"><ref bean="motionFilenameDatePlugin"/></property>
+	</bean>
+	<bean id="motionFilenameDatePlugin" class="media.image.producer.plugin.MotionFilenameDatePlugin"/>
+	<bean id="nowDatePlugin" class="media.image.producer.plugin.NowDatePlugin"/>
 	
 	<!-- -->	
 	
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl">
 		<property name="queue"><ref bean="cloudimagequeue"/></property>
-		<property name="polling"><value>5</value></property>
+		<property name="polling"><value>0</value></property>
 	</bean>
 
 	<bean id="cloudimagequeue" class="media.image.producer.CloudImageQueue">
-		<property name="maxElements"><value>500</value></property>
+		<property name="maxElements"><value>10</value></property>
 	</bean>
 	
 	<bean id="calculatemetriconcloudimage" class="media.processors.CalculateMetricOnCloudImageImpl">
-		<property name="metric"><ref bean="pixelbrightnessmetric"/></property>
+		<property name="metric"><ref bean="manualmetric"/></property>
 	</bean>
 	
 	<bean id="linemediandifferencemetric" class="calculation.LineMedianDifferenceMetric"/>
 	<bean id="cutoffdiferencemetric" class="calculation.CutoffDifferenceMetric"/>
-	<bean id="maxstddevmetric" class="calculation.splitters.MaxStdDevImageSplitter"/>
+	<bean id="minstddevmetric" class="calculation.MinStdDevMetric"/>
+	<bean id="manualmetric" class="calculation.ManualMetric">
+		<property name="manualSplitterLocation"><value>0.9</value></property>
+	</bean>
 	<bean id="pixelbrightnessmetric" class="calculation.PixelBrightnessMetric"/>
+	<bean id="kmeansmetric" class="calculation.KMeansMetric"/>
 	<bean id="horizonmetric" class="calculation.HorizonBlablaMetric"/>
 	
 	<!--  UI parts -->
@@ -68,4 +101,10 @@
 	</bean>
 	
 	<bean id="imagepanel" class="ui.ImagePanel"/>
+	
+		
+	<bean id="cloudjudge" class="calculation.CloudJudge">
+		<property name="maxClear"><value>1.5</value></property>
+		<property name="maxPartialClear"><value>3</value></property>
+	</bean>
 </beans>

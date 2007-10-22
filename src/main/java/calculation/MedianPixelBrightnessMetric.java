@@ -27,7 +27,7 @@ public class MedianPixelBrightnessMetric implements Metric {
         Arrays.sort(data);
         double lowest = data[0];
         double median = Median.find(data, 0, data.length);
-        
-        return (median-lowest) / (double) data.length / 255 * 100;
+
+        return (median - lowest) / (double) data.length / 255 * 100;
     }
 }

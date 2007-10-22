@@ -12,28 +12,33 @@ import java.util.Vector;
 /**
  * TODO not used, see if we can learn something and kill it
  * 
- * This class opens a video capture device and reads frames from
- * it, displaying them in a Canvas in a Frame.
+ * This class opens a video capture device and reads frames from it, displaying
+ * them in a Canvas in a Frame.
  */
 public class VideoPreview extends Frame implements BufferTransferHandler {
 
     /**
-	 * 
-	 */
-	private static final long serialVersionUID = -2052105484941499448L;
-	PushBufferDataSource cds = null;
+     * 
+     */
+    private static final long serialVersionUID = -2052105484941499448L;
+
+    PushBufferDataSource cds = null;
+
     BufferToImage bti = null;
+
     Canvas canvas = null;
 
     // Preferred capture format parameters
     String prefEncoding = "YUV";
-    float  prefFPS = 30.0f;
+
+    float prefFPS = 30.0f;
+
     Dimension prefSize = new Dimension(160, 120);
-    VideoFormat prefFormat = new VideoFormat(prefEncoding,
-                                             prefSize,
-                                             Format.NOT_SPECIFIED, //length
-                                             null, // data type
-                                             prefFPS);
+
+    VideoFormat prefFormat = new VideoFormat(prefEncoding, prefSize,
+            Format.NOT_SPECIFIED, // length
+            null, // data type
+            prefFPS);
 
     public VideoPreview() {
         super("Video Preview");
@@ -52,11 +57,11 @@ public class VideoPreview extends Frame implements BufferTransferHandler {
             // settable, or device having zero elements in FormatControl
             // array.
             if (ds instanceof CaptureDevice) {
-                FormatControl [] fcs = ((CaptureDevice)ds).getFormatControls();
+                FormatControl[] fcs = ((CaptureDevice) ds).getFormatControls();
                 for (int i = 0; i < cdi.getFormats().length; i++) {
                     VideoFormat vf = (VideoFormat) cdi.getFormats()[i];
                     if (vf.matches(prefFormat)) {
-                        prefFormat = (VideoFormat)vf.intersects(prefFormat);
+                        prefFormat = (VideoFormat) vf.intersects(prefFormat);
                         fcs[0].setFormat(prefFormat);
                         break;
                     }
@@ -123,7 +128,7 @@ public class VideoPreview extends Frame implements BufferTransferHandler {
         g.drawImage(im, 0, 0, this);
     }
 
-    public static void main(String [] args) {
+    public static void main(String[] args) {
         (new VideoPreview()).setVisible(true);
     }
 }

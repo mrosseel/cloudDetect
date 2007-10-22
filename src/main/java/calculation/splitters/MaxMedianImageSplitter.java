@@ -25,8 +25,7 @@ public class MaxMedianImageSplitter extends AbstractGenericImageSplitter {
         return Median.find(data, from, to);
     }
 
-    protected void postDataManipulation(double[] data) {
-    }
+    protected void postDataManipulation(double[] data) {}
 
     protected void preDataManipulation(double[] data) {
         // sort it, otherwise it won't work
@@ -34,8 +33,8 @@ public class MaxMedianImageSplitter extends AbstractGenericImageSplitter {
     }
 
     public void setSplitterMetric(SplitterMetric metric) {
-        // TODO Auto-generated method stub
-        
+    // TODO Auto-generated method stub
+
     }
 
     public SplitterMetric getSplitterMetric() {

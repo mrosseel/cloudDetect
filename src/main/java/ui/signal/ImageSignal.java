@@ -12,28 +12,27 @@ import org.werx.framework.signals.BusSignal;
 
 /**
  * @author Mike
- *
+ * 
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
 public class ImageSignal extends BusSignal {
-	/**
+    /**
      * 
      */
     private static final long serialVersionUID = 1L;
+
     private Image image;
 
-	/**
-	 * 
-	 */
-	public ImageSignal(Image image) {
-		this.image = image;
-	}
-	
-	public Image getImage() {
-		return this.image;
-	}
-	
-	
+    /**
+     * 
+     */
+    public ImageSignal(Image image) {
+        this.image = image;
+    }
+
+    public Image getImage() {
+        return this.image;
+    }
 
 }

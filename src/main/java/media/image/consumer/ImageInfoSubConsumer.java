@@ -9,17 +9,17 @@ import util.MathMethods;
 
 public class ImageInfoSubConsumer implements ImageSubConsumer {
 
-	private static Log log = LogFactory.getLog(ImageInfoSubConsumer.class);
-	
-	public void consume(CloudImage image) {
-		double[] data = image.getData();
+    private static Log log = LogFactory.getLog(ImageInfoSubConsumer.class);
 
-		double biggest = MathMethods.max(data);
-		double smallest = MathMethods.min(data);
+    public void consume(CloudImage image) {
+        double[] data = image.getData();
 
-		log.info("length = " + data.length);
-		log.info("biggest = " + biggest + " smallest = " + smallest);
-		
-	}
+        double biggest = MathMethods.max(data);
+        double smallest = MathMethods.min(data);
+
+        log.info("length = " + data.length);
+        log.info("biggest = " + biggest + " smallest = " + smallest);
+
+    }
 
 }

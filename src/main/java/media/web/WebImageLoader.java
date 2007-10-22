@@ -1,6 +1,5 @@
 package media.web;
 
-
 import java.awt.Button;
 import java.awt.Image;
 import java.awt.MediaTracker;
@@ -14,7 +13,7 @@ import sun.awt.image.InputStreamImageSource;
  * Class used to load images from the web.
  * 
  * @author mikers
- *  
+ * 
  */
 public class WebImageLoader {
     /**
@@ -23,8 +22,9 @@ public class WebImageLoader {
      * Note: make sure the ProxyConfigurator is run for proxied connections !
      * Note: this method blocks until the image is retrieved.
      * 
-     * @param txtUrl	the url, e.g. http://acme.com/image.jpg
-     * @return	the retrieved image
+     * @param txtUrl
+     *            the url, e.g. http://acme.com/image.jpg
+     * @return the retrieved image
      */
     public static Image loadURLImage(String txtUrl) {
         Image image = null;
@@ -54,11 +54,10 @@ public class WebImageLoader {
     }
 
     public static void main(String[] args) {
-        //ProxyConfigurator.configure("proxy", "8080", "rls03\\Mikers",
-        //        "Aqwpl;67");
+        // ProxyConfigurator.configure("proxy", "8080", "rls03\\Mikers",
+        // "Aqwpl;67");
         ProxyConfigurator.configure("proxy.pandora.be", "8080", "", "");
         ImageViewer.showImage(WebImageLoader.loadURLImage(args[0]),
                 "Loaded test image");
     }
 }
-

@@ -21,57 +21,55 @@ import javax.sound.sampled.LineUnavailableException;
 /**
  * @author Mike
  * 
- * Usage: 
+ * Usage:
  * 
- *		SoundUtil util = new SoundUtil();
- *		util.play(new File("c:\\home\\programming\\cloudDetect\\conf\\sounds\\alert.wav"), 2);
- *
+ * SoundUtil util = new SoundUtil(); util.play(new
+ * File("c:\\home\\programming\\cloudDetect\\conf\\sounds\\alert.wav"), 2);
+ * 
  */
 public class SoundUtil implements LineListener {
-	
-	private Clip m_clip;
-	
-	/*
-	 *      The clip will be played nLoopCount + 1 times.
-	 */
-	public void play(File clipFile, int nLoopCount) {
-		AudioInputStream audioInputStream = null;
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(clipFile);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (audioInputStream != null) {
-			AudioFormat format = audioInputStream.getFormat();
-			DataLine.Info info = new DataLine.Info(Clip.class, format);
-			try {
-				m_clip = (Clip) AudioSystem.getLine(info);
-				m_clip.addLineListener(this);
-				m_clip.open(audioInputStream);
-			} catch (LineUnavailableException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			m_clip.loop(nLoopCount);
-		} else {
-			System.out.println(
-				"ClipPlayer.<init>(): can't get data from file "
-					+ clipFile.getName());
-		}
-	}
-	
-	// needed for correct playing of clip, do not touch!
-	public void update(LineEvent event) {
-		if (event.getType().equals(LineEvent.Type.STOP)) {
-			m_clip.close();
-		} else if (event.getType().equals(LineEvent.Type.CLOSE)) {
-			/*
-			 *      There is a bug in the jdk1.3/1.4.
-			 *      It prevents correct termination of the VM.
-			 *      So we have to exit ourselves.
-			 */
-			//System.exit(0);
-		}
-	}
+
+    private Clip m_clip;
+
+    /*
+     * The clip will be played nLoopCount + 1 times.
+     */
+    public void play(File clipFile, int nLoopCount) {
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(clipFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (audioInputStream != null) {
+            AudioFormat format = audioInputStream.getFormat();
+            DataLine.Info info = new DataLine.Info(Clip.class, format);
+            try {
+                m_clip = (Clip) AudioSystem.getLine(info);
+                m_clip.addLineListener(this);
+                m_clip.open(audioInputStream);
+            } catch (LineUnavailableException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            m_clip.loop(nLoopCount);
+        } else {
+            System.out.println("ClipPlayer.<init>(): can't get data from file "
+                    + clipFile.getName());
+        }
+    }
+
+    // needed for correct playing of clip, do not touch!
+    public void update(LineEvent event) {
+        if (event.getType().equals(LineEvent.Type.STOP)) {
+            m_clip.close();
+        } else if (event.getType().equals(LineEvent.Type.CLOSE)) {
+            /*
+             * There is a bug in the jdk1.3/1.4. It prevents correct termination
+             * of the VM. So we have to exit ourselves.
+             */
+            // System.exit(0);
+        }
+    }
 }

@@ -10,36 +10,38 @@ import org.apache.commons.logging.LogFactory;
 
 import calculation.Metric;
 
-public class CalculateMetricOnCloudImageImpl implements CalculateMetricOnCloudImage {
+public class CalculateMetricOnCloudImageImpl implements
+        CalculateMetricOnCloudImage {
 
-	private static Log log = LogFactory.getLog(CalculateMetricOnCloudImageImpl.class);
+    private static Log log = LogFactory
+            .getLog(CalculateMetricOnCloudImageImpl.class);
 
-	private double[] data;
+    private double[] data;
 
-	private Metric metric;
+    private Metric metric;
 
-	public double process(CloudImage image) {
+    public double process(CloudImage image) {
 
-		if (log.isDebugEnabled()) {
-			log.debug("Processing data.");
-		}
+        if (log.isDebugEnabled()) {
+            log.debug("Processing data.");
+        }
 
-		double result = metric.compute(image);
-		if (log.isDebugEnabled()) {
-			log.debug("result = " + result);
-		}
-        
+        double result = metric.compute(image);
+        if (log.isDebugEnabled()) {
+            log.debug("result = " + result);
+        }
+
         return result;
-	}
+    }
 
-	public Metric getMetric() {
-		return metric;
-	}
+    public Metric getMetric() {
+        return metric;
+    }
 
-	public void setMetric(Metric metric) {
+    public void setMetric(Metric metric) {
         if (log.isDebugEnabled()) {
             log.debug("Setting metric to " + metric.toString());
         }
-		this.metric = metric;
-	}
+        this.metric = metric;
+    }
 }

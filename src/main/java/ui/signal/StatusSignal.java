@@ -8,7 +8,8 @@ package ui.signal;
 import org.werx.framework.signals.BusSignal;
 
 /**
- * Class 
+ * Class
+ * 
  * @author mikers
  */
 public class StatusSignal extends BusSignal {
@@ -16,6 +17,7 @@ public class StatusSignal extends BusSignal {
      * 
      */
     private static final long serialVersionUID = 1L;
+
     private String message;
 
     /**
@@ -26,7 +28,7 @@ public class StatusSignal extends BusSignal {
     public StatusSignal(String message) {
         this.message = message;
     }
-  
+
     /**
      * @return
      */

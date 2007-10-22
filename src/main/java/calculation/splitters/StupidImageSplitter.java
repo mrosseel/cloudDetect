@@ -15,7 +15,9 @@ public class StupidImageSplitter extends AbstractImageSplitter {
             for (int location = 2; location < length - 2; location++) {
                 currentResult = metric.compute(data, location);
                 if (log.isDebugEnabled()) {
-                    log.debug("Testing location " + location + " result = " + getResult() + " current=" + currentResult + " bestloc = " + getBestSplitterLocation());
+                    log.debug("Testing location " + location + " result = "
+                            + getResult() + " current=" + currentResult
+                            + " bestloc = " + getBestSplitterLocation());
                 }
                 if (currentResult > getResult()) {
                     setResult(currentResult);

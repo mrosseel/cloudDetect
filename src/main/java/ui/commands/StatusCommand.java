@@ -11,26 +11,27 @@ import ui.signal.StatusSignal;
 
 /**
  * Class
- *
+ * 
  * @author mikers
  */
 public class StatusCommand implements ICommand {
-    //~ Instance fields ************************************************************************************************
+    // ~ Instance fields
+    // ************************************************************************************************
 
     /** ? */
     StatusSignal signal;
 
-    //~ Constructors ***************************************************************************************************
+    // ~ Constructors
+    // ***************************************************************************************************
 
     /**
      * Ctor for StatusCommand.java.
      */
-    public StatusCommand() {
-    }
+    public StatusCommand() {}
 
     /**
      * Creates a new StatusCommand object.
-     *
+     * 
      * @param signal ?
      */
     public StatusCommand(StatusSignal signal) {
@@ -39,16 +40,19 @@ public class StatusCommand implements ICommand {
 
     /**
      * Creates a new StatusCommand object.
-     *
+     * 
      * @param message ?
      */
     public StatusCommand(String message) {
         this.signal = new StatusSignal(message);
     }
 
-    //~ Methods ********************************************************************************************************
+    // ~ Methods
+    // ********************************************************************************************************
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see be.realsoftware.ivs.ui.commands.ICommand#execute()
      */
     public void execute() {

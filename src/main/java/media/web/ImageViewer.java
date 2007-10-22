@@ -14,7 +14,7 @@ import java.awt.event.WindowEvent;
  * Show an image and a title in a new Frame.
  * 
  * @author mikers
- *
+ * 
  */
 public class ImageViewer {
     public static void showImage(Image image, String title) {
@@ -35,6 +35,7 @@ class myFrame extends Frame {
      * 
      */
     private static final long serialVersionUID = 1L;
+
     private Image image;
 
     public myFrame(Image image) {
