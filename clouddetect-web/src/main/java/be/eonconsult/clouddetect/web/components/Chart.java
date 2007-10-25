@@ -10,7 +10,6 @@ import java.util.List;
 
 import media.chart.ContrastChartCreator;
 
-import org.apache.commons.logging.Log;
 import org.apache.tapestry.ComponentResources;
 import org.apache.tapestry.Link;
 import org.apache.tapestry.MarkupWriter;
@@ -19,11 +18,11 @@ import org.apache.tapestry.StreamResponse;
 import org.apache.tapestry.annotations.AfterRender;
 import org.apache.tapestry.annotations.BeginRender;
 import org.apache.tapestry.annotations.Environmental;
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Mixin;
 import org.apache.tapestry.annotations.OnEvent;
 import org.apache.tapestry.annotations.Parameter;
 import org.apache.tapestry.corelib.mixins.RenderInformals;
+import org.apache.tapestry.ioc.annotations.Inject;
 import org.apache.tapestry.services.Response;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
@@ -65,9 +64,6 @@ public class Chart {
 
 	@Inject
 	private ComponentResources _resources;
-
-	@Inject
-	private Log log;
 
 	@SuppressWarnings("unused")
 	@Mixin
@@ -152,7 +148,7 @@ public class Chart {
 		List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
 
 		if (results != null) {
-			log.debug("number of results: " + results.size());
+//			log.debug("number of results: " + results.size());
 			creator.addValue(name, results);
 		}
 

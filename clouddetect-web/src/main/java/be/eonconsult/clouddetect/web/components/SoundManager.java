@@ -5,8 +5,9 @@ import org.apache.tapestry.Asset;
 import org.apache.tapestry.MarkupWriter;
 import org.apache.tapestry.PageRenderSupport;
 import org.apache.tapestry.annotations.Environmental;
-import org.apache.tapestry.annotations.Inject;
+import org.apache.tapestry.annotations.Parameter;
 import org.apache.tapestry.annotations.Path;
+import org.apache.tapestry.ioc.annotations.Inject;
 
 
 /**
@@ -23,6 +24,12 @@ public class SoundManager {
 	    @Inject
 	    @Path("context:js/mysoundmanager.js")
 	    private Asset mySoundManagerScript;
+	    
+	    @Parameter
+	    private int timesToPlaySound;
+	    
+	    @Parameter
+	    private String soundToPlay;
 
 	    
 	    
@@ -40,6 +47,32 @@ public class SoundManager {
 //			head.elementAt(0, "link", "rel", "stylesheet", "type", "text/css", "href", jsCalendarStylesheet
 //					.toClientURL());
 		}
+
+
+
+		public String getSoundToPlay() {
+			return soundToPlay;
+		}
+
+
+
+		public void setSoundToPlay(String soundToPlay) {
+			this.soundToPlay = soundToPlay;
+		}
+
+
+
+		public int getTimesToPlaySound() {
+			return timesToPlaySound;
+		}
+
+
+
+		public void setTimesToPlaySound(int timesToPlaySound) {
+			this.timesToPlaySound = timesToPlaySound;
+		}
+	    
+	    
 	}
 
 	

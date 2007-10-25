@@ -5,8 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Service;
+import org.apache.tapestry.ioc.annotations.Inject;
 import org.apache.tapestry.util.TextStreamResponse;
 
 import persistence.dao.FeedDao;

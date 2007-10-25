@@ -5,8 +5,8 @@ import org.apache.tapestry.MarkupWriter;
 import org.apache.tapestry.Renderable;
 import org.apache.tapestry.annotations.ApplicationState;
 import org.apache.tapestry.annotations.Component;
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Path;
+import org.apache.tapestry.ioc.annotations.Inject;
 
 import be.eonconsult.clouddetect.Global;
 
@@ -26,6 +26,11 @@ public class Border {
     @Inject
     @Path("context:images/CloudWatchBETA2.png")
     private Asset logo;
+    
+    @Inject
+    @Path("context:css/style.css")
+    private Asset css;
+
     
     public boolean getMapPage() {
         return false;
@@ -49,5 +54,9 @@ public class Border {
     
 	public boolean isTracking() {
 		return global.isTracking();
+	}
+
+	public Asset getCss() {
+		return css;
 	}
 }

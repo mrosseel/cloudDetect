@@ -1,0 +1,9 @@
+<span xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+<script>
+	timesToPlaySound = ${timesToPlaySound};
+	soundToPlay = '/js/${soundToPlay}';
+</script>
+
+</span>
+
+

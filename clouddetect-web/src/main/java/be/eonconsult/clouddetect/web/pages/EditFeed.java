@@ -1,10 +1,10 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.annotations.OnEvent;
 import org.apache.tapestry.annotations.Persist;
 import org.apache.tapestry.internal.structure.Page;
+import org.apache.tapestry.ioc.annotations.Inject;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;

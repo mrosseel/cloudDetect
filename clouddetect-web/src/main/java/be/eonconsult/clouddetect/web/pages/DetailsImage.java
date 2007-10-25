@@ -3,12 +3,10 @@ package be.eonconsult.clouddetect.web.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Persist;
 
 import application.InstanceFactory;
 
-import persistence.dao.FeedDao;
 import persistence.dao.ResultDao;
 import persistence.model.Feed;
 import persistence.model.Result;

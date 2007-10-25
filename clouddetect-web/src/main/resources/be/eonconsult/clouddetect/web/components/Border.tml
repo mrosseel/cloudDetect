@@ -7,7 +7,7 @@
 	<meta name="verify-v1" content="zMPcOiGnP4a24JM/RvXyKj+o0W39h1P++DvdvHmLpi8=" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	
-	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="${css}" type="text/css" media="screen" />
 	
 	<t:if test="mappage"> 
 		<script src="http://maps.google.com/maps?file=api&amp;v=2.78&amp;key=${google.maps.key}" type="text/javascript"></script>

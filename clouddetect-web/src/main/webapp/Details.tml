@@ -23,6 +23,10 @@
       <t:textfield t:id="delayCloudy" label="mins delay if it gets Cloudy" size="1"/>
       <t:label for="delayCloudy"/>
 </div>
+ <div>
+      <t:select t:id="selectStart" label="Start Time" model="validTimes" value="startTime"/>
+      <t:label for="selectStart"/>
+</div>
 
  <div>
       <t:Submit id="submit" value="Change settings"/>
@@ -43,12 +47,12 @@
 	<div class="box">
 		<t:if test="clearnotify">
 			<h1>Clear Alert!</h1>
-			<t:soundmanager/> 
+			<t:soundmanager soundToPlay="literal:alert.wav.mp3" timesToPlay="3"/> 
 		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
 		</t:if>
 		<t:if test="cloudynotify">
 			<h1>Cloudy Alert!</h1>
-			<t:soundmanager/>
+			<t:soundmanager soundToPlay="literal:alert.wav.mp3" timesToPlay="3"/>
 		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
 		</t:if>
 	</div>

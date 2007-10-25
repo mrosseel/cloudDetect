@@ -2,9 +2,9 @@ package be.eonconsult.clouddetect.web.components;
 
 import org.apache.tapestry.annotations.ApplicationState;
 import org.apache.tapestry.annotations.Component;
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.Persist;
 import org.apache.tapestry.corelib.components.PasswordField;
+import org.apache.tapestry.ioc.annotations.Inject;
 import org.apache.tapestry.services.Cookies;
 
 import persistence.dao.UserDao;

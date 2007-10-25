@@ -1,6 +1,7 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import org.apache.tapestry.annotations.Inject;
+
+import org.apache.tapestry.ioc.annotations.Inject;
 
 import persistence.dao.UserDao;
 import persistence.model.User;

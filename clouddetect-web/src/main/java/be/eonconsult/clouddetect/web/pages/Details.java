@@ -1,12 +1,13 @@
 package be.eonconsult.clouddetect.web.pages;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.tapestry.ComponentResources;
-import org.apache.tapestry.StreamResponse;
-import org.apache.tapestry.annotations.Inject;
 import org.apache.tapestry.annotations.InjectPage;
 import org.apache.tapestry.annotations.Persist;
+import org.apache.tapestry.ioc.annotations.Inject;
 
 import persistence.dao.FeedDao;
 import persistence.dao.ResultDao;
@@ -19,6 +20,8 @@ import calculation.CloudJudge.CloudStatus;
 
 public class Details {
 	private static Log log = LogFactory.getLog(Details.class);
+	
+	private Map validTimes = createMap();
 
 	@Inject
 	private FeedDao feedDao;
@@ -50,7 +53,6 @@ public class Details {
 	@Persist
 	private ClearCloudyMonitor monitor = new ClearCloudyMonitor();
 
-
 	@Persist
 	private CloudStatus cloudStatusResult;
 
@@ -59,6 +61,9 @@ public class Details {
 
 	@Persist
 	private boolean isCloudyNotify = false;
+	
+	@Persist
+	private String startTime;
 
 	
 	/* TODO
@@ -93,7 +98,7 @@ public class Details {
 			isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult, result.getTime());
 		}
 		
-//		isClearNotify = true;
+		isClearNotify = true;
 	}
 
 	int onPassivate() {
@@ -128,6 +133,17 @@ public class Details {
 		// details.onActivate(id);
 		// return details;
 
+	}
+	
+	Map createMap() {
+		Map map = new HashMap();
+		map.put("19:00", "negniet uur");
+		map.put("19:01", "negniet1 uur");
+		map.put("19:02", "negniet2 uur");
+		map.put("19:03", "negniet3 uur");
+		map.put("19:04", "negniet4 uur");
+		return map;
+		
 	}
 
 	public boolean isClearWarning() {
@@ -181,6 +197,23 @@ public class Details {
 	public boolean isClearOrCloudyNotify() {
 		return isCloudyNotify || isClearNotify;
 	}
+	public String getStartTime() {
+		return startTime;
+	}
 
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+
+	public Map getValidTimes() {
+		return validTimes;
+	}
+
+	public void setValidTimes(Map validTimes) {
+		this.validTimes = validTimes;
+	}
+
+	
+	
 
 }
