@@ -4,8 +4,8 @@
  */
 package media.chart;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.GradientPaint;
 import java.awt.Paint;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,148 +44,143 @@ import util.DateUtil;
 public class ContrastChartCreator {
 
 	private static Log log = LogFactory.getLog(ContrastChartCreator.class);
-    
-    ChartPanel chartPanel;
 
-    JFreeChart chart;
-    
-    String title;
+	ChartPanel chartPanel;
 
-    private HashMap<String,TimeSeries> timeSeriesMap = new HashMap<String,TimeSeries>();
-    
-    private List<Marker> markers = new ArrayList<Marker>();
+	JFreeChart chart;
 
-    /**
-     * A demonstration application showing how to create a simple time series
-     * chart. This example uses monthly data.
-     * 
-     * @param title
-     *            the frame title.
-     */
-    public ContrastChartCreator(String title) {
-    	this.title = title;
-    }
-    
-    public ContrastChartCreator() {
-    	this("");
-    }
+	String title;
 
-    public  JFreeChart getJFreeChart() {
+	private HashMap<String, TimeSeries> timeSeriesMap = new HashMap<String, TimeSeries>();
 
-    	TimeSeriesCollection dataset = new TimeSeriesCollection();
+	private List<Marker> markers = new ArrayList<Marker>();
 
-        Iterator iter = timeSeriesMap.values().iterator();
-        while (iter.hasNext()) {
-            dataset.addSeries((TimeSeries) iter.next());
-        }
-//        dataset.setDomainIsPointsInTime(true);
+	/**
+	 * A demonstration application showing how to create a simple time series
+	 * chart. This example uses monthly data.
+	 * 
+	 * @param title
+	 *            the frame title.
+	 */
+	public ContrastChartCreator(String title) {
+		this.title = title;
+	}
 
-        JFreeChart chart = createChart(dataset);
-        return chart;
-    }
+	public ContrastChartCreator() {
+		this("");
+	}
 
-    /**
-     * Creates a chart.
-     * 
-     * @param dataset
-     *            a dataset.
-     * 
-     * @return A chart.
-     */
-    private JFreeChart createChart(XYDataset dataset) {
+	public JFreeChart getJFreeChart() {
 
-        JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                title, "", "value", dataset, false, true, false);
+		TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-        chart.setBackgroundPaint(Color.white);
+		Iterator iter = timeSeriesMap.values().iterator();
+		while (iter.hasNext()) {
+			dataset.addSeries((TimeSeries) iter.next());
+		}
+		// dataset.setDomainIsPointsInTime(true);
 
-        XYPlot plot = chart.getXYPlot();
+		JFreeChart chart = createChart(dataset);
+		return chart;
+	}
 
-        plot.setBackgroundPaint(Color.lightGray);
-        plot.setDomainGridlinePaint(Color.white);
-        plot.setRangeGridlinePaint(Color.white);
-        // ValueAxis val = plot.getRangeAxis();
-        
-        
+	/**
+	 * Creates a chart.
+	 * 
+	 * @param dataset
+	 *            a dataset.
+	 * 
+	 * @return A chart.
+	 */
+	private JFreeChart createChart(XYDataset dataset) {
 
-        // contrast axis
-        LogarithmicAxis val = new LogarithmicAxis("Contrast");
-        val.setRange(0, 100);
-        val.setLog10TickLabelsFlag(false);
-        plot.setRangeAxis(val);
-        plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
-        plot.setDomainCrosshairVisible(true);
-        plot.setRangeCrosshairVisible(true);
-        plot.setOutlinePaint(Color.cyan);
-        plot.setBackgroundPaint(new GradientPaint( 0.0f, 0.0f, Color.green, 480.0f, 480.0f, Color.lightGray ));
-        
-        // date axis
-        DateAxis axis = (DateAxis) plot.getDomainAxis();
-        axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
-        axis.setUpperMargin(0.11);
-        //        axis.setLowerMargin(0.50);
-        
-        for(Marker currentMarker: markers) {
-        	plot.addRangeMarker(currentMarker);
-        }
-        
-        XYItemRenderer r = plot.getRenderer();
-        if (r instanceof XYLineAndShapeRenderer) {
-            XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
-            renderer.setShapesVisible(true);
-            renderer.setShapesFilled(true);
-        }
+		JFreeChart chart = ChartFactory.createTimeSeriesChart(title, "", "value", dataset, false, true, false);
 
-        
-        return chart;
-    }
-    
-    public void addMarker(double value, Paint paint, String label) {
-    	Marker marker = new ValueMarker(value);
-    	marker.setPaint(paint);
-    	marker.setLabel(label);
-    	marker.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
-    	marker.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
-        markers.add(marker);
-    }
+		chart.setBackgroundPaint(Color.white);
 
-    public void addValue(String timeSeriesName, double value, Date date) {
-        TimeSeries timeSeries = (TimeSeries) timeSeriesMap
-                .get(timeSeriesName);
-        if (timeSeries == null) {
-            timeSeries = createTimeSeries(timeSeriesName);
-        }
-        try{
-        timeSeries.add(new FixedMillisecond(date), new Double(value));
-        } catch(Throwable e) {
-        	log.warn("Error adding observation to the chart.", e);
-        }
-    }
+		XYPlot plot = chart.getXYPlot();
 
-    public void addValue(String timeSeriesName, double value) {
-        addValue(timeSeriesName, value, DateUtil.getCurrentDate());
-    }
+		plot.setBackgroundPaint(Color.lightGray);
+		plot.setDomainGridlinePaint(Color.white);
+		plot.setRangeGridlinePaint(Color.white);
+		// ValueAxis val = plot.getRangeAxis();
 
-    public void addValue(String timeSeriesName, Result result) {
-    	addValue(timeSeriesName, result.getResult(), result.getTime());
-    }
-    
-   public void addValue(String timeSeriesName, List<Result> result) {
-	   Iterator<Result> iter = result.iterator();
-	   while(iter.hasNext()) {
-		   addValue(timeSeriesName, iter.next());
-	   }
-    }
-    
-    private TimeSeries createTimeSeries(String timeSeriesName) {
-        TimeSeries timeSeries = new TimeSeries(timeSeriesName, "Millisecond",
-                "Value", FixedMillisecond.class);
-        if (timeSeriesName == null) {
-            throw new RuntimeException(
-                    "All CloudImages should provide an origin a name.");
-        }
-        timeSeriesMap.put(timeSeriesName, timeSeries);
-        //super.setChart(getJFreeChart());
-        return timeSeries;
-    }
+		// contrast axis
+		LogarithmicAxis val = new LogarithmicAxis("Contrast");
+		val.setRange(0, 100);
+		val.setLog10TickLabelsFlag(false);
+		plot.setRangeAxis(val);
+		plot.setAxisOffset(new RectangleInsets(5.0, 5.0, 5.0, 5.0));
+		plot.setDomainCrosshairVisible(true);
+		plot.setRangeCrosshairVisible(true);
+		plot.setOutlinePaint(Color.cyan);
+//		plot.setBackgroundPaint(new GradientPaint(700f, 0.0f, new Color(54, 169,222), 0f, 320f, Color.lightGray));
+		plot.setBackgroundPaint(Color.lightGray);
+
+		// date axis
+		DateAxis axis = (DateAxis) plot.getDomainAxis();
+		axis.setDateFormatOverride(new SimpleDateFormat("dd/MM - kk:mm"));
+		axis.setUpperMargin(0.11);
+		// axis.setLowerMargin(0.50);
+
+		for (Marker currentMarker : markers) {
+			plot.addRangeMarker(currentMarker);
+		}
+
+		XYItemRenderer r = plot.getRenderer();
+		if (r instanceof XYLineAndShapeRenderer) {
+			XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer) r;
+			renderer.setShapesVisible(true);
+			renderer.setShapesFilled(true);
+		}
+
+		return chart;
+	}
+
+	public void addMarker(double value, Paint paint, String label) {
+		Marker marker = new ValueMarker(value);
+		marker.setPaint(paint);
+		marker.setLabel(label);
+		marker.setLabelAnchor(RectangleAnchor.BOTTOM_RIGHT);
+		marker.setLabelTextAnchor(TextAnchor.TOP_RIGHT);
+		marker.setStroke(new BasicStroke(2));
+		markers.add(marker);
+	}
+
+	public void addValue(String timeSeriesName, double value, Date date) {
+		TimeSeries timeSeries = (TimeSeries) timeSeriesMap.get(timeSeriesName);
+		if (timeSeries == null) {
+			timeSeries = createTimeSeries(timeSeriesName);
+		}
+		try {
+			timeSeries.add(new FixedMillisecond(date), new Double(value));
+		} catch (Throwable e) {
+			log.warn("Error adding observation to the chart.", e);
+		}
+	}
+
+	public void addValue(String timeSeriesName, double value) {
+		addValue(timeSeriesName, value, DateUtil.getCurrentDate());
+	}
+
+	public void addValue(String timeSeriesName, Result result) {
+		addValue(timeSeriesName, result.getResult(), result.getTime());
+	}
+
+	public void addValue(String timeSeriesName, List<Result> result) {
+		Iterator<Result> iter = result.iterator();
+		while (iter.hasNext()) {
+			addValue(timeSeriesName, iter.next());
+		}
+	}
+
+	private TimeSeries createTimeSeries(String timeSeriesName) {
+		TimeSeries timeSeries = new TimeSeries(timeSeriesName, "Millisecond", "Value", FixedMillisecond.class);
+		if (timeSeriesName == null) {
+			throw new RuntimeException("All CloudImages should provide an origin a name.");
+		}
+		timeSeriesMap.put(timeSeriesName, timeSeries);
+
+		return timeSeries;
+	}
 }
