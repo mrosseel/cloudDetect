@@ -1,17 +1,13 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.tapestry.annotations.Service;
 import org.apache.tapestry.ioc.annotations.Inject;
 import org.apache.tapestry.util.TextStreamResponse;
+import org.slf4j.Logger;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
-import persistence.model.User;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -20,7 +16,7 @@ public class WebcamList {
     private FeedDao feedDao;
     
     @Inject
-    private Log log;
+    private Logger log;
     
     
     public String getWebcamList() {
