@@ -16,22 +16,18 @@ public class DateUtil {
         Calendar calendar = Calendar.getInstance();
         return calendar;
     }
+
+    public static int getDistanceToMultipleOf15(DateTime hour) {
+    	return 15 - hour.getMinuteOfHour()%15;
+    }
     
-    // TODO
-//    public static String getNightString(DateTime from, DateTime to) {
-//    	StringBuffer result = new StringBuffer();
-//    	
-//    	result.append("Night of ").append(from.getDayOfMonth());
-//    	
-//    	if(from.getMonthOfYear() != to.getMonthOfYear()) {
-//    		
-//    	} else {
-//    		result.append(" to ").append(to.getDayOfMonth()).append(" ");
-//    	}
-//    	
-////    	result.append(to.property()month().getMonthOfYear() OfYear()OfYear())
-////    	
-////    	.getRise().toString("dd/MM/YY") + " to " + pair.getSet().toString("dd/MM/YY");
-//    }
+
+	public static boolean withinTimeFrame(DateTime from, DateTime to, DateTime now) {
+		if(from.getMinuteOfDay() <= now.getMinuteOfDay() || to.getMinuteOfDay() >= now.getMinuteOfDay()) {
+			return true;
+		}
+		
+		return false;
+	}
 
 }
