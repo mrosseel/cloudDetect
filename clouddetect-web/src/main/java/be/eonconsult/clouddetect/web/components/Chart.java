@@ -158,4 +158,63 @@ public class Chart {
 						+ pair.getSet().toString("dd/MM/YY"));
 		return result;
 	}
+
+	public int getChartHeight() {
+		return chartHeight;
+	}
+
+	public void setChartHeight(int chartHeight) {
+		this.chartHeight = chartHeight;
+	}
+
+	public int getChartWidth() {
+		return chartWidth;
+	}
+
+	public void setChartWidth(int chartWidth) {
+		this.chartWidth = chartWidth;
+	}
+
+	public int getDay() {
+		return day;
+	}
+
+	public void setDay(int day) {
+		this.day = day;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getMaxClear() {
+		return maxClear;
+	}
+
+	public void setMaxClear(double maxClear) {
+		this.maxClear = maxClear;
+	}
+
+	public double getMaxPartlyClear() {
+		return maxPartlyClear;
+	}
+
+	public void setMaxPartlyClear(double maxPartlyClear) {
+		this.maxPartlyClear = maxPartlyClear;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	
 }

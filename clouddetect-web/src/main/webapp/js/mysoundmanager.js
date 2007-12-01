@@ -1,10 +1,8 @@
 
 
-
-
  soundManager.url = '/js/soundmanager2.swf'; // path to movie
  soundManager.onload = function() {
- 	soundManager._writeDebug('soundManager.onload() - my code executes here');
+// 	soundManager._writeDebug('soundManager.onload() - my code executes here');
  	soundManager.createSound({
 		 id: 'mySound', // required
 		 url: soundToPlay,

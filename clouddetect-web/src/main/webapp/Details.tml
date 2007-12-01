@@ -2,72 +2,85 @@
 
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
 
+<t:block id="settings">
+	<t:form t:id="transitions">
+		 <div>
+		      <t:checkbox t:id="clearWarning" label="Warn when Clear"/>
+		      <t:label for="clearWarning"/>
+		    </div>
+		 <div>
+		      <t:checkbox t:id="cloudyWarning" label="Warn when Cloudy"/>
+		      <t:label for="cloudyWarning"/>
+		</div>
+		
+		 <div>
+		      <t:select t:id="selectStart" label="Start of alert period" model="validTimes" value="startTime"/>
+		      <t:label for="selectStart"/>
+		</div>
+		 <div>
+		      <t:select t:id="selectEnd" label="End of alert period" model="validTimes" value="endTime"/>
+		      <t:label for="selectEnd"/>
+		</div>
 
 
-<t:block id="testit">
-
-<t:form t:id="transitions">
- <div>
-      <t:checkbox t:id="clearWarning" label="Warn when Clear"/>
-      <t:label for="clearWarning"/>
-    </div>
- <div>
-      <t:checkbox t:id="cloudyWarning" label="Warn when Cloudy"/>
-      <t:label for="cloudyWarning"/>
-</div>
- <div>
-      <t:textfield t:id="delayClear" label="mins delay if it Clears" size="1"/>
-      <t:label for="delayClear"/>
-</div>
- <div>
-      <t:textfield t:id="delayCloudy" label="mins delay if it gets Cloudy" size="1"/>
-      <t:label for="delayCloudy"/>
-</div>
- <div>
-      <t:select t:id="selectStart" label="Start Time" model="validTimes" value="startTime"/>
-      <t:label for="selectStart"/>
-</div>
-
- <div>
-      <t:Submit id="submit" value="Change settings"/>
-</div>
+		 <div>
+		      <t:textfield t:id="delayClear" label="mins delay if it Clears" size="1"/>
+		      <t:label for="delayClear"/>
+		</div>
+		 <div>
+		      <t:textfield t:id="delayCloudy" label="mins delay if it gets Cloudy" size="1"/>
+		      <t:label for="delayCloudy"/>
+		</div>
+		 <div>
+		      <t:textfield t:id="nrTimesToPlaySound" label="nr. times to play sound" size="1"/>
+		      <t:label for="nrTimesToPlaySound"/>
+		</div>
+		
 
 
-
-</t:form>
-
+		
+		 <div>
+		      <t:Submit id="submit" value="Change settings"/>
+		</div>
+	</t:form>
 </t:block> 
+
+<t:block id="sound">
+	<t:soundmanager soundToPlay="literal:alert.wav.mp3" timesToPlaySound="${nrTimesToPlaySound}"/> 
+</t:block> 
+
+
 
 <div id="left">
 	<div class="box">
-				<t:delegate to="block:testit"/>			
+		<t:delegate to="block:settings"/>			
 	</div>
 
 	<t:if test="clearorcloudynotify">
 	<div class="box">
 		<t:if test="clearnotify">
 			<h1>Clear Alert!</h1>
-			<t:soundmanager soundToPlay="literal:alert.wav.mp3" timesToPlay="3"/> 
-		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
+			<t:delegate to="block:sound"/>			
+		    <button onClick="soundManager.stopAll()">Stop sound</button>
 		</t:if>
 		<t:if test="cloudynotify">
 			<h1>Cloudy Alert!</h1>
-			<t:soundmanager soundToPlay="literal:alert.wav.mp3" timesToPlay="3"/>
-		    <button onClick="soundManager.destroySound('mySound')">Stop sound</button>
+			<t:delegate to="block:sound"/>			
+		    <button onClick="soundManager.stopAll()">Stop sound</button>
 		</t:if>
 	</div>
+	
+	<!--
+	<t:parameter name="else">
+		<t:actionlink t:id="testSound">Test current sound settings</t:actionlink>
+	</t:parameter>
+	-->
 	</t:if>
 
 
-
-
 	<div class="box">
-Current Moon Phase:
-			<img width="100" height="100" src="http://tycho.usno.navy.mil/cgi-bin/phase.gif"/>
-			
-			
-<!--		<td width="100" align="right">
-		</td> -->
+		Current Moon Phase:
+<!--		<img width="100" height="100" src="http://tycho.usno.navy.mil/cgi-bin/phase.gif"/> -->
 	</div>
 	
 
@@ -83,22 +96,29 @@ Current Moon Phase:
 </div>
 	<div class="textbox" id="detailsTextbox" width="700"><h1 id="detailsTextbox">Current cloud status: ${cloudstatus}</h1></div>
 	<div>
-	<img t:type="chart" class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" chartWidth="700" chartHeight="320" day="0" width="700" height="320" alt="${feed.name} chart"></img>
+	<img t:type="chart" class="dotted" id="feed.id" name="feed.name" maxClear="limits.maxClear" maxPartlyClear="limits.maxPartlyClear" chartWidth="700" chartHeight="320" day="0" width="700" height="320" alt="${feed.name} chart"></img> 
+<!--	<img t:type="chart" t:id="second" width="700" height="320"></img>  
+	<img id="third"></img> 
+-->	
 	</div>
-	
-	<!--
-	<div id="products">
-	</div>
-	
-	<a href="#" onClick="update()"> ... </a>
-	
-	<script>
-	function update() {
-		new Ajax.Updater('products', '${urlFromClass}', { method: 'get' });
+<!--
+	<script type="text/javascript" >
+	function updateProducts() {
+		new Ajax.Updater('third', '<img ${urlFromClass}', { method: 'get'});
 	}
+
 	</script>	
-	-->
 	
+	<div id="busy">Loading...<img src="${ajaxLoader}"/></div>
+
+	
+	<div id="products">
+		bla
+	</div>
+
+	<div onclick="javascript:updateProducts();">this da div... </div>
+-->	
+
 	<!--
 	<t:chart id="prop:feed.id" name="prop:feed.name" width="700" height="320" day="1"></t:chart>
 
