@@ -5,18 +5,30 @@
 <div id="results">
 <p>
 <h1>The easiest way to use this website</h1>
+<p/>
 The easiest way to use this website is to find a reliable measurement station in your neighbourhood. 
 Use the map on the <a t:type="PageLink" t:page="Start">front page</a> to find one, or encourage a local club/observatory to install a station!
 </p>
 <p>
 <h1>Making your own webcam cloud sensor</h1>
-You probably have all you need to make a working cloud sensor! All you need is a webcam (the more sensitive the better) and a way
-to publish the webcam pictures on the internet. This can be accomplished using an IP webcam (webcam with its own IP address), a webcam + a router with a USB port, 
-or a PC with a web server (such as Apache, IIS, ... ). <b>More info soon!</b>
+<p/>
+You probably have all you need to make a working cloud sensor! What's needed? One (preferably sensitive) webcam and a way
+to publish the webcam pictures on the internet. 
+<p/>
+<h2>Using a webcam and a PC</h2>
+If you already have a PC which is switched on 24/7, the easiest way is to plug a USB webcam into this PC and install a program to publish the images.
+This is how I do it for my cloud sensor. I use a Philips Toucam II Pro with the motion webcam software (linux) and the apache webserver. 
+For Windows/Mac there is also plenty of software, mail me your suggestions and I'll put them online!
+<p/>
+<h2>Using a webcam</h2>
+This is the easiest way to do it, your webcam uses a WIFI connection to get online. Thes webcams run their own webservers, so you don't need a PC running all the time.
+Better for the environment and your electricity bill! People with such a webcam (also called IP webcam) please test and let me know! 
+To get started, look into this <a href="http://www.filesaveas.com/wifiwebcam.html">overview of IP webcams</a>. The Sitecom LN-401 looks ok for cloud detection purposes.
+
 </p>
 <p>
 <h1>Buying a commercial cloud sensor</h1>
-
+<p/>
 An off-the-shelf solution is the <a href="http://www.cyanogen.com/products/cloud_main.htm">Boltwood Cloud Sensor II</a>.
 Contact me if you have one and want to share the data, so I can write the interface!
 </p>

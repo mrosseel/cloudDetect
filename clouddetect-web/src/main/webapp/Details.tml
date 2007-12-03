@@ -77,12 +77,12 @@
 	-->
 	</t:if>
 
-
+<!--
 	<div class="box">
 		Current Moon Phase:
-<!--		<img width="100" height="100" src="http://tycho.usno.navy.mil/cgi-bin/phase.gif"/> -->
+		<img width="100" height="100" src="http://tycho.usno.navy.mil/cgi-bin/phase.gif"/>
 	</div>
-	
+	-->
 
 </div>
 
