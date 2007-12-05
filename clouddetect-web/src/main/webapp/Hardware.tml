@@ -24,7 +24,10 @@ For Windows/Mac there is also plenty of software, mail me your suggestions and I
 This is the easiest way to do it, your webcam uses a WIFI connection to get online. Thes webcams run their own webservers, so you don't need a PC running all the time.
 Better for the environment and your electricity bill! People with such a webcam (also called IP webcam) please test and let me know! 
 To get started, look into this <a href="http://www.filesaveas.com/wifiwebcam.html">overview of IP webcams</a>. The Sitecom LN-401 looks ok for cloud detection purposes.
-
+<p/>
+<h2>Making an IR cloud detector</h2>
+For the real handy people: you can also make an IR cloud detector as explained <a href="http://www.noao.edu/staff/gillespie/projects/cloud-detector.html">on this page.</a>
+Contact me if you have one and want to share the data, so I can write the interface!
 </p>
 <p>
 <h1>Buying a commercial cloud sensor</h1>
