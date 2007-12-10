@@ -5,6 +5,7 @@
 	<meta name="author" content="Mike Rosseel" />
 	<meta name="keywords" content="Clouds Webcam Astronomy Weather Clear Skies Alert Alarm Observatory Roof Automation Boltwood Sky sensor Cloud cover" />
 	<meta name="verify-v1" content="zMPcOiGnP4a24JM/RvXyKj+o0W39h1P++DvdvHmLpi8=" />
+	<meta name="Description" content="Check the cloud cover at night in your area by using existing cloud sensor stations or adding your own webcam or boltwood based sky sensor. Ideal for remote imaging, garden observatories or special occasions where you want to be awakened when the sky clears.">
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	
 	<link rel="stylesheet" href="${css}" type="text/css" media="screen" />
