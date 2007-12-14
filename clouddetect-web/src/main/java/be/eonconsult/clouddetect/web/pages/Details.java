@@ -109,6 +109,10 @@ public class Details {
 
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
 		Result result = dao.findMostRecentResultByFeedId(new Long(feed.getId()).longValue());
+		// no results so nothing else to check
+		if (result == null) {
+			return;
+		}
 		cloudStatusResult = CloudStatus.valueOf(result.getCloudJudgeResult());
 		monitor.setDelayClear(delayClear);
 		monitor.setDelayCloudy(delayCloudy);

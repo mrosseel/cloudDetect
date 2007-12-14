@@ -90,7 +90,11 @@ table#gsc-search-box {
 
 
 ul {  padding: 0; margin: 0;}
-li { list-style-type: none;}
+<!-- li { list-style-type: none;} -->
+li {
+	list-style-position: inside;
+	list-style-type: square;
+	}
 
 img.dotted {
 	border-style:dotted;
@@ -136,6 +140,7 @@ div.t-error li {
 /* checkboxkes wrongly aligned  */
 input#cloudyWarning { margin-left:0px; }
 input#clearWarning { margin-left:0px; }
+
 
 
 

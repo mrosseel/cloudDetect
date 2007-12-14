@@ -22,6 +22,14 @@
         request.send(null);
 	}
 	
+	// load statuses
+	function loadWebcamStatuses() {
+        var request = GXmlHttp.create();
+        request.open("GET", "/webcamlist", true);
+        request.onreadystatechange = getCallbackFunction(request, processWebcamData);
+        request.send(null);
+	}
+	
 	function getCallbackFunction(req, processData) {
           // Return an anonymous function that listens to the
           // XMLHttpRequest instance

@@ -9,26 +9,117 @@
 The easiest way to use this website is to find a reliable measurement station in your neighbourhood. 
 Use the map on the <a t:type="PageLink" t:page="Start">front page</a> to find one, or encourage a local club/observatory to install a station!
 </p>
-<p>
 <h1>Making your own webcam cloud sensor</h1>
 <p/>
-You probably have all you need to make a working cloud sensor! What's needed? One (preferably sensitive) webcam and a way
-to publish the webcam pictures on the internet. 
+You probably have all you need to make a working cloud sensor! What's
+needed? One sensitive webcam and a way to publish the webcam pictures
+on the internet.
 <p/>
-<h2>Using a webcam and a PC</h2>
-If you already have a PC which is switched on 24/7, the easiest way is to plug a USB webcam into this PC and install a program to publish the images.
-This is how I do it for my cloud sensor. I use a Philips Toucam II Pro with the motion webcam software (linux) and the apache webserver. 
-For Windows/Mac there is also plenty of software, mail me your suggestions and I'll put them online!
+<b>WARNING: the only reliably working webcam/cloud sensor is my
+Philips ToucamII Pro in light polluted Belgium. If you have dark skies
+or a cheap CMOS based webcam, this method will probably not work. So
+there are no guarantees, but contact me and I'll help. </b>
 <p/>
-<h2>Using a webcam</h2>
-This is the easiest way to do it, your webcam uses a WIFI connection to get online. Thes webcams run their own webservers, so you don't need a PC running all the time.
-Better for the environment and your electricity bill! People with such a webcam (also called IP webcam) please test and let me know! 
-To get started, look into this <a href="http://www.filesaveas.com/wifiwebcam.html">overview of IP webcams</a>. The Sitecom LN-401 looks ok for cloud detection purposes.
+<h2>Step 1: is my location suitable for a webcam solution?</h2>
+
+If you can see the clouds light up at night because of light pollution
+then yes your location is suitable. Please fight the light pollution
+as much as you can, in the meanwhile you can use it to your advantage.
+I'm hoping advances in webcam sensitivity or price drops in commercial
+sensors will allow you to fight the good fight while still having a
+cloud sensor.
 <p/>
-<h2>Making an IR cloud detector</h2>
-For the real handy people: you can also make an IR cloud detector as explained <a href="http://www.noao.edu/staff/gillespie/projects/cloud-detector.html">on this page.</a>
-Contact me if you have one and want to share the data, so I can write the interface!
-</p>
+If you can only see clouds by the absence of stars or starlights then
+your site is too dark for the webcam method, please consider an IR
+detector or a Boltwood sensor.
+<p/>
+<h2>Step 2: is my webcam good enough?</h2>
+
+Webcams known to work: Philips Vesta Pro, Philips Toucam Pro, Philips Toucam II Pro or
+<a href="http://www.amazon.com/gp/product/B000EIIGYU?ie=UTF8&amp;tag;=cloudwatch-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000EIIGYU">Philips SPC900NC</a>
+<img src="http://www.assoc-amazon.com/e/ir?t=cloudwatch-20&amp;l=as2&amp;o=1&amp;a=B000EIIGYU" width="1" height="1" border="0" alt="" style="border:none !important;margin:0px !important;" />.
+<br/>
+In short:
+<ul>
+<li>higher-end webcams with CCD chips have a chance of working. I'm
+sure the more expensive DMK or Lumenera webcams would work too.</li>
+<li>Money can be substituted by time and effort: if you don't have a
+high-end webcam, you could try taking long exposures, stacking frames,
+...</li>
+<li>Field of view is not critical, of course more field of view is
+better so a replacement lens is an option. Try Step 2 with the stock
+lens first.</li>
+<li>Some webcams have a led which should be disabled to avoid reflections. This can be done using the drivers, by masking the led physically or by cutting some wires inside the webcam.</li>
+
+</ul>
+<p/>
+<h2>Step 3: testing the webcam</h2>
+
+The crucial test for any webcam is connecting it to your PC, pointing
+it outside and watching the results.
+If you can't tell whether is clear or cloudy just by looking at the
+webcam, the computer won't be able to either.
+Due to light pollution, a clouded sky should show brighter than a
+clear one. To more clearly show this difference, add a black
+obstruction to the bottom 10% of your webcam view.
+A black piece of paper is enough. This way you can more clearly see
+the difference between sky and black. For the astrophotographers: it's
+a mini dark-frame.
+<p/>
+<h4>Getting started</h4>
+<ul>
+<li>point the webcam out, preferably in the direction of the greatest
+light pollution and/or the prevailing winds</li>
+<li>check that you have a dark part at the bottom of the image
+(treeline, buildings, piece of black cardboard, ...)</li>
+<li>visually confirm that you see a difference between clouds and
+clear skies. Best done on a cloudy night: if you see no difference
+between the black part and the sky, go to the next </li>
+</ul>
+<p/>
+<h4>Tuning till it works</h4>
+<ul>
+<li>put control of gain/brightness on auto. If this doesn't work, try
+many combinations</li>
+<li>Higher Jpeg quality is better (e.g. 90% quality)</li>
+<li>try the raw mod for philips webcam when getting desperate</li>
+</ul>
+<p/>
+<h2>Step 4: getting online</h2>
+<p/>
+<h4>Using a PC</h4>
+If you already have a PC which is switched on 24/7, the easiest way is
+to plug a USB webcam into this PC and install a program to publish the
+images. This is how I do it for my cloud sensor. I use a Philips
+Toucam II Pro with the motion webcam software (linux) and the apache
+webserver. For Windows/Mac there is also plenty of software, mail me
+your suggestions and I'll put them online!
+<p/>
+<h4>Using an IP webcam</h4>
+This is the easiest way to do it, your webcam uses a WIFI connection
+to get online. These webcams run their own webservers, so you don't
+need a PC running all the time. Better for the environment and your
+electricity bill!
+People with such a webcam (also called IP webcam) please test it (see
+step 3) and let me know! To get started, look into this
+<a href="http://www.filesaveas.com/wifiwebcam.html">overview of IP
+webcams</a>. I don't know if any of these are sensitive enough for the
+task.
+<p/>
+<h4>Using a router</h4>
+This is a bit more advanced than the other methods but if it works
+it's cheap and as good as an IP webcam.
+Some routers have USB ports which support plugging in a webcam. This
+opens the possibility of using your main router to attach the webcam
+or having an extra router for the webcam. This extra router can serve
+as a booster station for wireless.
+
+
+<h1>Making an IR cloud detector</h1>
+<p/>
+For the real handy people: you can also make an IR cloud detector as
+explained on this page. Contact me if you have one and want to share
+the data, so I can write the interface!
 <p>
 <h1>Buying a commercial cloud sensor</h1>
 <p/>
