@@ -28,7 +28,9 @@ import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.joda.time.DateTime;
 
+import persistence.dao.FeedDao;
 import persistence.dao.ResultDao;
+import persistence.model.Feed;
 import persistence.model.Result;
 import util.AstroUtil;
 import util.RiseSetPair;
@@ -139,12 +141,14 @@ public class Chart {
 	 */
 	private JFreeChart createChart() {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
+		FeedDao feedDao = (FeedDao) InstanceFactory.getBean("feeddao");
 		ContrastChartCreator creator = new ContrastChartCreator();
 		creator.addMarker(maxClear, Color.green, "Clear");
 		creator.addMarker(maxPartlyClear, Color.orange, "Partly Clear");
 
-		// List<Result> results = dao.findResultsFromThePastHours(hours,id);
-		RiseSetPair pair = AstroUtil.getLastNight(50, 4, new DateTime(), day);
+
+		Feed feed = feedDao.getFeed(id); 
+		RiseSetPair pair = AstroUtil.getLastNight(feed.getLatitude(), feed.getLongitude(), new DateTime(), day);
 		List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
 
 		if (results != null) {
@@ -153,8 +157,7 @@ public class Chart {
 		}
 
 		JFreeChart result = creator.getJFreeChart();
-		result
-				.setTitle("Night of " + pair.getRise().toString("dd/MM/YY") + " to "
+		result.setTitle("Night of " + pair.getRise().toString("dd/MM/YY") + " to "
 						+ pair.getSet().toString("dd/MM/YY"));
 		return result;
 	}

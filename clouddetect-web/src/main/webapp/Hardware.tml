@@ -35,7 +35,7 @@ detector or a Boltwood sensor.
 <p/>
 <h2>Step 2: is my webcam good enough?</h2>
 
-Webcams known to work: Philips Vesta Pro, Philips Toucam Pro, Philips Toucam II Pro or
+Webcams known to work: Philips Vesta Pro, Philips Toucam Pro, <a href="http://rover.ebay.com/rover/1/711-1751-2978-71/1?AID=5463217&amp;PID=2768147&amp;mpre=http%3A%2F%2Fcgi.ebay.com%2FPhilips-ToUcam-PRO-II-840K-High-sensitivity-CCD-sensor_W0QQitemZ330197711680QQihZ014QQcategoryZ57189QQrdZ1QQssPageNameZWD2VQQcmdZViewItem%3F_trksid%3Dp1638.m122">Philips Toucam II Pro</a> or
 <a href="http://www.amazon.com/gp/product/B000EIIGYU?ie=UTF8&amp;tag;=cloudwatch-20&amp;linkCode=as2&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B000EIIGYU">Philips SPC900NC</a>
 <img src="http://www.assoc-amazon.com/e/ir?t=cloudwatch-20&amp;l=as2&amp;o=1&amp;a=B000EIIGYU" width="1" height="1" border="0" alt="" style="border:none !important;margin:0px !important;" />.
 <br/>
@@ -47,7 +47,7 @@ sure the more expensive DMK or Lumenera webcams would work too.</li>
 high-end webcam, you could try taking long exposures, stacking frames,
 ...</li>
 <li>Field of view is not critical, of course more field of view is
-better so a replacement lens is an option. Try Step 2 with the stock
+better so a replacement lens is an option (<a href="http://rover.ebay.com/rover/1/711-1751-2978-71/1?AID=5463217&amp;PID=2768147&amp;mpre=http%3A%2F%2Fcgi.ebay.com%2F2-1mm-2-1-mm-CCTV-Camera-board-Lens-f-Dome-bullet-NEW_W0QQitemZ370003936747QQihZ024QQcategoryZ48839QQtcZphotoQQcmdZViewItem">Click here for the fisheye I use</a>). Try Step 2 with the stock
 lens first.</li>
 <li>Some webcams have a led which should be disabled to avoid reflections. This can be done using the drivers, by masking the led physically or by cutting some wires inside the webcam.</li>
 

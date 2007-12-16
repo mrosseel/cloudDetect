@@ -173,7 +173,7 @@ public class Details {
 		Map<String,DateTime> map = new HashMap<String,DateTime>();
 		List<String> list = new ArrayList<String>();
 		// TODO use real lat, lon
-		RiseSetPair pair = AstroUtil.getRiseSet(50, 4, new DateTime());
+		RiseSetPair pair = AstroUtil.getRiseSet(feed.getLatitude(), feed.getLongitude(), new DateTime());
 		DateTime rise = pair.getRise();
 		DateTime set = pair.getSet();
 		DateTime hold;
