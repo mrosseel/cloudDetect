@@ -69,7 +69,7 @@ public class Details {
 	private ClearCloudyMonitor monitor = new ClearCloudyMonitor();
 
 	@Persist
-	private CloudStatus cloudStatusResult;
+	private String cloudStatusString;
 
 	@Persist
 	private boolean isClearNotify = false;
@@ -111,24 +111,31 @@ public class Details {
 		Result result = dao.findMostRecentResultByFeedId(new Long(feed.getId()).longValue());
 		// no results so nothing else to check
 		if (result == null) {
+			cloudStatusString = "Feed is offline.";
 			return;
 		}
-		cloudStatusResult = CloudStatus.valueOf(result.getCloudJudgeResult());
+		
+		CloudStatus cloudStatusResult = CloudStatus.valueOf(result.getCloudJudgeResult());
 		monitor.setDelayClear(delayClear);
 		monitor.setDelayCloudy(delayCloudy);
-	    //	TODO use the user's timezone to override the feed timezone for within time frame calculations. Or not?
+		
+	    //	TODO use the user's timezone to override the feed timezone for within time frame calculations. Or not? No think not.
+		//  If you want to look at nighttime graphics during daytime, that's your problem. Stay in the feed's timezone for everything.
 		boolean isWithinTimeFrame = DateUtil.withinTimeFrame(validTimesMap.get(startTime),validTimesMap.get(endTime), new DateTime(result.getTime()));
-		if (shouldWarnWhenClear && isWithinTimeFrame) {
-			isClearNotify = monitor.isClearNotify(cloudStatusResult, result.getTime());
-		}
-		if (shouldWarnWhenCloudy && isWithinTimeFrame) {
-			isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult, result.getTime());
-		}
 
+		if(isWithinTimeFrame) {
+			if (shouldWarnWhenClear) {
+				isClearNotify = monitor.isClearNotify(cloudStatusResult, result.getTime());
+			}
+			if (shouldWarnWhenCloudy) {
+				isCloudyNotify = monitor.isCloudyNotify(cloudStatusResult, result.getTime());
+			}
+			cloudStatusString = cloudStatusResult.toString();
+		} else {
+			cloudStatusString = "Only works at night...";
+		}
 //		isClearNotify = true;
 	}
-
-	
 
 	int onPassivate() {
 		return id;
@@ -147,7 +154,7 @@ public class Details {
 	}
 
 	public String getCloudStatus() {
-		return cloudStatusResult.toString();
+		return cloudStatusString;
 	}
 
 	Object onActionFromCurrentImage() {

@@ -104,21 +104,26 @@
 		Contact us
 	</div>
 	</t:if>	
-	<div class="box">
+<!--	<div class="box"> -->
 		<t:delegate to="block:ads"/>
-	</div>
+<!--	</div> -->
 
 </div>
 </div>
 
 <t:if test="tracking">
 	<!-- google analytics -->
-	<script type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
 	<script type="text/javascript">
-		var pageTracker = _gat._getTracker("UA-608595-3");
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://
+		ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-
+		analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		var pageTracker = _gat._getTracker("UA-xxxx-xx");
 		pageTracker._initData();
 		pageTracker._trackPageview();
-	</script> 
+	</script>
 </t:if>
 </body>
 </html>
