@@ -5,9 +5,11 @@ import java.util.List;
 
 import media.image.consumer.CloudJudgeSubConsumer;
 import media.image.consumer.ImageConsumer;
+import media.image.consumer.ImageScoringSubConsumer;
 import media.image.consumer.ImageSubConsumer;
 import media.image.producer.ImageProducer;
 import media.image.producer.ProducerFactory;
+import media.processors.CalculateMetricOnCloudImage;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -20,6 +22,7 @@ import persistence.dao.FeedDao;
 import persistence.model.Feed;
 import application.InstanceFactory;
 import calculation.CloudJudge;
+import calculation.ManualMetric;
 
 public class Schedule {
 	SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
@@ -66,7 +69,7 @@ public class Schedule {
 		CloudJudgeSubConsumer cloudJudgeSubConsumer = new CloudJudgeSubConsumer();
 		cloudJudgeSubConsumer.setCloudJudge(cloudJudge);
 		
-		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("imagescoringsubconsumer"));
+		consumer.addSubConsumer(getScoringSubConsumer(feed));
 		consumer.addSubConsumer(cloudJudgeSubConsumer);
 		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
 
@@ -87,5 +90,15 @@ public class Schedule {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private ImageScoringSubConsumer getScoringSubConsumer(Feed feed) {
+		ImageScoringSubConsumer scoring = (ImageScoringSubConsumer) InstanceFactory.getBean("imagescoringsubconsumer");
+		CalculateMetricOnCloudImage calcMetric = (CalculateMetricOnCloudImage) InstanceFactory.getBean("calculatemetriconcloudimage");
+		ManualMetric manualMetric = new ManualMetric();
+		manualMetric.setManualSplitterLocation(feed.getDivision());
+		calcMetric.setMetric(manualMetric);
+		scoring.setMetricOnCloudImage(calcMetric);
+		return scoring;
 	}
 }

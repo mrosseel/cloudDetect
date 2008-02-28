@@ -50,7 +50,6 @@
 	<!-- Metrics -->	
 	
 	<bean id="calculatemetriconcloudimage" class="media.processors.CalculateMetricOnCloudImageImpl">
-		<property name="metric"><ref bean="manualmetric"/></property>
 	</bean>
 	
 	<bean id="linemediandifferencemetric" class="calculation.LineMedianDifferenceMetric"/>

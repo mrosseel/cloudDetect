@@ -1,5 +1,6 @@
 package persistence.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.dbunit.dataset.IDataSet;
@@ -45,6 +46,25 @@ public class ResultDaoTest extends SpringDBTest {
         List<Result> result = resultDao.findResultsFromThePastHours(0, 0);
         Assert.assertNotNull(result);
         Assert.assertEquals(result.size(), 0);
+	}
+	
+	@Test
+	public void testFindMostRecentResultByFeedId() {
+		ResultDao resultDao = (ResultDao) appContext.getBean("resultdao");
+		Result result = resultDao.findMostRecentResultByFeedId(0);
+		
+		Assert.assertEquals(0.507843137254901, result.getResult());
+	}
+	
+	@Test
+	public void testFindCloudStatuses() {
+		ResultDao resultDao = (ResultDao) appContext.getBean("resultdao");
+		List<String> result = resultDao.findCloudStatuses();
+		for (Iterator iter = result.iterator(); iter.hasNext();) {
+			String element = (String) iter.next();
+			System.out.println("oeuhuoehoeuoeun" + element);
+		}
+//	Assert.assertEquals(0.507843137254901, result.getResult());
 	}
         
 	@Override

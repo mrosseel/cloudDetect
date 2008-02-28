@@ -78,7 +78,6 @@ public class ContrastChartCreator {
 		while (iter.hasNext()) {
 			dataset.addSeries((TimeSeries) iter.next());
 		}
-		// dataset.setDomainIsPointsInTime(true);
 
 		JFreeChart chart = createChart(dataset);
 		return chart;
@@ -106,7 +105,7 @@ public class ContrastChartCreator {
 		// ValueAxis val = plot.getRangeAxis();
 
 		// contrast axis
-		LogarithmicAxis val = new LogarithmicAxis("Contrast");
+		LogarithmicAxis val = new LogarithmicAxis("Cloudiness");
 		val.setRange(0, 100);
 		val.setLog10TickLabelsFlag(false);
 		plot.setRangeAxis(val);

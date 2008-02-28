@@ -12,5 +12,6 @@ public interface ResultDao {
 	public Result findMostRecentResultByFeedId(long id);
 	public List<Result> findResultsFromThePastHours(int hours, long id);
 	public List<Result> findResultsFromUntil(Date from, Date until, long id);
+	public List<String> findCloudStatuses();
 	public void saveResult(Result result);
 }

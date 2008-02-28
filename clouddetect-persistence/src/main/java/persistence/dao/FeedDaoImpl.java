@@ -8,24 +8,25 @@ import persistence.model.Feed;
 
 public class FeedDaoImpl extends HibernateDaoSupport implements FeedDao {
 
-    @SuppressWarnings("unchecked")
-    public List<Feed> getAllActiveFeeds() {
-        List find = getHibernateTemplate().find(
-                        "from persistence.model.Feed where active = true");
-        List<Feed> list = find;
-        return list;
-    }
+	@SuppressWarnings("unchecked")
+	public List<Feed> getAllActiveFeeds() {
+		List find = getHibernateTemplate().find("from persistence.model.Feed where active = true");
+		List<Feed> list = find;
+		return list;
+	}
 
-    public List<Feed> getAllFeeds() {
-       throw new UnsupportedOperationException();
-    }
-    
-    public void saveResult(Feed feed) {
-        getHibernateTemplate().saveOrUpdate(feed);
-    }
+	public List<Feed> getAllFeeds() {
+		throw new UnsupportedOperationException();
+	}
 
-    public Feed getFeed(long id) {
-        return (Feed) getHibernateTemplate().find("from persistence.model.Feed where id = ?", id).get(0);
-    }
+	public void saveResult(Feed feed) {
+		getHibernateTemplate().saveOrUpdate(feed);
+	}
+
+	public Feed getFeed(long id) {
+		return (Feed) getHibernateTemplate().find("from persistence.model.Feed where id = ?", id).get(0);
+	}
+
+	
 
 }
