@@ -1,6 +1,10 @@
 	// Our global state
     var gMap;
 
+
+	// our list of markers
+	var markerList = new Array(10);
+	
     // Create our "tiny" marker icon
     var gSmallIcon = new GIcon();
 	gSmallIcon.image = "/images/weather/medium/weather-clear-night.png";	
@@ -55,11 +59,11 @@
 	function processWebcamData(xmlDoc) {
 		// obtain the array of markers and loop through it
 		var siteMarkers = xmlDoc.documentElement.getElementsByTagName("persistence.model.Feed");
-		displaySitesMarkers(siteMarkers);
+		createMarkerList(siteMarkers);
+		displayMarkerList();
     }
 
-    function displaySitesMarkers(siteMarkers) {
-        gMap.clearOverlays();
+    function createMarkerList(siteMarkers) {
         for (var i = 0; i < siteMarkers.length; i++) {
             // obtain the attributes of each marker
             var lat = parseFloat(siteMarkers[i].getElementsByTagName("latitude")[0].firstChild.nodeValue);
@@ -71,9 +75,20 @@
             }
             var url = siteMarkers[i].getElementsByTagName("source")[0].firstChild.nodeValue;
             marker = createMarker(new GLatLng(lat,lng),name, freeForm,id, url);
-            gMap.addOverlay(marker);
+			markerList[i] = marker;
         }
     }
+	
+	function displayMarkerList() {
+        gMap.clearOverlays();
+        for (var i = 0; i < markerList.length; i++) {
+            gMap.addOverlay(markerList[i]);
+        }
+    }
+	
+	function updateIcons() {
+		// ????????????????????????????????????????????????
+	}
         
      // Creates a marker at the given point with the given number label
 	function createMarker(point, name, freeForm, id, url) {
