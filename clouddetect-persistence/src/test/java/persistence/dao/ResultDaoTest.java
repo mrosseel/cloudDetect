@@ -1,9 +1,11 @@
 package persistence.dao;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import org.dbunit.dataset.IDataSet;
+import org.joda.time.DateTime;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -56,15 +58,26 @@ public class ResultDaoTest extends SpringDBTest {
 		Assert.assertEquals(0.507843137254901, result.getResult());
 	}
 	
+//	@Test
+//	public void testFindCloudStatuses() {
+//		ResultDao resultDao = (ResultDao) appContext.getBean("resultdao");
+//		List<String> result = resultDao.findCloudStatuses();
+//		for (Iterator iter = result.iterator(); iter.hasNext();) {
+//			String element = (String) iter.next();
+//			System.out.println("oeuhuoehoeuoeun" + element);
+//		}
+////	Assert.assertEquals(0.507843137254901, result.getResult());
+//	}
+	
 	@Test
-	public void testFindCloudStatuses() {
+	public void testFindResultsFromUntil() {
 		ResultDao resultDao = (ResultDao) appContext.getBean("resultdao");
-		List<String> result = resultDao.findCloudStatuses();
-		for (Iterator iter = result.iterator(); iter.hasNext();) {
-			String element = (String) iter.next();
-			System.out.println("oeuhuoehoeuoeun" + element);
-		}
-//	Assert.assertEquals(0.507843137254901, result.getResult());
+		DateTime startDate = new DateTime("2007-04-06T00:01:00.993");
+		DateTime endDate = new DateTime("2007-04-06T00:01:31.558");
+		
+		List<Result> result = resultDao.findResultsFromUntil(startDate.toDate(), endDate.toDate(), 0);
+		
+		Assert.assertEquals(result.size(), 7);
 	}
         
 	@Override

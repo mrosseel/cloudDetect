@@ -81,8 +81,8 @@
 	
 	function displayMarkerList() {
         gMap.clearOverlays();
-        for (var i = 0; i < markerList.length; i++) {
-            gMap.addOverlay(markerList[i]);
+        for (marker in markerList) {
+            gMap.addOverlay(markerList[marker]);
         }
     }
 	

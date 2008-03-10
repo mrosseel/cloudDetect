@@ -1,7 +1,6 @@
 package persistence.dao;
 
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -12,7 +11,7 @@ import persistence.model.Result;
 public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 
 	public Result findResultById(long id) {
-		List list = getHibernateTemplate().find("from Result where id=?", id);
+		List<Result> list = getHibernateTemplate().find("from Result where id=?", id);
 		return (list.size()>0)?(Result) list.get(0):null;
 	}
 	
@@ -32,7 +31,7 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 	@SuppressWarnings("unchecked")
 	public List<Result> findResultsFromUntil(Date from, Date until, long id) {
 		List<Result> list = getHibernateTemplate().find(
-				"from Result where time>? and time<? and feedid=?",
+				"from Result where time>=? and time<=? and feedid=?",
 				new Object[] { from, until, id});
 		return list;
 	}
