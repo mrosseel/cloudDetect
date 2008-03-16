@@ -142,17 +142,21 @@ public class Chart {
 	private JFreeChart createChart() {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
 		FeedDao feedDao = (FeedDao) InstanceFactory.getBean("feeddao");
+		Feed feed = feedDao.getFeed(id);
+		double offset = feed.getResultOffset();
 		ContrastChartCreator creator = new ContrastChartCreator();
-		creator.addMarker(maxClear, Color.green, "Clear");
-		creator.addMarker(maxPartlyClear, Color.orange, "Partly Clear");
+		creator.addMarker(maxClear - offset, Color.green, "Clear");
+		creator.addMarker(maxPartlyClear - offset, Color.orange, "Partly Clear");
 
 
-		Feed feed = feedDao.getFeed(id); 
+		 
 		RiseSetPair pair = AstroUtil.getLastNight(feed.getLatitude(), feed.getLongitude(), new DateTime(), day);
 		List<Result> results = dao.findResultsFromUntil(pair.getRise().toDate(), pair.getSet().toDate(), id);
 
+		for (Result result : results) {
+			result.setResult(result.getResult()-offset);
+		}
 		if (results != null) {
-//			log.debug("number of results: " + results.size());
 			creator.addValue(name, results);
 		}
 

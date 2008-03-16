@@ -75,13 +75,7 @@
 	</div>
 	
 
-	<div class="box">
-				<h2>Actions :</h2>
-				<ul>
-				<li><a href="">My Feeds</a></li>
-				<li><a href="">Add this Feed</a></li>
-				</ul>
-	</div>
+	
 </t:if>
 	
     <div class="box">
@@ -103,10 +97,12 @@
 	<div class="box">
 		Contact us
 	</div>
-	</t:if>	
-<!--	<div class="box"> -->
+	</t:if>
+	<!--	
+	<div class="box">
 		<t:delegate to="block:ads"/>
-<!--	</div> -->
+	</div>
+	--> 
 
 </div>
 </div>

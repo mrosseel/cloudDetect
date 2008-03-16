@@ -70,6 +70,14 @@
 		</t:if>
 	</div>
 	
+	<div class="box">
+		<h2>Actions :</h2>
+		<ul>
+			<li><a t:type="PageLink" page="EditFeed" context="feed.id">Edit my feed</a></li>
+			<li><a href="">Add this Feed</a></li>
+		</ul>
+	</div>
+	
 	<!--
 	<t:parameter name="else">
 		<t:actionlink t:id="testSound">Test current sound settings</t:actionlink>
