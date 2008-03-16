@@ -34,6 +34,9 @@ public class Feed {
 	private boolean isPrivate;
 
 	private boolean isActive;
+	
+	/* amount subtracted from the observation */
+	private double resultOffset;
 
 	private long secondsBetweenUpdates;
 
@@ -135,6 +138,14 @@ public class Feed {
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
+	}
+	
+	public double getResultOffset() {
+		return resultOffset;
+	}
+
+	public void setResultOffset(double resultOffset) {
+		this.resultOffset = resultOffset;
 	}
 
 	public long getSecondsBetweenUpdates() {

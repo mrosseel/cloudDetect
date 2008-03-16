@@ -42,7 +42,7 @@ public class ResultDaoImpl extends HibernateDaoSupport implements ResultDao {
 
 	@SuppressWarnings("unchecked")
 	public Result findMostRecentResultByFeedId(long id) {
-		List<Result> list = getHibernateTemplate().find("from Result where feedid=? and result.time=(select max(result.time) from Result)", id);
+		List<Result> list = getHibernateTemplate().find("from Result where feedid=? and result.time=(select max(result.time) from Result where feedid=?)", new Object[] { id, id});
 		return (list.size()>0)?list.get(0):null;
 	}
 	

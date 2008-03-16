@@ -6,9 +6,11 @@ import javax.sql.DataSource;
 
 import org.dbunit.DataSourceDatabaseTester;
 import org.dbunit.DatabaseUnitException;
+import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
+import org.dbunit.ext.hsqldb.HsqldbDataTypeFactory;
 import org.dbunit.operation.DatabaseOperation;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -33,9 +35,11 @@ public abstract class SpringDBTest {
 	protected void before() throws Exception {
 		//		 initialize your database connection here
        IDatabaseConnection connection = getConnection();
-       // ...
        
-       connection.getConnection();
+       // configure the connection for hsqldb datatypes (otherwise boolean is not recognized)
+       DatabaseConfig config = connection.getConfig();
+       config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY,
+               new HsqldbDataTypeFactory());
 
        // initialize your dataset here
        IDataSet dataSet = getDataSet();

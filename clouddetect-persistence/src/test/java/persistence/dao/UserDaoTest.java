@@ -39,6 +39,16 @@ public class UserDaoTest extends SpringDBTest {
         Assert.assertEquals(search.getEmail(), "mike@email.com");
 	}
 	
+	@Test
+	public void testGetUserByUserName() {
+		User user;
+        UserDao userDao = (UserDao) appContext.getBean("userdao");
+        user = userDao.getUserByUserName("miker");
+        
+        Assert.assertEquals(user.getEmail(), "miker@me.org");
+	}
+	
+	
 	@Override
 	protected IDataSet getDataSet() throws Exception {
 		return getFlatXmlDataSet("/minimal_full.xml");
