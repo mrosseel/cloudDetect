@@ -1,7 +1,6 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import org.apache.tapestry.annotations.ApplicationState;
-import org.apache.tapestry.annotations.OnEvent;
+import org.apache.tapestry5.annotations.ApplicationState;
 
 import persistence.model.User;
 
@@ -20,13 +19,12 @@ public class ProtectedPage {
 		this.user = user;
 	}
 	
-	@OnEvent(value="setupRender")
-	public boolean checkPermissions() {
+	String onActivate() {
 		if(!userExists) {
-			return false;
+			return "login";
 		}
 		
-		return true;
+		return null;
 	}
 
 }

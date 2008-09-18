@@ -34,4 +34,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         return (User) getHibernateTemplate().find("from persistence.model.User where id = ?", id).get(0);
     }
 
+	public boolean isUserOwnerOfFeed(User user, long feedId) {
+		// from Site s join s.Users as user where :user = user
+		return (getHibernateTemplate().find("from persistence.model.User u join u.feeds feed where u.id = ? and feed.id = ?", new Object[]{user.getId(), feedId})).size() != 0;
+	}
+
 }

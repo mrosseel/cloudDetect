@@ -11,4 +11,6 @@ public interface UserDao {
 	    public void save(User user);
 
 	    public User getUserById(long id);
+
+		public boolean isUserOwnerOfFeed(User user, long feedId);
 }

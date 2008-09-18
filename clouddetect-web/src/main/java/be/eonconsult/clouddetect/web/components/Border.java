@@ -1,16 +1,12 @@
 package be.eonconsult.clouddetect.web.components;
 
-import org.apache.tapestry.Asset;
-import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.Renderable;
-import org.apache.tapestry.annotations.ApplicationState;
-import org.apache.tapestry.annotations.Component;
-import org.apache.tapestry.annotations.Path;
-import org.apache.tapestry.ioc.annotations.Inject;
-
-import be.eonconsult.clouddetect.Global;
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 import persistence.model.User;
+import be.eonconsult.clouddetect.Global;
 
 public class Border {
     

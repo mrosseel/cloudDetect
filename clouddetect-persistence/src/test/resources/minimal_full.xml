@@ -15,8 +15,9 @@
   <result id="13" time="2007-04-06 00:01:39.989" result="0.407843137254901" feedid="1" cloudjudgeresult="CLOUDY"/>
   <users id="1" lastname="Rossie" firstname="Mike" username="miker" email="miker@me.org" password="poepie" private="0" premium="0" admin="0"/>
   
-  <users_feed/>
-  <feed/>
+  <users_feed users_id="1" feed_id="1"/>
+  <users_feed users_id="2" feed_id="5"/>
+  <!-- <feed id="1" private="0" active="1" division="0.5" latitude="50" longitude="4"/> -->
   <cloudjudgelimits/>
 
 

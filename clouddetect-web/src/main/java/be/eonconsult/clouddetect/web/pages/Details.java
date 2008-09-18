@@ -7,14 +7,13 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.tapestry.Asset;
-import org.apache.tapestry.Block;
-import org.apache.tapestry.ComponentResources;
-import org.apache.tapestry.annotations.InjectPage;
-import org.apache.tapestry.annotations.Path;
-import org.apache.tapestry.annotations.Persist;
-import org.apache.tapestry.annotations.SetupRender;
-import org.apache.tapestry.ioc.annotations.Inject;
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.Block;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.InjectPage;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.annotations.Persist;
+import org.apache.tapestry5.ioc.annotations.Inject;
 import org.joda.time.DateTime;
 
 import persistence.dao.FeedDao;

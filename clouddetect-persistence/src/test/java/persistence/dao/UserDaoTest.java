@@ -48,6 +48,21 @@ public class UserDaoTest extends SpringDBTest {
         Assert.assertEquals(user.getEmail(), "miker@me.org");
 	}
 	
+	@Test
+	public void testIsUserOwnerOfFeed() {
+		User user = new User();
+		user.setId(1);
+        UserDao userDao = (UserDao) appContext.getBean("userdao");
+        boolean result1 = userDao.isUserOwnerOfFeed(user, 1);
+        boolean result2 = userDao.isUserOwnerOfFeed(user,2);
+        boolean result5 = userDao.isUserOwnerOfFeed(user,5);
+        
+        Assert.assertEquals(result1, true);
+        Assert.assertEquals(result2, false);
+        Assert.assertEquals(result5, false);
+		
+	}
+	
 	
 	@Override
 	protected IDataSet getDataSet() throws Exception {

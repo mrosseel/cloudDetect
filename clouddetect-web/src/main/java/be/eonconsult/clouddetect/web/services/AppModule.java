@@ -3,17 +3,13 @@ package be.eonconsult.clouddetect.web.services;
 import java.io.IOException;
 
 import org.apache.commons.logging.Log;
-import org.apache.tapestry.ioc.MappedConfiguration;
-import org.apache.tapestry.ioc.OrderedConfiguration;
-import org.apache.tapestry.ioc.annotations.InjectService;
-import org.apache.tapestry.services.ApplicationStateContribution;
-import org.apache.tapestry.services.ApplicationStateCreator;
-import org.apache.tapestry.services.Request;
-import org.apache.tapestry.services.RequestFilter;
-import org.apache.tapestry.services.RequestHandler;
-import org.apache.tapestry.services.Response;
-
-import be.eonconsult.clouddetect.Global;
+import org.apache.tapestry5.ioc.MappedConfiguration;
+import org.apache.tapestry5.ioc.OrderedConfiguration;
+import org.apache.tapestry5.ioc.annotations.InjectService;
+import org.apache.tapestry5.services.Request;
+import org.apache.tapestry5.services.RequestFilter;
+import org.apache.tapestry5.services.RequestHandler;
+import org.apache.tapestry5.services.Response;
 
 /**
  * This module is automatically included as part of the Tapestry IoC Registry, it's a good place to
@@ -81,6 +77,23 @@ public class AppModule
         
         configuration.add("Timing", filter);
     }
+    
+//    public void contributeAlias(Configuration<AliasContribution> configuration)
+//    {
+//        BaseURLSource source = new BaseURLSource()
+//        {
+//            public String getBaseURL(boolean secure)
+//            {
+//                String protocol = secure ? "https" : "http";
+//
+//                int port = secure ? 8080 : 8443;
+//
+//                return String.format("%s://localhost:%d", protocol, port);
+//            }
+//        };
+//
+//        configuration.add(AliasContribution.create(BaseURLSource.class, source));
+//    }
     
     /*
     // TODO switch to application scope as soon as strategy is released !!!

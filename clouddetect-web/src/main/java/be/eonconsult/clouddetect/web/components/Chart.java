@@ -10,20 +10,20 @@ import java.util.List;
 
 import media.chart.ContrastChartCreator;
 
-import org.apache.tapestry.ComponentResources;
-import org.apache.tapestry.Link;
-import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.PageRenderSupport;
-import org.apache.tapestry.StreamResponse;
-import org.apache.tapestry.annotations.AfterRender;
-import org.apache.tapestry.annotations.BeginRender;
-import org.apache.tapestry.annotations.Environmental;
-import org.apache.tapestry.annotations.Mixin;
-import org.apache.tapestry.annotations.OnEvent;
-import org.apache.tapestry.annotations.Parameter;
-import org.apache.tapestry.corelib.mixins.RenderInformals;
-import org.apache.tapestry.ioc.annotations.Inject;
-import org.apache.tapestry.services.Response;
+import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.Link;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.RenderSupport;
+import org.apache.tapestry5.StreamResponse;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.BeginRender;
+import org.apache.tapestry5.annotations.Environmental;
+import org.apache.tapestry5.annotations.Mixin;
+import org.apache.tapestry5.annotations.OnEvent;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.corelib.mixins.RenderInformals;
+import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.Response;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.joda.time.DateTime;
@@ -72,7 +72,7 @@ public class Chart {
 	private RenderInformals _renderInformals;
 
 	@Environmental
-	private PageRenderSupport _support;
+	private RenderSupport _support;
 
 	@BeginRender
 	void beginRender(MarkupWriter writer) {
@@ -81,7 +81,7 @@ public class Chart {
 		Object[] contextArray = _context == null ? new Object[0] : _context.toArray();
 
 		Link link = _resources
-				.createActionLink(org.apache.tapestry.TapestryConstants.ACTION_EVENT, false, contextArray);
+				.createActionLink(org.apache.tapestry5.EventConstants.ACTION, false, contextArray);
 
 		writer.element("img", "src", link, "id", clientId);
 

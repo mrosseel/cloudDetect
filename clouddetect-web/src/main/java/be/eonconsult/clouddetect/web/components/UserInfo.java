@@ -1,6 +1,6 @@
 package be.eonconsult.clouddetect.web.components;
 
-import org.apache.tapestry.annotations.ApplicationState;
+import org.apache.tapestry5.annotations.ApplicationState;
 
 import persistence.model.User;
 

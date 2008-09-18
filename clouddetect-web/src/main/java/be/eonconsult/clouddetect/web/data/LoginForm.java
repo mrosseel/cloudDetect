@@ -1,6 +1,8 @@
 package be.eonconsult.clouddetect.web.data;
 
-public class LoginForm {
+import org.apache.tapestry5.corelib.components.Form;
+
+public class LoginForm extends Form {
 
 	private String username;
 	

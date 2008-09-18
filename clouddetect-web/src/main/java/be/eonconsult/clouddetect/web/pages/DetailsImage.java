@@ -3,13 +3,12 @@ package be.eonconsult.clouddetect.web.pages;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.tapestry.annotations.Persist;
-
-import application.InstanceFactory;
+import org.apache.tapestry5.annotations.Persist;
 
 import persistence.dao.ResultDao;
 import persistence.model.Feed;
 import persistence.model.Result;
+import application.InstanceFactory;
 
 public class DetailsImage {
     @Persist

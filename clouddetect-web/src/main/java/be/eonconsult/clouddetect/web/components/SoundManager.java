@@ -1,13 +1,13 @@
 package be.eonconsult.clouddetect.web.components;
 
 
-import org.apache.tapestry.Asset;
-import org.apache.tapestry.MarkupWriter;
-import org.apache.tapestry.PageRenderSupport;
-import org.apache.tapestry.annotations.Environmental;
-import org.apache.tapestry.annotations.Parameter;
-import org.apache.tapestry.annotations.Path;
-import org.apache.tapestry.ioc.annotations.Inject;
+import org.apache.tapestry5.Asset;
+import org.apache.tapestry5.MarkupWriter;
+import org.apache.tapestry5.RenderSupport;
+import org.apache.tapestry5.annotations.Environmental;
+import org.apache.tapestry5.annotations.Parameter;
+import org.apache.tapestry5.annotations.Path;
+import org.apache.tapestry5.ioc.annotations.Inject;
 
 
 /**
@@ -15,7 +15,7 @@ import org.apache.tapestry.ioc.annotations.Inject;
  */
 public class SoundManager {
 	    @Environmental
-	    private PageRenderSupport _pageRenderSupport;
+	    private RenderSupport _pageRenderSupport;
 		
 	    @Inject
 	    @Path("context:js/soundmanager2.js")
