@@ -95,7 +95,6 @@ public class Details {
 	@Inject
 	@Path("context:images/ajax-loader.gif")
 	private Asset ajaxLoader;
-	
 
 	void onActivate(int id) {
 		log.info("in activate with id " + id);
