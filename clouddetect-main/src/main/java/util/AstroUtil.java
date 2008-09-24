@@ -26,7 +26,6 @@ public class AstroUtil {
 			pair.setRise(pair.getSet().minusDays(dayOffset));
 			pair.setSet(temp.plusDays(1-dayOffset));
 		} else {
-			
 			pair.setRise(pair.getSet().minusDays(1+dayOffset));
 			pair.setSet(temp.minusDays(dayOffset));
 		}
