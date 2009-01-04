@@ -3,14 +3,12 @@ package be.eonconsult.clouddetect.scheduling;
 import java.util.Date;
 import java.util.List;
 
-import media.image.consumer.CloudJudgeSubConsumer;
-import media.image.consumer.ImageConsumer;
-import media.image.consumer.ImageScoringSubConsumer;
-import media.image.consumer.ImageSubConsumer;
-import media.image.producer.ImageProducer;
+import media.image.consumer.Consumer;
+import media.image.producer.Producer;
 import media.image.producer.ProducerFactory;
-import media.processors.CalculateMetricOnCloudImage;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -20,12 +18,12 @@ import org.quartz.TriggerUtils;
 
 import persistence.dao.FeedDao;
 import persistence.model.Feed;
+import persistence.model.ProducerType;
 import application.InstanceFactory;
-import calculation.CloudJudge;
-import calculation.ManualMetric;
 
 public class Schedule {
 	SchedulerFactory schedFact = new org.quartz.impl.StdSchedulerFactory();
+	private static Log log = (Log) LogFactory.getLog(Schedule.class);
 
 	Scheduler sched;
 
@@ -58,20 +56,11 @@ public class Schedule {
 	private void schedule(Feed feed) {
 
 		// gets the producers, consumers
-		ImageProducer producer = ProducerFactory.getImageProducer(feed.getProducerType());
+		Producer<?> producer = ProducerFactory.getProducer(feed.getProducerType());
 		producer.setSource(feed.getSource());
+		log.debug("feed is " + feed.getId() + " has source " + producer.getSource() +".");
 		producer.setSourceId((int)feed.getId());
-		ImageConsumer consumer = InstanceFactory.getImageConsumer();
-		
-		// construct the cloudjudge
-		CloudJudge cloudJudge = new CloudJudge();
-		cloudJudge.setCloudJudgeLimits(feed.getCloudJudgeLimits());
-		CloudJudgeSubConsumer cloudJudgeSubConsumer = new CloudJudgeSubConsumer();
-		cloudJudgeSubConsumer.setCloudJudge(cloudJudge);
-		
-		consumer.addSubConsumer(getScoringSubConsumer(feed));
-		consumer.addSubConsumer(cloudJudgeSubConsumer);
-		consumer.addSubConsumer((ImageSubConsumer) InstanceFactory.getBean("persistresulttodbsubconsumer"));
+		Consumer<?> consumer = getConsumer(feed, feed.getProducerType());
 
 		// make jobdetail + map
 		JobDetail jobDetail = new JobDetail("producerConsumerFeed" + feed.getId(), null, FeedJob.class);
@@ -91,14 +80,11 @@ public class Schedule {
 			e.printStackTrace();
 		}
 	}
-	
-	private ImageScoringSubConsumer getScoringSubConsumer(Feed feed) {
-		ImageScoringSubConsumer scoring = (ImageScoringSubConsumer) InstanceFactory.getBean("imagescoringsubconsumer");
-		CalculateMetricOnCloudImage calcMetric = (CalculateMetricOnCloudImage) InstanceFactory.getBean("calculatemetriconcloudimage");
-		ManualMetric manualMetric = new ManualMetric();
-		manualMetric.setManualSplitterLocation(feed.getDivision());
-		calcMetric.setMetric(manualMetric);
-		scoring.setMetricOnCloudImage(calcMetric);
-		return scoring;
+
+	private Consumer<?> getConsumer(Feed feed, ProducerType producerType) {
+		Consumer<?> consumer = InstanceFactory.getConsumer(producerType, feed);
+		
+		return consumer;
 	}
+	
 }

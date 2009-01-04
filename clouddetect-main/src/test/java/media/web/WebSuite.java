@@ -24,7 +24,7 @@ public class WebSuite
 
         suite = new TestSuite("media.web");
 
-        suite.addTestSuite(media.web.WebImageLoaderTest.class);
+        suite.addTestSuite(media.web.WebLoaderTest.class);
         suite.addTestSuite(media.web.ProxyConfiguratorTest.class);
         suite.addTestSuite(media.web.ImageViewerTest.class);
 

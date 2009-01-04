@@ -1,6 +1,6 @@
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,13 +10,13 @@ public class BisectionSplitter extends AbstractImageSplitter {
 
     private double bestResult;
 
-    public void split(CloudImage data) {
+    public void split(CloudImageResult data) {
         bestResult = Double.MAX_VALUE;
         bestSplitterLocation = -1;
         bisection(data, 0, data.getHeight() * data.getWidth() - 1);
     }
 
-    protected void bisection(CloudImage data, int start, int end) {
+    protected void bisection(CloudImageResult data, int start, int end) {
         int currentStart = start;
         int currentEnd = end;
         int locationLeft;

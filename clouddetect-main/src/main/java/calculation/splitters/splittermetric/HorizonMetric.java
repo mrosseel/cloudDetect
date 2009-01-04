@@ -1,6 +1,6 @@
 package calculation.splitters.splittermetric;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import Jama.Matrix;
 
 public class HorizonMetric implements SplitterMetric {
@@ -31,7 +31,7 @@ public class HorizonMetric implements SplitterMetric {
         // return (varianceResult==0)?Double.MAX_VALUE:(varianceResult);
     }
 
-    public double compute(CloudImage data, int location) {
+    public double compute(CloudImageResult data, int location) {
         double[] monoData = data.getMonochromeData();
         return compute(monoData, location);
     }

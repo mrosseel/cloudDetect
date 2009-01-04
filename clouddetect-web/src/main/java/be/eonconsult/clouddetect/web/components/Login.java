@@ -20,9 +20,6 @@ import be.eonconsult.clouddetect.web.services.PasswordService;
  private Cookies cookies;
 
 
-
-
-
  String onSuccess() {
  User user = userDao.getUserByUserName(loginForm.getUsername());
  PasswordService service = PasswordService.getInstance();
@@ -69,7 +66,6 @@ public class Login {
 		}
 
 		// Stay on this page:
-
 		_form.recordError("Invalid user name or password.");
 
 		return null;

@@ -11,7 +11,7 @@ import util.KMeans;
 
 import java.util.Arrays;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public class KMeansMetric implements Metric {
 
@@ -22,7 +22,7 @@ public class KMeansMetric implements Metric {
      * @param data
      * @return abs(avg cluster1 - avg cluster2)
      */
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getMonochromeData();
         Arrays.sort(data);
         KMeans kmeans = new KMeans(data, 2);

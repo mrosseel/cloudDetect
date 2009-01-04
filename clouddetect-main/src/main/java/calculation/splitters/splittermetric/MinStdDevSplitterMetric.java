@@ -1,12 +1,12 @@
 package calculation.splitters.splittermetric;
 
 import util.StandardDeviation;
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public class MinStdDevSplitterMetric implements SplitterMetric {
     int leftCount, rightCount;
 
-    public double compute(CloudImage data, int location) {
+    public double compute(CloudImageResult data, int location) {
         double monoData[] = data.getMonochromeData();
         if (location >= monoData.length - 1) {
             throw new IllegalArgumentException(

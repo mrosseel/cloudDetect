@@ -1,11 +1,11 @@
 package notification;
 
 import media.audio.PlayWarning;
-import media.image.CloudImage;
+import media.image.CloudResult;
 
-public class SoundNotify implements Notifier {
+public class SoundNotify implements Notifier<CloudResult> {
 
-    public void notify(CloudImage image) {
+    public void notify(CloudResult image) {
         PlayWarning.playRooster();
     }
 

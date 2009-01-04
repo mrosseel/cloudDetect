@@ -12,7 +12,7 @@ import java.io.IOException;
 
 import calculation.splitters.SlidingWindowSplitter;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 /**
  * @author Mike
@@ -36,7 +36,7 @@ public class CutoffDifferenceMetric implements Metric {
      * 
      * @see metrics.Metric#compute(short[])
      */
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getData();
         double resultL = 0;
         double resultR = 0;

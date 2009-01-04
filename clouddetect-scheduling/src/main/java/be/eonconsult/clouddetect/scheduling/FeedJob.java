@@ -1,7 +1,7 @@
 package be.eonconsult.clouddetect.scheduling;
 
-import media.image.consumer.ImageConsumer;
-import media.image.producer.ImageProducer;
+import media.image.consumer.Consumer;
+import media.image.producer.Producer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,11 +22,9 @@ public class FeedJob implements Job {
 			throws JobExecutionException {
 		map = context.getJobDetail().getJobDataMap();
 		Feed feed = (Feed) map.get("feed");
-		ImageProducer producer = (ImageProducer) map.get("producer");
-		ImageConsumer consumer = (ImageConsumer) map.get("consumer");
+		Producer<?> producer = (Producer<?>) map.get("producer");
+		Consumer<?> consumer = (Consumer<?>) map.get("consumer");
 		log.debug("Starting feed Job for feed " + feed.getId());
-		consumer.consume(producer.produceContent());
-
+		consumer.consume(producer);
 	}
-
 }

@@ -1,7 +1,7 @@
 package media.image.consumer;
 
-import media.image.CloudImage;
-import media.image.CloudImageMetaData;
+import media.image.CloudResult;
+import media.image.CloudResultMetaData;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -9,7 +9,6 @@ import org.apache.commons.logging.LogFactory;
 import persistence.dao.ResultDao;
 import persistence.model.Result;
 import util.DateUtil;
-import application.InstanceFactory;
 
 /**
  * Class ImageScoringSubConsumer
@@ -17,16 +16,16 @@ import application.InstanceFactory;
  * saves the contrastresult from the metadata into the DB
  * 
  */
-public class PersistResultToDBSubConsumer implements ImageSubConsumer {
+public class PersistResultToDBSubConsumer implements SubConsumer<CloudResult> {
 	private static Log log = LogFactory
 			.getLog(PersistResultToDBSubConsumer.class);
 	
 	ResultDao dao;
 
-	public void consume(CloudImage image) {
-		CloudImageMetaData metaData = image.getMetaData();
+	public void consume(CloudResult image) {
+		CloudResultMetaData metaData = image.getMetaData();
 		Result result = new Result();
-		result.setResult(metaData.getContrastResult());
+		result.setResult(metaData.getResult());
 		result.setFeedId(metaData.getFeedId());
 		result.setTime((metaData.getDate() == null)?DateUtil.getCurrentDate():metaData.getDate());
 		result.setCloudJudgeResult(metaData.getCloudJudgeResult());

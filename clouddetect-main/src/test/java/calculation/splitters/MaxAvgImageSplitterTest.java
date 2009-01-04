@@ -4,8 +4,8 @@ import calculation.splitters.AbstractGenericImageSplitter;
 import calculation.splitters.MaxAvgImageSplitter;
 import calculation.splitters.Splitter;
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 
 // JUnitDoclet end import
 
@@ -49,7 +49,7 @@ public class MaxAvgImageSplitterTest
         double[] data = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
                 16, 17, 18, 19, 20 };
         AbstractGenericImageSplitter metric = new MaxAvgImageSplitter();
-        CloudImage image = new CloudImageImpl(data, 5, 4, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 5, 4, false);
         metric.split(image);
         assertEquals(9.88888888888889, metric.getResult(), 0.0);
         // strange but acceptable
@@ -58,7 +58,7 @@ public class MaxAvgImageSplitterTest
         double[] data2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 110, 120, 130, 140,
                 150, 160, 170, 180, 190, 200 };
         metric = new MaxAvgImageSplitter();
-        image = new CloudImageImpl(data2, 5, 4, false);
+        image = new CloudImageResultImpl(data2, 5, 4, false);
         metric.split(image);
         assertEquals(132.77777777777777, metric.getResult(), 0.0);
         // it splits in the middle as it should

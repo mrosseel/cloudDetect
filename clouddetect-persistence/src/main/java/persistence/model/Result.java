@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity()
+@Entity
 public class Result {
 	private long id;
 	private int feedId;

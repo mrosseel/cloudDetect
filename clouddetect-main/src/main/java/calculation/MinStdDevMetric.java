@@ -7,7 +7,7 @@
  */
 package calculation;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.VisualiseSplitterLocation;
 import calculation.contrastmetric.MedianContrastMetric;
 import calculation.splitters.BisectionSplitter;
@@ -20,7 +20,7 @@ public class MinStdDevMetric implements Metric {
      * @param data
      * @return
      */
-    public double compute(CloudImage data) {
+    public double compute(CloudImageResult data) {
         BisectionSplitter splitter = new BisectionSplitter();
         splitter.setSplitterMetric(new MinStdDevSplitterMetric());
         splitter.split(data);

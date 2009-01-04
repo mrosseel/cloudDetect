@@ -3,7 +3,7 @@
  */
 package media.processors;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,7 +18,7 @@ public class CalculateMetricOnCloudImageImpl implements
 
     private Metric metric;
 
-    public double process(CloudImage image) {
+    public double process(CloudImageResult image) {
 
         if (log.isDebugEnabled()) {
             log.debug("Processing data.");

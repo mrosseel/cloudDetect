@@ -53,7 +53,7 @@ public class UserDaoTest extends SpringDBTest {
 		User user = new User();
 		user.setId(1);
         UserDao userDao = (UserDao) appContext.getBean("userdao");
-        boolean result1 = userDao.isUserOwnerOfFeed(user, 1);
+        boolean result1 = userDao.isUserOwnerOfFeed(user,1);
         boolean result2 = userDao.isUserOwnerOfFeed(user,2);
         boolean result5 = userDao.isUserOwnerOfFeed(user,5);
         

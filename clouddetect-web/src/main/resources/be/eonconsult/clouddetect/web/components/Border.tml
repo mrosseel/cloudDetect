@@ -63,20 +63,9 @@
 
 <div id="left">
 
- <t:if test="userExists">
 	<div class="box">
-		 <t:if test="userExists">
-				<t:delegate to="block:userinfo"/>			
-			<t:parameter name="else"> 	
-				<t:delegate to="block:login"/>
-	        </t:parameter>
-		</t:if>
-	
+		<t:delegate to="block:userinfo"/>			
 	</div>
-	
-
-	
-</t:if>
 	
     <div class="box">
 	   <div style="font-size: 0.8em;">This site is in beta testing, drenched telescopes will not be refunded</div>

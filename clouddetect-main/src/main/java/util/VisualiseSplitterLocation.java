@@ -3,11 +3,11 @@ package util;
 
 import javax.swing.JFrame;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public class VisualiseSplitterLocation {
 
-    public static void showImage(CloudImage image, int location) {
+    public static void showImage(CloudImageResult image, int location) {
         try {
             image = addSplitterLine(image, location);
             ImagePanel panel = new ImagePanel();
@@ -27,7 +27,7 @@ public class VisualiseSplitterLocation {
         }
     }
 
-    public static CloudImage addSplitterLine(CloudImage image, int location) {
+    public static CloudImageResult addSplitterLine(CloudImageResult image, int location) {
         double[] datax = image.getData();
         int value = Integer.MIN_VALUE;
         for (int dataCnt = Math.max(0, location - image.getWidth()); dataCnt < location

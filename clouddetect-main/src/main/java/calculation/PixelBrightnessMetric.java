@@ -6,7 +6,7 @@
  */
 package calculation;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 /**
  * @author Mike
@@ -19,7 +19,7 @@ public class PixelBrightnessMetric implements Metric {
     /**
      * 
      */
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getMonochromeData();
         double result = 0;
         for (int counter = 0; counter != data.length; counter++) {

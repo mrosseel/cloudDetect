@@ -3,8 +3,8 @@ package calculation;
 import calculation.KMeansMetric;
 import calculation.Metric;
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 
 // JUnitDoclet end import
 
@@ -54,7 +54,7 @@ public class KMeansMetricTest
         // JUnitDoclet begin method compute
         Metric kmeans = new KMeansMetric();
         double[] data = { 0, 0, 0, 0, 0, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 5, 2, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 5, 2, false);
         double result = kmeans.compute(image);
         assertEquals(1.0, result, 0.0);
 

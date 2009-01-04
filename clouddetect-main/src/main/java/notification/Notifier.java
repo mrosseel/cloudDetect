@@ -1,8 +1,8 @@
 package notification;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
-public interface Notifier {
+public interface Notifier<T> {
 
-    public abstract void notify(CloudImage image);
+    public abstract void notify(T content);
 }

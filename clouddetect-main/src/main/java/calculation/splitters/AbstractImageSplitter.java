@@ -1,6 +1,6 @@
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import calculation.splitters.splittermetric.SplitterMetric;
 
 public abstract class AbstractImageSplitter implements ImageSplitter {
@@ -10,7 +10,7 @@ public abstract class AbstractImageSplitter implements ImageSplitter {
 
     protected double result = Double.MIN_VALUE;
 
-    public abstract void split(CloudImage data);
+    public abstract void split(CloudImageResult data);
 
     public void setSplitterMetric(SplitterMetric metric) {
         this.metric = metric;

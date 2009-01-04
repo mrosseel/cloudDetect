@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,7 +33,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
         this.dirToLoad = dirToLoad;
     }
 
-    public CloudImage produceContent() {
+    public CloudImageResult produceContent() {
         if (!isLooping && fileCounter >= files.length - 1) {
             return null;
         }
@@ -44,7 +44,7 @@ public class DirectoryImageProducer extends ImageProducerImpl {
 
         fileImageProducer.setSource(getNextImageName());
 
-        CloudImage result = fileImageProducer.produceContent();
+        CloudImageResult result = fileImageProducer.produceContent();
         result.setOriginComment(getProducerName());
         fileCounter++;
         return result;

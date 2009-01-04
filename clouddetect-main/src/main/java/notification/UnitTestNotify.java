@@ -1,11 +1,11 @@
 package notification;
 
-import media.image.CloudImage;
+import media.image.CloudResult;
 
-public class UnitTestNotify implements Notifier {
+public class UnitTestNotify implements Notifier<CloudResult> {
 	private boolean notified = false;
 	
-	public void notify(CloudImage image) {
+	public void notify(CloudResult image) {
 		setNotified(true);
 	}
 

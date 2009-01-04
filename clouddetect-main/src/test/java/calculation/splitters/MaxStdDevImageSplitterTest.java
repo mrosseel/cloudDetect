@@ -2,8 +2,8 @@ package calculation.splitters;
 
 import util.VisualiseSplitterLocation;
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import media.image.producer.FileClasspathImageProducer;
 
 // JUnitDoclet end import
@@ -54,7 +54,7 @@ public class MaxStdDevImageSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 10, 2, false);
         // maxstddevmetric.compute(image);
         // assertEquals(50, maxstddevmetric.getPctSplitterLocation());
         //

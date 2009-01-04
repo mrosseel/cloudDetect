@@ -13,8 +13,7 @@ public class UserInfo {
 	
 	
 	public String onActionFromLogin() {
-		System.out.println("Login");
-		return "Start";
+		return "Login";
 	}
 	
 	public String onActionFromLogout() {

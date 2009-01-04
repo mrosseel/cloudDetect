@@ -7,7 +7,7 @@
  */
 package calculation;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.VisualiseSplitterLocation;
 import calculation.contrastmetric.MedianContrastMetric;
 
@@ -20,7 +20,7 @@ public class ManualMetric implements Metric {
      * @param data
      * @return
      */
-    public double compute(CloudImage data) {
+    public double compute(CloudImageResult data) {
         MedianContrastMetric metric = new MedianContrastMetric();
         int splitterLocation = (int) Math.round(data.getMonochromeData().length
                 * getManualSplitterLocation());

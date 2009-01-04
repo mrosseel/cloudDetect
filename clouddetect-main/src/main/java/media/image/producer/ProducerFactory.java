@@ -5,7 +5,7 @@ import application.InstanceFactory;
 
 public class ProducerFactory {
 
-	public static ImageProducer getImageProducer(ProducerType type) {
-		return (ImageProducer) InstanceFactory.getBean(type.toString());
+	public static Producer<?> getProducer(ProducerType type) {
+		return (Producer<?>) InstanceFactory.getBean(type.toString());
 	}
 }

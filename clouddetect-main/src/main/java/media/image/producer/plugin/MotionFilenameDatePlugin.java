@@ -4,8 +4,8 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import media.image.CloudImage;
-import media.image.CloudImageMetaData;
+import media.image.CloudImageResult;
+import media.image.CloudResultMetaData;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -15,8 +15,8 @@ import util.DateUtil;
 public class MotionFilenameDatePlugin implements ImageDatePlugin {
     private static Log log = LogFactory.getLog(MotionFilenameDatePlugin.class);
 
-    public void insertDateInMetaData(CloudImage image, String filename) {
-        CloudImageMetaData metaData = image.getMetaData();
+    public void insertDateInMetaData(CloudImageResult image, String filename) {
+        CloudResultMetaData metaData = image.getMetaData();
         Calendar calendar = DateUtil.getCurrentCalendar();
 
         Pattern p = Pattern

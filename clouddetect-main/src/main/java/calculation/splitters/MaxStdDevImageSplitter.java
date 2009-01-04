@@ -7,7 +7,7 @@
  */
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -43,7 +43,7 @@ public class MaxStdDevImageSplitter extends AbstractGenericImageSplitter {
     }
 
     @Override
-    public void split(CloudImage image) {
+    public void split(CloudImageResult image) {
         // TODO Auto-generated method stub
         super.split(image);
         VisualiseSplitterLocation.addSplitterLine(image,

@@ -1,20 +1,19 @@
 package media.image.consumer;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import notification.UnitTestNotify;
 
 import org.joda.time.DateTime;
 
 import persistence.model.CloudJudgeLimits;
-
 import calculation.CloudJudge;
 
 public class CloudImageSubConsumerTest extends TestCase {
-	CloudJudgeSubConsumer cj;
+	JudgeImageSubConsumer cj;
 	CloudJudge judge;
-	CloudImage image;
+	CloudImageResult image;
 	UnitTestNotify notify = new UnitTestNotify();
 	
 	public CloudImageSubConsumerTest(String name) {
@@ -24,12 +23,12 @@ public class CloudImageSubConsumerTest extends TestCase {
 	@Override
 	protected void setUp() throws Exception {
 		notify.reset();
-		image = new CloudImageImpl(new double[5], 5, 1, false);
+		image = new CloudImageResultImpl(new double[5], 5, 1, false);
 		judge = new CloudJudge();
 		judge.setCloudJudgeLimits(new CloudJudgeLimits());
 		judge.getCloudJudgeLimits().setMaxClear(1);
 		judge.getCloudJudgeLimits().setMaxPartlyClear(2);
-		cj = new CloudJudgeSubConsumer(CloudJudge.CloudStatus.CLEAR);
+		cj = new JudgeImageSubConsumer(CloudJudge.CloudStatus.CLEAR);
 		cj.setCloudJudge(judge);
 		cj.setNotifier(notify);
 		cj.setTransitionWaitInMinutes(10);
@@ -68,7 +67,7 @@ public class CloudImageSubConsumerTest extends TestCase {
 	private void consume(double result, String iso8601) {
 		DateTime firstDate = new DateTime(iso8601);
 		
-		image.getMetaData().setContrastResult(result);
+		image.getMetaData().setResult(result);
 		image.getMetaData().setDate(firstDate.toDate());	
 		cj.consume(image);
 	}

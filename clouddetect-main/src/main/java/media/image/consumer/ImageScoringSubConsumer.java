@@ -1,6 +1,6 @@
 package media.image.consumer;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import media.processors.CalculateMetricOnCloudImage;
 
 import org.apache.commons.logging.Log;
@@ -14,14 +14,14 @@ import application.InstanceFactory;
  * Give a score to the image and store the result in the metadata.
  * 
  */
-public class ImageScoringSubConsumer implements ImageSubConsumer {
+public class ImageScoringSubConsumer implements SubConsumer<CloudImageResult> {
     private static Log log = LogFactory.getLog(ImageScoringSubConsumer.class);
 
     private CalculateMetricOnCloudImage metricOnCloudImage;
     
-    public void consume(CloudImage image) {
+    public void consume(CloudImageResult image) {
         double result = metricOnCloudImage.process(image);
-        image.getMetaData().setContrastResult(result);
+        image.getMetaData().setResult(result);
     }
 
 	public CalculateMetricOnCloudImage getMetricOnCloudImage() {

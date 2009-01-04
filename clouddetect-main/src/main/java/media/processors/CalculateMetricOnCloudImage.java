@@ -5,7 +5,7 @@
 package media.processors;
 
 import calculation.Metric;
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 /**
  * Calculates a certain metric on a CloudImage, and returns the result.
@@ -19,7 +19,7 @@ public interface CalculateMetricOnCloudImage {
      * @param data
      *            frame data
      */
-    public double process(CloudImage data);
+    public double process(CloudImageResult data);
 
     public Metric getMetric();
 

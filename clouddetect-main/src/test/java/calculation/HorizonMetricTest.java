@@ -1,8 +1,8 @@
 package calculation;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import calculation.splitters.splittermetric.HorizonMetric;
 
 // JUnitDoclet end import

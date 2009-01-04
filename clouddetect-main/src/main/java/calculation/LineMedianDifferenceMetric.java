@@ -9,7 +9,7 @@ package calculation;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.Median;
 import calculation.splitters.SlidingWindowSplitter;
 
@@ -29,7 +29,7 @@ public class LineMedianDifferenceMetric implements Metric {
      * 
      * @see metrics.Metric#compute(short[])
      */
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getMonochromeData();
         double median;
 

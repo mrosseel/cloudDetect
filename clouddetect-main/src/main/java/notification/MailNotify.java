@@ -1,6 +1,7 @@
 package notification;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
+import media.image.CloudResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,9 +9,7 @@ import org.springframework.mail.MailException;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
-import util.DateUtil;
-
-public class MailNotify implements Notifier {
+public class MailNotify implements Notifier<CloudResult> {
 
     private static Log log = LogFactory.getLog(MailNotify.class);
 
@@ -29,7 +28,7 @@ public class MailNotify implements Notifier {
 	/* (non-Javadoc)
      * @see notification.Notifier#notify(media.image.CloudImage)
      */
-    public void notify(CloudImage image) {
+    public void notify(CloudResult image) {
         log.info("Sending mail at " + image.getMetaData().getDate());
         sendMail();
     }

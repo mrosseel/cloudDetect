@@ -7,7 +7,7 @@
  */
 package calculation;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public interface Metric {
 
@@ -17,5 +17,5 @@ public interface Metric {
      * @param data
      * @return
      */
-    public double compute(CloudImage data);
+    public double compute(CloudImageResult data);
 }

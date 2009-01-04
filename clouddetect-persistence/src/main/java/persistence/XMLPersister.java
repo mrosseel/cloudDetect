@@ -98,7 +98,7 @@ public class XMLPersister {
     public List getData() {
         List list = doc.selectNodes("//data");
 
-        for (Iterator iter = list.iterator(); iter.hasNext();) {
+        for (Iterator<?> iter = list.iterator(); iter.hasNext();) {
             Attribute attribute = (Attribute) iter.next();
             String url = attribute.getValue();
         }

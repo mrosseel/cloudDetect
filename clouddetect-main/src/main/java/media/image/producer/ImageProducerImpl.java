@@ -3,14 +3,14 @@ package media.image.producer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import media.image.producer.plugin.ImageDatePlugin;
 
 /**
  * Class ImageProviderImpl
  * 
  */
-public abstract class ImageProducerImpl implements ImageProducer {
+public abstract class ImageProducerImpl implements Producer<CloudImageResult> {
 
     private String producerName;
 
@@ -31,7 +31,7 @@ public abstract class ImageProducerImpl implements ImageProducer {
         this.producerName = name;
     }
 
-    public abstract CloudImage produceContent();
+    public abstract CloudImageResult produceContent();
 
     public String getProducerName() {
         return producerName;

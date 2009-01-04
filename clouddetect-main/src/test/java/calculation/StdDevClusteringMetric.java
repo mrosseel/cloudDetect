@@ -11,12 +11,12 @@ import java.util.Arrays;
 
 import calculation.Metric;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.StandardDeviation;
 
 public class StdDevClusteringMetric implements Metric {
 
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getData();
         double totalStdDev, firstStdDev, secondStdDev;
         double minStdDev = Double.POSITIVE_INFINITY;

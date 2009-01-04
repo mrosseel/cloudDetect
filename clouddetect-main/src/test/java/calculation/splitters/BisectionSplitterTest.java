@@ -1,8 +1,8 @@
 package calculation.splitters;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import media.image.producer.FileClasspathImageProducer;
 import util.VisualiseSplitterLocation;
 import calculation.splitters.splittermetric.HorizonMetric;
@@ -47,7 +47,7 @@ public class BisectionSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 10, 2, false);
 
         // FileClasspathImageProducer producer = new FileClasspathImageProducer(
         // "unit test", "/01-20061009223010-snapshot.jpg");

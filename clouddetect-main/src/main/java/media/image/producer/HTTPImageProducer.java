@@ -2,9 +2,9 @@ package media.image.producer;
 
 import java.awt.Image;
 
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
-import media.web.WebImageLoader;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
+import media.web.WebLoader;
 
 /**
  * Class HTTPImageProvider
@@ -18,9 +18,9 @@ public class HTTPImageProducer extends ImageProducerImpl {
         super(name);
     }
 
-    public CloudImage produceContent() {
-        Image image = WebImageLoader.loadURLImage(getSource());
-        CloudImage result = new CloudImageImpl(image);
+    public CloudImageResult produceContent() {
+        Image image = WebLoader.loadURLImage(getSource());
+        CloudImageResult result = new CloudImageResultImpl(image);
         result.setOriginComment(getProducerName());
         result.getMetaData().setFeedId(sourceId);
         getPlugin().insertDateInMetaData(result, null);

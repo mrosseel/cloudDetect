@@ -1,8 +1,8 @@
 package calculation;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import media.image.producer.FileClasspathImageProducer;
 
 // JUnitDoclet end import
@@ -55,7 +55,7 @@ public class LineMedianDifferenceMetricTest
         int[] data = { 0, 0, 0, 0, 0, 0, 0, 0, 50, 50, 50, 50, 100, 100, 100,
                 100, 100, 100, 100, 100 };
         Metric metric = new LineMedianDifferenceMetric();
-        CloudImage image = new CloudImageImpl(data, 4, 5, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 4, 5, false);
         assertEquals(100.0, metric.compute(image), 0.0);
 
         FileClasspathImageProducer producer = new FileClasspathImageProducer(

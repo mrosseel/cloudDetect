@@ -2,4 +2,3 @@
 	<context-root>/</context-root>
 	<virtual-host>${domain}</virtual-host>
 </jboss-web>
-

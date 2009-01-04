@@ -8,7 +8,7 @@ package calculation;
 
 import java.util.Arrays;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.Median;
 
 /**
@@ -22,7 +22,7 @@ public class MedianPixelBrightnessMetric implements Metric {
     /**
      * 
      */
-    public double compute(CloudImage image) {
+    public double compute(CloudImageResult image) {
         double[] data = image.getMonochromeData();
         Arrays.sort(data);
         double lowest = data[0];

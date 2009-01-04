@@ -8,13 +8,14 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
+import media.image.CloudResult;
 
-public class ClickatellNotify implements Notifier {
+public class ClickatellNotify implements Notifier<CloudResult> {
     
     private StringBuffer data = new StringBuffer();
 
-    public void notify(CloudImage image) {
+    public void notify(CloudResult image) {
         
 //        
 //        Command:

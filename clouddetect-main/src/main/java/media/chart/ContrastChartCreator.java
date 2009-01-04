@@ -74,7 +74,7 @@ public class ContrastChartCreator {
 
 		TimeSeriesCollection dataset = new TimeSeriesCollection();
 
-		Iterator iter = timeSeriesMap.values().iterator();
+		Iterator<TimeSeries> iter = timeSeriesMap.values().iterator();
 		while (iter.hasNext()) {
 			dataset.addSeries((TimeSeries) iter.next());
 		}

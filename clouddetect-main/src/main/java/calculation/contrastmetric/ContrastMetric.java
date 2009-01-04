@@ -1,8 +1,8 @@
 package calculation.contrastmetric;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public interface ContrastMetric {
 
-    public double calculateContrast(CloudImage image, int splitLocation);
+    public double calculateContrast(CloudImageResult image, int splitLocation);
 }

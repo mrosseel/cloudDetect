@@ -6,7 +6,7 @@
  */
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import calculation.splitters.splittermetric.SplitterMetric;
 
 /**
@@ -17,7 +17,7 @@ import calculation.splitters.splittermetric.SplitterMetric;
  */
 public interface ImageSplitter extends Splitter {
 
-    public void split(CloudImage data);
+    public void split(CloudImageResult data);
 
     public void setSplitterMetric(SplitterMetric metric);
 

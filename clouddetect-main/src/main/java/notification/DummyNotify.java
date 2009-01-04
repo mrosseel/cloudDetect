@@ -1,10 +1,11 @@
 package notification;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
+import media.image.CloudResult;
 
-public class DummyNotify implements Notifier {
+public class DummyNotify implements Notifier<CloudResult> {
 
-    public void notify(CloudImage image) {
+    public void notify(CloudResult image) {
         //  let's not do anything
     }
 

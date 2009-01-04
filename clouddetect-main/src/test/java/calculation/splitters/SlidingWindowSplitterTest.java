@@ -1,7 +1,7 @@
 package calculation.splitters;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import media.image.producer.FileClasspathImageProducer;
 import util.VisualiseSplitterLocation;
 
@@ -63,7 +63,7 @@ public class SlidingWindowSplitterTest
 
         FileClasspathImageProducer producer = new FileClasspathImageProducer(
                 "unit test", "/current_min_daylight.jpg");
-        CloudImage image = producer.produceContent();
+        CloudImageResult image = producer.produceContent();
         double[] datax = image.getMonochromeData();
         location = slidingwindowsplitter.split(datax);
 //        VisualiseSplitterLocation.showImage(image, location);

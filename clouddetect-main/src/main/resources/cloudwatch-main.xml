@@ -26,6 +26,11 @@
 		<property name="source"><value>${http.url}</value></property>
 		<property name="plugin"><ref bean="nowDatePlugin"/></property>
 	</bean>
+
+	<bean id="httpboltwood1" class="media.image.producer.HTTPBoltwood1Producer" singleton="false">
+		<constructor-arg><value>HTTP Boltwood I producer</value></constructor-arg>
+		<property name="source"><value>${http.url}</value></property>
+	</bean>
 	
 	<bean id="directoryimageproducer" class="media.image.producer.DirectoryImageProducer">
 		<constructor-arg><value>directory image producer</value></constructor-arg>
@@ -47,6 +52,9 @@
 	<bean id="imageconsumer" class="media.image.consumer.ImageConsumerImpl" singleton="false">
 	</bean>
 	
+	<bean id="fileconsumer" class="media.image.consumer.FileConsumerImpl" singleton="false">
+	</bean>
+
 	<!-- Metrics -->	
 	
 	<bean id="calculatemetriconcloudimage" class="media.processors.CalculateMetricOnCloudImageImpl">
@@ -64,13 +72,21 @@
 	
 	<!--  Cloud Judging -->
 		
-		<!--
-	<bean id="cloudjudgesubconsumer" class="media.image.consumer.CloudJudgeSubConsumer">
+	<bean id="judgeimagesubconsumer" class="media.image.consumer.JudgeImageSubConsumer">
 		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
 		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
 		<property name="notifier"><ref bean="dummynotify"/></property>
 	</bean>
-	-->
+
+	<bean id="judgefilesubconsumer" class="media.image.consumer.JudgeFileSubConsumer">
+		<property name="transitionWaitInMinutes"><value>${cloudjudge.transitionWaitInMinutes}</value></property>
+		<property name="cloudJudge"><ref bean="cloudjudge"/></property>
+		<property name="notifier"><ref bean="dummynotify"/></property>
+	</bean>
+
+	<bean id="cloudjudge" class="calculation.CloudJudge">
+	</bean>
+
 	
 	<bean id="savechartfromdbsubconsumer" class="media.image.consumer.SaveChartFromDBSubConsumer">
 		<property name="saveFilename"><value>${chart.savefilename}</value></property>

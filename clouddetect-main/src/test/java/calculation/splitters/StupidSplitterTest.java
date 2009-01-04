@@ -1,8 +1,8 @@
 package calculation.splitters;
 
 import junit.framework.TestCase;
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,7 +51,7 @@ public class StupidSplitterTest
     public void testCompute() {
         double[] data = new double[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1 };
-        CloudImage image = new CloudImageImpl(data, 10, 2, false);
+        CloudImageResult image = new CloudImageResultImpl(data, 10, 2, false);
         split(image);
         log.info("best splitter location = "
                 + stupidSplitter.getBestSplitterLocation());
@@ -66,7 +66,7 @@ public class StupidSplitterTest
 
     }
 
-    private void split(CloudImage image) {
+    private void split(CloudImageResult image) {
         stupidSplitter = new StupidImageSplitter();
         stupidSplitter.setSplitterMetric(new HorizonMetric());
         stupidSplitter.split(image);

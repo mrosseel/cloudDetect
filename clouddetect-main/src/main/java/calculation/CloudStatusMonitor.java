@@ -2,15 +2,15 @@ package calculation;
 
 import java.util.Date;
 
+import media.image.consumer.JudgeFileSubConsumer;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import calculation.CloudJudge.CloudStatus;
 
-import media.image.consumer.CloudJudgeSubConsumer;
-
 public class CloudStatusMonitor {
-	private static Log log = LogFactory.getLog(CloudJudgeSubConsumer.class);
+	private static Log log = LogFactory.getLog(JudgeFileSubConsumer.class);
 
 	private CloudStatus toStatus = null;
 

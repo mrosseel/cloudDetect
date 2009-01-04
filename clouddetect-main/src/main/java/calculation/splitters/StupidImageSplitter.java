@@ -1,6 +1,6 @@
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -8,7 +8,7 @@ import org.apache.commons.logging.LogFactory;
 public class StupidImageSplitter extends AbstractImageSplitter {
     private static Log log = LogFactory.getLog(StupidImageSplitter.class);
 
-    public void split(CloudImage data) {
+    public void split(CloudImageResult data) {
         double currentResult;
         int length = data.getHeight() * data.getWidth();
         try {

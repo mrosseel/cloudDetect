@@ -1,17 +1,17 @@
 package publish;
 
 
-import media.image.CloudImage;
-import media.image.consumer.ImageSubConsumer;
+import media.image.CloudImageResult;
+import media.image.consumer.SubConsumer;
 import ui.commands.ImageCommand;
 
 /**
  * Class UIPublishSubConsumer
  * 
  */
-public class UIPublishSubConsumer implements ImageSubConsumer {
+public class UIPublishSubConsumer implements SubConsumer<CloudImageResult> {
 
-    public void consume(CloudImage image) {
+    public void consume(CloudImageResult image) {
         // TODO UI reference, maybe remove to the ui package for future separate
         // build?
         ImageCommand command = new ImageCommand(image.getImage());

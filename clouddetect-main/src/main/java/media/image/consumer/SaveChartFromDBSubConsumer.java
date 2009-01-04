@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import media.chart.ContrastChartCreator;
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -14,13 +14,13 @@ import persistence.dao.ResultDao;
 import persistence.model.Result;
 import application.InstanceFactory;
 
-public class SaveChartFromDBSubConsumer implements ImageSubConsumer {
+public class SaveChartFromDBSubConsumer implements SubConsumer<CloudImageResult> {
 
 	private static Log log = LogFactory.getLog(SaveChartFromDBSubConsumer.class);
 	private int nrOfHours;
 	private String saveFilename;
 		
-	public void consume(CloudImage image) {
+	public void consume(CloudImageResult image) {
 		ResultDao dao = (ResultDao) InstanceFactory.getBean("resultdao");
         ContrastChartCreator creator = new ContrastChartCreator();
         

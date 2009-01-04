@@ -2,8 +2,8 @@ package media.image.producer;
 
 import java.awt.Image;
 
-import media.image.CloudImage;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResult;
+import media.image.CloudImageResultImpl;
 import media.image.producer.plugin.ImageDatePlugin;
 
 import org.apache.commons.logging.Log;
@@ -24,14 +24,14 @@ public class FileImageProducer extends ImageProducerImpl {
         super(name);
     }
 
-    public CloudImage produceContent() {
+    public CloudImageResult produceContent() {
         Image image = getImage();
         if (image == null || image.getHeight(null) == -1) {
             log.warn("Could not load image " + getSource());
             throw new IllegalArgumentException("Could not load image "
                     + getSource());
         }
-        CloudImage result = new CloudImageImpl(image);
+        CloudImageResult result = new CloudImageResultImpl(image);
         result.setOriginComment(getProducerName());
         if(getPlugin()!=null) {
         	getPlugin().insertDateInMetaData(result, getSource());

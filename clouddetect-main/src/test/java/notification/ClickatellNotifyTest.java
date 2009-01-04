@@ -1,7 +1,7 @@
 package notification;
 
 import junit.framework.TestCase;
-import media.image.CloudImageImpl;
+import media.image.CloudImageResultImpl;
 
 public class ClickatellNotifyTest extends TestCase {
 

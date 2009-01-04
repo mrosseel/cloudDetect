@@ -1,6 +1,6 @@
 package media.image.producer.plugin;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 import util.DateUtil;
 
 /**
@@ -13,7 +13,7 @@ import util.DateUtil;
  */
 public class NowDatePlugin implements ImageDatePlugin {
 
-    public void insertDateInMetaData(CloudImage image, String filename) {
+    public void insertDateInMetaData(CloudImageResult image, String filename) {
         image.getMetaData().setDate(DateUtil.getCurrentDate());
     }
 }

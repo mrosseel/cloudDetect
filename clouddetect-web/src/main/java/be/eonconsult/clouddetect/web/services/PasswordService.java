@@ -3,7 +3,8 @@ package be.eonconsult.clouddetect.web.services;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import sun.misc.BASE64Encoder;
+
+import com.thoughtworks.xstream.core.util.Base64Encoder;
 
 public final class PasswordService
 {
@@ -34,7 +35,7 @@ public final class PasswordService
     }
 
     byte raw[] = md.digest(); //step 4
-    String hash = (new BASE64Encoder()).encode(raw); //step 5
+    String hash = (new Base64Encoder()).encode(raw); //step 5
     return hash; //step 6
   }
   

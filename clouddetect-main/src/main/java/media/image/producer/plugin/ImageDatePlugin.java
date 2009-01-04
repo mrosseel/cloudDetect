@@ -1,8 +1,8 @@
 package media.image.producer.plugin;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 public interface ImageDatePlugin {
 
-    public void insertDateInMetaData(CloudImage image, String filename);
+    public void insertDateInMetaData(CloudImageResult image, String filename);
 }

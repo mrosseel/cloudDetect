@@ -7,7 +7,7 @@
  */
 package calculation.splitters;
 
-import media.image.CloudImage;
+import media.image.CloudImageResult;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -40,7 +40,7 @@ public abstract class AbstractGenericImageSplitter implements ImageSplitter {
      * 
      * @see metrics.splitters.Splitter#compute(media.image.CloudImage)
      */
-    public void split(CloudImage image) {
+    public void split(CloudImageResult image) {
         double[] data = image.getData();
         preDataManipulation(data);
 
