@@ -1,18 +1,17 @@
 package media.image.producer;
 
-import media.image.CloudImage;
 
 /**
  * Interface ImageProvider
  * 
  */
-public interface ImageProducer {
+public interface Producer<T> {
 
-    public CloudImage produceContent();
+    public T produceContent();
 
     public String getProducerName();
     
-    public void setSource(String imageLocation);
+    public void setSource(String location);
     
     public String getSource();
     
