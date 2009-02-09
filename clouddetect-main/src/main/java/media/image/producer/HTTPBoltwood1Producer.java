@@ -18,7 +18,6 @@ public class HTTPBoltwood1Producer implements Producer<CloudResult> {
     private String source;
     private int sourceId;
     private String name;
-    private Date date;
     private static Log log = LogFactory.getLog(HTTPBoltwood1Producer.class);
     
     public HTTPBoltwood1Producer(String name) {
@@ -34,8 +33,6 @@ public class HTTPBoltwood1Producer implements Producer<CloudResult> {
         CloudFileResultImpl result = new CloudFileResultImpl();
         log.debug("Setting boltwood content with " + fileContent);
         result.getMetaData().setFeedId(sourceId);
-        result.getMetaData().setDate(date);
-        
         result.setFileData(fileContent);
         result.setOriginComment(getProducerName());
         

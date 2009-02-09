@@ -2,7 +2,7 @@
 
 <div id="right">
   <div id="results">
-<t:beaneditform submitlabel="Login" object="registerForm">
+<t:beaneditform submitlabel="Register" object="registerForm">
 	<t:parameter name="password">
 		<label t:type="Label" for="password"/>
 	    <t:passwordfield t:id="password" value="registerForm.password"/>

@@ -3,8 +3,7 @@
 		<t:if test="userExists">
 				${user.firstName} ${user.lastName} is logged in. <t:actionlink t:id="logout">(logout)</t:actionlink>
 			<t:parameter name="else"> 	
-				Not logged in, please <t:actionlink t:id="login">login</t:actionlink>
+				Please <t:actionlink t:id="login">login</t:actionlink> or <t:actionlink t:id="register">register</t:actionlink> 
 	        </t:parameter>
 		</t:if>
-
 </span>

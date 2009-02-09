@@ -27,11 +27,12 @@ public class FeedInfo {
 		jsonObject.put("name", feed.getName());
 		jsonObject.put("descr", feed.getLocationFreeForm());
 		jsonObject.put("secondsbetweenupdates", feed.getSecondsBetweenUpdates());
-		jsonObject.put("starthour", pair.getRise().getHourOfDay());
-		jsonObject.put("startminute", pair.getRise().getMinuteOfHour());
-		jsonObject.put("endhour", pair.getSet().getHourOfDay());
-		jsonObject.put("endminute", pair.getSet().getMinuteOfHour());
+		jsonObject.put("starthour", pair.getSet().getHourOfDay());
+		jsonObject.put("startminute", pair.getSet().getMinuteOfHour());
+		jsonObject.put("endhour", pair.getRise().getHourOfDay());
+		jsonObject.put("endminute", pair.getRise().getMinuteOfHour());
 
+		
 		return jsonObject.toString();
 	}
 

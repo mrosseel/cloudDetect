@@ -33,7 +33,6 @@ public class Schedule {
 			sched = schedFact.getScheduler();
 			sched.start();
 		} catch (SchedulerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		FeedDao dao = (FeedDao) InstanceFactory.getBean("feeddao");

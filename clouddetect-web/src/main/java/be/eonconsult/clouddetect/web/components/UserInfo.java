@@ -16,6 +16,10 @@ public class UserInfo {
 		return "Login";
 	}
 	
+	public String onActionFromRegister() {
+		return "Register";
+	}
+
 	public String onActionFromLogout() {
 		user = null;
 		System.out.println("Logout");
@@ -37,8 +41,4 @@ public class UserInfo {
 	public void setUserExists(boolean userExists) {
 		this.userExists = userExists;
 	}
-	
-	
-	
-	
 }

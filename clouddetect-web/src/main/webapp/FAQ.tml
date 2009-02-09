@@ -50,8 +50,8 @@
 			<span title="Answer to this question" style="cursor: help;">A.</span>
 		</b>
 		In principle, cloudwatch.net doesn't care how the cloud coverage is measured, all (correct) methods are welcomed.
-		At the moment we support the in-house developed <a href="#3">low-cost webcam solution</a>, 
-		but as soon as someone offers to put his Boltwood Sky Sensor measurements online that will be supported as well.
+		At the moment we support the in-house developed <a href="#3">low-cost webcam solution</a> and the AAG Cloudwatcher.
+		Since this last device uses the Boltwood format, we should also support Boltwood Sky Sensors (testers welcome).
 		</p>
 	<!-- ****************************************************************************************** -->
 	<p>
