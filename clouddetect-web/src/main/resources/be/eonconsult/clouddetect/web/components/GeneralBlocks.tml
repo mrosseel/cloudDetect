@@ -1,0 +1,47 @@
+<span xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+
+<t:block id="login">
+  <t:login/>
+</t:block> 
+
+<t:block id="userinfo">
+	<div class="box">
+		<t:userinfo/>
+	</div>
+</t:block> 
+
+<t:block id="ads">
+	<div class="box">
+ 		<t:googleads/>
+ 	</div>
+</t:block> 
+
+<t:block id="warning">
+    <div class="box">
+	   <div style="font-size: 0.8em;">This site is in beta testing, drenched telescopes will not be refunded</div>
+   </div>
+</t:block>
+
+
+<t:block id="contact">
+	 <t:if test="userExists">
+	<div class="box">
+		Contact us
+	</div>
+	</t:if>
+</t:block>
+
+<t:block id="bookmarks">
+<div class="box">
+		<!-- AddThis Bookmark Button BEGIN -->
+		<script type="text/javascript">
+		  addthis_url    = location.href;   
+		  addthis_title  = document.title;  
+		  addthis_pub    = 'Miker';     
+		</script>
+		<script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
+		<!-- AddThis Bookmark Button END -->
+	</div>
+</t:block>
+
+</span>
