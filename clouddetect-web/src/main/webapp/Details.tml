@@ -1,6 +1,14 @@
 <t:border xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
 
 <META HTTP-EQUIV="refresh" CONTENT="${feed.secondsBetweenUpdates}"/>
+<t:GeneralBlocks/>
+
+<t:block id="userinfo">
+	<div class="box">
+		<t:userinfo/>
+	</div>
+</t:block> 
+
 
 <t:block id="settings">
 	<t:form t:id="transitions">
@@ -52,6 +60,8 @@
 
 
 <div id="left">
+	<t:delegate to="block:userinfo"/>			
+
 	<div class="box">
 		<t:delegate to="block:settings"/>			
 	</div>
@@ -70,13 +80,6 @@
 		</t:if>
 	</div>
 	
-	<div class="box">
-		<h2>Actions :</h2>
-		<ul>
-			<li><a t:type="PageLink" page="EditFeed" context="feed.id">Edit my feed</a></li>
-			<li><a href="">Add this Feed</a></li>
-		</ul>
-	</div>
 	
 	<!--
 	<t:parameter name="else">
@@ -84,6 +87,22 @@
 	</t:parameter>
 	-->
 	</t:if>
+	<t:if test="feedAllowed">
+	<div class="box">
+		<h2>Actions :</h2>
+		<ul>
+			<li><a t:type="PageLink" page="EditFeed" context="feed.id">Edit my feed</a></li>
+			<li><a t:type="PageLink" page="EditFeed">Add a feed</a></li>
+			<li><a t:type="PageLink" page="EditFeed">Show my feeds</a></li>
+		</ul>
+	</div>
+	</t:if>
+
+<!--
+	<t:delegate to="block:bookmarks"/>
+	<t:delegate to="block:warning"/>			
+	<t:delegate to="block:contact"/>
+	-->
 
 <!--
 	<div class="box">

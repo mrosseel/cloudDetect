@@ -1,30 +1,13 @@
 package be.eonconsult.clouddetect.web.pages;
 
-import org.apache.tapestry5.annotations.ApplicationState;
 
-import persistence.model.User;
-
-public class ProtectedPage {
-	
-	@ApplicationState
-	private User user;
-	
-	private boolean userExists;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+public class ProtectedPage extends EnhancedPage {
 	
 	String onActivate() {
-		if(!userExists) {
+		if(!getUserData().isUserExists()) {
 			return "login";
 		}
 		
 		return null;
 	}
-
 }

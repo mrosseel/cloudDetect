@@ -99,7 +99,7 @@ public class Feed {
 		this.source = source;
 	}
 
-	@ManyToMany(mappedBy = "feeds")
+	@ManyToMany(mappedBy = "feeds", fetch = FetchType.EAGER)
 	public Collection<User> getUsers() {
 		return users;
 	}

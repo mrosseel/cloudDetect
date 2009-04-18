@@ -9,34 +9,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 
 import persistence.dao.UserDao;
 import persistence.model.User;
+import be.eonconsult.clouddetect.UserData;
 import be.eonconsult.clouddetect.web.pages.Start;
 import be.eonconsult.clouddetect.web.services.PasswordService;
 
-/*
- @Persist
- private LoginForm loginForm = new LoginForm();
-
- @Inject
- private Cookies cookies;
-
-
- String onSuccess() {
- User user = userDao.getUserByUserName(loginForm.getUsername());
- PasswordService service = PasswordService.getInstance();
- try {
- if (user != null && user.getPassword().equals(service.encrypt(loginForm.getPassword()))) {
- this.user = user;
- return "Start";
- }
- } catch (Exception e) {
- // TODO Auto-generated catch block
- e.printStackTrace();
- }
- }
- */
 public class Login {
 	@Persist
-	private String userId;
+	private String userName;
 
 	private String password;
 
@@ -47,17 +26,17 @@ public class Login {
 	private UserDao userDao;
 
 	@ApplicationState
-	private User user;
+	private UserData userData;
 
 	@OnEvent("submit")
 	private Object doLogin() {
 
-		User user = userDao.getUserByUserName(userId);
+		User user = userDao.getUserByUserName(userName);
 		PasswordService pwdService = PasswordService.getInstance();
 
 		try {
 			if (user != null && user.getPassword().equals(pwdService.encrypt(password))) {
-				this.user = user;
+				this.userData.setUserId(user.getId());
 				return Start.class;
 			}
 		} catch (Exception e) {
@@ -71,16 +50,16 @@ public class Login {
 		return null;
 	}
 
-	public String getUserId() {
-		return userId;
+	public String getUserName() {
+		return userName;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public void setPassword(String password) {

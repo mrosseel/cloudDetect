@@ -7,9 +7,16 @@
 	<t:parameter name="source">
 		<label t:type="Label" for="source"/>
 	    <t:textfield t:id="source" size="70" value="feed.source"/>
-	<t:parameter name="id"/>
 	</t:parameter>
-
+	<t:parameter name="id"/>
+	<t:parameter name="division">
+		<label t:type="Label" for="division"/>
+	    <t:textfield t:id="division" value="feed.division"/> Only for webcams
+	</t:parameter>
+	<t:parameter name="resultOffset">
+		<label t:type="Label" for="resultOffset"/>
+	    <t:textfield t:id="resultOffset" value="feed.resultOffset"/> Only for webcams
+	</t:parameter>
 </t:beaneditform>
 
 </div>

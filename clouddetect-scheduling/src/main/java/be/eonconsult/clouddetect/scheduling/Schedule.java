@@ -85,5 +85,4 @@ public class Schedule {
 		
 		return consumer;
 	}
-	
 }

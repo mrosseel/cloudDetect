@@ -10,6 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.tapestry5.Asset;
 import org.apache.tapestry5.Block;
 import org.apache.tapestry5.ComponentResources;
+import org.apache.tapestry5.annotations.AfterRender;
+import org.apache.tapestry5.annotations.BeforeRenderBody;
 import org.apache.tapestry5.annotations.InjectPage;
 import org.apache.tapestry5.annotations.Path;
 import org.apache.tapestry5.annotations.Persist;
@@ -25,10 +27,12 @@ import util.AstroUtil;
 import util.DateUtil;
 import util.RiseSetPair;
 import application.InstanceFactory;
+import be.eonconsult.clouddetect.web.components.GeneralBlocks;
+import be.eonconsult.clouddetect.web.components.UserInfo;
 import be.eonconsult.clouddetect.web.services.ClearCloudyMonitor;
 import calculation.CloudJudge.CloudStatus;
 
-public class Details {
+public class Details extends EnhancedPage {
 	private static Log log = LogFactory.getLog(Details.class);
 
 	@Persist
@@ -53,28 +57,28 @@ public class Details {
 	private Feed feed;
 
 	@Persist
-	private boolean shouldWarnWhenClear = false;
+	private boolean shouldWarnWhenClear;
 
 	@Persist
-	private boolean shouldWarnWhenCloudy = false;
+	private boolean shouldWarnWhenCloudy;
 
 	@Persist
-	private int delayClear = 20;
+	private int delayClear;
 
 	@Persist
-	private int delayCloudy = 0;
+	private int delayCloudy;
 
 	@Persist
-	private ClearCloudyMonitor monitor = new ClearCloudyMonitor();
+	private ClearCloudyMonitor monitor;
 
 	@Persist
 	private String cloudStatusString;
 
 	@Persist
-	private boolean isClearNotify = false;
+	private boolean isClearNotify;
 
 	@Persist
-	private boolean isCloudyNotify = false;
+	private boolean isCloudyNotify;
 
 	@Persist
 	private String startTime;
@@ -84,7 +88,7 @@ public class Details {
 
 	
 	@Persist
-	private int nrTimesToPlaySound = 3;
+	private int nrTimesToPlaySound;
 
 	@Inject
 	private ComponentResources resources;
@@ -93,12 +97,23 @@ public class Details {
 	private Block sound;
 	
 	@Inject
+	private Block userInfo;
+	
+	@Inject
 	@Path("context:images/ajax-loader.gif")
 	private Asset ajaxLoader;
 
+	// maybe there's a phase in the rendering where we need to do this?
+	void initPersistentFields() {
+		delayClear = 20;
+		delayCloudy = 20;
+		nrTimesToPlaySound = 3;
+		monitor = new ClearCloudyMonitor();
+	}
+	
 	void onActivate(int id) {
 		log.info("in activate with id " + id);
-		
+		initPersistentFields();
 		this.id = id;
 		this.feed = feedDao.getFeed(this.id);
 		if(validTimesMap == null) {
@@ -167,6 +182,9 @@ public class Details {
 		return sound;
 	}
 
+	Block getUserInfo() {
+		return GeneralBlocks.getUserInfo();
+	}
 	
 	void onSubmitFromTransition() {
 		// details.onActivate(id);
@@ -287,5 +305,9 @@ public class Details {
 
 	public Asset getAjaxLoader() {
 		return ajaxLoader;
+	}
+	
+	public boolean isFeedAllowed() {
+		return super.isFeedAllowed(id);
 	}
 }

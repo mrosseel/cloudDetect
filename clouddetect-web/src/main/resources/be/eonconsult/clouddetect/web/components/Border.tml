@@ -18,18 +18,7 @@
 	</t:if>
 </head>
 
-<t:block id="login">
-  <t:login/>
-</t:block> 
-
-<t:block id="userinfo">
- <t:userinfo/>
-</t:block> 
-
-<t:block id="ads">
- <t:googleads/>
-</t:block> 
-
+<t:GeneralBlocks/>
 
 <!-- <body onload="load()" onunload="GUnload()"> -->
 <body style="height:100%;margin:0">
@@ -50,12 +39,12 @@
    <li id="nav"><a href="http://gatheringclouds.blogspot.com" target="_blank">${message:top.blog}</a></li>
   </ul>
  </div>
-</div>
+</div> <!-- end of header -->
 
 <div id="content">
 
-
 <t:body/>
+
 <!--
 <div id="right">
 </div>
@@ -63,35 +52,12 @@
 
 <div id="left">
 
-	<div class="box">
-		<t:delegate to="block:userinfo"/>			
-	</div>
-	
-    <div class="box">
-	   <div style="font-size: 0.8em;">This site is in beta testing, drenched telescopes will not be refunded</div>
-   </div>
 
-	<div class="box">
-		<!-- AddThis Bookmark Button BEGIN -->
-		<script type="text/javascript">
-		  addthis_url    = location.href;   
-		  addthis_title  = document.title;  
-		  addthis_pub    = 'Miker';     
-		</script>
-		<script type="text/javascript" src="http://s7.addthis.com/js/addthis_widget.php?v=12" ></script>
-		<!-- AddThis Bookmark Button END -->
-	</div>
-	
-	 <t:if test="userExists">
-	<div class="box">
-		Contact us
-	</div>
-	</t:if>
-	<!--	
-	<div class="box">
-		<t:delegate to="block:ads"/>
-	</div>
-	--> 
+	<t:delegate to="block:userinfo"/>			
+	<t:delegate to="block:bookmarks"/>
+	<t:delegate to="block:warning"/>			
+	<t:delegate to="block:contact"/>
+	<t:delegate to="block:ads"/>
 
 </div>
 </div>

@@ -9,11 +9,6 @@ import persistence.model.User;
 import be.eonconsult.clouddetect.Global;
 
 public class Border {
-    
-	@ApplicationState
-	private User user;
-	
-	private boolean userExists;
 	
 	@ApplicationState
 	private Global global;
@@ -39,14 +34,6 @@ public class Border {
     public void setLogo(Asset logo) {
         this.logo = logo;
     }
-
-	public boolean isUserExists() {
-		return userExists;
-	}
-
-	public void setUserExists(boolean userExists) {
-		this.userExists = userExists;
-	}
     
 	public boolean isTracking() {
 		return global.isTracking();

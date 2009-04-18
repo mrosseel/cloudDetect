@@ -107,6 +107,6 @@
   </reporting>
   
   <properties>
-    <tapestry-release-version>5.0.14</tapestry-release-version>
+    <tapestry-release-version>5.0.18</tapestry-release-version>
   </properties>
 </project>

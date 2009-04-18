@@ -2,8 +2,8 @@
 
    <form t:id="form" t:type="Form">
       <!-- <t:comp type="Errors"/> -->
-      <label t:type="Label" for="userId"/>:
-      <input t:type="TextField" t:id="userId"
+      <label t:type="Label" for="userName"/>:
+      <input t:type="TextField" t:id="userName"
              t:validate="required,minlength=3" size="30"/>
       <br/>
       <label t:type="Label" for="password"/>:
