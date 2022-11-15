@@ -39,7 +39,6 @@ public class ClickatellNotify implements Notifier<CloudResult> {
         try {
             addKeyValue("api_id", "2786391");
             addKeyValue("user", "mrosseel");
-     //       addKeyValue("password", "nGc5194");
             addKeyValue("to", "32477608813");
             addKeyValue("from", "32477608813");
             addKeyValue("text", "Het is helder! Tijd om op te staan...\nMike");
